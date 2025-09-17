@@ -11,7 +11,10 @@
     "lint:hint:preview": "hint 'https://f6d72e-0f.myshopify.com/?preview_theme_id=186613989724' --telemetry=off",
     "dev": "shopify theme dev",
     "lhci": "lhci autorun",
-    "theme-check": "theme-check"
+    "theme-check": "bash scripts/theme_check.sh",
+    "test:visual": "playwright test --config=playwright.config.ts",
+    "test:visual:update": "playwright test --config=playwright.config.ts --update-snapshots",
+    "lhci:preview": "lhci autorun --config=lighthouserc.preview.json --collect.url=$PREVIEW_URL --collect.startServerCommand='echo skip'"
   },
   "keywords": [],
   "author": "",

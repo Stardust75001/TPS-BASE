@@ -5,4 +5,4 @@ if [[ "${SKIP_THEME_CHECK:-}" == "1" ]]; then
 if ! command -v theme-check >/dev/null 2>&1; then
   gem install theme-check --no-document >/dev/null
 fi
-theme-check --color .
+theme-check . "$@"
