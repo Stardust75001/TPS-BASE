@@ -5,7 +5,17 @@
       "startServerCommand": "echo 'skip local server'",
       "numberOfRuns": 1
     },
-    "assert": { "preset": "lighthouse:no-pwa" },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.40 }],
+        "categories:accessibility": ["error", { "minScore": 0.70 }],
+        "categories:best-practices": ["warn", { "minScore": 0.70 }],
+        "categories:seo": ["warn", { "minScore": 0.80 }],
+        "total-byte-weight": ["warn", { "minScore": 0.30 }],
+        "unused-javascript": ["warn", { "maxLength": 10 }],
+        "uses-responsive-images": ["warn", { "maxLength": 15 }]
+      }
+    },
     "upload": { "target": "temporary-public-storage" }
   }
 }

@@ -1,0 +1,6 @@
+{%- comment -%} Placeholder inventory bar {%- endcomment -%}
+{% if block and product and product.selected_or_first_available_variant %}
+<div class="inventory-bar-placeholder">
+  {{ product.selected_or_first_available_variant.inventory_quantity | default: 0 }} in stock
+</div>
+{% endif %}
