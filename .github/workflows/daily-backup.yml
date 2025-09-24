@@ -1,0 +1,40 @@
+name: Daily Theme Backup
+
+on:
+  schedule:
+    - cron: '15 2 * * *' # Daily at 02:15 UTC
+  workflow_dispatch: {}
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node (for potential Shopify CLI use)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Shopify CLI (optional)
+        run: |
+          npm install -g @shopify/cli @shopify/theme
+        continue-on-error: true
+
+      - name: Configure Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run backup script
+        run: |
+          chmod +x backup-theme.sh
+          ./backup-theme.sh
+
+      - name: Show diff (for logs)
+        if: always()
+        run: |
+          git --no-pager log -1 --name-status
