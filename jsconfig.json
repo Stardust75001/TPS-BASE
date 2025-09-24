@@ -5,15 +5,24 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "target": "es2022",
-    "lib": ["es2022", "dom", "dom.iterable"],
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
     "types": [],
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "noImplicitAny": false,
     "strict": false,
-    "typeRoots": ["."]
+    "typeRoots": [
+      "."
+    ]
   },
-  "include": ["**/*", "types.d.ts"],
+  "include": [
+    "**/*",
+    "types.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.*",

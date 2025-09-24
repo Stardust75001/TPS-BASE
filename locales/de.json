@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "no_reviews": "Keine Bewertungen",
   "announcement": {
@@ -52,48 +43,48 @@
     "section_1": "Benutzerdefinierter Abschnitt 1",
     "section_2": "Benutzerdefinierter Abschnitt 2"
   },
-"sections": {
-  "list_collections": {
-    "name": "Kollektionen",
-    "settings": {
-      "show_breadcrumbs": {
-        "label": "Brotkrumen anzeigen"
-      },
-      "text_align": {
-        "label": "Textausrichtung"
-      },
-      "bg_color": {
-        "label": "Hintergrundfarbe"
+  "sections": {
+    "list_collections": {
+      "name": "Kollektionen",
+      "settings": {
+        "show_breadcrumbs": {
+          "label": "Brotkrumen anzeigen"
+        },
+        "text_align": {
+          "label": "Textausrichtung"
+        },
+        "bg_color": {
+          "label": "Hintergrundfarbe"
+        }
       }
-    }
-  },
-  "colors": {
-    "white": {
-      "label": "Weiß"
     },
-    "light": {
-      "label": "Hell"
-    },
-    "body": {
-      "label": "Text"
-    }
-  },
-  "alignment": {
-    "left": "Links",
-    "center": "Zentriert"
-  },
-  "featured_collections": {
-    "settings": {
-      "btn_text": {
-        "label": "Schaltflächentext",
-        "default": "Alle Kollektionen anzeigen",
-        "info": "Leer lassen, um zu deaktivieren"
+    "colors": {
+      "white": {
+        "label": "Weiß"
+      },
+      "light": {
+        "label": "Hell"
+      },
+      "body": {
+        "label": "Text"
       }
-    }
+    },
+    "alignment": {
+      "left": "Links",
+      "center": "Zentriert"
+    },
+    "featured_collections": {
+      "settings": {
+        "btn_text": {
+          "label": "Schaltflächentext",
+          "default": "Alle Kollektionen anzeigen",
+          "info": "Leer lassen, um zu deaktivieren"
+        }
+      }
+    },
+    "header": "Kopfzeile",
+    "footer": ""
   },
-  "header": "Kopfzeile",
-  "footer": ""
-},
   "collection": {
     "btn_filter_products": "Produkte filtern",
     "sort_by": "Sortieren nach",
@@ -116,13 +107,14 @@
       "from": "Kollektion Filter von",
       "title": "Kollektion Filter Titel",
       "to": "Kollektion Filter bis",
-      "view_more": "Mehr Filter anzeigen"
+      "view_more": "Mehr Filter anzeigen",
+      "clear_all": "TODO",
+      "view_results": "TODO"
     },
     "load_more": "Mehr laden",
     "load_previous": "Vorherige laden"
   },
   "product": {
-    "price_unit": "Preis pro Einheit",
     "sold_out": "Ausverkauft",
     "price_sale": "Angebotspreis",
     "price_regular": "Regulärer Preis",
@@ -186,12 +178,12 @@
     "menu": "Menü",
     "all_rights_reserved": "Alle Rechte vorbehalten",
     "secure_payments": "Sichere Zahlungen",
-  "newsletter": {
-    "name_placeholder": "Geben Sie Ihren Namen ein",
-    "input_label": "Geben Sie Ihre E-Mail ein",
-    "submit_button": "Abonnieren",
-    "confirmation_text": "Danke für Ihr Abonnement!"
-},
+    "newsletter": {
+      "name_placeholder": "Geben Sie Ihren Namen ein",
+      "input_label": "Geben Sie Ihre E-Mail ein",
+      "submit_button": "Abonnieren",
+      "confirmation_text": "Danke für Ihr Abonnement!"
+    },
     "breadcrumbs": {
       "home": "Startseite",
       "label": "Sie sind hier:"
@@ -261,7 +253,8 @@
       "slide_of": "Folie {{ current }} von {{ total }}",
       "toggle_sound": "Ton umschalten",
       "utility_icons": "Dienstsymbole",
-      "wishlist": "Wunschliste"
+      "wishlist": "Wunschliste",
+      "back_to_top": "TODO"
     },
     "wishlist": {
       "offcanvas_title": "Ihre Wunschliste",
@@ -318,7 +311,10 @@
     },
     "btn_add_to_cart": "In den Warenkorb",
     "text_note_saved": "Notiz gespeichert",
-    "text_btn_save": "Speichern"
+    "text_btn_save": "Speichern",
+    "loading": "TODO",
+    "policy": "TODO",
+    "map": "TODO"
   },
   "cart": {
     "title": "Ihr Warenkorb",
@@ -367,19 +363,7 @@
     }
   },
   "customer": {
-    "activate_account": {
-      "password": "Passwort",
-      "password_confirm": "Passwort bestätigen",
-      "submit": "Absenden",
-      "cancel": "Abbrechen",
-      "subtext": "Gib dein Passwort ein"
-    },
     "addresses": {
-      "title": "Adressen",
-      "tab_addresses": "Adressen",
-      "tab_add_new": "Neue Adresse hinzufügen",
-      "default": "Standardadresse",
-      "add_new": "Neue Adresse hinzufügen",
       "country": "Land",
       "province": "Region",
       "zip": "Postleitzahl",
@@ -417,7 +401,6 @@
       "submit": "Senden"
     },
     "order": {
-      "fulfilled_at_html": "Erfüllt am {{ date }}",
       "title": "Bestelldetails",
       "date_html": "Bestelldatum: {{ date }}",
       "cancelled_html": "Bestellung storniert am {{ date }}",
@@ -471,13 +454,14 @@
     "title": "Benutzerdefiniert",
     "description": "Passen Sie Ihre Auswahl an"
   },
- "footer": {
-  "newsletter": {
-    "title": "Abonnieren Sie unseren Newsletter",
-    "first_name_placeholder": "Geben Sie Ihren Vornamen ein",
-    "email_placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
-    "submit_button": "Abonnieren",
-    "notice_html": "Mit dem Abonnieren unseres Newsletters stimmen Sie unseren Allgemeinen Geschäftsbedingungen und unserer <a href=\"/pages/confidentialite\">Datenschutzrichtlinie</a> zu."
-  }
-}
+  "footer": {
+    "newsletter": {
+      "title": "Abonnieren Sie unseren Newsletter",
+      "first_name_placeholder": "Geben Sie Ihren Vornamen ein",
+      "email_placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "submit_button": "Abonnieren",
+      "notice_html": "Mit dem Abonnieren unseres Newsletters stimmen Sie unseren Allgemeinen Geschäftsbedingungen und unserer <a href=\"/pages/confidentialite\">Datenschutzrichtlinie</a> zu."
+    }
+  },
+  "checkout": "TODO"
 }

@@ -2,7 +2,18 @@
   <!-- Image principale -->
   <div style="flex: 1 1 40%; max-width: 500px;">
     {% if product.featured_image %}
-      <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title | escape }}" style="width: 100%; border: 1px solid #ddd; padding: 10px;" loading="lazy">
+      {% liquid
+        assign p_w = product.featured_image.width | default: 800
+        assign p_h = product.featured_image.height | default: 800
+      %}
+      <img
+        src="{{ product.featured_image | image_url: width: p_w }}"
+        alt="{{ product.title | escape }}"
+        style="width: 100%; border: 1px solid #ddd; padding: 10px;"
+        loading="lazy"
+        width="{{ p_w }}"
+        height="{{ p_h }}"
+      >
     {% endif %}
   </div>
 
@@ -25,7 +36,7 @@
       {{ product.description }}
     </div>
 
-    <form method="post" action="/cart/add">
+    <form method="post" action="{{ routes.cart_add_url }}">
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
       {% if product.variants.size > 1 %}
@@ -37,7 +48,10 @@
         </select>
       {% endif %}
 
-      <button type="submit" style="background-color: #FFA41C; color: black; border: none; padding: 12px 24px; font-weight: bold; font-size: 16px; cursor: pointer;">
+      <button
+        type="submit"
+        style="background-color: #FFA41C; color: black; border: none; padding: 12px 24px; font-weight: bold; font-size: 16px; cursor: pointer;"
+      >
         Ajouter au panier
       </button>
     </form>

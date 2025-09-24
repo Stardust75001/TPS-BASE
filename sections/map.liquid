@@ -1,99 +1,109 @@
-{% liquid 
-    assign pt = section.settings.pt | prepend: 'pt-'
-    assign pb = section.settings.pb | prepend: 'pb-'
-    assign mt = section.settings.mt | prepend: 'mt-'
-    assign mb = section.settings.mb | prepend: 'mb-'
+{% liquid
+  assign pt = section.settings.pt | prepend: 'pt-'
+  assign pb = section.settings.pb | prepend: 'pb-'
+  assign mt = section.settings.mt | prepend: 'mt-'
+  assign mb = section.settings.mb | prepend: 'mb-'
 %}
 
-<section id="map-{{ section.id }}" class="map-section {{ section.settings.bg_color }} {{ pt }} {{ pb }} {{ mt }} {{ mb }}">
-    <div class="{{ section.settings.container }}">
-        <div class="mx-auto" style="max-width: {{ section.settings.max_width }}px;">
-            {% unless section.settings.heading == blank %}
-                <div class="text-center mb-5">
-                    <h2 class="section-heading {{ section.settings.heading_size }}">
-                        {{ section.settings.heading }}
-                    </h2>
-                    {% unless section.settings.description == blank %}
-                        <p class="section-description {{ section.settings.description_size }}">
-                            {{ section.settings.description }}
-                        </p>
-                    {% endunless %}
-                </div>
-            {% endunless %}
-            
-            <div class="row">
-                {% if section.settings.show_info %}
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <div class="map-info p-4">
-                            {% unless section.settings.store_name == blank %}
-                                <h3 class="h4 mb-3">{{ section.settings.store_name }}</h3>
-                            {% endunless %}
-                            
-                            {% unless section.settings.address == blank %}
-                                <div class="mb-3">
-                                    <strong>{{ 'general.map.address' | t }}:</strong><br>
-                                    {{ section.settings.address }}
-                                </div>
-                            {% endunless %}
-                            
-                            {% unless section.settings.phone == blank %}
-                                <div class="mb-3">
-                                    <strong>{{ 'general.map.phone' | t }}:</strong><br>
-                                    <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
-                                </div>
-                            {% endunless %}
-                            
-                            {% unless section.settings.email == blank %}
-                                <div class="mb-3">
-                                    <strong>{{ 'general.map.email' | t }}:</strong><br>
-                                    <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-                                </div>
-                            {% endunless %}
-                            
-                            {% unless section.settings.hours == blank %}
-                                <div class="mb-3">
-                                    <strong>{{ 'general.map.hours' | t }}:</strong><br>
-                                    {{ section.settings.hours }}
-                                </div>
-                            {% endunless %}
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                {% else %}
-                    <div class="col-12">
-                {% endif %}
-                        <div class="map-container">
-                            {% if section.settings.api_key != blank and section.settings.address != blank %}
-                                <div 
-                                    id="google-map-{{ section.id }}" 
-                                    class="google-map"
-                                    style="height: {{ section.settings.map_height }}px;"
-                                    data-api-key="{{ section.settings.api_key }}"
-                                    data-address="{{ section.settings.address | escape }}"
-                                    data-zoom="{{ section.settings.zoom }}"
-                                    data-map-style="{{ section.settings.map_style }}">
-                                </div>
-                            {% else %}
-                                <div class="map-placeholder d-flex align-items-center justify-content-center bg-light" style="height: {{ section.settings.map_height }}px;">
-                                    <div class="text-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted mb-2">
-                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                            <circle cx="12" cy="10" r="3"></circle>
-                                        </svg>
-                                        <p class="text-muted">{{ 'general.map.api_key_missing' | t }}</p>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section
+  id="map-{{ section.id }}"
+  class="map-section {{ section.settings.bg_color }} {{ pt }} {{ pb }} {{ mt }} {{ mb }}"
+>
+  <div class="{{ section.settings.container }}">
+    <div class="mx-auto" style="max-width: {{ section.settings.max_width }}px;">
+      {% unless section.settings.heading == blank %}
+        <div class="text-center mb-5">
+          <h2 class="section-heading {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h2>
+          {% unless section.settings.description == blank %}
+            <p class="section-description {{ section.settings.description_size }}">
+              {{ section.settings.description }}
+            </p>
+          {% endunless %}
         </div>
+      {% endunless %}
+
+      <div class="row">
+        {% if section.settings.show_info %}
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <div class="map-info p-4">
+              {% unless section.settings.store_name == blank %}
+                <h3 class="h4 mb-3">{{ section.settings.store_name }}</h3>
+              {% endunless %}
+              {% unless section.settings.address == blank %}
+                <div class="mb-3">
+                  <strong>{{ 'general.map.address' | t }}:</strong><br>
+                  {{ section.settings.address }}
+                </div>
+              {% endunless %}
+              {% unless section.settings.phone == blank %}
+                <div class="mb-3">
+                  <strong>{{ 'general.map.phone' | t }}:</strong><br>
+                  <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
+                </div>
+              {% endunless %}
+              {% unless section.settings.email == blank %}
+                <div class="mb-3">
+                  <strong>{{ 'general.map.email' | t }}:</strong><br>
+                  <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+                </div>
+              {% endunless %}
+              {% unless section.settings.hours == blank %}
+                <div class="mb-3">
+                  <strong>{{ 'general.map.hours' | t }}:</strong><br>
+                  {{ section.settings.hours }}
+                </div>
+              {% endunless %}
+            </div>
+          </div>
+        {% endif %}
+        <div class="{% if section.settings.show_info %}col-lg-8{% else %}col-12{% endif %}">
+          <div class="map-container">
+            {% if section.settings.api_key != blank and section.settings.address != blank %}
+              <div
+                id="google-map-{{ section.id }}"
+                class="google-map"
+                style="height: {{ section.settings.map_height }}px;"
+                data-api-key="{{ section.settings.api_key }}"
+                data-address="{{ section.settings.address | escape }}"
+                data-zoom="{{ section.settings.zoom }}"
+                data-map-style="{{ section.settings.map_style }}"
+              ></div>
+            {% else %}
+              <div
+                class="map-placeholder d-flex align-items-center justify-content-center bg-light"
+                style="height: {{ section.settings.map_height }}px;"
+              >
+                <div class="text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-muted mb-2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <p class="text-muted">{{ 'general.map.api_key_missing' | t }}</p>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 {% if section.settings.api_key != blank %}
-<script>
+  <script>
     function initGoogleMap{{ section.id }}() {
         const mapElement = document.getElementById('google-map-{{ section.id }}');
         if (!mapElement) return;
@@ -142,7 +152,7 @@
     } else {
         initGoogleMap{{ section.id }}();
     }
-</script>
+  </script>
 {% endif %}
 
 {% schema %}
@@ -160,10 +170,22 @@
       "id": "heading_size",
       "label": "Heading Size",
       "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "h4", "label": "H4" }
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        }
       ],
       "default": "h2"
     },
@@ -235,8 +257,14 @@
       "id": "map_style",
       "label": "Map Style",
       "options": [
-        { "value": "standard", "label": "Standard" },
-        { "value": "custom", "label": "Custom" }
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
       ],
       "default": "standard"
     },
@@ -245,8 +273,14 @@
       "id": "container",
       "label": "Container",
       "options": [
-        { "value": "container", "label": "Container" },
-        { "value": "container-fluid", "label": "Container Fluid" }
+        {
+          "value": "container",
+          "label": "Container"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Container Fluid"
+        }
       ],
       "default": "container"
     },
@@ -261,10 +295,22 @@
       "id": "bg_color",
       "label": "Background Color",
       "options": [
-        { "value": "", "label": "None" },
-        { "value": "bg-light", "label": "Light" },
-        { "value": "bg-dark", "label": "Dark" },
-        { "value": "bg-primary", "label": "Primary" }
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "bg-light",
+          "label": "Light"
+        },
+        {
+          "value": "bg-dark",
+          "label": "Dark"
+        },
+        {
+          "value": "bg-primary",
+          "label": "Primary"
+        }
       ],
       "default": ""
     },

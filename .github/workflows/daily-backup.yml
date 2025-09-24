@@ -2,7 +2,7 @@ name: Daily Theme Backup
 
 on:
   schedule:
-    - cron: '15 2 * * *' # Daily at 02:15 UTC
+    - cron: "15 2 * * *" # Daily at 02:15 UTC
   workflow_dispatch: {}
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node (for potential Shopify CLI use)
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install Shopify CLI (optional)
         run: |

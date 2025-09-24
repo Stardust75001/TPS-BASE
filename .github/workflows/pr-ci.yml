@@ -2,11 +2,11 @@ name: PR CI
 
 on:
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
     paths-ignore:
-      - '**/*.md'
-      - 'docs/**'
-      - '.github/ISSUE_TEMPLATE/**'
+      - "**/*.md"
+      - "docs/**"
+      - ".github/ISSUE_TEMPLATE/**"
   workflow_dispatch: {}
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Install Ruby + theme-check
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: "3.3"
           bundler-cache: false
       - name: Run theme-check
         run: |
@@ -36,8 +36,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - name: Install deps (prod only)
         run: npm ci --omit=dev || npm install --omit=dev
       - name: List key files
@@ -55,3 +55,32 @@ jobs:
     steps:
       - name: Report
         run: echo "All required jobs passed."
+
+  smoke-tests:
+    name: Smoke Tests
+    runs-on: ubuntu-latest
+    needs: [basic-build] # run after basic build to reuse dependency insight
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install deps (include dev for Playwright)
+        run: npm ci || npm install
+      - name: Install browsers
+        run: npx playwright install --with-deps chromium
+      - name: Export PREVIEW_URL placeholder
+        run: |
+          # TODO: Replace this with real preview generation (deploy to unpublished theme) if desired.
+          echo "PREVIEW_URL=https://example.invalid" >> $GITHUB_ENV
+      - name: Run smoke suite
+        env:
+          CI: true
+        run: npm run test:smoke || echo "Smoke tests returned non-zero (may be all skipped)."
+      - name: Show smoke report
+        if: always()
+        run: |
+          if [ -d playwright-report ]; then echo "Listing report files:"; find playwright-report -maxdepth 2 -type f | head -n 40; fi

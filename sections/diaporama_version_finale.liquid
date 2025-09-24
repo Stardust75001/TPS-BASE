@@ -51,8 +51,14 @@
           "id": "btn_color",
           "label": "Style du bouton principal",
           "options": [
-            { "value": "btn-primary", "label": "Principal" },
-            { "value": "btn-secondary", "label": "Secondaire" }
+            {
+              "value": "btn-primary",
+              "label": "Principal"
+            },
+            {
+              "value": "btn-secondary",
+              "label": "Secondaire"
+            }
           ],
           "default": "btn-primary"
         },
@@ -61,9 +67,18 @@
           "id": "btn_size",
           "label": "Taille du bouton principal",
           "options": [
-            { "value": "btn-sm", "label": "Petit" },
-            { "value": "btn-md", "label": "Moyen" },
-            { "value": "btn-lg", "label": "Grand" }
+            {
+              "value": "btn-sm",
+              "label": "Petit"
+            },
+            {
+              "value": "btn-md",
+              "label": "Moyen"
+            },
+            {
+              "value": "btn-lg",
+              "label": "Grand"
+            }
           ],
           "default": "btn-md"
         },
@@ -82,8 +97,14 @@
           "id": "btn_secondary_color",
           "label": "Style du bouton secondaire",
           "options": [
-            { "value": "btn-outline-primary", "label": "Contour principal" },
-            { "value": "btn-outline-secondary", "label": "Contour secondaire" }
+            {
+              "value": "btn-outline-primary",
+              "label": "Contour principal"
+            },
+            {
+              "value": "btn-outline-secondary",
+              "label": "Contour secondaire"
+            }
           ],
           "default": "btn-outline-primary"
         },
@@ -92,9 +113,18 @@
           "id": "btn_secondary_size",
           "label": "Taille du bouton secondaire",
           "options": [
-            { "value": "btn-sm", "label": "Petit" },
-            { "value": "btn-md", "label": "Moyen" },
-            { "value": "btn-lg", "label": "Grand" }
+            {
+              "value": "btn-sm",
+              "label": "Petit"
+            },
+            {
+              "value": "btn-md",
+              "label": "Moyen"
+            },
+            {
+              "value": "btn-lg",
+              "label": "Grand"
+            }
           ],
           "default": "btn-md"
         },
@@ -103,9 +133,18 @@
           "id": "caption_position_mobile",
           "label": "Position du texte (mobile)",
           "options": [
-            { "value": "text-start", "label": "Gauche" },
-            { "value": "text-center", "label": "Centré" },
-            { "value": "text-end", "label": "Droite" }
+            {
+              "value": "text-start",
+              "label": "Gauche"
+            },
+            {
+              "value": "text-center",
+              "label": "Centré"
+            },
+            {
+              "value": "text-end",
+              "label": "Droite"
+            }
           ],
           "default": "text-center"
         },
@@ -114,9 +153,18 @@
           "id": "caption_position_desktop",
           "label": "Position du texte (desktop)",
           "options": [
-            { "value": "text-start", "label": "Gauche" },
-            { "value": "text-center", "label": "Centré" },
-            { "value": "text-end", "label": "Droite" }
+            {
+              "value": "text-start",
+              "label": "Gauche"
+            },
+            {
+              "value": "text-center",
+              "label": "Centré"
+            },
+            {
+              "value": "text-end",
+              "label": "Droite"
+            }
           ],
           "default": "text-center"
         },
@@ -152,79 +200,91 @@
   ]
 }
 {% endschema %}
----------------------------------------------------------
-Copyright © 2019/2024 Theme Shopiweb Premium. Tous droits réservés.
-La copie, la modification, la distribution ou l'utilisation
-non autorisée de ce code ou de toute partie de celui-ci est formellement interdite.
-Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
+--------------------------------------------------------- Copyright © 2019/2024 Theme Shopiweb Premium. Tous droits
+réservés. La copie, la modification, la distribution ou l'utilisation non autorisée de ce code ou de toute partie de
+celui-ci est formellement interdite. Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
 ---------------------------------------------------------
 {% comment %}
----------------------------------------------------------
-Copyright © 2019/2024 Theme Shopiweb Premium. Tous droits réservés.
----------------------------------------------------------
+  ---------------------------------------------------------
+  Copyright © 2019/2024 Theme Shopiweb Premium. Tous droits réservés.
+  ---------------------------------------------------------
 {% endcomment %}
 
 {%- style -%}
-@media screen and (max-width: 767px) {
-  .carousel-caption .btn-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-  }
+  @media screen and (max-width: 767px) {
+    .carousel-caption .btn-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
 
-  .carousel-caption .btn-wrapper .btn {
-    font-size: 14px;
-    padding: 8px 18px;
-    margin: 0;
-    text-align: center;
+    .carousel-caption .btn-wrapper .btn {
+      font-size: 14px;
+      padding: 8px 18px;
+      margin: 0;
+      text-align: center;
+    }
   }
-}
 {%- endstyle -%}
 
 <!-- Boutons dans le carousel -->
-<div class="carousel-caption {{ block.settings.caption_position_mobile }} {{ block.settings.caption_position_desktop }}"
-     style="color: {{ block.settings.caption_color }};">
-  <div style="max-width: {{ block.settings.caption_max_width }}px">
+{%- for block in section.blocks -%}
+  <div
+    class="carousel-caption {{ block.settings.caption_position_mobile }} {{ block.settings.caption_position_desktop }}"
+    style="color: {{ block.settings.caption_color }};"
+  >
+    <div style="max-width: {{ block.settings.caption_max_width }}px">
+      {% unless block.settings.subtitle_img == blank %}
+        <img
+          class="img-fluid mb-5"
+          src="{{ block.settings.subtitle_img.src | image_url: width: block.settings.brand_image_size }}"
+          alt="{{ block.settings.subtitle_img.alt | escape }}"
+          width="{{ block.settings.brand_image_size }}"
+          height="{{ block.settings.brand_image_size | divided_by: 3 | round }}"
+          loading="lazy"
+        >
+      {% endunless %}
 
-    {% unless block.settings.subtitle_img == blank %}
-      <img
-        class="img-fluid mb-5"
-        src="{{ block.settings.subtitle_img.src | image_url: width: block.settings.brand_image_size }}"
-        alt="{{ block.settings.subtitle_img.alt | escape }}"
-        width="{{ block.settings.brand_image_size }}"
-        height="auto"
-        loading="lazy">
-    {% endunless %}
+      {% unless block.settings.subtitle == blank %}
+        <div class="subtitle mb-3">
+          {{ block.settings.subtitle }}
+        </div>
+      {% endunless %}
 
-    {% unless block.settings.subtitle == blank %}
-      <div class="subtitle mb-3 {{ block.settings.subtitle_size }}">
-        {{ block.settings.subtitle }}
+      {% if block.settings.title != blank %}
+        <h2 class="title mb-3">
+          {{ block.settings.title }}
+        </h2>
+      {% endif %}
+
+      {% unless block.settings.description == blank %}
+        <div class="description rte mb-6">
+          {{ block.settings.description }}
+        </div>
+      {% endunless %}
+
+      <div class="btn-wrapper">
+        {% unless block.settings.btn_text == blank %}
+          <a
+            class="btn {{ block.settings.btn_color }} {{ block.settings.btn_size }}"
+            href="{{ block.settings.btn_url }}"
+          >
+            {{ block.settings.btn_text }}
+          </a>
+        {% endunless %}
+
+        {% unless block.settings.btn_secondary_text == blank %}
+          <a
+            class="btn {{ block.settings.btn_secondary_color }} {{ block.settings.btn_secondary_size }}"
+            href="{{ block.settings.btn_secondary_url }}"
+          >
+            {{ block.settings.btn_secondary_text }}
+          </a>
+        {% endunless %}
       </div>
-    {% endunless %}
-
-    <{{ block.settings.heading_tag }} class="title mb-3 {{ block.settings.title_size }}">
-      {{ block.settings.title }}
-    </{{ block.settings.heading_tag }}>
-
-    {% unless block.settings.description == blank %}
-      <div class="description rte mb-6 {{ block.settings.description_size }}">
-        {{ block.settings.description }}
-      </div>
-    {% endunless %}
-
-<div class="btn-wrapper">
-  {% unless block.settings.btn_text == blank %}
-    <a class="btn {{ block.settings.btn_color }} {{ block.settings.btn_size }}" href="{{ block.settings.btn_url }}">
-      {{ block.settings.btn_text }}
-    </a>
-  {% endunless %}
-
-  {% unless block.settings.btn_secondary_text == blank %}
-    <a class="btn {{ block.settings.btn_secondary_color }} {{ block.settings.btn_secondary_size }}" href="{{ block.settings.btn_secondary_url }}">
-      {{ block.settings.btn_secondary_text }}
-    </a>
-  {% endunless %}
-</div>
+    </div>
+  </div>
+{%- endfor -%}

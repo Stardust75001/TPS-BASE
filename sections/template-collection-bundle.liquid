@@ -14,23 +14,20 @@
   assign row_lg = section.settings.breakpoint_lg | prepend: 'row-cols-lg-'
   assign row_xl = section.settings.breakpoint_xl | prepend: 'row-cols-xl-'
   assign row_xxl = section.settings.breakpoint_xxl | prepend: 'row-cols-xxl-'
-
   assign limit = section.settings.limit
-
   if shop.permanent_domain contains 'shopiweb'
     assign limit = 18
   endif
-
+  assign active_filter_values = 0
   for filter in collection.filters
     if filter.type == 'price_range'
       if filter.min_value.value != null or filter.max_value.value != null
-        assign active_filter_values = 1 | plus: active_filter_values
+        assign active_filter_values = active_filter_values | plus: 1
       endif
     else
-      assign active_filter_values = filter.active_values.size | plus: active_filter_values
+      assign active_filter_values = active_filter_values | plus: filter.active_values.size
     endif
   endfor
-
   assign bundle_tiers = section.settings.bundle_tiers | split: ','
 %}
 
@@ -531,7 +528,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Documentation FR : [Collection Bundle by Shopiweb](https:\/\/www.docs.shopiweb.fr\/theme-premium\/documentation\/page-collection\/collection-bundle)"
+      "content": "Documentation FR : [Collection Bundle by Shopiweb](https://www.docs.shopiweb.fr/theme-premium/documentation/page-collection/collection-bundle)"
     },
     {
       "type": "header",
@@ -557,8 +554,14 @@
       "label": "Conteneur",
       "default": "container",
       "options": [
-        { "value": "container", "label": "Conteneur" },
-        { "value": "container-fluid", "label": "Pleine largeur" }
+        {
+          "value": "container",
+          "label": "Conteneur"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Pleine largeur"
+        }
       ]
     },
     {
@@ -567,8 +570,14 @@
       "label": "Alignement du texte",
       "default": "text-start",
       "options": [
-        { "value": "text-start", "label": "Gauche" },
-        { "value": "text-center", "label": "Centre" }
+        {
+          "value": "text-start",
+          "label": "Gauche"
+        },
+        {
+          "value": "text-center",
+          "label": "Centre"
+        }
       ]
     },
     {
@@ -592,25 +601,101 @@
       "label": "Couleur du bouton",
       "default": "btn-outline-secondary",
       "options": [
-        { "group": "Normal", "value": "btn-link", "label": "Lien" },
-        { "group": "Normal", "value": "btn-light", "label": "Claire" },
-        { "group": "Normal", "value": "btn-dark", "label": "Sombre" },
-        { "group": "Normal", "value": "btn-primary", "label": "Primaire" },
-        { "group": "Normal", "value": "btn-secondary", "label": "Secondaire" },
-        { "group": "Normal", "value": "btn-tertiary", "label": "Tertiaire" },
-        { "group": "Normal", "value": "btn-success", "label": "Succès" },
-        { "group": "Normal", "value": "btn-danger", "label": "Danger" },
-        { "group": "Normal", "value": "btn-warning", "label": "Avertissement" },
-        { "group": "Normal", "value": "btn-info", "label": "Info" },
-        { "group": "Contour", "value": "btn-outline-light", "label": "Contour Claire" },
-        { "group": "Contour", "value": "btn-outline-dark", "label": "Contour Sombre" },
-        { "group": "Contour", "value": "btn-outline-primary", "label": "Contour Primaire" },
-        { "group": "Contour", "value": "btn-outline-secondary", "label": "Contour Secondaire" },
-        { "group": "Contour", "value": "btn-outline-tertiary", "label": "Contour Tertiaire" },
-        { "group": "Contour", "value": "btn-outline-success", "label": "Contour Succès" },
-        { "group": "Contour", "value": "btn-outline-danger", "label": "Contour Danger" },
-        { "group": "Contour", "value": "btn-outline-warning", "label": "Contour Avertissement" },
-        { "group": "Contour", "value": "btn-outline-info", "label": "Contour Info" }
+        {
+          "group": "Normal",
+          "value": "btn-link",
+          "label": "Lien"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-light",
+          "label": "Claire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-dark",
+          "label": "Sombre"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-primary",
+          "label": "Primaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-secondary",
+          "label": "Secondaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-tertiary",
+          "label": "Tertiaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-success",
+          "label": "Succès"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-danger",
+          "label": "Danger"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-warning",
+          "label": "Avertissement"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-info",
+          "label": "Info"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-light",
+          "label": "Contour Claire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-dark",
+          "label": "Contour Sombre"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-primary",
+          "label": "Contour Primaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-secondary",
+          "label": "Contour Secondaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-tertiary",
+          "label": "Contour Tertiaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-success",
+          "label": "Contour Succès"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-danger",
+          "label": "Contour Danger"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-warning",
+          "label": "Contour Avertissement"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-info",
+          "label": "Contour Info"
+        }
       ]
     },
     {
@@ -653,16 +738,56 @@
       "label": "Taille du titre",
       "default": "h1",
       "options": [
-        { "group": "Titre Supérieur", "value": "display-1", "label": "Extra Extra Grand" },
-        { "group": "Titre Supérieur", "value": "display-2", "label": "Extra Grand" },
-        { "group": "Titre Supérieur", "value": "display-3", "label": "Ultra Grand" },
-        { "group": "Titre Supérieur", "value": "display-4", "label": "Super Grand" },
-        { "group": "Titre Standard", "value": "h1", "label": "Très Grand" },
-        { "group": "Titre Standard", "value": "h2", "label": "Grand" },
-        { "group": "Titre Standard", "value": "h3", "label": "Moyen" },
-        { "group": "Titre Standard", "value": "h4", "label": "Petit" },
-        { "group": "Titre Standard", "value": "h5", "label": "Très Petit" },
-        { "group": "Titre Standard", "value": "h6", "label": "Super Petit" }
+        {
+          "group": "Titre Supérieur",
+          "value": "display-1",
+          "label": "Extra Extra Grand"
+        },
+        {
+          "group": "Titre Supérieur",
+          "value": "display-2",
+          "label": "Extra Grand"
+        },
+        {
+          "group": "Titre Supérieur",
+          "value": "display-3",
+          "label": "Ultra Grand"
+        },
+        {
+          "group": "Titre Supérieur",
+          "value": "display-4",
+          "label": "Super Grand"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h1",
+          "label": "Très Grand"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h2",
+          "label": "Grand"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h3",
+          "label": "Moyen"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h4",
+          "label": "Petit"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h5",
+          "label": "Très Petit"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h6",
+          "label": "Super Petit"
+        }
       ]
     },
     {
@@ -677,12 +802,36 @@
       "label": "Taille de description",
       "default": "fs-5",
       "options": [
-        { "group": "Description Standard", "value": "fs-1", "label": "Extra Grand" },
-        { "group": "Description Standard", "value": "fs-2", "label": "Super Grand" },
-        { "group": "Description Standard", "value": "fs-3", "label": "Très Grand" },
-        { "group": "Description Standard", "value": "fs-4", "label": "Grand" },
-        { "group": "Description Standard", "value": "fs-5", "label": "Moyen" },
-        { "group": "Description Standard", "value": "fs-6", "label": "Petit" }
+        {
+          "group": "Description Standard",
+          "value": "fs-1",
+          "label": "Extra Grand"
+        },
+        {
+          "group": "Description Standard",
+          "value": "fs-2",
+          "label": "Super Grand"
+        },
+        {
+          "group": "Description Standard",
+          "value": "fs-3",
+          "label": "Très Grand"
+        },
+        {
+          "group": "Description Standard",
+          "value": "fs-4",
+          "label": "Grand"
+        },
+        {
+          "group": "Description Standard",
+          "value": "fs-5",
+          "label": "Moyen"
+        },
+        {
+          "group": "Description Standard",
+          "value": "fs-6",
+          "label": "Petit"
+        }
       ]
     },
     {
@@ -695,17 +844,61 @@
       "label": "Couleur d'en-tête de la carte",
       "default": "bg-dark text-white",
       "options": [
-        { "group": "Principal", "value": "bg-primary text-white", "label": "Primaire" },
-        { "group": "Principal", "value": "bg-secondary text-white", "label": "Secondaire" },
-        { "group": "Principal", "value": "bg-tertiary text-white", "label": "Tertiaire" },
-        { "group": "Intermédiaire", "value": "bg-white text-dark", "label": "Blanc" },
-        { "group": "Intermédiaire", "value": "bg-light text-body", "label": "Claire" },
-        { "group": "Intermédiaire", "value": "bg-dark text-white", "label": "Sombre" },
-        { "group": "Par défaut", "value": "", "label": "Corps (body)" },
-        { "group": "Alerte", "value": "bg-success text-white", "label": "Succès" },
-        { "group": "Alerte", "value": "bg-warning text-dark", "label": "Avertissement" },
-        { "group": "Alerte", "value": "bg-danger text-white", "label": "Danger" },
-        { "group": "Alerte", "value": "bg-info text-white", "label": "Info" }
+        {
+          "group": "Principal",
+          "value": "bg-primary text-white",
+          "label": "Primaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-secondary text-white",
+          "label": "Secondaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-tertiary text-white",
+          "label": "Tertiaire"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-white text-dark",
+          "label": "Blanc"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-light text-body",
+          "label": "Claire"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-dark text-white",
+          "label": "Sombre"
+        },
+        {
+          "group": "Par défaut",
+          "value": "",
+          "label": "Corps (body)"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-success text-white",
+          "label": "Succès"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-warning text-dark",
+          "label": "Avertissement"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-danger text-white",
+          "label": "Danger"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-info text-white",
+          "label": "Info"
+        }
       ]
     },
     {
@@ -720,12 +913,36 @@
       "label": "Taille du titre d'en-tête de la carte",
       "default": "h5",
       "options": [
-        { "group": "Titre Standard", "value": "h1", "label": "Très Grand" },
-        { "group": "Titre Standard", "value": "h2", "label": "Grand" },
-        { "group": "Titre Standard", "value": "h3", "label": "Moyen" },
-        { "group": "Titre Standard", "value": "h4", "label": "Petit" },
-        { "group": "Titre Standard", "value": "h5", "label": "Très Petit" },
-        { "group": "Titre Standard", "value": "h6", "label": "Super Petit" }
+        {
+          "group": "Titre Standard",
+          "value": "h1",
+          "label": "Très Grand"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h2",
+          "label": "Grand"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h3",
+          "label": "Moyen"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h4",
+          "label": "Petit"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h5",
+          "label": "Très Petit"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h6",
+          "label": "Super Petit"
+        }
       ]
     },
     {
@@ -733,15 +950,42 @@
       "id": "bundle_card_border_color",
       "label": "Couleur de la bordure",
       "options": [
-        { "value": "", "label": "Default" },
-        { "value": "border-primary", "label": "Primaire" },
-        { "value": "border-secondary", "label": "Secondaire" },
-        { "value": "border-tertiary", "label": "Tertiaire" },
-        { "value": "border-dark", "label": "Sombre" },
-        { "value": "border-success", "label": "Succès" },
-        { "value": "border-warning", "label": "Avertissement" },
-        { "value": "border-danger", "label": "Danger" },
-        { "value": "border-info", "label": "Info" }
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "border-primary",
+          "label": "Primaire"
+        },
+        {
+          "value": "border-secondary",
+          "label": "Secondaire"
+        },
+        {
+          "value": "border-tertiary",
+          "label": "Tertiaire"
+        },
+        {
+          "value": "border-dark",
+          "label": "Sombre"
+        },
+        {
+          "value": "border-success",
+          "label": "Succès"
+        },
+        {
+          "value": "border-warning",
+          "label": "Avertissement"
+        },
+        {
+          "value": "border-danger",
+          "label": "Danger"
+        },
+        {
+          "value": "border-info",
+          "label": "Info"
+        }
       ],
       "default": ""
     },
@@ -750,11 +994,26 @@
       "id": "bundle_card_shadow_sp",
       "label": "Ombre",
       "options": [
-        { "value": "shadow-none", "label": "Aucune" },
-        { "value": "shadow-1", "label": "Ombre légère" },
-        { "value": "shadow-2", "label": "Ombre partiel" },
-        { "value": "shadow-3", "label": "Ombre profonde" },
-        { "value": "shadow-4", "label": "Ombre totale" }
+        {
+          "value": "shadow-none",
+          "label": "Aucune"
+        },
+        {
+          "value": "shadow-1",
+          "label": "Ombre légère"
+        },
+        {
+          "value": "shadow-2",
+          "label": "Ombre partiel"
+        },
+        {
+          "value": "shadow-3",
+          "label": "Ombre profonde"
+        },
+        {
+          "value": "shadow-4",
+          "label": "Ombre totale"
+        }
       ],
       "default": "shadow-2"
     },
@@ -764,25 +1023,101 @@
       "label": "Couleur du bouton 'Ajouter le lot au panier'",
       "default": "btn-primary",
       "options": [
-        { "group": "Normal", "value": "btn-link", "label": "Lien" },
-        { "group": "Normal", "value": "btn-light", "label": "Claire" },
-        { "group": "Normal", "value": "btn-dark", "label": "Sombre" },
-        { "group": "Normal", "value": "btn-primary", "label": "Primaire" },
-        { "group": "Normal", "value": "btn-secondary", "label": "Secondaire" },
-        { "group": "Normal", "value": "btn-tertiary", "label": "Tertiaire" },
-        { "group": "Normal", "value": "btn-success", "label": "Succès" },
-        { "group": "Normal", "value": "btn-danger", "label": "Danger" },
-        { "group": "Normal", "value": "btn-warning", "label": "Avertissement" },
-        { "group": "Normal", "value": "btn-info", "label": "Info" },
-        { "group": "Contour", "value": "btn-outline-light", "label": "Contour Claire" },
-        { "group": "Contour", "value": "btn-outline-dark", "label": "Contour Sombre" },
-        { "group": "Contour", "value": "btn-outline-primary", "label": "Contour Primaire" },
-        { "group": "Contour", "value": "btn-outline-secondary", "label": "Contour Secondaire" },
-        { "group": "Contour", "value": "btn-outline-tertiary", "label": "Contour Tertiaire" },
-        { "group": "Contour", "value": "btn-outline-success", "label": "Contour Succès" },
-        { "group": "Contour", "value": "btn-outline-danger", "label": "Contour Danger" },
-        { "group": "Contour", "value": "btn-outline-warning", "label": "Contour Avertissement" },
-        { "group": "Contour", "value": "btn-outline-info", "label": "Contour Info" }
+        {
+          "group": "Normal",
+          "value": "btn-link",
+          "label": "Lien"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-light",
+          "label": "Claire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-dark",
+          "label": "Sombre"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-primary",
+          "label": "Primaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-secondary",
+          "label": "Secondaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-tertiary",
+          "label": "Tertiaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-success",
+          "label": "Succès"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-danger",
+          "label": "Danger"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-warning",
+          "label": "Avertissement"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-info",
+          "label": "Info"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-light",
+          "label": "Contour Claire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-dark",
+          "label": "Contour Sombre"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-primary",
+          "label": "Contour Primaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-secondary",
+          "label": "Contour Secondaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-tertiary",
+          "label": "Contour Tertiaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-success",
+          "label": "Contour Succès"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-danger",
+          "label": "Contour Danger"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-warning",
+          "label": "Contour Avertissement"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-info",
+          "label": "Contour Info"
+        }
       ]
     },
     {
@@ -791,25 +1126,101 @@
       "label": "Couleur du bouton 'Afficher le contenu du lot'",
       "default": "btn-outline-secondary",
       "options": [
-        { "group": "Normal", "value": "btn-link", "label": "Lien" },
-        { "group": "Normal", "value": "btn-light", "label": "Claire" },
-        { "group": "Normal", "value": "btn-dark", "label": "Sombre" },
-        { "group": "Normal", "value": "btn-primary", "label": "Primaire" },
-        { "group": "Normal", "value": "btn-secondary", "label": "Secondaire" },
-        { "group": "Normal", "value": "btn-tertiary", "label": "Tertiaire" },
-        { "group": "Normal", "value": "btn-success", "label": "Succès" },
-        { "group": "Normal", "value": "btn-danger", "label": "Danger" },
-        { "group": "Normal", "value": "btn-warning", "label": "Avertissement" },
-        { "group": "Normal", "value": "btn-info", "label": "Info" },
-        { "group": "Contour", "value": "btn-outline-light", "label": "Contour Claire" },
-        { "group": "Contour", "value": "btn-outline-dark", "label": "Contour Sombre" },
-        { "group": "Contour", "value": "btn-outline-primary", "label": "Contour Primaire" },
-        { "group": "Contour", "value": "btn-outline-secondary", "label": "Contour Secondaire" },
-        { "group": "Contour", "value": "btn-outline-tertiary", "label": "Contour Tertiaire" },
-        { "group": "Contour", "value": "btn-outline-success", "label": "Contour Succès" },
-        { "group": "Contour", "value": "btn-outline-danger", "label": "Contour Danger" },
-        { "group": "Contour", "value": "btn-outline-warning", "label": "Contour Avertissement" },
-        { "group": "Contour", "value": "btn-outline-info", "label": "Contour Info" }
+        {
+          "group": "Normal",
+          "value": "btn-link",
+          "label": "Lien"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-light",
+          "label": "Claire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-dark",
+          "label": "Sombre"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-primary",
+          "label": "Primaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-secondary",
+          "label": "Secondaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-tertiary",
+          "label": "Tertiaire"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-success",
+          "label": "Succès"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-danger",
+          "label": "Danger"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-warning",
+          "label": "Avertissement"
+        },
+        {
+          "group": "Normal",
+          "value": "btn-info",
+          "label": "Info"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-light",
+          "label": "Contour Claire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-dark",
+          "label": "Contour Sombre"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-primary",
+          "label": "Contour Primaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-secondary",
+          "label": "Contour Secondaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-tertiary",
+          "label": "Contour Tertiaire"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-success",
+          "label": "Contour Succès"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-danger",
+          "label": "Contour Danger"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-warning",
+          "label": "Contour Avertissement"
+        },
+        {
+          "group": "Contour",
+          "value": "btn-outline-info",
+          "label": "Contour Info"
+        }
       ]
     },
     {
@@ -822,14 +1233,46 @@
       "label": "Couleur - Inachevé",
       "default": "bg-primary",
       "options": [
-        { "group": "Principal", "value": "bg-primary", "label": "Primaire" },
-        { "group": "Principal", "value": "bg-secondary", "label": "Secondaire" },
-        { "group": "Principal", "value": "bg-tertiary", "label": "Tertiaire" },
-        { "group": "Intermédiaire", "value": "bg-dark", "label": "Sombre" },
-        { "group": "Alerte", "value": "bg-success", "label": "Succès" },
-        { "group": "Alerte", "value": "bg-warning", "label": "Avertissement" },
-        { "group": "Alerte", "value": "bg-danger", "label": "Danger" },
-        { "group": "Alerte", "value": "bg-info", "label": "Info" }
+        {
+          "group": "Principal",
+          "value": "bg-primary",
+          "label": "Primaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-secondary",
+          "label": "Secondaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-tertiary",
+          "label": "Tertiaire"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-dark",
+          "label": "Sombre"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-success",
+          "label": "Succès"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-warning",
+          "label": "Avertissement"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-danger",
+          "label": "Danger"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-info",
+          "label": "Info"
+        }
       ]
     },
     {
@@ -838,14 +1281,46 @@
       "label": "Couleur - Complété",
       "default": "bg-success",
       "options": [
-        { "group": "Principal", "value": "bg-primary", "label": "Primaire" },
-        { "group": "Principal", "value": "bg-secondary", "label": "Secondaire" },
-        { "group": "Principal", "value": "bg-tertiary", "label": "Tertiaire" },
-        { "group": "Intermédiaire", "value": "bg-dark", "label": "Sombre" },
-        { "group": "Alerte", "value": "bg-success", "label": "Succès" },
-        { "group": "Alerte", "value": "bg-warning", "label": "Avertissement" },
-        { "group": "Alerte", "value": "bg-danger", "label": "Danger" },
-        { "group": "Alerte", "value": "bg-info", "label": "Info" }
+        {
+          "group": "Principal",
+          "value": "bg-primary",
+          "label": "Primaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-secondary",
+          "label": "Secondaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-tertiary",
+          "label": "Tertiaire"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-dark",
+          "label": "Sombre"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-success",
+          "label": "Succès"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-warning",
+          "label": "Avertissement"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-danger",
+          "label": "Danger"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-info",
+          "label": "Info"
+        }
       ]
     },
     {
@@ -857,9 +1332,18 @@
       "id": "product_img_mode",
       "label": "Mode image",
       "options": [
-        { "value": "simple", "label": "Simple image" },
-        { "value": "hover", "label": "Changement au hover" },
-        { "value": "gallery", "label": "Gallerie d'images" }
+        {
+          "value": "simple",
+          "label": "Simple image"
+        },
+        {
+          "value": "hover",
+          "label": "Changement au hover"
+        },
+        {
+          "value": "gallery",
+          "label": "Gallerie d'images"
+        }
       ],
       "default": "gallery"
     },
@@ -869,9 +1353,18 @@
       "label": "Image orientation",
       "default": "square",
       "options": [
-        { "value": "square", "label": "Carré" },
-        { "value": "landscape", "label": "Paysage" },
-        { "value": "potrait", "label": "Portrait" }
+        {
+          "value": "square",
+          "label": "Carré"
+        },
+        {
+          "value": "landscape",
+          "label": "Paysage"
+        },
+        {
+          "value": "potrait",
+          "label": "Portrait"
+        }
       ]
     },
     {
@@ -880,8 +1373,14 @@
       "label": "Bordure de l'image",
       "default": "img-thumbnail",
       "options": [
-        { "value": "", "label": "Aucune" },
-        { "value": "img-thumbnail", "label": "Bordure" }
+        {
+          "value": "",
+          "label": "Aucune"
+        },
+        {
+          "value": "img-thumbnail",
+          "label": "Bordure"
+        }
       ]
     },
     {
@@ -889,15 +1388,42 @@
       "id": "product_border_color",
       "label": "Couleur de la bordure",
       "options": [
-        { "value": "", "label": "Default" },
-        { "value": "border-primary", "label": "Primaire" },
-        { "value": "border-secondary", "label": "Secondaire" },
-        { "value": "border-tertiary", "label": "Tertiaire" },
-        { "value": "border-dark", "label": "Sombre" },
-        { "value": "border-success", "label": "Succès" },
-        { "value": "border-warning", "label": "Avertissement" },
-        { "value": "border-danger", "label": "Danger" },
-        { "value": "border-info", "label": "Info" }
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "border-primary",
+          "label": "Primaire"
+        },
+        {
+          "value": "border-secondary",
+          "label": "Secondaire"
+        },
+        {
+          "value": "border-tertiary",
+          "label": "Tertiaire"
+        },
+        {
+          "value": "border-dark",
+          "label": "Sombre"
+        },
+        {
+          "value": "border-success",
+          "label": "Succès"
+        },
+        {
+          "value": "border-warning",
+          "label": "Avertissement"
+        },
+        {
+          "value": "border-danger",
+          "label": "Danger"
+        },
+        {
+          "value": "border-info",
+          "label": "Info"
+        }
       ],
       "default": ""
     },
@@ -906,11 +1432,26 @@
       "id": "product_shadow_sp",
       "label": "Ombre",
       "options": [
-        { "value": "shadow-none", "label": "Aucune" },
-        { "value": "shadow-1", "label": "Ombre légère" },
-        { "value": "shadow-2", "label": "Ombre partiel" },
-        { "value": "shadow-3", "label": "Ombre profonde" },
-        { "value": "shadow-4", "label": "Ombre totale" }
+        {
+          "value": "shadow-none",
+          "label": "Aucune"
+        },
+        {
+          "value": "shadow-1",
+          "label": "Ombre légère"
+        },
+        {
+          "value": "shadow-2",
+          "label": "Ombre partiel"
+        },
+        {
+          "value": "shadow-3",
+          "label": "Ombre profonde"
+        },
+        {
+          "value": "shadow-4",
+          "label": "Ombre totale"
+        }
       ],
       "default": "shadow-1"
     },
@@ -926,17 +1467,61 @@
       "label": "Couleur du badge de vente",
       "default": "bg-success text-white",
       "options": [
-        { "group": "Principal", "value": "bg-primary text-white", "label": "Primaire" },
-        { "group": "Principal", "value": "bg-secondary text-white", "label": "Secondaire" },
-        { "group": "Principal", "value": "bg-tertiary text-white", "label": "Tertiaire" },
-        { "group": "Intermédiaire", "value": "bg-white text-dark", "label": "Blanc" },
-        { "group": "Intermédiaire", "value": "bg-light text-body", "label": "Claire" },
-        { "group": "Intermédiaire", "value": "bg-dark text-white", "label": "Sombre" },
-        { "group": "Par défaut", "value": "", "label": "Corps (body)" },
-        { "group": "Alerte", "value": "bg-success text-white", "label": "Succès" },
-        { "group": "Alerte", "value": "bg-warning text-dark", "label": "Avertissement" },
-        { "group": "Alerte", "value": "bg-danger text-white", "label": "Danger" },
-        { "group": "Alerte", "value": "bg-info text-white", "label": "Info" }
+        {
+          "group": "Principal",
+          "value": "bg-primary text-white",
+          "label": "Primaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-secondary text-white",
+          "label": "Secondaire"
+        },
+        {
+          "group": "Principal",
+          "value": "bg-tertiary text-white",
+          "label": "Tertiaire"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-white text-dark",
+          "label": "Blanc"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-light text-body",
+          "label": "Claire"
+        },
+        {
+          "group": "Intermédiaire",
+          "value": "bg-dark text-white",
+          "label": "Sombre"
+        },
+        {
+          "group": "Par défaut",
+          "value": "",
+          "label": "Corps (body)"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-success text-white",
+          "label": "Succès"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-warning text-dark",
+          "label": "Avertissement"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-danger text-white",
+          "label": "Danger"
+        },
+        {
+          "group": "Alerte",
+          "value": "bg-info text-white",
+          "label": "Info"
+        }
       ]
     },
     {
@@ -945,12 +1530,36 @@
       "label": "Taille du titre",
       "default": "h6",
       "options": [
-        { "group": "Titre Standard", "value": "h1", "label": "Très Grand" },
-        { "group": "Titre Standard", "value": "h2", "label": "Grand" },
-        { "group": "Titre Standard", "value": "h3", "label": "Moyen" },
-        { "group": "Titre Standard", "value": "h4", "label": "Petit" },
-        { "group": "Titre Standard", "value": "h5", "label": "Très Petit" },
-        { "group": "Titre Standard", "value": "h6", "label": "Super Petit" }
+        {
+          "group": "Titre Standard",
+          "value": "h1",
+          "label": "Très Grand"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h2",
+          "label": "Grand"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h3",
+          "label": "Moyen"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h4",
+          "label": "Petit"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h5",
+          "label": "Très Petit"
+        },
+        {
+          "group": "Titre Standard",
+          "value": "h6",
+          "label": "Super Petit"
+        }
       ]
     },
     {
@@ -960,8 +1569,14 @@
       "default": "",
       "info": "Utile si les titres de vos produits sont longs",
       "options": [
-        { "value": "", "label": "Non (default)" },
-        { "value": "text-truncate", "label": "Une ligne" }
+        {
+          "value": "",
+          "label": "Non (default)"
+        },
+        {
+          "value": "text-truncate",
+          "label": "Une ligne"
+        }
       ]
     },
     {
@@ -1079,17 +1694,61 @@
           "label": "Couleur de l'arrière plan",
           "default": "bg-dark text-white",
           "options": [
-            { "group": "Principal", "value": "bg-primary text-white", "label": "Primaire" },
-            { "group": "Principal", "value": "bg-secondary text-white", "label": "Secondaire" },
-            { "group": "Principal", "value": "bg-tertiary text-white", "label": "Tertiaire" },
-            { "group": "Intermédiaire", "value": "bg-white text-body", "label": "Blanc" },
-            { "group": "Intermédiaire", "value": "bg-light text-body", "label": "Claire" },
-            { "group": "Intermédiaire", "value": "bg-dark text-white", "label": "Sombre" },
-            { "group": "Par défaut", "value": "bg-body text-body", "label": "Corps (body)" },
-            { "group": "Alerte", "value": "bg-success text-white", "label": "Succès" },
-            { "group": "Alerte", "value": "bg-warning text-white", "label": "Avertissement" },
-            { "group": "Alerte", "value": "bg-danger text-white", "label": "Danger" },
-            { "group": "Alerte", "value": "bg-info text-white", "label": "Info" }
+            {
+              "group": "Principal",
+              "value": "bg-primary text-white",
+              "label": "Primaire"
+            },
+            {
+              "group": "Principal",
+              "value": "bg-secondary text-white",
+              "label": "Secondaire"
+            },
+            {
+              "group": "Principal",
+              "value": "bg-tertiary text-white",
+              "label": "Tertiaire"
+            },
+            {
+              "group": "Intermédiaire",
+              "value": "bg-white text-body",
+              "label": "Blanc"
+            },
+            {
+              "group": "Intermédiaire",
+              "value": "bg-light text-body",
+              "label": "Claire"
+            },
+            {
+              "group": "Intermédiaire",
+              "value": "bg-dark text-white",
+              "label": "Sombre"
+            },
+            {
+              "group": "Par défaut",
+              "value": "bg-body text-body",
+              "label": "Corps (body)"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-success text-white",
+              "label": "Succès"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-warning text-white",
+              "label": "Avertissement"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-danger text-white",
+              "label": "Danger"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-info text-white",
+              "label": "Info"
+            }
           ]
         },
         {
@@ -1175,12 +1834,36 @@
           "label": "Taille du titre",
           "default": "h4",
           "options": [
-            { "group": "Titre Standard", "value": "h1", "label": "Très Grand" },
-            { "group": "Titre Standard", "value": "h2", "label": "Grand" },
-            { "group": "Titre Standard", "value": "h3", "label": "Moyen" },
-            { "group": "Titre Standard", "value": "h4", "label": "Petit" },
-            { "group": "Titre Standard", "value": "h5", "label": "Très Petit" },
-            { "group": "Titre Standard", "value": "h6", "label": "Super Petit" }
+            {
+              "group": "Titre Standard",
+              "value": "h1",
+              "label": "Très Grand"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h2",
+              "label": "Grand"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h3",
+              "label": "Moyen"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h4",
+              "label": "Petit"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h5",
+              "label": "Très Petit"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h6",
+              "label": "Super Petit"
+            }
           ]
         },
         {
@@ -1222,17 +1905,61 @@
           "label": "Couleur de l'arrière plan",
           "default": "bg-dark text-white",
           "options": [
-            { "group": "Principal", "value": "bg-primary text-white", "label": "Primaire" },
-            { "group": "Principal", "value": "bg-secondary text-white", "label": "Secondaire" },
-            { "group": "Principal", "value": "bg-tertiary text-white", "label": "Tertiaire" },
-            { "group": "Intermédiaire", "value": "bg-white text-body", "label": "Blanc" },
-            { "group": "Intermédiaire", "value": "bg-light text-body", "label": "Claire" },
-            { "group": "Intermédiaire", "value": "bg-dark text-white", "label": "Sombre" },
-            { "group": "Par défaut", "value": "bg-body text-body", "label": "Corps (body)" },
-            { "group": "Alerte", "value": "bg-success text-white", "label": "Succès" },
-            { "group": "Alerte", "value": "bg-warning text-white", "label": "Avertissement" },
-            { "group": "Alerte", "value": "bg-danger text-white", "label": "Danger" },
-            { "group": "Alerte", "value": "bg-info text-white", "label": "Info" }
+            {
+              "group": "Principal",
+              "value": "bg-primary text-white",
+              "label": "Primaire"
+            },
+            {
+              "group": "Principal",
+              "value": "bg-secondary text-white",
+              "label": "Secondaire"
+            },
+            {
+              "group": "Principal",
+              "value": "bg-tertiary text-white",
+              "label": "Tertiaire"
+            },
+            {
+              "group": "Intermédiaire",
+              "value": "bg-white text-body",
+              "label": "Blanc"
+            },
+            {
+              "group": "Intermédiaire",
+              "value": "bg-light text-body",
+              "label": "Claire"
+            },
+            {
+              "group": "Intermédiaire",
+              "value": "bg-dark text-white",
+              "label": "Sombre"
+            },
+            {
+              "group": "Par défaut",
+              "value": "bg-body text-body",
+              "label": "Corps (body)"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-success text-white",
+              "label": "Succès"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-warning text-white",
+              "label": "Avertissement"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-danger text-white",
+              "label": "Danger"
+            },
+            {
+              "group": "Alerte",
+              "value": "bg-info text-white",
+              "label": "Info"
+            }
           ]
         },
         {
@@ -1318,12 +2045,36 @@
           "label": "Taille du titre",
           "default": "h4",
           "options": [
-            { "group": "Titre Standard", "value": "h1", "label": "Très Grand" },
-            { "group": "Titre Standard", "value": "h2", "label": "Grand" },
-            { "group": "Titre Standard", "value": "h3", "label": "Moyen" },
-            { "group": "Titre Standard", "value": "h4", "label": "Petit" },
-            { "group": "Titre Standard", "value": "h5", "label": "Très Petit" },
-            { "group": "Titre Standard", "value": "h6", "label": "Super Petit" }
+            {
+              "group": "Titre Standard",
+              "value": "h1",
+              "label": "Très Grand"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h2",
+              "label": "Grand"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h3",
+              "label": "Moyen"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h4",
+              "label": "Petit"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h5",
+              "label": "Très Petit"
+            },
+            {
+              "group": "Titre Standard",
+              "value": "h6",
+              "label": "Super Petit"
+            }
           ]
         },
         {
@@ -1342,7 +2093,6 @@
       ]
     }
   ],
-  "templates": ["collection"],
   "presets": [
     {
       "name": "Collection Bundle",

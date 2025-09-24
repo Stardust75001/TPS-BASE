@@ -4,11 +4,18 @@
 
 <section class="image-banner-wrapper {{ section.settings.custom_class }}">
   {% if section.settings.image != blank %}
+    {% liquid
+      assign banner_w = section.settings.image.width | default: 1920
+      assign banner_h = section.settings.image.height | default: 1080
+    %}
     <img
-      src="{{ section.settings.image | image_url: width: 1920 }}"
+      src="{{ section.settings.image | image_url: width: banner_w }}"
       alt="{{ 'custom_sections.image_banner_title' | t | escape }}"
       loading="lazy"
-      class="image-banner-img">
+      class="image-banner-img"
+      width="{{ banner_w }}"
+      height="{{ banner_h }}"
+    >
   {% endif %}
 
   <div class="image-banner-overlay">

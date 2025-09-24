@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "no_reviews": "No reviews",
   "announcement": {
@@ -50,7 +41,11 @@
       "text_3": "Text 3"
     },
     "section_1": "Custom Section 1",
-    "section_2": "Custom Section 2"
+    "section_2": "Custom Section 2",
+    "image_banner_title": "TODO",
+    "image_banner_description": "TODO",
+    "image_banner_btn_primary": "TODO",
+    "image_banner_btn_secondary": "TODO"
   },
   "sections": {
     "list_collections": {
@@ -94,6 +89,7 @@
     "header": "Header",
     "footer": ""
   },
+  "t:sections.list_collections.name": "Collections",
   "collection": {
     "btn_filter_products": "Filter products",
     "sort_by": "Sort by",
@@ -177,11 +173,21 @@
     "purchase_options": {
       "option_deliver_every": "Deliver every",
       "option_one_time": "One-time purchase",
-      "option_subscription": "Subscription"
+      "option_subscription": "Subscription",
+      "option_subscription_save": "TODO"
     },
     "quantity": "Quantity",
     "save": "Save",
-    "select_variant": "Select variant"
+    "select_variant": "Select variant",
+    "stock_count": "TODO",
+    "article_title": "TODO",
+    "blog_excerpt": "TODO",
+    "qty_breaks": {
+      "label_text_html": "TODO",
+      "label_text_html_bundle_header": "TODO",
+      "label_text_html_bundle": "TODO"
+    },
+    "price_unit": "TODO"
   },
   "general": {
     "menu": "Menu",
@@ -275,7 +281,8 @@
     "offcanvas_menu": {
       "subtitle_guest_html": "Welcome guest",
       "subtitle_customer_html": "Welcome back",
-      "title_guest": "Your account"
+      "title_guest": "Your account",
+      "title_customer": "TODO"
     },
     "contact": {
       "email": "Email",
@@ -302,7 +309,8 @@
       "follow_us": "Follow us",
       "menu": "Menu",
       "optional": "Optional",
-      "share": "Share"
+      "share": "Share",
+      "pagination_page_of": "TODO"
     },
     "password_page": {
       "password_form": {
@@ -312,7 +320,8 @@
     },
     "quiz": {
       "btn_previous": "Previous",
-      "btn_reload_quiz": "Restart quiz"
+      "btn_reload_quiz": "Restart quiz",
+      "question_of_html": "TODO"
     },
     "tracking": {
       "btn_text": "Track order",
@@ -417,7 +426,12 @@
       "delete": "Delete",
       "delete_confirm": "Are you sure you want to delete this address?",
       "select_country": "Select country",
-      "no_addresses": "No addresses found"
+      "no_addresses": "No addresses found",
+      "title": "TODO",
+      "tab_addresses": "TODO",
+      "tab_add_new": "TODO",
+      "default": "TODO",
+      "add_new": "TODO"
     },
     "login": {
       "title": "Customer login",
@@ -453,7 +467,8 @@
       "shipping_address": "Shipping address",
       "fulfillment_status": "Fulfillment status",
       "track_shipment": "Track shipment",
-      "return": "Return Order"
+      "return": "Return Order",
+      "fulfilled_at_html": "TODO"
     },
     "register": {
       "title": "Register",
@@ -473,7 +488,28 @@
       "submit": "Reset password"
     },
     "account": {
-      "return": "Return to account"
+      "return": "Return to account",
+      "title": "TODO",
+      "logout": "TODO",
+      "order_history": "TODO",
+      "account_details": "TODO",
+      "view_addresses": "TODO"
+    },
+    "orders": {
+      "none": "TODO",
+      "order_number": "TODO",
+      "date": "TODO",
+      "payment_status": "TODO",
+      "fulfillment_status": "TODO",
+      "total": "TODO"
+    },
+    "activate_account": {
+      "title": "TODO",
+      "subtext": "TODO",
+      "password": "TODO",
+      "password_confirm": "TODO",
+      "submit": "TODO",
+      "cancel": "TODO"
     }
   },
   "section": "Section",
@@ -486,7 +522,8 @@
   },
   "custom": {
     "title": "Custom",
-    "description": "Customize your selection"
+    "description": "Customize your selection",
+    "ref_variant_label": "TODO"
   },
   "footer": {
     "newsletter": {
@@ -495,6 +532,27 @@
       "email_placeholder": "Enter your email",
       "submit_button": "Subscribe",
       "notice_html": "By signing up to receive emails, you agree to our terms and conditions and our <a href=\"/pages/confidentialite\">privacy policy</a>."
+    }
+  },
+  "testimonials": {
+    "verified_review": "TODO",
+    "purchase": "TODO",
+    "verified": "TODO"
+  },
+  "recipient": {
+    "form": {
+      "btn_label": "Send gift",
+      "email_label": "Recipient email",
+      "properties": {
+        "email_properties": "Gift recipient email",
+        "name_properties": "Gift recipient name",
+        "message_properties": "Gift message",
+        "date_properties": "Scheduled delivery date"
+      },
+      "name_label": "Recipient name",
+      "message_label": "Message",
+      "date_label": "Delivery date",
+      "date_placeholder": "YYYY-MM-DD"
     }
   }
 }

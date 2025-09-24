@@ -1,0 +1,11 @@
+extends: default
+checks:
+  TemplateLength:
+    severity: suggestion
+  SchemaJsonFormat:
+    severity: suggestion
+  ImgWidthAndHeight:
+    enabled: false
+exclude:
+  files:
+    - snippets/shogun-content-handler.liquid

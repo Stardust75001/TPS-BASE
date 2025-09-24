@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "node",
     "allowJs": true,
@@ -24,8 +28,20 @@
     "exactOptionalPropertyTypes": false,
     "noImplicitOverride": false,
     "noPropertyAccessFromIndexSignature": false,
-    "typeRoots": ["./types.d.ts", "./node_modules/@types"]
+    "typeRoots": [
+      "./types.d.ts",
+      "./node_modules/@types"
+    ]
   },
-  "include": ["**/*.js", "**/*.ts", "**/*.liquid", "types.d.ts"],
-  "exclude": ["node_modules", "dist", "**/*.min.js"]
+  "include": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.liquid",
+    "types.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.min.js"
+  ]
 }

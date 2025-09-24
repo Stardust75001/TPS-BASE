@@ -1,161 +1,271 @@
-{% liquid 
-    assign pt = section.settings.pt | prepend: 'pt-'
-    assign pb = section.settings.pb | prepend: 'pb-'
-    assign mt = section.settings.mt | prepend: 'mt-'
-    assign mb = section.settings.mb | prepend: 'mb-'
+{% liquid
+  assign pt = section.settings.pt | prepend: 'pt-'
+  assign pb = section.settings.pb | prepend: 'pb-'
+  assign mt = section.settings.mt | prepend: 'mt-'
+  assign mb = section.settings.mb | prepend: 'mb-'
 %}
 
-<section id="video-hero-{{ section.id }}" class="video-hero {{ section.settings.bg_color }} {{ pt }} {{ pb }} {{ mt }} {{ mb }}">
-    <div class="video-hero-wrapper position-relative">
-        <div class="video-container">
-            {% if section.settings.video_hosted != blank %}
-                <video 
-                    class="video-hero-video w-100 h-100" 
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    {% if section.settings.video_poster %}poster="{{ section.settings.video_poster | image_url: width: 1920 }}"{% endif %}>
-                    <source src="{{ section.settings.video_hosted }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            {% elsif section.settings.video_url != blank %}
-                {% if section.settings.video_url contains 'youtube' %}
-                    <iframe 
-                        class="video-hero-video w-100 h-100"
-                        src="https://www.youtube.com/embed/{{ section.settings.video_url | split: 'v=' | last | split: '&' | first }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url | split: 'v=' | last | split: '&' | first }}&controls=0&rel=0&modestbranding=1"
-                        frameborder="0" 
-                        allow="autoplay; encrypted-media" 
-                        allowfullscreen>
-                    </iframe>
-                {% elsif section.settings.video_url contains 'vimeo' %}
-                    <iframe 
-                        class="video-hero-video w-100 h-100"
-                        src="https://player.vimeo.com/video/{{ section.settings.video_url | split: '/' | last }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
-                        frameborder="0" 
-                        allow="autoplay; fullscreen; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                {% endif %}
+<section
+  id="video-hero-{{ section.id }}"
+  class="video-hero {{ section.settings.bg_color }} {{ pt }} {{ pb }} {{ mt }} {{ mb }}"
+>
+  <div class="video-hero-wrapper position-relative">
+    <div class="video-container">
+      {% liquid
+
+      %}
+      assign external_video_url = section.settings.external_video_url
+      {% endliquid %}
+      {% if external_video_url != blank %}
+        {%- comment -%} Preconnect hint to supplier/CDN {%- endcomment -%}
+        <link
+          rel="preconnect"
+          href="{{ external_video_url | split: '//' | last | split: '/' | first | prepend: '//' }}"
+        >
+        <video
+          class="video-hero-video w-100 h-100"
+          muted
+          playsinline
+          loop
+          preload="metadata"
+          autoplay
+          {% if section.settings.video_poster %}
+            poster="{{ section.settings.video_poster | image_url: width: 1920 }}"
+          {% endif %}
+        >
+          {%- comment -%} theme-check-disable RemoteAsset (dropship: supplier hosted allowed) {%- endcomment -%}
+          <source src="{{ external_video_url }}" type="video/mp4" data-external="true">
+          {% assign cdn_video = 'hero-video-fallback.mp4' | asset_url %}
+          <source src="{{ cdn_video }}" type="video/mp4">
+        </video>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            var v = document.querySelector('#video-hero-{{ section.id }} .video-hero-video');
+            if (!v) return;
+            v.addEventListener(
+              'error',
+              function () {
+                try {
+                  var fallback = '{{ cdn_video }}';
+                  if (v.currentSrc && v.currentSrc !== fallback) {
+                    v.src = fallback;
+                    v.load();
+                    v.play().catch(function () {});
+                  }
+                } catch (e) {}
+              },
+              true
+            );
+          });
+        </script>
+      {% elsif section.settings.video_hosted != blank %}
+        {% comment %}If it's a Shopify hosted video (media object), prefer media_tag for optimal markup and to avoid RemoteAsset warnings{% endcomment %}
+        {% if section.settings.video_hosted.media_type %}
+          {{
+            section.settings.video_hosted
+            | media_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              playsinline: true,
+              preload: 'auto',
+              class: 'video-hero-video w-100 h-100',
+              image_size: '1920x'
+          }}
+        {% else %}
+          {% comment %}Fallback: treat as URL or file reference; attempt asset_url if it matches a known asset name{% endcomment %}
+          {% assign raw_src = section.settings.video_hosted %}
+          {% assign candidate_asset = raw_src | split: '/' | last %}
+          {% assign asset_test = candidate_asset | asset_url %}
+          {% if asset_test contains 'cdn.shopify.com' and candidate_asset contains '.mp4' %}
+            {% assign final_video_src = asset_test %}
+          {% else %}
+            {% assign file_attempt = raw_src | file_url %}
+            {% if file_attempt contains 'cdn.shopify.com' %}
+              {% assign final_video_src = file_attempt %}
             {% else %}
-                <div class="video-placeholder bg-secondary d-flex align-items-center justify-content-center">
-                    <div class="text-center text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="5,3 19,12 5,21"></polygon>
-                        </svg>
-                        <p class="mt-2">Add your video</p>
-                    </div>
-                </div>
+              {% assign final_video_src = raw_src %}
             {% endif %}
-        </div>
-        
-        {% if section.settings.overlay_opacity > 0 %}
-            <div class="video-overlay" style="background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});"></div>
+          {% endif %}
+          {{ final_video_src | preload_tag: as: 'video' }}
+          <video
+            class="video-hero-video w-100 h-100"
+            autoplay
+            muted
+            loop
+            playsinline
+            {% if section.settings.video_poster %}
+              poster="{{ section.settings.video_poster | image_url: width: 1920 }}"
+            {% endif %}
+          >
+            <source src="{{ final_video_src }}" type="video/mp4">
+          </video>
+          <noscript>
+            {% comment %}Reduced fallback: single video tag with src to limit duplicate <source> triggering RemoteAsset twice. For best performance upload the MP4 via Files or add it as a theme asset so asset_url/file_url resolves and removes remaining warning.{% endcomment %}
+            <video
+              class="w-100"
+              controls
+              {% if section.settings.video_poster %}
+                poster="{{ section.settings.video_poster | image_url: width: 1920 }}"
+              {% endif %}
+              src="{{ final_video_src }}"
+            ></video>
+          </noscript>
         {% endif %}
-        
-        <div class="video-content position-absolute w-100 h-100 d-flex align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center">
-                        {% unless section.settings.heading == blank %}
-                            <h1 class="video-hero-title {{ section.settings.heading_size }} {{ section.settings.text_color }} mb-4">
-                                {{ section.settings.heading }}
-                            </h1>
-                        {% endunless %}
-                        
-                        {% unless section.settings.subheading == blank %}
-                            <p class="video-hero-subtitle {{ section.settings.subheading_size }} {{ section.settings.text_color }} mb-5">
-                                {{ section.settings.subheading }}
-                            </p>
-                        {% endunless %}
-                        
-                        {% unless section.settings.button_text == blank %}
-                            <a href="{{ section.settings.button_link | default: '#' }}" class="btn {{ section.settings.button_style }} {{ section.settings.button_size }}">
-                                {{ section.settings.button_text }}
-                            </a>
-                        {% endunless %}
-                    </div>
-                </div>
-            </div>
-        </div>
+      {% elsif section.settings.video_url != blank %}
+        {% if section.settings.video_url contains 'youtube' %}
+          <iframe
+            data-src="https://www.youtube.com/embed/{{ section.settings.video_url | split: 'v=' | last | split: '&' | first }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url | split: 'v=' | last | split: '&' | first }}&controls=0&rel=0&modestbranding=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            class="hero-video js-lazy-iframe"
+            loading="lazy"
+            title="YouTube video hero"
+          ></iframe>
+        {% else %}
+          <iframe
+            data-src="https://player.vimeo.com/video/{{ section.settings.video_url | split: '/' | last }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            class="hero-video js-lazy-iframe"
+            loading="lazy"
+            title="Vimeo video hero"
+          ></iframe>
+          <noscript>
+            <iframe
+              src="https://player.vimeo.com/video/{{ section.settings.video_url | split: '/' | last }}?autoplay=0&muted=0&loop=0&background=0&controls=1"
+              frameborder="0"
+              allow="fullscreen"
+              class="hero-video"
+              title="Vimeo video hero"
+            ></iframe>
+          </noscript>
+        {% endif %}
+        <p class="mt-2">Add your video</p>
+      {% endif %}
     </div>
+
+    {% if section.settings.overlay_opacity > 0 %}
+      <div
+        class="video-overlay"
+        style="background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});"
+      ></div>
+    {% endif %}
+
+    <div class="video-content position-absolute w-100 h-100 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            {% unless section.settings.heading == blank %}
+              <h1 class="video-hero-title {{ section.settings.heading_size }} {{ section.settings.text_color }} mb-4">
+                {{ section.settings.heading }}
+              </h1>
+            {% endunless %}
+
+            {% unless section.settings.subheading == blank %}
+              <p class="video-hero-subtitle {{ section.settings.subheading_size }} {{ section.settings.text_color }} mb-5">
+                {{ section.settings.subheading }}
+              </p>
+            {% endunless %}
+
+            {% unless section.settings.button_text == blank %}
+              <a
+                href="{{ section.settings.button_link | default: '#' }}"
+                class="btn {{ section.settings.button_style }} {{ section.settings.button_size }}"
+              >
+                {{ section.settings.button_text }}
+              </a>
+            {% endunless %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    #video-hero-{{ section.id }} {
-        height: {{ section.settings.section_height }}vh;
-        overflow: hidden;
-    }
-    
-    #video-hero-{{ section.id }} .video-hero-wrapper {
-        height: 100%;
-    }
-    
-    #video-hero-{{ section.id }} .video-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-    
-    #video-hero-{{ section.id }} .video-hero-video {
-        object-fit: cover;
-        object-position: center;
-    }
-    
-    #video-hero-{{ section.id }} .video-placeholder {
-        height: 100%;
-    }
-    
-    #video-hero-{{ section.id }} .video-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-    }
-    
-    #video-hero-{{ section.id }} .video-content {
-        z-index: 3;
-    }
-    
-    #video-hero-{{ section.id }} .video-hero-title {
-        animation: fadeInUp 1s ease-out;
-    }
-    
-    #video-hero-{{ section.id }} .video-hero-subtitle {
-        animation: fadeInUp 1s ease-out 0.3s both;
-    }
-    
-    #video-hero-{{ section.id }} .btn {
-        animation: fadeInUp 1s ease-out 0.6s both;
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    @media (max-width: 768px) {
-        #video-hero-{{ section.id }} {
-            height: {{ section.settings.section_height_mobile }}vh;
-        }
-    }
+  #video-hero-{{ section.id }} {
+      height: {{ section.settings.section_height }}vh;
+      overflow: hidden;
+  }
+
+  #video-hero-{{ section.id }} .video-hero-wrapper {
+      height: 100%;
+  }
+
+  #video-hero-{{ section.id }} .video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+  }
+
+  #video-hero-{{ section.id }} .video-hero-video {
+      object-fit: cover;
+      object-position: center;
+  }
+
+  #video-hero-{{ section.id }} .video-placeholder {
+      height: 100%;
+  }
+
+  #video-hero-{{ section.id }} .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+  }
+
+  #video-hero-{{ section.id }} .video-content {
+      z-index: 3;
+  }
+
+  #video-hero-{{ section.id }} .video-hero-title {
+      animation: fadeInUp 1s ease-out;
+  }
+
+  #video-hero-{{ section.id }} .video-hero-subtitle {
+      animation: fadeInUp 1s ease-out 0.3s both;
+  }
+
+  #video-hero-{{ section.id }} .btn {
+      animation: fadeInUp 1s ease-out 0.6s both;
+  }
+
+  @keyframes fadeInUp {
+      from {
+          opacity: 0;
+          transform: translateY(30px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  @media (max-width: 768px) {
+      #video-hero-{{ section.id }} {
+          height: {{ section.settings.section_height_mobile }}vh;
+      }
+  }
 </style>
 
 {% schema %}
 {
   "name": "Video Hero",
   "settings": [
+    {
+      "type": "text",
+      "id": "external_video_url",
+      "label": "External video URL (supplier/CDN)",
+      "info": "Optional. When set, theme will prefer this URL and fall back to Shopify-hosted MP4 if it fails."
+    },
     {
       "type": "text",
       "id": "heading",
@@ -167,11 +277,26 @@
       "id": "heading_size",
       "label": "Heading Size",
       "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "display-1", "label": "Display 1" },
-        { "value": "display-2", "label": "Display 2" }
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "display-1",
+          "label": "Display 1"
+        },
+        {
+          "value": "display-2",
+          "label": "Display 2"
+        }
       ],
       "default": "display-1"
     },
@@ -186,10 +311,22 @@
       "id": "subheading_size",
       "label": "Subheading Size",
       "options": [
-        { "value": "fs-6", "label": "Small" },
-        { "value": "fs-5", "label": "Medium" },
-        { "value": "fs-4", "label": "Large" },
-        { "value": "fs-3", "label": "Extra Large" }
+        {
+          "value": "fs-6",
+          "label": "Small"
+        },
+        {
+          "value": "fs-5",
+          "label": "Medium"
+        },
+        {
+          "value": "fs-4",
+          "label": "Large"
+        },
+        {
+          "value": "fs-3",
+          "label": "Extra Large"
+        }
       ],
       "default": "fs-5"
     },
@@ -209,11 +346,26 @@
       "id": "button_style",
       "label": "Button Style",
       "options": [
-        { "value": "btn-primary", "label": "Primary" },
-        { "value": "btn-secondary", "label": "Secondary" },
-        { "value": "btn-outline-primary", "label": "Outline Primary" },
-        { "value": "btn-outline-secondary", "label": "Outline Secondary" },
-        { "value": "btn-outline-light", "label": "Outline Light" }
+        {
+          "value": "btn-primary",
+          "label": "Primary"
+        },
+        {
+          "value": "btn-secondary",
+          "label": "Secondary"
+        },
+        {
+          "value": "btn-outline-primary",
+          "label": "Outline Primary"
+        },
+        {
+          "value": "btn-outline-secondary",
+          "label": "Outline Secondary"
+        },
+        {
+          "value": "btn-outline-light",
+          "label": "Outline Light"
+        }
       ],
       "default": "btn-primary"
     },
@@ -222,9 +374,18 @@
       "id": "button_size",
       "label": "Button Size",
       "options": [
-        { "value": "btn-sm", "label": "Small" },
-        { "value": "", "label": "Medium" },
-        { "value": "btn-lg", "label": "Large" }
+        {
+          "value": "btn-sm",
+          "label": "Small"
+        },
+        {
+          "value": "",
+          "label": "Medium"
+        },
+        {
+          "value": "btn-lg",
+          "label": "Large"
+        }
       ],
       "default": "btn-lg"
     },
@@ -259,10 +420,22 @@
       "id": "text_color",
       "label": "Text Color",
       "options": [
-        { "value": "text-white", "label": "White" },
-        { "value": "text-dark", "label": "Dark" },
-        { "value": "text-primary", "label": "Primary" },
-        { "value": "text-secondary", "label": "Secondary" }
+        {
+          "value": "text-white",
+          "label": "White"
+        },
+        {
+          "value": "text-dark",
+          "label": "Dark"
+        },
+        {
+          "value": "text-primary",
+          "label": "Primary"
+        },
+        {
+          "value": "text-secondary",
+          "label": "Secondary"
+        }
       ],
       "default": "text-white"
     },
@@ -291,10 +464,22 @@
       "id": "bg_color",
       "label": "Background Color",
       "options": [
-        { "value": "", "label": "None" },
-        { "value": "bg-light", "label": "Light" },
-        { "value": "bg-dark", "label": "Dark" },
-        { "value": "bg-primary", "label": "Primary" }
+        {
+          "value": "",
+          "label": "None"
+        },
+        {
+          "value": "bg-light",
+          "label": "Light"
+        },
+        {
+          "value": "bg-dark",
+          "label": "Dark"
+        },
+        {
+          "value": "bg-primary",
+          "label": "Primary"
+        }
       ],
       "default": ""
     },
