@@ -7,7 +7,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
 ---------------------------------------------------------
 {% endcomment %}
 
-{% liquid
+{% liquid 
   assign pt = section.settings.pt | prepend: 'pt-'
   assign pb = section.settings.pb | prepend: 'pb-'
   assign mt = section.settings.mt | prepend: 'mt-'
@@ -19,8 +19,8 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
   endif
 %}
 
-<section
-  id="newsletter-{{ section.id }}"
+<section 
+  id="newsletter-{{ section.id }}" 
   class="newsletter enter-view {{ bg_color }} {{ section.settings.text_align }} {{ mt }} {{ mb }}">
   <div class="{{ section.settings.container }}">
     <div class="newsletter-inner {{ pt }} {{ pb }}">
@@ -35,23 +35,23 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                 <input type="hidden" name="contact[tags]" value="newsletter">
                 <input type="hidden" name="contact[accepts_marketing]" value="true">
                 {{ form.errors | default_errors }}
-
+                
                 <div class="newsletter-form" role="form" aria-labelledby="newsletter-heading-{{ section.id }}">
                   <!-- Status messages pour l'accessibilité -->
                   <div id="newsletter-status-{{ section.id }}" aria-live="polite" aria-atomic="true" class="sr-only"></div>
-
+                  
                   <div class="newsletter-input-row">
                     {% if section.settings.show_first_name %}
                       <div class="newsletter-field-group">
-                        <label class="visually-hidden" for="newsletter-name-{{ section.id }}">{{ 'footer.newsletter.first_name_placeholder' | t }}</label>
-                        <input
+                        <input 
                           id="newsletter-name-{{ section.id }}"
-                          type="text"
-                          name="contact[first_name]"
-                          class="newsletter-name-input"
-                          placeholder="{{ 'footer.newsletter.first_name_placeholder' | t }}"
+                          type="text" 
+                          name="contact[first_name]" 
+                          class="newsletter-name-input" 
+                          placeholder="{{ 'footer.newsletter.first_name_placeholder' | t }}" 
+                          aria-label="{{ 'footer.newsletter.first_name_placeholder' | t }}"
                           aria-describedby="newsletter-description-{{ section.id }} newsletter-name-error-{{ section.id }}"
-                          autocorrect="off"
+                          autocorrect="off" 
                           autocapitalize="words"
                           autocomplete="given-name"
                           data-validation="name"
@@ -61,19 +61,19 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                     {% endif %}
 
                     <div class="newsletter-field-group">
-                      <label class="visually-hidden" for="newsletter-email-{{ section.id }}">{{ 'footer.newsletter.email_placeholder' | t }}</label>
-                      <input
+                      <input 
                         id="newsletter-email-{{ section.id }}"
-                        type="email"
-                        name="contact[email]"
-                        class="newsletter-email-input"
-                        value="{{ customer.email }}"
-                        placeholder="{{ 'footer.newsletter.email_placeholder' | t }}"
+                        type="email" 
+                        name="contact[email]" 
+                        class="newsletter-email-input" 
+                        value="{{ customer.email }}" 
+                        placeholder="{{ 'footer.newsletter.email_placeholder' | t }}" 
+                        aria-label="{{ 'footer.newsletter.email_placeholder' | t }}"
                         aria-describedby="newsletter-description-{{ section.id }} newsletter-email-error-{{ section.id }}"
                         aria-required="true"
                         aria-invalid="false"
-                        autocorrect="off"
-                        autocapitalize="off"
+                        autocorrect="off" 
+                        autocapitalize="off" 
                         autocomplete="email"
                         data-validation="email"
                         required>
@@ -81,9 +81,9 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                     </div>
                   </div>
 
-                  <button
-                    class="btn {{ section.settings.btn_color }} newsletter-submit-btn"
-                    type="submit"
+                  <button 
+                    class="btn {{ section.settings.btn_color }} newsletter-submit-btn" 
+                    type="submit" 
                     name="commit"
                     id="newsletter-submit-{{ section.id }}"
                     aria-describedby="newsletter-description-{{ section.id }}"
@@ -118,7 +118,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
     "name": "Newsletter",
     "settings": [
         {
-            "type": "paragraph",
+            "type": "paragraph", 
             "content": "Documentation FR : [Newsletter by Shopiweb](https:\/\/www.docs.shopiweb.fr\/theme-premium\/documentation\/sections\/newsletter)"
         },
         {
@@ -205,7 +205,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                 { "group": "Légende Standard", "value": "fs-3", "label": "Très Grand" },
                 { "group": "Légende Standard", "value": "fs-4", "label": "Grand" },
                 { "group": "Légende Standard", "value": "fs-5", "label": "Moyen" },
-                { "group": "Légende Standard", "value": "fs-6", "label": "Petit" }
+                { "group": "Légende Standard", "value": "fs-6", "label": "Petit" } 
             ]
         },
         {
@@ -293,7 +293,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                 { "group": "Description Standard", "value": "fs-3", "label": "Très Grand" },
                 { "group": "Description Standard", "value": "fs-4", "label": "Grand" },
                 { "group": "Description Standard", "value": "fs-5", "label": "Moyen" },
-                { "group": "Description Standard", "value": "fs-6", "label": "Petit" }
+                { "group": "Description Standard", "value": "fs-6", "label": "Petit" } 
             ]
         },
         {

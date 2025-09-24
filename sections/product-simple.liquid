@@ -7,7 +7,7 @@ Section produit simple pour test
         <div class="row">
             <div class="col-md-6">
                 {% if product.images.size > 0 %}
-                    <img loading="lazy" src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}" class="img-fluid">
+                    <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}" class="img-fluid">
                 {% else %}
                     {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {% endif %}

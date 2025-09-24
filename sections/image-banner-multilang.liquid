@@ -7,8 +7,7 @@
     <img
       src="{{ section.settings.image | image_url: width: 1920 }}"
       alt="{{ 'custom_sections.image_banner_title' | t | escape }}"
-      loading="{% if request.page_type == 'index' %}eager{% else %}lazy{% endif %}"
-      fetchpriority="{% if request.page_type == 'index' %}high{% else %}auto{% endif %}"
+      loading="lazy"
       class="image-banner-img">
   {% endif %}
 

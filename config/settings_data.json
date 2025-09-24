@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_primary": "#816c58",
@@ -80,7 +89,9 @@
             }
           }
         },
-        "block_order": ["navbar-0"],
+        "block_order": [
+          "navbar-0"
+        ],
         "settings": {
           "bg_color": "bg-tertiary text-white",
           "bg_gradient": false,
@@ -115,7 +126,10 @@
           "pb": 3
         }
       },
-      "stories-bar-sticky": { "type": "stories-bar-sticky", "settings": {} },
+      "stories-bar-sticky": {
+        "type": "stories-bar-sticky",
+        "settings": {}
+      },
       "discount-bar": {
         "type": "discount-bar",
         "settings": {
@@ -230,10 +244,6 @@
         "disabled": false,
         "settings": {}
       }
-    },
-    "sentry_enable": true,
-    "sentry_dsn": "https://dc7316068af8bf6c8613a7ce68bedbce@o4509330673303552.ingest.de.sentry.io/4510016990543952",
-    "sentry_environment": "production",
-    "sentry_traces_sample_rate": 0.1
+    }
   }
 }

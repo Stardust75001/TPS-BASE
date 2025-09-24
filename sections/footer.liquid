@@ -1,4 +1,4 @@
-{% liquid 
+{% liquid
     assign pt = section.settings.pt | prepend: 'pt-'
     assign pb = section.settings.pb | prepend: 'pb-'
 
@@ -17,12 +17,35 @@
     assign btn_shadow_sp = settings.btn_shadow_sp
 %}
 
-{% style %}  
+{% style %}
 /* Image2 SVG */
     .navbar-brand svg {
       width: {{ section.settings.logo_svg_height }}%;
     }
-{% endstyle %} 
+/* Footer height reduction */
+#footer {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+}
+.footer-logo-img {
+    max-height: 24px;
+}
+.footer-logo-wrapper {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.75rem !important;
+}
+.footer-social-icons img.social-img-icon {
+    height: 14px !important;
+    width: 14px !important;
+}
+.footer-social-icons {
+    gap: 0.25rem;
+}
+.footer-copyright {
+    margin-bottom: 0.25rem !important;
+    font-size: 0.8em;
+}
+{% endstyle %}
 
 <footer id="footer" class="{{ bg_color }} {{ pt }} {{ pb }}">
   <div class="footer-logo-wrapper d-flex justify-content-center align-items-center">
@@ -40,9 +63,9 @@
                                 {% assign logo_height_x2 = section.settings.about_logo_height | times: 2 %}
                                 <img
                                     class="img-fluid"
-                                    src="{{ section.settings.about_logo | image_url: height: logo_height_x2 }}" 
+                                    src="{{ section.settings.about_logo | image_url: height: logo_height_x2 }}"
                                     alt="{{ shop.name }}"
-                                    width="{{ section.settings.about_logo_height | times: section.settings.about_logo.aspect_ratio | round }}" 
+                                    width="{{ section.settings.about_logo_height | times: section.settings.about_logo.aspect_ratio | round }}"
                                     height="{{ section.settings.about_logo_height }}"
                                     loading="lazy">
                             {% elsif section.settings.about_logo == blank and section.settings.svg_logo_footer != blank %}
@@ -95,11 +118,11 @@
                 <ul class="list-unstyled row mb-0">
                     {% for block in section.blocks %}
                         <li class="footer-block col-lg" {{ block.shopify_attributes }}>
-                            <a 
-                                class="nav-link h6 collapsed d-lg-none" 
+                            <a
+                                class="nav-link h6 collapsed d-lg-none"
                                 href="#block-collapse-{{ block.id }}"
                                 data-bs-toggle="collapse"
-                                aria-expanded="false" 
+                                aria-expanded="false"
                                 aria-controls="block-collapse-{{ block.id }}"
                                 role="button">
                                 {{ block.settings.title }}
@@ -149,7 +172,7 @@
                                                       class="img-fluid mx-auto d-block rounded mt-4"
                                                       src= "{{ block.settings.image_footer | image_url: height: image_height_2x }}"
                                                       alt="{{ shop.name }}"
-                                                      width="{{ block.settings.image_footer_height | times: block.settings.image_footer.aspect_ratio | round }}" 
+                                                      width="{{ block.settings.image_footer_height | times: block.settings.image_footer.aspect_ratio | round }}"
                                                       height="{{ block.settings.image_footer_height }}"
                                                       loading="lazy">
                                               </a>
@@ -176,29 +199,29 @@
 
     <div class="newsletter-form">
       <div class="newsletter-input-row">
-        <input 
-          type="text" 
-          name="contact[first_name]" 
-          class="form-control form-control-sm newsletter-name-input" 
+        <input
+          type="text"
+          name="contact[first_name]"
+          class="form-control form-control-sm newsletter-name-input"
           placeholder="{{ 'general.newsletter.name_placeholder' | t }}"
           aria-label="{{ 'general.newsletter.name_placeholder' | t }}"
           autocorrect="off"
           autocapitalize="words" />
 
-        <input 
-          type="email" 
-          name="contact[email]" 
-          class="form-control form-control-sm newsletter-email-input" 
-          value="{% if customer.email != blank %}{{ customer.email }}{% endif %}" 
-          placeholder="{{ 'general.newsletter.input_label' | t }}" 
-          aria-label="{{ 'general.newsletter.input_label' | t }}" 
-          autocorrect="off" 
+        <input
+          type="email"
+          name="contact[email]"
+          class="form-control form-control-sm newsletter-email-input"
+          value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+          placeholder="{{ 'general.newsletter.input_label' | t }}"
+          aria-label="{{ 'general.newsletter.input_label' | t }}"
+          autocorrect="off"
           autocapitalize="off" />
       </div>
 
-      <button 
-        class="btn btn-sm {{ block.settings.btn_color }} {{ btn_shadow_sp }} {{ block.settings.btn_size }}" 
-        type="submit" 
+      <button
+        class="btn btn-sm {{ block.settings.btn_color }} {{ btn_shadow_sp }} {{ block.settings.btn_size }}"
+        type="submit"
         name="commit">
         {{ 'general.newsletter.submit_button' | t }}
       </button>
@@ -219,7 +242,7 @@
                 </ul>
             </div>
         </div>
-        
+
         <hr class="d-none d-sm-block mb-7">
 
         <div id="footer-copyright" class="small text-center">
@@ -227,21 +250,21 @@
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center">
                   <div class="footer-social-icons">
-                    <a href="https://www.instagram.com/spencerandthecity/" target="_blank" rel="noopener" aria-label="Instagram">
-  <img height="auto" width="auto" src="{{ 'instagram.png' | asset_url }}" alt="Instagram" class="social-img-icon" loading="lazy">
-</a>
-<a href="https://www.facebook.com/profile.php?id=61573834333893" target="_blank" rel="noopener" aria-label="Facebook">
-  <img height="auto" width="auto" src="{{ 'facebook.png' | asset_url }}" alt="Facebook" class="social-img-icon" loading="lazy">
-</a>
-<a href="https://www.tiktok.com/@thepetsociety_paris" target="_blank" rel="noopener" aria-label="TikTok">
-  <img height="auto" width="auto" src="{{ 'tiktok.png' | asset_url }}" alt="TikTok" class="social-img-icon" loading="lazy">
-</a>
-<a href="https://wa.me/33769238799" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <img height="auto" width="auto" src="{{ 'WhatsApp.png' | asset_url }}" alt="WhatsApp" class="social-img-icon" loading="lazy">
-</a>
-<a href="mailto:hello@thepetsociety.paris" aria-label="Email">
-  <img height="auto" width="auto" src="{{ 'email-icon.png' | asset_url }}" alt="Email" class="social-img-icon" loading="lazy">
-</a>
+                        <a href="https://www.instagram.com/spencerandthecity/" target="_blank" rel="noopener" aria-label="Instagram">
+                            <img height="32" width="32" src="{{ 'instagram.png' | asset_url }}" alt="Instagram" class="social-img-icon" loading="lazy">
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61573834333893" target="_blank" rel="noopener" aria-label="Facebook">
+                            <img height="32" width="32" src="{{ 'facebook.png' | asset_url }}" alt="Facebook" class="social-img-icon" loading="lazy">
+                        </a>
+                        <a href="https://www.tiktok.com/@thepetsociety_paris" target="_blank" rel="noopener" aria-label="TikTok">
+                            <img height="32" width="32" src="{{ 'tiktok.png' | asset_url }}" alt="TikTok" class="social-img-icon" loading="lazy">
+                        </a>
+                        <a href="https://wa.me/33769238799" target="_blank" rel="noopener" aria-label="WhatsApp">
+                            <img height="32" width="32" src="{{ 'WhatsApp.png' | asset_url }}" alt="WhatsApp" class="social-img-icon" loading="lazy">
+                        </a>
+                        <a href="mailto:hello@thepetsociety.paris" aria-label="Email">
+                            <img height="32" width="32" src="{{ 'email-icon.png' | asset_url }}" alt="Email" class="social-img-icon" loading="lazy">
+                        </a>
                   </div>
                   <p class="mb-0 small">
                     &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ 'general.all_rights_reserved' | t }}
@@ -256,7 +279,7 @@
                 </div>
             </div>
         </div>
-        
+
         {% if section.settings.language_selector_show or section.settings.currency_selector_show %}
                 <div class="d-flex justify-content-center py-2 mx-4 mt-4 mt-lg-2 mb-2 mb-lg-0">
                     {% if section.settings.language_selector_show %}
@@ -268,7 +291,7 @@
                 </div>
         {% endif %}
 
-        
+
     </div>
 </footer>
 
@@ -277,7 +300,7 @@
     "name": "Pied de page",
     "settings": [
         {
-            "type": "paragraph", 
+            "type": "paragraph",
             "content": "EN Documentation: [Pied de page by Shopiweb](https:\/\/www.docs.shopiweb.fr\/theme-premium\/documentation\/pied-de-page\/pied-de-page)"
         },
         {
@@ -696,7 +719,7 @@
                     "type": "richtext",
                     "id": "description",
                     "label": "Description"
-                }, 
+                },
                 {
                     "type": "select",
                     "id": "btn_color",

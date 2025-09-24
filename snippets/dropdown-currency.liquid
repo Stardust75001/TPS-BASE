@@ -2,22 +2,20 @@
     <div class="currency-selector btn-group dropup mx-2"
          style="z-index: {{ settings.currency_selector_z_index }}">
         <button
-            class="btn btn-sm px-4 d-flex align-items-center dropdown-toggle {{ btn_color | default: 'btn-outline-primary' }}"
+            class="btn btn-sm px-4 d-flex align-items-center dropdown-toggle {{ btn_color | default: 'btn-outline-primary' }}" 
             data-bs-toggle="dropdown"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            aria-label="{{ 'general.accessibility.change_currency' | t | default: 'Changer de devise' }}">
+            aria-expanded="false">
             <div class="me-3">
-                {{ localization.country | image_url: width: 18, height: 18 | image_tag: alt: localization.country.name }}
+                {{ localization.country | image_url: width: 18, height: 18 | image_tag }}
             </div>
             <span class="small">
                 {{ localization.country.currency.iso_code }}
             </span>
         </button>
-        <div class="dropdown-menu shadow" style="min-width: 220px;" role="listbox" aria-label="{{ 'general.accessibility.currency_list' | t | default: 'Devises disponibles' }}">
+        <div class="dropdown-menu shadow" style="min-width: 220px;">
             {% form 'localization' %}
-                <ul
-                    class="list-group list-group-flush small"
+                <ul 
+                    class="list-group list-group-flush small" 
                     aria-labelledby="modal-localization-label">
                     {% for country in localization.available_countries %}
                         <li>

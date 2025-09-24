@@ -14,7 +14,9 @@
     "theme-check": "bash scripts/theme_check.sh",
     "test:visual": "playwright test --config=playwright.config.ts",
     "test:visual:update": "playwright test --config=playwright.config.ts --update-snapshots",
-    "lhci:preview": "lhci autorun --config=lighthouserc.preview.json --collect.url=$PREVIEW_URL --collect.startServerCommand='echo skip'"
+    "lhci:preview": "lhci autorun --config=lighthouserc.preview.json --collect.url=$PREVIEW_URL --collect.startServerCommand='echo skip'",
+    "validate:hybrid": "node scripts/validate-hybrid.cjs",
+    "check:predeploy": "npm run validate:hybrid && npm run theme-check"
   },
   "keywords": [],
   "author": "",
@@ -93,6 +95,7 @@
     "css-what": "^6.2.2",
     "cssesc": "^3.0.0",
     "cssstyle": "^3.0.0",
+    "csv-parse": "^6.1.0",
     "data-urls": "^3.0.2",
     "debug": "^4.3.4",
     "decimal.js": "^10.6.0",
@@ -110,6 +113,7 @@
     "domhandler": "^4.3.1",
     "domutils": "^2.8.0",
     "dot-prop": "^5.3.0",
+    "dotenv": "^17.2.2",
     "dunder-proto": "^1.0.1",
     "duplexer3": "^0.1.5",
     "eastasianwidth": "^0.2.0",
@@ -262,7 +266,7 @@
     "mutationobserver-shim": "^0.3.7",
     "nanoid": "^3.3.11",
     "negotiator": "^0.6.4",
-    "node-fetch": "^2.7.0",
+    "node-fetch": "^3.3.2",
     "node-releases": "^2.0.21",
     "normalize-path": "^3.0.0",
     "normalize-url": "^6.1.0",
@@ -413,5 +417,6 @@
     "yallist": "^4.0.0",
     "yauzl": "^2.10.0"
   },
-  "description": ""
+  "description": "",
+  "type": "module"
 }

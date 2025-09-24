@@ -122,7 +122,7 @@
         {% endif %}
 
         {% if block.settings.img_mobile != blank or block.settings.img_desktop != blank %}
-          <img loading="lazy" class="carousel-item-img d-lg-none"
+          <img class="carousel-item-img d-lg-none"
                src="{{ block.settings.img_mobile | image_url: width: 960, crop: 'center' }}"
                alt="{{ block.settings.img_mobile.alt | escape }}"
                width="960"
@@ -131,7 +131,7 @@
                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
                fetchpriority="{% if forloop.first %}high{% else %}low{% endif %}">
 
-          <img loading="lazy" class="carousel-item-img d-none d-lg-block"
+          <img class="carousel-item-img d-none d-lg-block"
                src="{{ block.settings.img_desktop | image_url: width: 1920, crop: 'center' }}"
                alt="{{ block.settings.img_desktop.alt | escape }}"
                width="1920"

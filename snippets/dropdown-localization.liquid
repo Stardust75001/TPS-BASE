@@ -2,16 +2,14 @@
   <div class="language-selector btn-group dropup mx-2"
        style="z-index: {{ settings.currency_selector_z_index }}">
     <button
-        class="btn btn-sm px-4 d-flex align-items-center dropdown-toggle {{ btn_color | default: 'btn-outline-primary' }}"
+        class="btn btn-sm px-4 d-flex align-items-center dropdown-toggle {{ btn_color | default: 'btn-outline-primary' }}" 
         data-bs-toggle="dropdown"
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-label="{{ 'general.accessibility.change_language' | t | default: 'Changer de langue' }}">
+        aria-expanded="false">
       {% assign flag_name = localization.language.iso_code | downcase | prepend: 'flag-' | append: '.svg' %}
       <img
           class="img-fluid me-3"
           src="{{ flag_name | file_url }}"
-          alt="{{ localization.language.name }}"
+          alt=""
           width="18"
           height="18"
           loading="lazy">
@@ -19,17 +17,17 @@
           {{ localization.language.name }}
       </span>
     </button>
-    <ul class="dropdown-menu shadow" role="listbox" aria-label="{{ 'general.accessibility.language_list' | t | default: 'Langues disponibles' }}">
+    <ul class="dropdown-menu shadow">
       {%- for language in localization.available_languages -%}
         <li>
-          <a
-            class="dropdown-item d-flex {% if language.iso_code == localization.language.iso_code %}active{% endif %}"
+          <a 
+            class="dropdown-item d-flex {% if language.iso_code == localization.language.iso_code %}active{% endif %}" 
             href="{% if language.iso_code == 'en' %}/{% else %}{{ language.root_url }}{% endif %}">
             {% assign flag_name = language.iso_code | downcase | prepend: 'flag-' | append: '.svg' %}
             <img
                 class="img-fluid me-4"
                 src="{{ flag_name | file_url }}"
-                alt="{{ language.endonym_name | capitalize }}"
+                alt=""
                 width="20"
                 height="20"
                 loading="lazy">

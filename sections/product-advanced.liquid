@@ -11,7 +11,7 @@ Section produit avancée avec galerie interactive et blocs dynamiques
         {% if product.images.size > 0 %}
           <div class="product-gallery">
             <div class="main-image mb-3 text-center">
-              <img loading="lazy" id="main-product-image"
+              <img id="main-product-image"
                    src="{{ product.featured_image | img_url: '1024x1024' }}"
                    alt="{{ product.title }}"
                    class="img-fluid rounded"
@@ -21,7 +21,7 @@ Section produit avancée avec galerie interactive et blocs dynamiques
             {% if product.images.size > 1 %}
               <div class="thumbnail-images d-flex flex-wrap justify-content-center gap-2">
                 {% for image in product.images %}
-                  <img loading="lazy" src="{{ image | img_url: '100x100' }}"
+                  <img src="{{ image | img_url: '100x100' }}"
                        alt="{{ product.title }}"
                        class="img-thumbnail"
                        style="width: 60px; height: 60px; object-fit: cover; cursor: pointer;"
@@ -150,7 +150,7 @@ Section produit avancée avec galerie interactive et blocs dynamiques
     popup.document.write(`
       <html><head><title>Zoom</title></head>
       <body style="margin:0;display:flex;align-items:center;justify-content:center;background:#000;">
-        <img loading="lazy" src="${src}" style="max-width:100%;max-height:100vh;">
+        <img src="${src}" style="max-width:100%;max-height:100vh;">
       </body></html>
     `);
   }

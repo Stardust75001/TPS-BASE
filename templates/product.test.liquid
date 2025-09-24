@@ -36,7 +36,7 @@ Template de test pour vérifier que les données produit sont correctement récu
             {% if product.images.size > 0 %}
                 <div class="alert alert-success">
                     <h4>Images trouvées :</h4>
-                    <img loading="lazy" src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" class="img-thumbnail">
+                    <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" class="img-thumbnail">
                 </div>
             {% else %}
                 <div class="alert alert-warning">
