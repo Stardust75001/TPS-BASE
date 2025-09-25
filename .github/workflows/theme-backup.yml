@@ -1,0 +1,45 @@
+name: Theme Auto Backup
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # Every 10 minutes
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create backup folder with timestamp
+        run: |
+          mkdir -p .theme-backups
+          ts=$(date +'%Y%m%d-%H%M%S')
+          cp -r . .theme-backups/backup-$ts
+          rm -rf .theme-backups/backup-$ts/.git
+          rm -rf .theme-backups/backup-$ts/.theme-backups
+
+      - name: Checkout backup branch
+        run: |
+          git fetch origin theme-backups:theme-backups || git checkout --orphan theme-backups
+          git checkout theme-backups || git checkout -b theme-backups
+
+      - name: Copy new backups to branch
+        run: |
+          cp -r .theme-backups/* .
+          rm -rf .theme-backups
+
+      - name: Keep only last 10 backups
+        run: |
+          ls -dt backup-* | tail -n +11 | xargs -r rm -rf
+
+      - name: Commit and push backups
+        run: |
+          git add backup-*
+          git commit -m "Automated theme backup $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push origin theme-backups
