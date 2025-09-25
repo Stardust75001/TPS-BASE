@@ -1,0 +1,22 @@
+name: SEO Health
+
+on:
+  schedule:
+    - cron: '30 5 * * 1'  # chaque lundi
+  workflow_dispatch:
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check robots.txt & sitemap
+        run: |
+          curl -sSf https://www.thepetsociety.paris/robots.txt >/dev/null
+          curl -sSf https://www.thepetsociety.paris/sitemap.xml >/dev/null
+
+      - name: Broken links (internal)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress --max-concurrency 8 --accept 200,206,301,302,308 https://www.thepetsociety.paris/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
