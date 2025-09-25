@@ -12,7 +12,12 @@ fi
 
 # 1) Variables par défaut (fallback si pas dans .env)
 : ${SHOPIFY_FLAG_STORE:="f6d72e-0f.myshopify.com"}
-: ${SHOPIFY_CLI_THEME_TOKEN:="shptka_e5b4970ebfdfe209d044431d5d6f6715"}
+# Require a Theme Access token to be provided via .env or environment; do not default to a real-looking value
+if [[ -z "${SHOPIFY_CLI_THEME_TOKEN:-}" ]]; then
+  echo "❌ SHOPIFY_CLI_THEME_TOKEN is not set. Add it to .env or export it in your shell."
+  echo "   Example (.env): SHOPIFY_CLI_THEME_TOKEN=shptka_XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  exit 1
+fi
 
 # 2) Petites fonctions utilitaires
 preview_url() {
