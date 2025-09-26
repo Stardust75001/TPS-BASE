@@ -278,3 +278,114 @@ jobs:
             "${SITE_ORIGIN}/cart/add.js")
           echo "Add-to-cart status: $code"
           echo "$code" | grep -qE '200|302' || exit 1
+name: CI · Shopify
+
+on:
+  push:
+    branches: [ dev, main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-shopify-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SITE_ORIGIN: https://www.thepetsociety.paris
+  URL_HOME: https://www.thepetsociety.paris/
+  URL_COLLECTION: https://www.thepetsociety.paris/collections/tous-les-produits
+  URL_PRODUCT: https://www.thepetsociety.paris/products/un-produit-exemple
+  SITEMAP_URL: https://www.thepetsociety.paris/sitemap.xml
+  ROBOTS_URL: https://www.thepetsociety.paris/robots.txt
+  VARIANT_ID: "0"   # mets un vrai variant_id pour activer l’add-to-cart
+
+jobs:
+  basic-build:
+    name: Basic build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show repo status
+        run: |
+          echo "Branch: $GITHUB_REF"
+          echo "SHA: $GITHUB_SHA"
+          ls -la
+
+  theme-check:
+    name: Theme Check (Liquid)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.1"
+      - name: Install theme-check
+        run: gem install theme-check
+      - name: Run theme-check
+        run: |
+          set -e
+          theme-check --version
+          theme-check
+
+  smoke-tests:
+    name: Smoke tests (HTTP 200 + add-to-cart)
+    runs-on: ubuntu-latest
+    needs: [ theme-check ]
+    steps:
+      - name: Pages clés: HTTP 200
+        shell: bash
+        run: |
+          set -e
+          for u in "${URL_HOME}" "${URL_COLLECTION}" "${URL_PRODUCT}"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$u")
+            echo "$u -> $code"
+            [ "$code" = "200" ] || { echo "FAIL $u ($code)"; exit 1; }
+          done
+      - name: robots.txt & sitemap
+        run: |
+          set -e
+          curl -sSf "${ROBOTS_URL}"  >/dev/null
+          curl -sSf "${SITEMAP_URL}" >/dev/null
+          echo "OK robots.txt & sitemap"
+      - name: Add to cart (skippé si VARIANT_ID=0)
+        shell: bash
+        run: |
+          set -e
+          if [ "${VARIANT_ID}" = "0" ]; then
+            echo "VARIANT_ID=0 -> test add-to-cart sauté."
+            exit 0
+          fi
+          code=$(curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -d "{\"items\":[{\"id\":${VARIANT_ID},\"quantity\":1}]}" \
+            -o /dev/null -w "%{http_code}" \
+            "${SITE_ORIGIN}/cart/add.js")
+          echo "Add-to-cart status: $code"
+          echo "$code" | grep -qE '200|302' || exit 1
+
+  psi:
+    name: PageSpeed Insights
+    runs-on: ubuntu-latest
+    needs: [ basic-build ]   # lance après build
+    strategy:
+      matrix:
+        strategy: [mobile, desktop]
+    steps:
+      - name: Run PSI ${{ matrix.strategy }}
+        id: psi
+        run: |
+          set -e
+          RES="$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${SITE_ORIGIN}&strategy=${{ matrix.strategy }}&key=${{ secrets.PSI_API_KEY }}")"
+          SCORE=$(echo "$RES" | jq -r '.lighthouseResult.categories.performance.score // empty')
+          echo "score=$SCORE" >> "$GITHUB_OUTPUT"
+          printf '{"strategy":"%s","score":%s}\n' "${{ matrix.strategy }}" "${SCORE:-null}" > "psi-${{ matrix.strategy }}.json"
+      - name: Upload PSI artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: psi-${{ matrix.strategy }}
+          path: psi-${{ matrix.strategy }}.json
+      - name: Summary
+        if: always()
+        run: |
+          echo "### PSI ${{ matrix.strategy }} : ${{ steps.psi.outputs.score }}" >> $GITHUB_STEP_SUMMARY
