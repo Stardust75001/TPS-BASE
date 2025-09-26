@@ -1,4 +1,4 @@
-`name: CI · Shopify (autocommit)
+name: CI · Shopify (autocommit)
 
 on:
   push:
