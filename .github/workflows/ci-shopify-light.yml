@@ -1,0 +1,3 @@
+git add .github/workflows/ci-shopify-light.yml
+git commit -m "fix(ci): correct YAML indentation in smoke-tests job"
+git push origin Stardust75001-patch-1
