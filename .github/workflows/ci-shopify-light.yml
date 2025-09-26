@@ -1,3 +1,34 @@
 git add .github/workflows/ci-shopify-light.yml
 git commit -m "fix(ci): correct YAML indentation in smoke-tests job"
 git push origin Stardust75001-patch-1
+  smoke-tests:
+    name: Smoke tests (200 + add-to-cart optionnel)
+    runs-on: ubuntu-latest
+    needs: [theme-check]
+    steps:
+      - name: Pages clés: HTTP 200
+        run: |
+          for u in "${URL_HOME}" "${URL_COLLECTION}" "${URL_PRODUCT}"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$u")
+            echo "$u -> $code"
+            [ "$code" = "200" ] || { echo "FAIL $u ($code)"; exit 1; }
+          done
+
+      - name: robots.txt & sitemap existent
+        run: |
+          curl -sSf "${ROBOTS_URL}"  >/dev/null
+          curl -sSf "${SITEMAP_URL}" >/dev/null
+
+      - name: Add to cart (skipped if VARIANT_ID=0)
+        run: |
+          if [ "${VARIANT_ID}" = "0" ]; then
+            echo "VARIANT_ID=0 -> test add-to-cart sauté."
+            exit 0
+          fi
+          code=$(curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -d "{\"items\":[{\"id\":${VARIANT_ID},\"quantity\":1}]}" \
+            -o /dev/null -w "%{http_code}" \
+            "${SITE_ORIGIN}/cart/add.js")
+          echo "Add-to-cart status: $code"
+          echo "$code" | grep -qE '200|302' || exit 1
