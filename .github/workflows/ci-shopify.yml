@@ -1,291 +1,12 @@
-name: CI · Shopify (autocommit)
-
-on:
-  push:
-    branches: [ dev, main ]
-
-concurrency:
-  group: ci-shopify-${{ github.ref }}
-  cancel-in-progress: true
-
-env:
-  SITE_ORIGIN: https://www.thepetsociety.paris
-  URL_HOME: ${{ env.SITE_ORIGIN }}/
-  URL_COLLECTION: ${{ env.SITE_ORIGIN }}/collections/tous-les-produits
-  URL_PRODUCT: ${{ env.SITE_ORIGIN }}/products/un-produit-exemple
-  SITEMAP_URL: ${{ env.SITE_ORIGIN }}/sitemap.xml
-  ROBOTS_URL: ${{ env.SITE_ORIGIN }}/robots.txt
-  # ⚠️ À remplacer par un variantId existant en stock (produit de test)
-  VARIANT_ID: 00000000000000
-
-jobs:
-  theme-check:
-    name: Theme Check (Liquid)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
-        with: { ruby-version: '3.3' }
-      - run: |
-          gem install theme-check
-          theme-check --version
-          theme-check --fail-level suggestion || true
-        # ↑ mets --fail-level=error pour être plus strict
-
-  lint:
-    name: Lint (ESLint/Stylelint)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: '20', cache: 'npm' }
-      - run: npm ci
-        if: hashFiles('package-lock.json') != ''
-      - name: ESLint
-        run: npx eslint . || true
-        if: hashFiles('**/.eslintrc*') != ''
-      - name: Stylelint
-        run: npx stylelint "**/*.{css,scss,liquid}" || true
-        if: hashFiles('**/.stylelintrc*') != ''
-
-  lighthouse:
-    name: Lighthouse CI (perf/SEO/a11y)
-    runs-on: ubuntu-latest
-    needs: [theme-check, lint]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run LHCI
-        uses: treosh/lighthouse-ci-action@v10
-        with:
-          urls: |
-            ${{ env.URL_HOME }}
-            ${{ env.URL_COLLECTION }}
-            ${{ env.URL_PRODUCT }}
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          configPath: .lighthouserc.json
-          budgetPath: .lighthouse-budgets.json
-
-  psi:
-    name: PageSpeed Insights (Core Web Vitals)
-    runs-on: ubuntu-latest
-    needs: [theme-check, lint]
-    steps:
-      - name: Home (mobile)
-        uses: treosh/psi-action@v1
-        with:
-          url: ${{ env.URL_HOME }}
-          strategy: mobile
-          key: ${{ secrets.GOOGLE_PSI_API_KEY }}
-      - name: Collection (mobile)
-        uses: treosh/psi-action@v1
-        with:
-          url: ${{ env.URL_COLLECTION }}
-          strategy: mobile
-          key: ${{ secrets.GOOGLE_PSI_API_KEY }}
-      - name: Product (mobile)
-        uses: treosh/psi-action@v1
-        with:
-          url: ${{ env.URL_PRODUCT }}
-          strategy: mobile
-          key: ${{ secrets.GOOGLE_PSI_API_KEY }}
-
-  smoke:
-    name: Smoke tests (200 + add-to-cart)
-    runs-on: ubuntu-latest
-    needs: [theme-check]
-    steps:
-      - name: Pages clés répondent 200
-        run: |
-          for u in "${URL_HOME}" "${URL_COLLECTION}" "${URL_PRODUCT}"; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "$u")
-            [ "$code" = "200" ] || { echo "FAIL $u ($code)"; exit 1; }
-          done
-      - name: AJAX add-to-cart OK
-        run: |
-          if [ "${VARIANT_ID}" = "00000000000000" ]; then
-            echo "⚠️ VARIANT_ID non configuré, test add-to-cart sauté"; exit 0
-          fi
-          code=$(curl -s -X POST \
-            -H "Content-Type: application/json" \
-            -d "{\"items\":[{\"id\":${VARIANT_ID},\"quantity\":1}]}" \
-            -o /dev/null -w "%{http_code}" \
-            "${SITE_ORIGIN}/cart/add.js")
-          echo "Status: $code"
-          # Shopify peut renvoyer 302 selon config
-          echo "$code" | grep -qE '200|302' || exit 1
-
-  sentry:
-    name: Sentry Release (optionnel)
-    runs-on: ubuntu-latest
-    needs: [lighthouse, psi, smoke]
-    if: ${{ secrets.SENTRY_AUTH_TOKEN != '' && github.ref == 'refs/heads/main' }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build (si tu génères des assets)
-        run: |
-          if [ -f package.json ]; then
-            npm ci
-            npm run build || true
-          fi
-      - name: Create Sentry release
-        uses: getsentry/action-release@v2
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-        with:
-          environment: production
-          version: ${{ github.sha }}
-          set_commits: 'auto'
-          sourcemaps: |
-            assets/
-            dist/
-          ignore_missing: true
-
-  ping_sitemaps:
-    name: Ping sitemaps (main)
-    runs-on: ubuntu-latest
-    needs: [lighthouse, psi, smoke]
-    if: ${{ github.ref == 'refs/heads/main' }}
-    steps:
-      - run: |
-          curl -sSf "$ROBOTS_URL" >/dev/null
-          curl -s "https://www.google.com/ping?sitemap=${SITEMAP_URL}" || true
-          curl -s "https://www.bing.com/ping?sitemap=${SITEMAP_URL}" || true
-
-  notify_fail:
-    name: Notify on failure (Slack optionnel)
-    runs-on: ubuntu-latest
-    needs: [theme-check, lint, lighthouse, psi, smoke, sentry, ping_sitemaps]
-    if: failure()
-    steps:
-      - name: Slack webhook
-        if: ${{ secrets.SLACK_WEBHOOK_URL != '' }}
-        uses: slackapi/slack-github-action@v1
-      - name: Send message
-        if: ${{ secrets.SLACK_WEBHOOK_URL != '' }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: |
-          payload=$(jq -nc --arg repo "${GITHUB_REPOSITORY}" \
-                           --arg wf "${GITHUB_WORKFLOW}" \
-                           --arg run "${GITHUB_RUN_NUMBER}" \
-                           '{text: ":rotating_light: CI FAILED on \($repo) — \($wf) (#\($run))"}')
-          curl -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
+---
 name: CI · Shopify
 
 on:
   push:
-    branches: [ dev, main ]
+    branches: [dev, main]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
-
-concurrency:
-  group: ci-shopify-${{ github.ref }}
-  cancel-in-progress: true
-
-# Variables simples (pas de ${{ env.* }} ici)
-env:
-  SITE_ORIGIN: https://www.thepetsociety.paris
-  URL_HOME: https://www.thepetsociety.paris/
-  URL_COLLECTION: https://www.thepetsociety.paris/collections/tous-les-produits
-  URL_PRODUCT: https://www.thepetsociety.paris/products/un-produit-exemple
-  SITEMAP_URL: https://www.thepetsociety.paris/sitemap.xml
-  ROBOTS_URL: https://www.thepetsociety.paris/robots.txt
-  # 0 pour sauter le test add-to-cart ; mets un vrai variant_id pour l’activer
-  VARIANT_ID: "0"
-
-jobs:
-  basic-build:
-    name: Basic build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      # Si tu n’as pas de build Node, on laisse un "smoke build" minimal
-      - name: Show repo status
-        run: |
-          echo "Branch: $GITHUB_REF"
-          echo "SHA: $GITHUB_SHA"
-          ls -la
-
-      # Exemple de build Node (décommente si nécessaire)
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: "20"
-      # - name: Install deps (if package.json exists)
-      #   if: ${{ hashFiles('package.json') != '' }}
-      #   run: npm ci
-      # - name: Build (if script exists)
-      #   if: ${{ hashFiles('package.json') != '' }}
-      #   run: npm run build --if-present
-
-  theme-check:
-    name: Theme Check (Liquid)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.3.1"
-      - name: Install theme-check
-        run: gem install theme-check
-      - name: Run theme-check
-        run: |
-          set -e
-          echo "Checking Liquid with theme-check…"
-          theme-check --version
-          # Ajoute un fichier .theme-check.yml à la racine pour config fine
-          theme-check
-
-  smoke-tests:
-    name: Smoke tests (HTTP 200 + add-to-cart optionnel)
-    runs-on: ubuntu-latest
-    needs: [ theme-check ]
-    steps:
-      - name: Pages clés: HTTP 200
-        shell: bash
-        run: |
-          set -e
-          for u in "${URL_HOME}" "${URL_COLLECTION}" "${URL_PRODUCT}"; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "$u")
-            echo "$u -> $code"
-            [ "$code" = "200" ] || { echo "FAIL $u ($code)"; exit 1; }
-          done
-
-      - name: robots.txt & sitemap existent
-        shell: bash
-        run: |
-          set -e
-          curl -sSf "${ROBOTS_URL}"  >/dev/null
-          curl -sSf "${SITEMAP_URL}" >/dev/null
-          echo "OK robots.txt & sitemap"
-
-      - name: Add to cart (skippé si VARIANT_ID=0)
-        shell: bash
-        run: |
-          set -e
-          if [ "${VARIANT_ID}" = "0" ]; then
-            echo "VARIANT_ID=0 -> test add-to-cart sauté."
-            exit 0
-          fi
-          code=$(curl -s -X POST \
-            -H "Content-Type: application/json" \
-            -d "{\"items\":[{\"id\":${VARIANT_ID},\"quantity\":1}]}" \
-            -o /dev/null -w "%{http_code}" \
-            "${SITE_ORIGIN}/cart/add.js")
-          echo "Add-to-cart status: $code"
-          echo "$code" | grep -qE '200|302' || exit 1
-name: CI · Shopify
-
-on:
-  push:
-    branches: [ dev, main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [main]
+  workflow_dispatch: {}
 
 concurrency:
   group: ci-shopify-${{ github.ref }}
@@ -298,7 +19,7 @@ env:
   URL_PRODUCT: https://www.thepetsociety.paris/products/un-produit-exemple
   SITEMAP_URL: https://www.thepetsociety.paris/sitemap.xml
   ROBOTS_URL: https://www.thepetsociety.paris/robots.txt
-  VARIANT_ID: "0"   # mets un vrai variant_id pour activer l’add-to-cart
+  VARIANT_ID: "0"  # mets un vrai variant_id pour activer l’add-to-cart
 
 jobs:
   basic-build:
@@ -317,9 +38,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.1"
+          ruby-version: '3.3.1'
       - name: Install theme-check
         run: gem install theme-check
       - name: Run theme-check
@@ -331,10 +53,9 @@ jobs:
   smoke-tests:
     name: Smoke tests (HTTP 200 + add-to-cart)
     runs-on: ubuntu-latest
-    needs: [ theme-check ]
+    needs: [theme-check]
     steps:
       - name: Pages clés: HTTP 200
-        shell: bash
         run: |
           set -e
           for u in "${URL_HOME}" "${URL_COLLECTION}" "${URL_PRODUCT}"; do
@@ -345,11 +66,9 @@ jobs:
       - name: robots.txt & sitemap
         run: |
           set -e
-          curl -sSf "${ROBOTS_URL}"  >/dev/null
+          curl -sSf "${ROBOTS_URL}" >/dev/null
           curl -sSf "${SITEMAP_URL}" >/dev/null
-          echo "OK robots.txt & sitemap"
       - name: Add to cart (skippé si VARIANT_ID=0)
-        shell: bash
         run: |
           set -e
           if [ "${VARIANT_ID}" = "0" ]; then
@@ -367,25 +86,25 @@ jobs:
   psi:
     name: PageSpeed Insights
     runs-on: ubuntu-latest
-    needs: [ basic-build ]   # lance après build
+    needs: [basic-build]
     strategy:
       matrix:
-        strategy: [mobile, desktop]
+        device: [mobile, desktop]
     steps:
-      - name: Run PSI ${{ matrix.strategy }}
+      - name: Run PSI ${{ matrix.device }}
         id: psi
         run: |
           set -e
-          RES="$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${SITE_ORIGIN}&strategy=${{ matrix.strategy }}&key=${{ secrets.PSI_API_KEY }}")"
-          SCORE=$(echo "$RES" | jq -r '.lighthouseResult.categories.performance.score // empty')
+          RES="$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${SITE_ORIGIN}&strategy=${{ matrix.device }}&key=${{ secrets.PSI_API_KEY }}")"
+          SCORE="$(echo "$RES" | jq -r '.lighthouseResult.categories.performance.score // empty')"
           echo "score=$SCORE" >> "$GITHUB_OUTPUT"
-          printf '{"strategy":"%s","score":%s}\n' "${{ matrix.strategy }}" "${SCORE:-null}" > "psi-${{ matrix.strategy }}.json"
-      - name: Upload PSI artifacts
+          printf '{"device":"%s","score":%s}\n' "${{ matrix.device }}" "${SCORE:-null}" > "psi-${{ matrix.device }}.json"
+      - name: Upload PSI artifact
         uses: actions/upload-artifact@v4
         with:
-          name: psi-${{ matrix.strategy }}
-          path: psi-${{ matrix.strategy }}.json
+          name: psi-${{ matrix.device }}
+          path: psi-${{ matrix.device }}.json
       - name: Summary
         if: always()
         run: |
-          echo "### PSI ${{ matrix.strategy }} : ${{ steps.psi.outputs.score }}" >> $GITHUB_STEP_SUMMARY
+          echo "### PSI ${{ matrix.device }} : ${{ steps.psi.outputs.score }}" >> "$GITHUB_STEP_SUMMARY"
