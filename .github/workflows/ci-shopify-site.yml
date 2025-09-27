@@ -1,0 +1,197 @@
+name: CI Shopify Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      deploy_only:
+        description: "Ne lancer que le déploiement (skip build/tests)"
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  # === Build basique (install deps) ===
+  basic-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: npm install
+
+  # === Smoke tests (cart + PSI) ===
+  smoke-tests:
+    needs: basic-build
+    runs-on: ubuntu-latest
+    env:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SITE_ORIGIN: https://${{ secrets.SHOPIFY_STORE }}
+      VARIANT_ID_1: ${{ secrets.VARIANT_ID_1 }}
+      VARIANT_ID_2: ${{ secrets.VARIANT_ID_2 }}
+      VARIANT_ID_3: ${{ secrets.VARIANT_ID_3 }}
+      GOOGLE_PSI_API_KEY: ${{ secrets.GOOGLE_PSI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install jq + curl
+        run: sudo apt-get update && sudo apt-get install -y jq curl
+
+      - name: Add-to-cart variants (skip if empty)
+        run: |
+          set -e
+          for id in "$VARIANT_ID_1" "$VARIANT_ID_2" "$VARIANT_ID_3"; do
+            [ -n "$id" ] || continue
+            echo "🛒 Testing variant $id"
+            code=$(curl -sS -X POST \
+              -H "Content-Type: application/json" \
+              --data "{\"id\":$id,\"quantity\":1}" \
+              "$SITE_ORIGIN/cart/add.js" \
+              -o /dev/null -w '%{http_code}')
+            [ "$code" = "200" ] || { echo "❌ Add-to-cart failed for $id (HTTP $code)"; exit 1; }
+          done
+          echo "✅ Add-to-cart OK"
+
+      - name: PSI (home mobile) – only if API key set
+        if: env.GOOGLE_PSI_API_KEY != ''
+        run: |
+          curl -sS "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${SITE_ORIGIN}&strategy=mobile&key=${GOOGLE_PSI_API_KEY}" \
+            | jq '.lighthouseResult.categories | {performance, accessibility, "best-practices", seo}'
+
+  # === Theme check (Shopify CLI) ===
+  theme-check:
+    needs: smoke-tests
+    runs-on: ubuntu-latest
+    env:
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Shopify CLI
+        run: npm i -g @shopify/cli @shopify/theme
+      - name: Run theme check
+        run: shopify theme check || true
+
+  # === API Admin sanity (shop.json) ===
+  api-admin:
+    needs: theme-check
+    runs-on: ubuntu-latest
+    env:
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+    steps:
+      - name: Call Admin API (shop.json)
+        run: |
+          curl -sS -H "X-Shopify-Access-Token: ${SHOPIFY_ADMIN_TOKEN}" \
+            "https://${SHOPIFY_STORE}/admin/api/2025-07/shop.json" | jq .
+
+  # === BACKUP (optionnel) =========================================
+  theme-backup:
+    needs: api-admin
+    runs-on: ubuntu-latest
+    env:
+      ENABLE_THEME_BACKUP: ${{ secrets.ENABLE_THEME_BACKUP }}
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+      THEME_ID: ${{ secrets.THEME_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard – skip backup if disabled or deploy_only
+        id: guard
+        run: |
+          echo "event=${GITHUB_EVENT_NAME}"
+          DO_DEPLOY_ONLY="${{ github.event_name == 'workflow_dispatch' && inputs.deploy_only }}"
+          if [ "${ENABLE_THEME_BACKUP}" != "true" ] || [ "${DO_DEPLOY_ONLY}" = "true" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Shopify CLI
+        if: steps.guard.outputs.skip == 'false'
+        run: npm i -g @shopify/cli @shopify/theme
+
+      - name: Create dated backup
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          set -e
+          [ -n "${THEME_ID:-}" ] || { echo "❌ THEME_ID manquant"; exit 1; }
+          BACKUP_NAME="backup-$(date +'%Y%m%d-%H%M%S')"
+          echo "➡️ Backup du thème ${THEME_ID} → ${BACKUP_NAME}"
+          shopify theme pull --theme-id "${THEME_ID}" --path "${BACKUP_NAME}"
+          echo "BACKUP_NAME=${BACKUP_NAME}" >> "$GITHUB_ENV"
+          echo "✅ Backup OK : ${BACKUP_NAME}"
+
+      - name: Upload backup as artifact
+        if: steps.guard.outputs.skip == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-backup-${{ env.THEME_ID }}
+          path: ${{ github.workspace }}/${{ env.BACKUP_NAME }}
+
+  # === DEPLOIEMENT DIRECT (si backup désactivé) ===================
+  theme-deploy-direct:
+    needs: api-admin
+    runs-on: ubuntu-latest
+    env:
+      ENABLE_THEME_DEPLOY: ${{ secrets.ENABLE_THEME_DEPLOY }}
+      ENABLE_THEME_BACKUP: ${{ secrets.ENABLE_THEME_BACKUP }}
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+      THEME_ID: ${{ secrets.THEME_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard – run only if deploy enabled, on main, no backup and not deploy_only
+        id: guard
+        run: |
+          ON_MAIN="${{ github.ref == 'refs/heads/main' }}"
+          DO_DEPLOY_ONLY="${{ github.event_name == 'workflow_dispatch' && inputs.deploy_only }}"
+          if [ "${ENABLE_THEME_DEPLOY}" = "true" ] && [ "${ON_MAIN}" = "true" ] && [ "${ENABLE_THEME_BACKUP}" != "true" ] && [ "${DO_DEPLOY_ONLY}" != "true" ]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Shopify CLI
+        if: steps.guard.outputs.go == 'true'
+        run: npm i -g @shopify/cli @shopify/theme
+
+      - name: Push theme (direct)
+        if: steps.guard.outputs.go == 'true'
+        run: shopify theme push --theme-id "${THEME_ID}" --force
+
+  # === DEPLOIEMENT APRÈS BACKUP (si backup activé) =================
+  theme-deploy-after-backup:
+    needs: theme-backup
+    runs-on: ubuntu-latest
+    env:
+      ENABLE_THEME_DEPLOY: ${{ secrets.ENABLE_THEME_DEPLOY }}
+      ENABLE_THEME_BACKUP: ${{ secrets.ENABLE_THEME_BACKUP }}
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+      THEME_ID: ${{ secrets.THEME_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard – run only if deploy enabled, on main, backup enabled and not deploy_only
+        id: guard
+        run: |
+          ON_MAIN="${{ github.ref == 'refs/heads/main' }}"
+          DO_DEPLOY_ONLY="${{ github.event_name == 'workflow_dispatch' && inputs.deploy_only }}"
+          if [ "${ENABLE_THEME_DEPLOY}" = "true" ] && [ "${ON_MAIN}" = "true" ] && [ "${ENABLE_THEME_BACKUP}" = "true" ] && [ "${DO_DEPLOY_ONLY}" != "true" ]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Shopify CLI
+        if: steps.guard.outputs.go == 'true'
+        run: npm i -g @shopify/cli @shopify/theme
+
+      - name: Push theme (after backup)
+        if: steps.guard.outputs.go == 'true'
+        run: shopify theme push --theme-id "${THEME_ID}" --force
