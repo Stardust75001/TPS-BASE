@@ -1,0 +1,141 @@
+name: CI Shopify Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      deploy_only:
+        description: "Lancer uniquement le déploiement du thème ?"
+        type: boolean
+        default: false
+        required: true
+
+env:
+  SITE_ORIGIN: https://${{ secrets.SHOPIFY_STORE }}
+  URL_HOME: https://${{ secrets.SHOPIFY_STORE }}/
+  URL_COLLECTION: https://${{ secrets.SHOPIFY_STORE }}/collections/all
+  URL_PRODUCT_1: https://${{ secrets.SHOPIFY_STORE }}/collections/travel-corner/products/dog-clothing-set-outdoor-dog-vest-4-piece-set-6-piece-set-multi-function-water-cup-set-medical-bag-ins-style
+  ROBOTS_URL: https://${{ secrets.SHOPIFY_STORE }}/robots.txt
+  SITEMAP_URL: https://${{ secrets.SHOPIFY_STORE }}/sitemap.xml
+
+jobs:
+  # ──────────────────────────────────────────────────────────────────────────
+  # TESTS (sautés si déclenchement manuel avec deploy_only = true)
+  # ──────────────────────────────────────────────────────────────────────────
+  smoke-tests:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ping pages (code 200)
+        run: |
+          set -euo pipefail
+          for u in "${URL_HOME}" "${URL_COLLECTION}" "${URL_PRODUCT_1}"; do
+            code="$(curl -s -o /dev/null -w '%{http_code}' "$u")"
+            echo "$u → $code"
+            [ "$code" = "200" ] || { echo "FAIL $code"; exit 1; }
+          done
+      - name: robots.txt & sitemap
+        run: |
+          set -euo pipefail
+          curl -sSf "${ROBOTS_URL}" > /dev/null
+          curl -sSf "${SITEMAP_URL}" > /dev/null
+
+  add-to-cart:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+    strategy:
+      fail-fast: false
+      matrix:
+        variant_id:
+          - ${{ secrets.VARIANT_ID_1 }}
+          - ${{ secrets.VARIANT_ID_2 }}
+          - ${{ secrets.VARIANT_ID_3 }}
+    steps:
+      - name: Add to cart ${{ matrix.variant_id }}
+        if: ${{ matrix.variant_id != '' }}
+        run: |
+          set -euo pipefail
+          code="$(curl -sS -X POST \
+            -H 'Content-Type: application/json' \
+            --data "{\"id\":${{ matrix.variant_id }},\"quantity\":1}" \
+            "${{ env.SITE_ORIGIN }}/cart/add.js" \
+            -o /dev/null -w '%{http_code}')"
+          echo "variant ${{ matrix.variant_id }} → $code"
+          test "$code" -eq 200
+
+  pagespeed:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+    strategy:
+      fail-fast: false
+      matrix:
+        url: [ "${{ env.URL_HOME }}", "${{ env.URL_COLLECTION }}", "${{ env.URL_PRODUCT_1 }}" ]
+        strategy: [ mobile, desktop ]
+    steps:
+      - name: Installer jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: PSI ${{ matrix.strategy }} → ${{ matrix.url }}
+        env:
+          PSI_KEY: ${{ secrets.GOOGLE_PSI_API_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$PSI_KEY" || { echo "❌ GOOGLE_PSI_API_KEY manquant"; exit 1; }
+          resp="$(curl -sS "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${{ matrix.url }}&strategy=${{ matrix.strategy }}&key=${PSI_KEY}")"
+          err="$(echo "$resp" | jq -r '.error.message // empty')"
+          [ -z "$err" ] || { echo "❌ PSI error: $err"; exit 1; }
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # ADMIN API (shpat_) — sauté si deploy_only = true
+  # ──────────────────────────────────────────────────────────────────────────
+  api-admin:
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+    env:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+    steps:
+      - name: Check shop info (Admin API)
+        run: |
+          curl -sS -H "X-Shopify-Access-Token: $SHOPIFY_ADMIN_TOKEN" \
+            "https://$SHOPIFY_STORE/admin/api/2024-10/shop.json" | jq .
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # THEME DEPLOY AUTOMATIQUE (main + ENABLE_THEME_DEPLOY=true)
+  # ──────────────────────────────────────────────────────────────────────────
+  theme-deploy:
+    runs-on: ubuntu-latest
+    needs: [api-admin]
+    if: ${{ github.ref == 'refs/heads/main' && secrets.ENABLE_THEME_DEPLOY == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    env:
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }} # shptka_...
+      THEME_ID: ${{ secrets.THEME_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Shopify CLI
+        run: npm i -g @shopify/cli @shopify/theme
+      - name: Push theme
+        run: shopify theme push --theme-id "$THEME_ID" --force
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # THEME DEPLOY MANUEL (workflow_dispatch + deploy_only = true)
+  # ──────────────────────────────────────────────────────────────────────────
+  theme-deploy-manual:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy_only == true && secrets.ENABLE_THEME_DEPLOY == 'true' }}
+    env:
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+      THEME_ID: ${{ secrets.THEME_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Shopify CLI
+        run: npm i -g @shopify/cli @shopify/theme
+      - name: Push theme (manual)
+        run: shopify theme push --theme-id "$THEME_ID" --force
