@@ -1,0 +1,91 @@
+name: CI Shopify Site
+
+on:
+  push:
+    branches: [ main, Stardust75001-patch-1 ]
+  pull_request:
+
+# URLs publiques (non sensibles)
+env:
+  SITE_ORIGIN: https://thepetsociety.paris
+  URL_HOME: https://thepetsociety.paris/
+  URL_COLLECTION: https://thepetsociety.paris/collections/all
+  URL_PRODUCT_1: https://thepetsociety.paris/collections/travel-corner/products/dog-clothing-set-outdoor-dog-vest-4-piece-set-6-piece-set-multi-function-water-cup-set-medical-bag-ins-style
+  ROBOTS_URL: https://thepetsociety.paris/robots.txt
+  SITEMAP_URL: https://thepetsociety.paris/sitemap.xml
+
+jobs:
+  smoke-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ping pages (code 200 attendu)
+        run: |
+          set -euo pipefail
+          for u in "${URL_HOME}" "${URL_COLLECTION}" "${URL_PRODUCT_1}"; do
+            code="$(curl -s -o /dev/null -w '%{http_code}' "$u")"
+            echo "$u → $code"
+            [ "$code" = "200" ] || { echo "FAIL $code"; exit 1; }
+          done
+
+      - name: Vérifier robots.txt & sitemap
+        run: |
+          set -euo pipefail
+          curl -sSf "${ROBOTS_URL}" > /dev/null
+          curl -sSf "${SITEMAP_URL}" > /dev/null
+          echo "OK robots.txt & sitemap"
+
+  add-to-cart:
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        variant_id:
+          - ${{ secrets.VARIANT_ID_1 }}
+          - ${{ secrets.VARIANT_ID_2 }}
+          - ${{ secrets.VARIANT_ID_3 }}
+    steps:
+      - name: Add to cart ${{ matrix.variant_id }}
+        if: ${{ matrix.variant_id != '' }}
+        run: |
+          set -euo pipefail
+          code="$(curl -sS -X POST \
+            -H 'Content-Type: application/json' \
+            --data "{\"id\":${{ matrix.variant_id }},\"quantity\":1}" \
+            "${SITE_ORIGIN}/cart/add.js" \
+            -o /dev/null -w '%{http_code}')"
+          echo "variant ${{ matrix.variant_id }} → $code"
+          test "$code" -eq 200
+
+  pagespeed:
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        url: [ "${{ env.URL_HOME }}", "${{ env.URL_COLLECTION }}", "${{ env.URL_PRODUCT_1 }}" ]
+        strategy: [ mobile, desktop ]
+    steps:
+      - name: Installer jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: PSI ${{ matrix.strategy }} → ${{ matrix.url }}
+        env:
+          PSI_KEY: ${{ secrets.GOOGLE_PSI_API_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$PSI_KEY" || { echo "❌ GOOGLE_PSI_API_KEY manquant (Secret)"; exit 1; }
+          resp="$(curl -sS "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${{ matrix.url }}&strategy=${{ matrix.strategy }}&key=${PSI_KEY}")"
+          err="$(echo "$resp" | jq -r '.error.message // empty')"
+          if [ -n "$err" ]; then echo "❌ PSI error: $err"; exit 1; fi
+          perf="$(echo "$resp" | jq -r '.lighthouseResult.categories.performance.score')" 
+          acc="$(echo "$resp" | jq -r '.lighthouseResult.categories.accessibility.score')"
+          bp="$(echo "$resp" | jq -r '.lighthouseResult.categories["best-practices"].score')"
+          seo="$(echo "$resp" | jq -r '.lighthouseResult.categories.seo.score')"
+          echo "✅ ${{ matrix.strategy }} ${{ matrix.url }} — Perf:$perf Acc:$acc BP:$bp SEO:$seo"
+          [ "$perf" != "null" ] || { echo "❌ Score introuvable"; exit 1; }
