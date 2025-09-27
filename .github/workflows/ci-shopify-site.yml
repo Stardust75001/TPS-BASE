@@ -4,30 +4,50 @@ on:
   push:
     branches: [ main ]
   pull_request:
+<<<<<<< HEAD
     branches: [ main ]
+=======
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
   workflow_dispatch:
     inputs:
       deploy_only:
         description: "Ne lancer que le déploiement (skip build/tests)"
+<<<<<<< HEAD
         type: boolean
         required: false
         default: false
 
 jobs:
   # === Build basique (install deps) ===
+=======
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  # === Build basique (lint, install) ===
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
   basic-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install deps
+<<<<<<< HEAD
         run: npm install
+=======
+        run: |
+          npm install
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
 
   # === Smoke tests (cart + PSI) ===
   smoke-tests:
     needs: basic-build
     runs-on: ubuntu-latest
     env:
+<<<<<<< HEAD
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+=======
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
       SITE_ORIGIN: https://${{ secrets.SHOPIFY_STORE }}
       VARIANT_ID_1: ${{ secrets.VARIANT_ID_1 }}
       VARIANT_ID_2: ${{ secrets.VARIANT_ID_2 }}
@@ -35,6 +55,7 @@ jobs:
       GOOGLE_PSI_API_KEY: ${{ secrets.GOOGLE_PSI_API_KEY }}
     steps:
       - uses: actions/checkout@v4
+<<<<<<< HEAD
 
       - name: Install jq + curl
         run: sudo apt-get update && sudo apt-get install -y jq curl
@@ -61,6 +82,12 @@ jobs:
             | jq '.lighthouseResult.categories | {performance, accessibility, "best-practices", seo}'
 
   # === Theme check (Shopify CLI) ===
+=======
+      - name: Run smoke tests
+        run: bash ./load-env.sh all
+
+  # === Theme check (obligatoire pour protected branch) ===
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
   theme-check:
     needs: smoke-tests
     runs-on: ubuntu-latest
@@ -69,12 +96,20 @@ jobs:
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+<<<<<<< HEAD
       - name: Install Shopify CLI
         run: npm i -g @shopify/cli @shopify/theme
       - name: Run theme check
         run: shopify theme check || true
 
   # === API Admin sanity (shop.json) ===
+=======
+      - run: |
+          npm i -g @shopify/cli @shopify/theme
+          shopify theme check || true
+
+  # === API Admin test (GET shop infos) ===
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
   api-admin:
     needs: theme-check
     runs-on: ubuntu-latest
@@ -82,6 +117,7 @@ jobs:
       SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
     steps:
+<<<<<<< HEAD
       - name: Call Admin API (shop.json)
         run: |
           curl -sS -H "X-Shopify-Access-Token: ${SHOPIFY_ADMIN_TOKEN}" \
@@ -93,11 +129,25 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENABLE_THEME_BACKUP: ${{ secrets.ENABLE_THEME_BACKUP }}
+=======
+      - name: Call Admin API (shop infos)
+        run: |
+          curl -s -H "X-Shopify-Access-Token: $SHOPIFY_ADMIN_TOKEN" \
+            "https://${SHOPIFY_STORE}/admin/api/2025-07/shop.json" | jq .
+
+  # === [OPTION] Backup du thème avant déploiement =================
+  theme-backup:
+    needs: api-admin
+    runs-on: ubuntu-latest
+    if: ${{ secrets.ENABLE_THEME_BACKUP == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    env:
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
       THEME_ID: ${{ secrets.THEME_ID }}
     steps:
       - uses: actions/checkout@v4
+<<<<<<< HEAD
 
       - name: Guard – skip backup if disabled or deploy_only
         id: guard
@@ -139,11 +189,35 @@ jobs:
     env:
       ENABLE_THEME_DEPLOY: ${{ secrets.ENABLE_THEME_DEPLOY }}
       ENABLE_THEME_BACKUP: ${{ secrets.ENABLE_THEME_BACKUP }}
+=======
+      - name: Install Shopify CLI
+        run: npm i -g @shopify/cli @shopify/theme
+      - name: Create dated backup
+        run: |
+          [ -n "${THEME_ID:-}" ] || { echo "❌ THEME_ID manquant"; exit 1; }
+          BACKUP_NAME="backup-$(date +'%Y%m%d-%H%M%S')"
+          echo "➡️ Backup du thème $THEME_ID → $BACKUP_NAME"
+          shopify theme pull --theme-id "$THEME_ID" --path "$BACKUP_NAME"
+          echo "✅ Backup OK : $BACKUP_NAME"
+      - name: Upload backup as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-backup-${{ env.THEME_ID }}
+          path: ${{ github.workspace }}/$BACKUP_NAME
+
+  # === Déploiement auto (deux chemins selon backup activé) ===
+  theme-deploy-direct:
+    needs: api-admin
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' && secrets.ENABLE_THEME_DEPLOY == 'true' && secrets.ENABLE_THEME_BACKUP != 'true' && !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    env:
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
       THEME_ID: ${{ secrets.THEME_ID }}
     steps:
       - uses: actions/checkout@v4
+<<<<<<< HEAD
 
       - name: Guard – run only if deploy enabled, on main, no backup and not deploy_only
         id: guard
@@ -171,11 +245,24 @@ jobs:
     env:
       ENABLE_THEME_DEPLOY: ${{ secrets.ENABLE_THEME_DEPLOY }}
       ENABLE_THEME_BACKUP: ${{ secrets.ENABLE_THEME_BACKUP }}
+=======
+      - name: Install Shopify CLI
+        run: npm i -g @shopify/cli @shopify/theme
+      - name: Push theme (direct)
+        run: shopify theme push --theme-id "$THEME_ID" --force
+
+  theme-deploy-after-backup:
+    needs: theme-backup
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' && secrets.ENABLE_THEME_DEPLOY == 'true' && secrets.ENABLE_THEME_BACKUP == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    env:
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
       THEME_ID: ${{ secrets.THEME_ID }}
     steps:
       - uses: actions/checkout@v4
+<<<<<<< HEAD
 
       - name: Guard – run only if deploy enabled, on main, backup enabled and not deploy_only
         id: guard
@@ -195,3 +282,9 @@ jobs:
       - name: Push theme (after backup)
         if: steps.guard.outputs.go == 'true'
         run: shopify theme push --theme-id "${THEME_ID}" --force
+=======
+      - name: Install Shopify CLI
+        run: npm i -g @shopify/cli @shopify/theme
+      - name: Push theme (after backup)
+        run: shopify theme push --theme-id "$THEME_ID" --force
+>>>>>>> a00cb15 (Add CI workflow for Shopify site deployment)
