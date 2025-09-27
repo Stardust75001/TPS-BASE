@@ -1,0 +1,28 @@
+name: PageSpeed Insights
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *" # tous les jours à 6h UTC
+
+jobs:
+  psi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run PSI (Mobile)
+        run: |
+          curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://thepetsociety.paris&strategy=mobile&key=${{ secrets.PSI_API_KEY }}" \
+          | jq '.lighthouseResult.categories.performance.score' > mobile.json
+
+      - name: Run PSI (Desktop)
+        run: |
+          curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://thepetsociety.paris&strategy=desktop&key=${{ secrets.PSI_API_KEY }}" \
+          | jq '.lighthouseResult.categories.performance.score' > desktop.json
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: psi-results
+          path: |
+            mobile.json
+            desktop.json
