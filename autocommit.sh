@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# se placer dans le dossier du script
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+# charger .env local si présent
 [ -f ".env" ] && set -a && . ./.env && set +a
 
+# lock portable (macOS-friendly)
+if ! mkdir .autocommit.lockdir 2>/dev/null; then
+  echo "déjà lancé"; exit 0
+fi
+trap 'rmdir .autocommit.lockdir' EXIT
+
+# logs
 mkdir -p .logs
-echo "[$(date '+%F %T')] autocommit lancé dans $(pwd) THEME_ID=${THEME_ID:-unset}" >> .logs/autocommit.log
+LOG=".logs/autocommit.log"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] autocommit lancé dans $(pwd) THEME_ID=${THEME_ID:-unset}" >> "$LOG"
 
 while true; do
   {
-    echo "[$(date '+%F %T')] tick THEME_ID=${THEME_ID:-unset}"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] tick THEME_ID=${THEME_ID:-unset}"
 
+    # Git (silencieux si pas un repo)
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
       git add -A || true
       git commit -m "auto: $(date '+%F %T')" || true
@@ -23,7 +34,9 @@ while true; do
       echo "git: pas un repo, skip"
     fi
 
-    if command -v shopify >/dev/null 2>&1 && [ -n "${SHOPIFY_FLAG_STORE:-}" ] && [ -n "${THEME_ID:-}" ]; then
+    # Shopify (silencieux si CLI absente)
+    if command -v shopify >/dev/null 2>&1 \
+       && [ -n "${SHOPIFY_FLAG_STORE:-}" ] && [ -n "${THEME_ID:-}" ]; then
       shopify theme push \
         --store "$SHOPIFY_FLAG_STORE" \
         --theme "$THEME_ID" \
@@ -33,7 +46,6 @@ while true; do
         --ignore ".logs/*" \
         --json >/dev/null 2>&1 || true
     fi
-  } >> .logs/autocommit.log 2>&1
-
+  } >> "$LOG" 2>&1
   sleep 60
 done
