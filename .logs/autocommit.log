@@ -11,3 +11,13 @@
 [2025-09-29 01:11:25] tick THEME_ID=187321811292
 [2025-09-29 01:34:07] autocommit lancé dans /Users/asc/TPS-BASE-TEMP-OK THEME_ID=187321811292
 [2025-09-29 01:34:07] tick THEME_ID=187321811292
+[temp-ok deffc1e] auto: 2025-09-29 01:34:07
+ 6 files changed, 50 insertions(+), 56 deletions(-)
+ create mode 100644 .autocommit.lock
+ create mode 100644 .gitignore
+ create mode 100644 IDS.txt
+To https://github.com/Stardust75001/TPS-BASE.git
+   22471e4..deffc1e  temp-ok -> temp-ok
+la branche 'temp-ok' est paramétrée pour suivre 'origin/temp-ok'.
+[2025-09-29 01:34:47] autocommit lancé dans /Users/asc/TPS-BASE-TEMP-OK THEME_ID=187321811292
+[2025-09-29 01:34:47] tick THEME_ID=187321811292
