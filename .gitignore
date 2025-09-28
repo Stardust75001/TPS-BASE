@@ -6,3 +6,7 @@ node_modules/
 .env*
 .env*
 .env*
+.logs/
+.env
+.logs/
+.env

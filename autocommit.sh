@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 #!/usr/bin/env bash
 set -euo pipefail
 
+=======
+>>>>>>> 24e0d57 (temp-ok: pull Shopify theme + setup)
 # se placer dans le dossier du script
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+<<<<<<< HEAD
 # charger .env local si présent
 [ -f ".env" ] && set -a && . ./.env && set +a
 
@@ -49,3 +53,11 @@ while true; do
   } >> "$LOG" 2>&1
   sleep 60
 done
+=======
+# charger le .env local s'il existe
+[ -f ".env" ] && set -a && . ./.env && set +a
+
+# log de contrôle
+mkdir -p .logs
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] autocommit lancé dans $(pwd) THEME_ID=${THEME_ID:-unset}" >> .logs/autocommit.log
+>>>>>>> 24e0d57 (temp-ok: pull Shopify theme + setup)
