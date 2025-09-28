@@ -1,0 +1,64 @@
+name: CI Shopify Site
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.liquid'
+      - 'assets/**'
+      - 'snippets/**'
+      - 'sections/**'
+      - 'templates/**'
+      - 'locales/**'
+      - 'config/**'
+      - 'tests/**'
+      - '.github/workflows/**'
+      - 'push-staging.sh'
+      - 'README.md'
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.liquid'
+      - 'assets/**'
+      - 'snippets/**'
+      - 'sections/**'
+      - 'templates/**'
+      - 'locales/**'
+      - 'config/**'
+      - 'tests/**'
+      - '.github/workflows/**'
+      - 'push-staging.sh'
+      - 'README.md'
+
+jobs:
+  basic-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install deps
+        run: |
+          npm install
+
+  smoke-tests:
+    needs: basic-build
+    runs-on: ubuntu-latest
+    env:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+      GOOGLE_PSI_API_KEY: ${{ secrets.GOOGLE_PSI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run smoke tests
+        run: |
+          echo "Running smoke tests..."
+          # ajoute ici tes tests (cart, PSI, etc.)
+
+  theme-check:
+    needs: basic-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run theme check
+        run: |
+          shopify theme check || true

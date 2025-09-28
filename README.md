@@ -12,3 +12,5 @@
 ## Sécurité
 - Ne commitez jamais `.env` (utilisez `.env.example`)
 - Faites rotate des tokens Shopify si exposés
+
+# ci: touch
