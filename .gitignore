@@ -1,5 +1,8 @@
-.env
-.logs/
+node_modules
 node_modules/
+.shopify/
 .DS_Store
 *.log
+.env*
+.env*
+.env*
