@@ -59,3 +59,13 @@ THEME_ID=<ID_DU_THEME>
 
 - Ne commitez jamais `.env` → utilisez `.env.example`
 - Faites rotate des tokens Shopify si exposés
+
+## Liens utiles
+
+- **DEV — TPS-BASE-316**  
+  - Admin : https://admin.shopify.com/store/f6d72e-0f/themes/187272462684  
+  - Preview : https://f6d72e-0f.myshopify.com/?preview_theme_id=187272462684
+
+- **TEMP-OK — TPS-BASE-TEMP-OK**  
+  - Admin : https://admin.shopify.com/store/f6d72e-0f/themes/187321811292  
+  - Preview : https://f6d72e-0f.myshopify.com/?preview_theme_id=187321811292
