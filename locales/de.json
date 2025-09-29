@@ -18,7 +18,7 @@
     "balance": "Guthaben"
   },
 
-  // Duplicate keys removed. Only last occurrence for each key is kept. Cleaned for Theme Check compliance.
+  // All keys from en.default.json are now present. German translations used where possible, otherwise placeholder: "[Übersetzung fehlt]".
       "remove_from_wishlist": "Von der Wunschliste entfernen",
       "btn_label": "Zur Wunschliste"
     },
