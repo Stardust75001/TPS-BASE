@@ -36,79 +36,68 @@
         "properties": {
           "email_properties": "Email du destinataire",
           "name_properties": "Nom du destinataire",
+         "sections": {
           "message_properties": "Message cadeau",
           "date_properties": "Date de livraison"
-        }
-      },
-      "settings": {
-        "btn_text": {
-          "label": "Texte du bouton",
-          "default": "Voir toutes les collections",
-          "info": "Laisser vide pour désactiver"
-        }
-      }
-    }
-  },
-  "social_media_links": "Liens réseaux sociaux",
-  "collection": {
-    "custom_bundle": {
-      "pagination_page_of": "Page {{ count }} sur {{ total }}",
-      "title_customer": "Bonjour, {{ name }}",
-      "question_of_html": "Question {{ count }} sur {{ total }}"
-    },
-    "filters": {
-      "article": "Article"
-    }
-  },
-  "product": {
-    "wishlist": {
-      "view_all_results": "Voir tous les résultats",
-      "button": "Recherche"
-    },
-    "bundle": {
-      "custom_bundle": {
-        "qty": "Qté"
-      }
-    },
-    "inventory_bar": {
-      "social_media_links": "Liens réseaux sociaux",
-      "clear_filter": "Effacer le filtre",
-      "max_range_notice": "Plage maximale : {{ max }}"
-    },
-    "count_products": "{{ count }} produits",
-    "pagination_page_of": "Page {{ count }} sur {{ total }}"
-  }
-
-  "no_reviews": "Aucun avis",
-  "announcement": {
-    "shipping_notice": "Livraison dans toute l'Europe (EEE)",
-    "title": "Annonce",
-    "text": "Ceci est un message d'annonce."
-  },
-
-  "gift_card": {
-    "title": "Voici votre carte cadeau !",
-    "instructions": "Utilisez ce code lors du paiement pour utiliser votre carte cadeau.",
-    "print": "Imprimer",
-    "start_shopping": "Commencer vos achats",
-    "ref_variant_label": "Variante de référence",
-    "disabled": "Désactivée",
-    "expired_on": "Expirée le {{ date }}",
-    "expires_on": "Expire le {{ date }}",
-    "balance": "Solde"
-  },
-
-  "custom_sections": {
-    "image_banner": {
-      "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
-      "text": "Sélections soignées, friandises gastronomiques et soins premium vous attendent.",
-      "option_subscription_save": "Économisez {{ value }}%",
-      "primary_button": "ENTREZ !",
-      "qty_breaks": {
-        "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
-        "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
-        "label_text_html_bundle": "Lot de {{ qty }}"
-      },
+        "sections": {
+          "colors": {
+            "white": { "label": "Blanc" },
+            "light": { "label": "Clair" },
+            "body": { "label": "Corps", "option_subscription_save": "Économisez {{ value }}%" },
+            "qty_breaks": {
+              "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
+              "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
+              "label_text_html_bundle": "Lot de {{ qty }}"
+            },
+            "stock_count": {
+              "one": "{{ count }} article en stock",
+              "other": "{{ count }} articles en stock"
+            },
+            "price_unit": "Prix unitaire"
+          },
+          "alignment": {
+            "left": "Gauche",
+            "verified_review": "Avis vérifié",
+            "view_all_results": "Voir tous les résultats",
+            "button": "Recherche",
+            "purchase": "Achat",
+            "verified": "Vérifié",
+            "center": "Centré"
+          },
+          "featured_collections": {
+            "form": {
+              "btn_label": "Envoyer comme cadeau",
+              "email_label": "Email du destinataire",
+              "name_label": "Nom du destinataire",
+              "message_label": "Message",
+              "date_label": "Date de livraison",
+              "date_placeholder": "AAAA-MM-JJ",
+              "properties": {
+                "email_properties": "Email du destinataire",
+                "name_properties": "Nom du destinataire",
+                "message_properties": "Message cadeau",
+                "date_properties": "Date de livraison"
+              }
+            },
+            "settings": {
+              "btn_text": {
+                "label": "Texte du bouton",
+                "default": "Voir toutes les collections",
+                "info": "Laisser vide pour désactiver"
+              }
+            }
+          },
+          "list_collections": {
+            "name": "Collections",
+            "settings": {
+              "show_breadcrumbs": { "label": "Afficher le fil d’Ariane" },
+              "text_align": { "label": "Alignement du texte" },
+              "bg_color": { "label": "Couleur de fond" }
+            }
+          },
+        },
+          "footer": ""
+        },
       "stock_count": {
         "one": "{{ count }} article en stock",
         "other": "{{ count }} articles en stock"
@@ -158,45 +147,39 @@
 
   "sections": {
     "list_collections": {
-      "name": "Collections",
-      "settings": {
-        "show_breadcrumbs": { "label": "Afficher le fil d’Ariane" },
-        "text_align": { "label": "Alignement du texte" },
-        "bg_color": { "label": "Couleur de fond" }
-      }
-    },
-    "alignment": { "left": "Gauche", "center": "Centré" },
-    "featured_collections": {
-      "settings": {
-        "btn_text": {
-          "label": "Texte du bouton",
-          "default": "Voir toutes les collections",
-          "info": "Laisser vide pour désactiver"
-        }
-      }
-    },
-    "header": "En-tête",
-    "footer": ""
-  },
-
-  "collection": {
-    "btn_filter_products": "Filtrer les produits",
-    "sort_by": "Trier par",
-    "paginate_count": "{{ count }} sur {{ total }} produits affichés",
-    "empty_html": "Cette collection est vide.",
-    "custom_bundle": {
-      "add_to_bundle": "Ajouter au lot",
-      "added_to_bundle": "Ajouté au lot",
-      "bundle_contents_empty_html": "Le lot est actuellement vide.",
-      "bundle_contents_title": "Contenu du lot",
-      "bundle_price": "Prix du lot",
-      "button_atc_text": "Ajouter au panier",
-      "button_view_contents_text": "Voir le contenu du lot",
-      "progress_completed_text": "Offre complétée",
-      "progress_label": "Progression de l'offre",
-      "progress_uncompleted_text": "Non complétée",
-      "you_save": "Vous économisez"
-    },
+      "collection": {
+        "btn_filter_products": "Filtrer les produits",
+        "sort_by": "Trier par",
+        "paginate_count": "{{ count }} sur {{ total }} produits affichés",
+        "empty_html": "Cette collection est vide.",
+        "custom_bundle": {
+          "add_to_bundle": "Ajouter au lot",
+          "added_to_bundle": "Ajouté au lot",
+          "bundle_contents_empty_html": "Le lot est actuellement vide.",
+          "bundle_contents_title": "Contenu du lot",
+          "bundle_price": "Prix du lot",
+          "button_atc_text": "Ajouter au panier",
+          "button_view_contents_text": "Voir le contenu du lot",
+          "progress_completed_text": "Offre complétée",
+          "progress_label": "Progression de l'offre",
+          "progress_uncompleted_text": "Non complétée",
+          "you_save": "Vous économisez",
+          "pagination_page_of": "Page {{ count }} sur {{ total }}",
+          "title_customer": "Bonjour, {{ name }}",
+          "question_of_html": "Question {{ count }} sur {{ total }}"
+        },
+        "filters": {
+          "title": "Titre des filtres de collection",
+          "from": "Filtres de collection de",
+          "to": "Filtres de collection jusqu'à",
+          "view_more": "Voir plus de filtres",
+          "clear_all": "Effacer tous les filtres",
+          "view_results": "Voir les résultats",
+          "article": "Article"
+        },
+        "load_more": "Charger plus",
+        "load_previous": "Charger les précédents"
+      },
     "filters": {
       "title": "Titre des filtres de collection",
       "from": "Filtres de collection de",
@@ -235,85 +218,66 @@
         "progress_uncompleted_text": "Non terminé",
         "progress_completed_text": "Terminé",
         "bundle_price": "Prix du lot",
-        "you_save": "Vous économisez",
-        "button_atc_text": "Ajouter au panier",
-        "button_view_contents_text": "Voir le contenu du lot",
-        "bundle_contents_title": "Contenu du lot",
-        "bundle_contents_empty_html": "Le lot est vide pour l’instant"
-      }
-    },
-    "add": "Ajouter",
-    "add_to_cart": "Ajouter au panier",
-    "bought_together": {
-      "add_selected_to_cart": "Ajouter la sélection au panier",
-      "select_this": "Sélectionner ceci",
-      "this_item": "Cet article",
-      "total_price": "Prix total"
-    },
-    "buy_it_now": "Acheter maintenant",
-    "include_taxes": "Taxes incluses",
-    "inventory_bar": {
-      "label": "Niveau de stock",
-      "sold_out": "Épuisé",
-      "untracked": "Disponibilité limitée",
-      "verylow_html": "Plus que {{ count }} en stock !",
-      "low_html": "{{ count }} articles restants",
-      "normal_html": "{{ count }} disponibles"
-    },
-    "product_options": "Options du produit",
-    "purchase_options": {
-      "option_deliver_every": "Livrer tous les",
-      "option_one_time": "Achat unique",
-      "option_subscription": "Abonnement"
-    },
-    "quantity": "Quantité",
-    "save": "Enregistrer",
-    "select_variant": "Sélectionner une variante"
-  },
-
-  "general": {
-    "menu": "Menu",
-    "all_rights_reserved": "Tous droits réservés",
-    "secure_payments": "Paiements sécurisés",
-    "newsletter": {
-      "name_placeholder": "Entrez votre nom",
-      "input_label": "Entrez votre e-mail",
-      "submit_button": "S'abonner",
-      "confirmation_text": "Merci pour votre abonnement !"
-    },
-    "loading": "Chargement…",
-    "policy": {
-      "default_title": "Politique",
-      "default_content": "Contenu par défaut de la politique",
-      "last_updated": "Dernière mise à jour"
-    },
-    "map": {
-      "hours": "Heures d'ouverture",
-      "api_key_missing": "Clé API manquante"
-    },
-    "accessibility": {
-      "back_to_top": "Retour en haut",
-      "close": "Fermer",
-      "load_more_products": "Charger plus de produits",
-      "sorted_by": "Trié par",
-      "previous_page": "Page précédente",
-      "next_page": "Page suivante",
-      "increase_qty": "Augmenter la quantité",
-      "decrease_qty": "Diminuer la quantité",
-      "account": "Compte",
-      "cart": "Panier",
-      "cart_product_list": "Produits du panier",
-      "menu": "Menu",
-      "model_3d_decrease": "Diminuer la taille du modèle",
-      "model_3d_fullscreen": "Modèle plein écran",
-      "model_3d_increase": "Augmenter la taille du modèle",
-      "model_3d_list_label": "Modèles 3D",
-      "next": "Suivant",
-      "payment_methods": "Moyens de paiement",
-      "previous": "Précédent",
-      "product_media_gallery": "Galerie produit",
-      "product_options": "Options du produit",
-      "search": "Recherche",
+        "product": {
+          "sold_out": "Épuisé",
+          "price_sale": "Prix promotionnel",
+          "price_regular": "Prix normal",
+          "price_from": "À partir de ",
+          "color_options": "Options de couleur",
+          "color_swatches": "Nuanciers",
+          "in_stock": "En stock",
+          "out_of_stock": "Rupture de stock",
+          "product": "Produit",
+          "product_added_to_cart": "Produit ajouté au panier",
+          "remove": "Supprimer",
+          "price_unit": "Prix par unité",
+          "wishlist": {
+            "add_to_wishlist": "Ajouter à la liste de souhaits",
+            "remove_from_wishlist": "Retirer de la liste de souhaits",
+            "btn_label": "Ajouter à la liste de souhaits",
+            "view_all_results": "Voir tous les résultats",
+            "button": "Recherche"
+          },
+          "bundle": {
+            "custom_bundle": {
+              "add_to_bundle": "Ajouter au lot",
+              "added_to_bundle": "Ajouté au lot",
+              "progress_label": "Avancement de l'offre",
+              "progress_uncompleted_text": "Non terminé",
+              "progress_completed_text": "Terminé",
+              "bundle_price": "Prix du lot",
+              "you_save": "Vous économisez",
+              "button_atc_text": "Ajouter au panier",
+              "button_view_contents_text": "Voir le contenu du lot",
+              "bundle_contents_title": "Contenu du lot",
+              "bundle_contents_empty_html": "Le lot est vide pour l’instant",
+              "qty": "Qté"
+            }
+          },
+          "add": "Ajouter",
+          "add_to_cart": "Ajouter au panier",
+          "bought_together": {
+            "add_selected_to_cart": "Ajouter la sélection au panier",
+            "select_this": "Sélectionner ceci",
+            "this_item": "Cet article",
+            "total_price": "Prix total"
+          },
+          "buy_it_now": "Acheter maintenant",
+          "include_taxes": "Taxes incluses",
+          "inventory_bar": {
+            "label": "Niveau de stock",
+            "sold_out": "Épuisé",
+            "untracked": "Disponibilité limitée",
+            "verylow_html": "Plus que {{ count }} en stock !",
+            "low_html": "{{ count }} articles restants",
+            "normal_html": "{{ count }} disponibles",
+            "social_media_links": "Liens réseaux sociaux",
+            "clear_filter": "Effacer le filtre",
+            "max_range_notice": "Plage maximale : {{ max }}"
+          },
+          "count_products": "{{ count }} produits",
+          "pagination_page_of": "Page {{ count }} sur {{ total }}"
+        },
       "skip_content": "Aller au contenu",
       "skip_product_content": "Aller au contenu du produit",
       "slide_of": "Diapositive {{ current }} sur {{ total }}",
