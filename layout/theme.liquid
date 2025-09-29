@@ -30,8 +30,8 @@
     {%- else -%}
       {% assign href_path = '' %}
     {%- endif -%}
-    {%- assign default_lang = shop.primary_locale | split: '-' | first -%}
-    {%- assign enabled_locales = shop.enabled_locales | map: 'iso_code' -%}
+    {%- assign default_lang = shop.primary_locale | split: '-' | first | downcase -%}
+    {%- assign enabled_locales = shop.enabled_locales | map: 'iso_code' | join: ',' | downcase | split: ',' -%}
     {%- assign unique_langs = enabled_locales -%}
     {%- unless enabled_locales contains default_lang -%}
       {%- assign unique_langs = enabled_locales | join: ',' | append: ',' | append: default_lang | split: ',' | uniq -%}
@@ -48,7 +48,8 @@
       <link rel="alternate" hreflang="x-default" href="{{ base }}/{{ default_lang }}{{ href_path }}">
     {%- endif -%}
     {%- for hl in unique_langs -%}
-      {%- if hl == default_lang -%}
+      {%- assign hl_short = hl | split: '-' | first -%}
+      {%- if hl_short == default_lang -%}
         <link rel="alternate" hreflang="{{ hl }}" href="{{ base }}{{ href_path }}">
       {%- else -%}
         <link rel="alternate" hreflang="{{ hl }}" href="{{ base }}/{{ hl }}{{ href_path }}">
