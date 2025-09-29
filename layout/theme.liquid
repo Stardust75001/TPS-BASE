@@ -310,38 +310,9 @@
     </script>
 
     {% unless settings.favicon == blank %}
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="{{ settings.favicon | image_url: width: 16, height: 16, crop: 'center' }}"
-        <script
-      >
-      (function () { 'use strict'; // Thème uniquement function isThemeAssetUrl(url) { try { return
-      /\/cdn\/shopify\/.*/.test(url) && /\/assets\//.test(url); } catch(e){ return false; } } // Filtre message > vrai
-      si on veut IGNORER (ne pas logger) function isNoisyThemeAssetMessage(argsLike) { try { var msg =
-      Array.prototype.join.call(argsLike, ' ') || ''; if (!/https?:\/\//.test(msg)) return false; var url =
-      (msg.match(/https?:\/\/\S+/) || [])[0] || ''; if (!isThemeAssetUrl(url)) return false; var noisy = /(MIME
-      type|X-Content-Type-Options|Failed to load|404|Refused to execute)/i; return noisy.test(msg); } catch(_) { return
-      false; } } var oE = console.error, oW = console.warn; console.error = function(){
-      if(isNoisyThemeAssetMessage(arguments)) return; return oE.apply(console, arguments); }; console.warn = function(){
-      if(isNoisyThemeAssetMessage(arguments)) return; return oW.apply(console, arguments); }; var origOnError =
-      window.onerror; window.onerror = function(msg, src){ try { if (src && isThemeAssetUrl(String(src)) && /MIME
-      type|X-Content-Type-Options|404/i.test(String(msg||''))) { return origOnError ? origOnError.apply(this, arguments)
-      : false; } } catch(_){} return origOnError ? origOnError.apply(this, arguments) : false; }; })();
-      </script>
-      >
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}"
-      >
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}"
-      >
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon | image_url: width: 16, height: 16, crop: 'center' }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}">
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}">
     {% endunless %}
 
     <title>
