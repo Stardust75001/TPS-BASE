@@ -14,8 +14,8 @@
     "title": "Ankündigung",
     "text": "Dies ist eine Ankündigungsnachricht."
   },
-    "gift_card": {
-    },
+  },
+  "checkout": {
     "order_status": {
       "title": "Bestellstatus",
       "thank_you": "Vielen Dank für Ihre Bestellung!",
@@ -28,14 +28,16 @@
       "shipping_address": "Lieferadresse",
       "continue_shopping": "Weiter einkaufen"
     },
-    "title": "Hier ist Ihre Geschenkkarte!",
-    "instructions": "Verwenden Sie diesen Code an der Kasse, um Ihre Geschenkkarte einzulösen.",
-    "print": "Drucken",
-    "start_shopping": "Jetzt einkaufen",
-    "disabled": "Deaktiviert",
-    "expired_on": "Abgelaufen am {{ date }}",
-    "expires_on": "Läuft ab am {{ date }}",
-    "balance": "Guthaben"
+    "gift_card": {
+      "title": "Hier ist Ihre Geschenkkarte!",
+      "instructions": "Verwenden Sie diesen Code an der Kasse, um Ihre Geschenkkarte einzulösen.",
+      "print": "Drucken",
+      "start_shopping": "Jetzt einkaufen",
+      "disabled": "Deaktiviert",
+      "expired_on": "Abgelaufen am {{ date }}",
+      "expires_on": "Läuft ab am {{ date }}",
+      "balance": "Guthaben"
+    }
   },
   "custom_sections": {
     "image_banner": {
@@ -149,9 +151,7 @@
     "product": "Produkt",
     "product_added_to_cart": "Produkt zum Warenkorb hinzugefügt",
     "remove": "Entfernen",
-  "wishlist": {
-  },
-  "price_unit": "Preis pro Einheit",
+    "price_unit": "Preis pro Einheit",
       "add_to_wishlist": "Zur Wunschliste hinzufügen",
       "remove_from_wishlist": "Von der Wunschliste entfernen",
       "btn_label": "Zur Wunschliste hinzufügen"
@@ -204,6 +204,10 @@
     "all_rights_reserved": "Alle Rechte vorbehalten",
     "secure_payments": "Sichere Zahlungen",
     "newsletter": {
+      "name_placeholder": "Geben Sie Ihren Namen ein",
+      "input_label": "Geben Sie Ihre E-Mail ein",
+      "submit_button": "Abonnieren",
+      "confirmation_text": "Danke für Ihr Abonnement!"
     },
     "loading": "Lädt…",
     "policy": {
@@ -470,8 +474,6 @@
       "fulfillment_status": "Erfüllungsstatus",
       "track_shipment": "Sendung verfolgen",
       "return": "Bestellung zurückgeben"
-    },
-    "register": {
     },
     "activate_account": {
       "password": "Passwort",
