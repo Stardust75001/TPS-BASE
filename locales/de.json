@@ -215,9 +215,7 @@
       "default_content": "Standardinhalt der Richtlinie",
       "last_updated": "Zuletzt aktualisiert"
     },
-    "map": {
-      "address": "Adresse",
-      "email": "E-Mail",
+    {
       "hours": "Öffnungszeiten",
       "api_key_missing": "API-Schlüssel fehlt"
     },

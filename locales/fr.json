@@ -173,9 +173,7 @@
         "default_content": "Contenu par défaut de la politique",
         "last_updated": "Dernière mise à jour"
       },
-      "map": {
-        "address": "Adresse",
-        "email": "E-mail",
+      {
         "hours": "Heures d'ouverture",
         "api_key_missing": "Clé API manquante"
       },
