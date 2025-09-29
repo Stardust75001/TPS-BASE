@@ -43,7 +43,8 @@
       },
       "section_1": "",
       "section_2": ""
-    }
+    },
+    "sections": {
     "sections": {
       "list_collections": {
         "name": "",
@@ -60,7 +61,7 @@
         }
       }
     }
-  },
+    }
   "product": {
     "price_unit": "Prix par unité",
     "stock_count": {
@@ -114,5 +115,5 @@
     "offcanvas_menu": {
       "title_customer": "Bonjour, {{ name }}"
     }
-  }
+  },
 }
