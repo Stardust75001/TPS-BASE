@@ -31,6 +31,7 @@
     "terser": "^5.44.0"
   },
   "dependencies": {
+    "@google-cloud/translate": "^9.2.0",
     "@sentry/browser": "^10.15.0",
     "abab": "^2.0.6",
     "abort-controller": "^3.0.0",
