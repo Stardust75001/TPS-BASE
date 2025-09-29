@@ -22,9 +22,12 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
-    <link rel="alternate" hreflang="fr" href="{{ routes.root_url }}/fr{{ request.path }}">
-    <link rel="alternate" hreflang="de" href="{{ routes.root_url }}/de{{ request.path }}">
-    <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ request.path }}">
+    {% assign base_path = request.path %}
+    {% if base_path | slice: 0,4 == '/fr/' %}{% assign base_path = base_path | remove_first: '/fr' %}{% endif %}
+    {% if base_path | slice: 0,4 == '/de/' %}{% assign base_path = base_path | remove_first: '/de' %}{% endif %}
+    <link rel="alternate" hreflang="fr" href="{{ shop.primary_domain.url }}/fr{{ base_path }}">
+    <link rel="alternate" hreflang="de" href="{{ shop.primary_domain.url }}/de{{ base_path }}">
+    <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ base_path }}">
 
     {% unless settings.favicon == blank %}
       <link
