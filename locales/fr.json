@@ -1,6 +1,5 @@
 {
   "testimonials": {
-    "verified_review": "Avis vérifié",
     "purchase": "Achat",
     "verified": "Vérifié"
   },
@@ -552,5 +551,5 @@
       "return": "Retourner la commande",
       "fulfilled_at_html": "Traitée le {{ date }}"
     }
-  },
+  }
 }
