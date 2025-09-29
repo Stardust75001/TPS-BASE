@@ -1,12 +1,5 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
+{
+{
 {
   "no_reviews": "Aucun avis",
   "announcement": {
@@ -30,7 +23,6 @@
       "order_confirmed": "Commande confirmée",
       "order_details": "Détails de la commande",
       "order_number": "Numéro de commande",
-      "date": "Date",
       "total": "Total",
       "email": "E-mail",
       "shipping_address": "Adresse de livraison",
@@ -39,15 +31,7 @@
   "custom_sections": {
     "image_banner": {
       "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
-      "text": "Sélections raffinées, friandises gourmandes et soins haut de gamme vous attendent.",
-      "primary_button": "ENTREZ !",
-      "secondary_button": "À PROPOS"
-    },
-    "image_but": {
-      "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
-      "description": "Sélections raffinées, friandises gourmandes et soins haut de gamme vous attendent.",
-      "primary_button_label": "ENTREZ !",
-      "secondary_button_label": "À PROPOS"
+      
     },
     "banner": {
       "heading": "Titre de la bannière",
