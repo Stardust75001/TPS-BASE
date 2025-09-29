@@ -290,7 +290,8 @@
       "slide_of": "Diapositive {{ current }} sur {{ total }}",
       "toggle_sound": "Activer/désactiver le son",
       "utility_icons": "Icônes utilitaires",
-      "wishlist": "Liste de souhaits"
+      "wishlist": "Liste de souhaits",
+      "back_to_top": "Retour en haut"
     },
     "wishlist": {
       "offcanvas_title": "Votre liste de souhaits",
@@ -428,7 +429,19 @@
       "create_account": "Créer un compte"
     },
     "recover_password": {
+          "title": "Adresses",
+          "tab_addresses": "Adresses",
+          "tab_add_new": "Ajouter une nouvelle adresse",
+          "default": "Adresse par défaut",
+          "add_new": "Ajouter une nouvelle adresse"
           ,"title": "Adresses"
+        "activate_account": {
+          "password": "Mot de passe",
+          "password_confirm": "Confirmer le mot de passe",
+          "submit": "Valider",
+          "cancel": "Annuler",
+          "subtext": "Veuillez entrer votre mot de passe"
+        },
           ,"tab_addresses": "Adresses"
           ,"tab_add_new": "Ajouter une nouvelle adresse"
           ,"default": "Adresse par défaut"
@@ -449,6 +462,7 @@
       "title": "Détails de la commande",
       "date_html": "Date de la commande : {{ date }}",
       "cancelled_html": "Commande annulée le {{ date }}",
+          "fulfilled_at_html": "Traitée le {{ date }}"
       "cancelled_reason": "Raison de l'annulation",
       "product": "Produit",
       "sku": "SKU",
