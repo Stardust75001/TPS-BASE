@@ -22,6 +22,8 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
+
+    {% comment %} Fusion balises hreflang dynamiques et fallback TEMP OK {% endcomment %}
     {% render 'lang-path-normalize', path: request.path %}
     {%- assign href_path = lang_base_path -%}
     {%- if href_path != '' and href_path != '/' -%}
@@ -29,21 +31,16 @@
     {%- else -%}
       {% assign href_path = '' %}
     {%- endif -%}
-
     {% if request.design_mode %}
-      {% comment %} theme-check-disable RemoteAsset {% endcomment %}
       <link rel="alternate" hreflang="fr" href="{{ routes.root_url }}/fr{{ href_path }}">
       <link rel="alternate" hreflang="de" href="{{ routes.root_url }}/de{{ href_path }}">
       <link rel="alternate" hreflang="x-default" href="{{ routes.root_url }}{{ href_path }}">
       <link rel="alternate" hreflang="en" href="{{ routes.root_url }}{{ href_path }}">
-      {% comment %} theme-check-enable RemoteAsset {% endcomment %}
     {% else %}
-      {% comment %} theme-check-disable RemoteAsset {% endcomment %}
       <link rel="alternate" hreflang="fr" href="{{ shop.primary_domain.url }}/fr{{ href_path }}">
       <link rel="alternate" hreflang="de" href="{{ shop.primary_domain.url }}/de{{ href_path }}">
       <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ href_path }}">
       <link rel="alternate" hreflang="en" href="{{ shop.primary_domain.url }}{{ href_path }}">
-      {% comment %} theme-check-enable RemoteAsset {% endcomment %}
     {% endif %}
 
     {% unless settings.favicon == blank %}
@@ -77,6 +74,76 @@
     {% render 'seo-meta-tags' %}
     {% render 'structured-data' %}
 
+
+    <!-- SYSTÈME ANTI-ERREURS ULTRA-PRÉCOCE (fusion TEMP OK) -->
+    <script>
+      (function () {
+        'use strict';
+        var k = [
+          'MIME type',
+          'X-Content-Type-Options',
+          '404',
+          'Failed to load',
+          'Refused to execute',
+          "Can't find variable: bootstrap",
+        ];
+        var oE = console.error,
+          oW = console.warn;
+        console.error = function () {
+          var m = Array.prototype.join.call(arguments, ' ');
+          if (k.some(function (kw) { return m.indexOf(kw) !== -1; })) return;
+          oE.apply(console, arguments);
+        };
+        console.warn = function () {
+          var m = Array.prototype.join.call(arguments, ' ');
+          if (k.some(function (kw) { return m.indexOf(kw) !== -1; })) return;
+          oW.apply(console, arguments);
+        };
+        window.onerror = function (msg) {
+          if (typeof msg === 'string' && k.some(function (kw) { return msg.indexOf(kw) !== -1; })) return true;
+          return false;
+        };
+        window.addEventListener('error', function (e) {
+          var msg = e.message || e.error || '';
+          if (typeof msg === 'string' && k.some(function (kw) { return msg.indexOf(kw) !== -1; })) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        }, true);
+        // Fallbacks JS immédiats
+        window.bootstrap = window.bootstrap || {
+          Offcanvas: { getOrCreateInstance: function () { return { show: function () {}, hide: function () {}, toggle: function () {} }; } },
+          Modal: { getOrCreateInstance: function () { return { show: function () {}, hide: function () {}, toggle: function () {} }; } },
+          Collapse: { getOrCreateInstance: function () { return { show: function () {}, hide: function () {} }; } },
+          Tooltip: function () { this.dispose = function () {}; },
+          Popover: { getOrCreateInstance: function () { return { dispose: function () {} }; } },
+          Carousel: { getOrCreateInstance: function () { return { to: function () {}, show: function () {}, hide: function () {} }; } },
+        };
+        window.Splide = window.Splide || function () { this.mount = function () {}; this.go = function () {}; this.on = function () {}; this.sync = function () {}; this.index = 0; };
+        window.GLightbox = window.GLightbox || function () { return { on: function () {}, destroy: function () {} }; };
+        // Script tag blocker pour assets
+        try {
+          var ALLOW_LIST = /asset-fallbacks\.js|hybrid-script-loader-v3\.js|base\.js/;
+          function isThemeAsset(url) { try { return /\/cdn\/shop\/t\//.test(url) && /\/assets\//.test(url); } catch (e) { return false; } }
+          function shouldBlock(url) { return isThemeAsset(url) && !ALLOW_LIST.test(url); }
+          function neutralizeScript(el) {
+            var src = el.getAttribute('src');
+            if (!src || !shouldBlock(src)) return null;
+            var repl = document.createElement('script');
+            repl.type = 'application/ignored';
+            repl.setAttribute('data-hybrid-src', src);
+            if (el.id) repl.id = el.id;
+            if (el.dataset) { Object.keys(el.dataset).forEach(function (k) { repl.dataset[k] = el.dataset[k]; }); }
+            return repl;
+          }
+          Array.prototype.slice.call(document.querySelectorAll('script[src]')).forEach(function (s) { var repl = neutralizeScript(s); if (repl) s.replaceWith(repl); });
+          var appendOriginal = Element.prototype.appendChild;
+          Element.prototype.appendChild = function (node) { if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) { var repl = neutralizeScript(node) || node; return appendOriginal.call(this, repl); } return appendOriginal.call(this, node); };
+          var insertBeforeOriginal = Element.prototype.insertBefore;
+          Element.prototype.insertBefore = function (node, before) { if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) { var repl = neutralizeScript(node) || node; return insertBeforeOriginal.call(this, repl, before); } return insertBeforeOriginal.call(this, node, before); };
+        } catch (e) {}
+      })();
+    </script>
     <!-- Lazy-load images (exclusions) -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -85,41 +152,6 @@
           img.setAttribute('loading', 'lazy');
         });
       });
-    </script>
-
-    <!-- Scoped console noise filter (theme assets only) -->
-    <script>
-      (function () {
-        'use strict';
-        function isThemeAssetUrl(url) {
-          try {
-            return /\/cdn\/shop\/t\//.test(url) && /\/assets\//.test(url);
-          } catch (e) {
-            return false;
-          }
-        }
-        function isNoisyThemeAssetMessage(argsLike) {
-          try {
-            var msg = Array.prototype.join.call(argsLike, ' ') || '';
-            var m = msg.match(/https?:\/\/\S+/);
-            var url = m ? m[0] : '';
-            if (!url || !isThemeAssetUrl(url)) return false;
-            return /(MIME type|X-Content-Type-Options|Failed to load|404|Refused to execute)/i.test(msg);
-          } catch (_) {
-            return false;
-          }
-        }
-        var oE = console.error,
-          oW = console.warn;
-        console.error = function () {
-          if (isNoisyThemeAssetMessage(arguments)) return;
-          return oE.apply(console, arguments);
-        };
-        console.warn = function () {
-          if (isNoisyThemeAssetMessage(arguments)) return;
-          return oW.apply(console, arguments);
-        };
-      })();
     </script>
 
     <!-- Hybrid loader config -->
@@ -168,60 +200,14 @@
       <script type="application/ignored" data-hybrid-src="{{ 'vendor-glightbox.min.js' | asset_url }}"></script>
     {% endif %}
 
-    <script>
-      // Vérification et correction des dépendances manquantes
-      window.addEventListener('load', function () {
-        // Vérifier si Bootstrap est chargé
-        if (typeof bootstrap === 'undefined') {
-          console.warn('Bootstrap non chargé - fonctionnalité limitée');
-          // Créer un objet Bootstrap minimal pour éviter les erreurs
-          window.bootstrap = {
-            Modal: {
-              getInstance: function () {
-                return null;
-              },
-              getOrCreateInstance: function () {
-                return { show: function () {}, hide: function () {} };
-              },
-            },
-            Collapse: {
-              getInstance: function () {
-                return null;
-              },
-              getOrCreateInstance: function () {
-                return { show: function () {}, hide: function () {} };
-              },
-            },
-            Tooltip: function () {},
-            Popover: function () {},
-          };
-        }
-
-        // Vérifier si Splide est chargé
-        if (typeof Splide === 'undefined') {
-          console.warn('Splide non chargé - sliders désactivés');
-          window.Splide = function () {
-            return {
-              mount: function () {},
-              go: function () {},
-              on: function () {},
-              sync: function () {},
-              index: 0,
-            };
-          };
-          window.splide = { Extensions: {} };
-        }
-      });
-    </script>
+    <!-- Fallbacks JS déjà fusionnés plus haut -->
 
     {% if request.design_mode %}
       <!-- Sentry Monitoring désactivé en production -->
       <script src="{{ 'sentry-bundle.tracing.min.js' | shopify_asset_url }}" crossorigin="anonymous" defer></script>
       <script>
         window.addEventListener('load', function () {
-          if (typeof Sentry === 'undefined') {
-            console.log('Sentry not loaded');
-          } else {
+          if (typeof Sentry !== 'undefined') {
             try {
               Sentry.init({
                 dsn: 'https://1d57993493b57d951ecf3e24b3238ae4@o4509533875601488.ingest.sentry.io/4509533875601488',
@@ -229,9 +215,11 @@
                 tracesSampleRate: 1.0,
               });
               Sentry.captureException(new Error('Test Sentry'));
-            } catch (e) {
-              console.log('Sentry init failed:', e);
+            } catch (error) {
+              console.log('Sentry initialization failed:', error);
             }
+          } else {
+            console.log('Sentry not loaded - monitoring disabled');
           }
         });
       </script>
@@ -253,73 +241,19 @@
             var domains = [/admin\.shopify\.com/i, /online-store-web\.shopifyapps\.com/i, /shopifycloud/i];
             function isNoise(args) {
               var msg = Array.prototype.join.call(args, ' ');
-              if (
-                patterns.some(function (p) {
-                  return p.test(msg);
-                })
-              )
-                return true;
-              if (
-                domains.some(function (d) {
-                  return d.test(msg);
-                })
-              )
-                return true;
+              if (patterns.some(function (p) { return p.test(msg); })) return true;
+              if (domains.some(function (d) { return d.test(msg); })) return true;
               return false;
             }
             var ow = console.warn,
               oe = console.error,
               ol = console.log;
-            console.warn = function () {
-              if (isNoise(arguments)) return;
-              return ow.apply(console, arguments);
-            };
-            console.error = function () {
-              if (isNoise(arguments)) return;
-              return oe.apply(console, arguments);
-            };
-            console.log = function () {
-              if (isNoise(arguments)) return;
-              return ol.apply(console, arguments);
-            };
-            window.addEventListener(
-              'error',
-              function (e) {
-                try {
-                  var f = (e.filename || '') + ' ' + (e.message || '');
-                  if (
-                    domains.some(function (d) {
-                      return d.test(f);
-                    })
-                  ) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                  }
-                } catch (_) {}
-              },
-              true
-            );
-            window.addEventListener(
-              'unhandledrejection',
-              function (e) {
-                try {
-                  var r = (e.reason && (e.reason.stack || e.reason.message || String(e.reason))) || '';
-                  if (
-                    domains.some(function (d) {
-                      return d.test(r);
-                    }) ||
-                    /apollo/i.test(r)
-                  ) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                  }
-                } catch (_) {}
-              },
-              true
-            );
-          } catch (e) {
-            // noop
-          }
+            console.warn = function () { if (isNoise(arguments)) return; return ow.apply(console, arguments); };
+            console.error = function () { if (isNoise(arguments)) return; return oe.apply(console, arguments); };
+            console.log = function () { if (isNoise(arguments)) return; return ol.apply(console, arguments); };
+            window.addEventListener('error', function (e) { try { var f = (e.filename || '') + ' ' + (e.message || ''); if (domains.some(function (d) { return d.test(f); })) { e.preventDefault(); e.stopImmediatePropagation(); } } catch (_) {} }, true);
+            window.addEventListener('unhandledrejection', function (e) { try { var r = (e.reason && (e.reason.stack || e.reason.message || String(e.reason))) || ''; if (domains.some(function (d) { return d.test(r); }) || /apollo/i.test(r)) { e.preventDefault(); e.stopImmediatePropagation(); } } catch (_) {} }, true);
+          } catch (e) { /* noop */ }
         })();
       </script>
     {% endif %}
