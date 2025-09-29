@@ -28,7 +28,7 @@
         "button_view_contents_text": "Voir le contenu du lot",
         "bundle_contents_title": "Contenu du lot",
         "bundle_contents_empty_html": "Le lot est vide pour l’instant",
-        "qty": "Qté"
+        "qty": "Qté",
       "review": {
         "blocks": { "company_location": "Localisation de l'entreprise" }
       }
@@ -132,9 +132,8 @@
       "notice_html": "En vous inscrivant pour recevoir des emails, vous acceptez nos conditions générales et notre <a href=\"/pages/confidentialite\">politique de confidentialité</a>."
     }
   }
-}
-// ...existing code...
-  // All keys from en.default.json are now present. French translations used where possible, otherwise placeholder: "[Traduction manquante]".
+  }
+  ,
   "sections": {
     "colors": {
       "white": { "label": "Blanc" },
