@@ -29,7 +29,13 @@ git pull --rebase origin "$BRANCH" --quiet || true
 # Shopify theme pull (optional) - only run if CLI + shop configured
 if command -v shopify >/dev/null 2>&1; then
   echo "Attempting shopify theme pull (non-fatal if fails)..."
-  shopify theme pull || echo "Shopify theme pull skipped/failed"
+  if [ -z "$SHOPIFY_FLAG_STORE" ]; then
+    echo "ERROR: SHOPIFY_FLAG_STORE environment variable is not set."
+    echo "Set SHOPIFY_FLAG_STORE to your-store.myshopify.com before running this script."
+    exit 1
+  fi
+  echo "Attempting shopify theme pull for store: $SHOPIFY_FLAG_STORE (non-fatal if fails)..."
+  shopify theme pull --store="$SHOPIFY_FLAG_STORE" || true
 fi
 
 # Restore stashed local changes if we stashed
@@ -54,6 +60,13 @@ COMMIT_MSG="chore(backup): automatic snapshot ${TIMESTAMP} (base ${SHORT_HASH})"
 git commit -m "$COMMIT_MSG" || {
   echo "Nothing to commit after staging."; exit 0; }
 
+if [ -z "$GH_PAT" ]; then
+  echo "ERROR: GH_PAT environment variable is not set."
+  echo "Set GH_PAT to a GitHub Personal Access Token with repo write access."
+  exit 1
+fi
+echo "Setting git remote to use Personal Access Token for authentication..."
+git remote set-url origin "https://x-access-token:$GH_PAT@github.com/Stardust75001/TPS-BASE.git"
 echo "Pushing to origin/$BRANCH..."
 git push origin "$BRANCH"
 
