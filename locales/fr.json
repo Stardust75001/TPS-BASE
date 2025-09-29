@@ -179,14 +179,57 @@
     "instructions": "Utilisez ce code lors du paiement pour utiliser votre carte cadeau.",
     "print": "Imprimer",
     "start_shopping": "Commencer vos achats",
+    "ref_variant_label": "Variante de référence",
     "disabled": "Désactivée",
     "expired_on": "Expirée le {{ date }}",
-    "expires_on": "Expire le {{ date }}"
+    "expires_on": "Expire le {{ date }}",
+    "balance": "Solde"
   },
 
   "custom_sections": {
+    "image_banner": {
+      "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
+      "text": "Sélections soignées, friandises gastronomiques et soins premium vous attendent.",
+      "option_subscription_save": "Économisez {{ value }}%",
+      "primary_button": "ENTREZ !",
+      "qty_breaks": {
+        "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
+        "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
+        "label_text_html_bundle": "Lot de {{ qty }}"
+      },
+      "stock_count": {
+        "one": "{{ count }} article en stock",
+        "other": "{{ count }} articles en stock"
+      },
+      "price_unit": "Prix unitaire",
+      "secondary_button": "À PROPOS"
+    },
+    "image_but": {
+      "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
+      "ref_variant_label": "Variante de référence",
+      "description": "Sélections soignées, friandises gastronomiques et soins premium vous attendent.",
+      "primary_button_label": "ENTREZ !",
+      "secondary_button_label": "À PROPOS",
+      "verified_review": "Avis vérifié",
+      "purchase": "Achat",
+      "verified": "Vérifié"
+    },
     "banner": {
       "heading": "Titre de la bannière",
+      "form": {
+        "btn_label": "Envoyer comme cadeau",
+        "email_label": "Email du destinataire",
+        "name_label": "Nom du destinataire",
+        "message_label": "Message",
+        "date_label": "Date de livraison",
+        "date_placeholder": "AAAA-MM-JJ",
+        "properties": {
+          "email_properties": "Email du destinataire",
+          "name_properties": "Nom du destinataire",
+          "message_properties": "Message cadeau",
+          "date_properties": "Date de livraison"
+        }
+      },
       "text": "Texte de description ici"
     },
     "multicolumn": {
