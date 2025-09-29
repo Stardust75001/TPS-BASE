@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {% comment %} Fusion balises hreflang dynamiques et fallback TEMP OK {% endcomment %}
-    {% render 'lang-path-normalize', path: request.path %}
+    {% capture lang_base_path %}{% render 'lang-path-normalize', path: request.path %}{% endcapture %}
     {%- assign href_path = lang_base_path | default: '' -%}
     {%- if href_path != '' and href_path != '/' -%}
       {% assign href_path = '/' | append: href_path %}
@@ -43,7 +43,7 @@
     {%- endif -%}
     {%- comment -%} x-default: page dans la langue par défaut {%- endcomment -%}
     {%- if default_lang == 'en' -%}
-      <link rel="alternate" hreflang="x-default" href="{{ base }}{{ href_path }}">
+      <link rel="alternate" hreflang="x-default" href="{{ (base | asset_url) }}{{ href_path }}">
     {%- else -%}
       <link rel="alternate" hreflang="x-default" href="{{ base }}/{{ default_lang }}{{ href_path }}">
     {%- endif -%}
@@ -66,7 +66,7 @@
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="{{ settings.favicon | image_url: width: 16, height: 16, crop: 'center' }}"
+  href="{{ settings.favicon | image_url: width: 16, height: 16, crop: 'center' | remote_asset_url }}"
       >
       <link
         rel="icon"
@@ -77,11 +77,11 @@
         hreflang="{{ hreflang }}"
         href="{{ base }}/{{ hl }}{{ href_path }}"
       >
-      href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}" >
+  href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' | remote_asset_url }}" >
       <link
         rel="apple-touch-icon"
         sizes="180x180"
-        href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}"
+  href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' | remote_asset_url }}"
       >
     {% endunless %}
 
@@ -652,7 +652,7 @@
     <script type="text/javascript" src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
 
     <!-- SYSTÈME HYBRIDE INTELLIGENT v3.0 (ChatGPT Enhanced) -->
-    <script type="text/javascript" src="{{ 'base.js' | asset_url }}" defer></script>
+  <script type="text/javascript" src="{{ 'base.js' | asset_url | remote_asset_url }}" defer></script>
 
     <!-- SYSTÈME HYBRIDE ACTIVÉ -->
     <!-- Combine script loading + fetch/eval + CDN + fallbacks pour robustesse maximale -->
