@@ -428,68 +428,85 @@
       ></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <script type="text/javascript">
-      // Correction immédiate des erreurs MIME type et 404
-      (function () {
-        // Supprimer les erreurs 404 du console
-        const originalFetch = window.fetch;
-        window.fetch = function () {
-          return originalFetch.apply(this, arguments).catch(function (error) {
-            if (!error.message.includes('404')) {
-              console.error(error);
+    {% if request.design_mode %}
+      <script type="text/javascript">
+        // Correction immédiate des erreurs MIME type et 404 (éditeur uniquement)
+        (function () {
+          const originalFetch = window.fetch;
+          window.fetch = function () {
+            return originalFetch.apply(this, arguments).catch(function (error) {
+              if (!error.message.includes('404')) console.error(error);
+              return Promise.reject(error);
+            });
+          };
+          const originalLog = console.log,
+            originalWarn = console.warn,
+            originalError = console.error;
+          console.log = function () {
+            const message = Array.from(arguments).join(' ');
+            if (
+              !message.includes('Failed to load resource') &&
+              !message.includes('404') &&
+              !message.includes('X-Content-Type-Options')
+            ) {
+              originalLog.apply(console, arguments);
             }
-            return Promise.reject(error);
-          });
-        };
-
-        // Gérer les erreurs de script MIME type
-        window.addEventListener('error', function (e) {
-          if (e.message.includes('MIME type') || e.message.includes('X-Content-Type-Options')) {
-            console.warn('Script MIME type issue detected - attempting fallback');
-            e.preventDefault();
-            return false;
+          };
+          console.warn = function () {
+            const message = Array.from(arguments).join(' ');
+            if (
+              !message.includes('Failed to load resource') &&
+              !message.includes('404') &&
+              !message.includes('X-Content-Type-Options')
+            ) {
+              originalWarn.apply(console, arguments);
+            }
+          };
+          console.error = function () {
+            const message = Array.from(arguments).join(' ');
+            if (
+              !message.includes('Failed to load resource') &&
+              !message.includes('404') &&
+              !message.includes('X-Content-Type-Options')
+            ) {
+              originalError.apply(console, arguments);
+            }
+          };
+        })();
+      </script>
+    {% else %}
+      <script type="text/javascript">
+        // Filtrage console limité aux assets du thème en production
+        (function () {
+          function isThemeAssetMessage(msg) {
+            var m = msg || '';
+            var urlMatch = m.match(/https?:\/\/[^ ]+/);
+            var url = urlMatch ? urlMatch[0] : '';
+            return /\/cdn\/shop\/t\/.+\/assets\//.test(url);
           }
-        });
-
-        // Supprimer les messages de console spécifiques
-        const originalLog = console.log;
-        const originalWarn = console.warn;
-        const originalError = console.error;
-
-        console.log = function () {
-          const message = Array.from(arguments).join(' ');
-          if (
-            !message.includes('Failed to load resource') &&
-            !message.includes('404') &&
-            !message.includes('X-Content-Type-Options')
-          ) {
-            originalLog.apply(console, arguments);
-          }
-        };
-
-        console.warn = function () {
-          const message = Array.from(arguments).join(' ');
-          if (
-            !message.includes('Failed to load resource') &&
-            !message.includes('404') &&
-            !message.includes('X-Content-Type-Options')
-          ) {
-            originalWarn.apply(console, arguments);
-          }
-        };
-
-        console.error = function () {
-          const message = Array.from(arguments).join(' ');
-          if (
-            !message.includes('Failed to load resource') &&
-            !message.includes('404') &&
-            !message.includes('X-Content-Type-Options')
-          ) {
-            originalError.apply(console, arguments);
-          }
-        };
-      })();
-    </script>
+          var oE = console.error,
+            oW = console.warn;
+          console.error = function () {
+            var msg = Array.prototype.join.call(arguments, ' ');
+            if (
+              isThemeAssetMessage(msg) &&
+              /404|MIME type|X-Content-Type-Options|Failed to load|Refused to execute/i.test(msg)
+            )
+              return;
+            return oE.apply(console, arguments);
+          };
+          console.warn = function () {
+            var msg = Array.prototype.join.call(arguments, ' ');
+            if (
+              isThemeAssetMessage(msg) &&
+              /404|MIME type|X-Content-Type-Options|Failed to load|Refused to execute/i.test(msg)
+            )
+              return;
+            return oW.apply(console, arguments);
+          };
+        })();
+      </script>
+    {% endif %}
 
     <a class="visually-hidden-focusable" href="#main">{{ 'general.accessibility.skip_content' | t }}</a>
 
