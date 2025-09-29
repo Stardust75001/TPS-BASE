@@ -14,13 +14,17 @@
 >
   <head>
     {% if template.name == 'index' and settings.lcp_image != blank %}
-      <link rel="preload" as="image"
+      <link
+        rel="preload"
+        as="image"
         href="{{ settings.lcp_image | image_url: width: 1600 }}"
         imagesrcset="
           {{ settings.lcp_image | image_url: width: 800 }} 800w,
           {{ settings.lcp_image | image_url: width: 1200 }} 1200w,
-          {{ settings.lcp_image | image_url: width: 1600 }} 1600w"
-        imagesizes="100vw">
+          {{ settings.lcp_image | image_url: width: 1600 }} 1600w
+        "
+        imagesizes="100vw"
+      >
     {% endif %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
