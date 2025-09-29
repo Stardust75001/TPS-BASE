@@ -1,4 +1,16 @@
 // ✅ Debug flag toggle
+// Sentry browser error monitoring
+try {
+  // Only load if Sentry is available (bundled or via CDN)
+  if (typeof Sentry !== "undefined" && Sentry.init) {
+    Sentry.init({
+      dsn: "https://296acafecb9244c2c3d556a322af6668@o4509330673303552.ingest.de.sentry.io/4510085913837648",
+      sendDefaultPii: true,
+    });
+  }
+} catch (e) {
+  // Silent fail if Sentry is not present
+}
 const isDev = false;
 
 function log(...args) {
