@@ -30,34 +30,24 @@
     {%- else -%}
       {% assign href_path = '' %}
     {%- endif -%}
-    {% assign default_lang = shop.primary_locale | split: '-' | first %}
-    {% if request.design_mode %}
-      <link rel="alternate" hreflang="fr" href="{{ routes.root_url }}/fr{{ href_path }}">
-      <link rel="alternate" hreflang="de" href="{{ routes.root_url }}/de{{ href_path }}">
-      <link rel="alternate" hreflang="x-default" href="{{ routes.root_url }}{{ href_path }}">
-      {% if default_lang == 'en' %}
-        <link rel="alternate" hreflang="en" href="{{ routes.root_url }}{{ href_path }}">
-      {% elsif default_lang != 'en' %}
-        <link
-          rel="alternate"
-          hreflang="{{ default_lang }}"
-          href="{{ routes.root_url }}/{{ default_lang }}{{ href_path }}"
-        >
-      {% endif %}
-    {% else %}
-      <link rel="alternate" hreflang="fr" href="{{ shop.primary_domain.url }}/fr{{ href_path }}">
-      <link rel="alternate" hreflang="de" href="{{ shop.primary_domain.url }}/de{{ href_path }}">
-      <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ href_path }}">
-      {% if default_lang == 'en' %}
-        <link rel="alternate" hreflang="en" href="{{ shop.primary_domain.url }}{{ href_path }}">
-      {% elsif default_lang != 'en' %}
-        <link
-          rel="alternate"
-          hreflang="{{ default_lang }}"
-          href="{{ shop.primary_domain.url }}/{{ default_lang }}{{ href_path }}"
-        >
-      {% endif %}
-    {% endif %}
+    {%- assign default_lang = shop.primary_locale | split: '-' | first -%}
+    {%- assign enabled_locales = shop.enabled_locales | map: 'iso_code' -%}
+    {%- assign supported_langs = enabled_locales | push: default_lang -%}
+    {%- assign unique_langs = supported_langs | uniq -%}
+    {%- if request.design_mode -%}
+      {%- assign base = routes.root_url -%}
+    {%- else -%}
+      {%- assign base = shop.primary_domain.url -%}
+    {%- endif -%}
+    {%- comment -%} x-default: page dans la langue par défaut {%- endcomment -%}
+    <link rel="alternate" hreflang="x-default" href="{{ base }}{{ default_lang == 'en' ? href_path : '/' | append: href_path }}">
+    {%- for hl in unique_langs -%}
+      {%- if hl == default_lang -%}
+        <link rel="alternate" hreflang="{{ hl }}" href="{{ base }}{{ href_path }}">
+      {%- else -%}
+        <link rel="alternate" hreflang="{{ hl }}" href="{{ base }}/{{ hl }}{{ href_path }}">
+      {%- endif -%}
+    {%- endfor -%}
 
     {% unless settings.favicon == blank %}
       <link
