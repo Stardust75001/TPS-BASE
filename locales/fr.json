@@ -20,17 +20,7 @@
     }
   },
   "collection": {
-    "count_products": "{{ count }} produits",
-    "footer": {
-      "newsletter": {
-        "title": "Inscrivez-vous à notre newsletter",
-        "first_name_placeholder": "Entrez votre prénom",
-        "email_placeholder": "Entrez votre email",
-        "submit_button": "S'abonner",
-        "notice_html": "En vous inscrivant pour recevoir des emails, vous acceptez nos conditions générales et notre <a href=\"/pages/confidentialite\">politique de confidentialité</a>."
-      }
-    },
-    "sections": {
+    "count_products": "{{ count }} produits"
   "general": {
     "offcanvas_search": {
       "view_all_results": "Voir tous les résultats",
@@ -39,9 +29,7 @@
     "accessibility": {
       "social_media_links": "Liens réseaux sociaux"
     },
-    "general": {
-      "pagination_page_of": "Page {{ count }} sur {{ total }}"
-    },
+    "pagination_page_of": "Page {{ count }} sur {{ total }}",
     "offcanvas_menu": {
       "title_customer": "Bonjour, {{ name }}"
     }
@@ -67,17 +55,6 @@
     },
     "bundle": {
       "custom_bundle": {
-        "add_to_bundle": "Ajouter au lot",
-        "added_to_bundle": "Ajouté au lot",
-        "progress_label": "Avancement de l'offre",
-        "progress_uncompleted_text": "Non terminé",
-        "progress_completed_text": "Terminé",
-        "bundle_price": "Prix du lot",
-        "you_save": "Vous économisez",
-        "button_atc_text": "Ajouter au panier",
-        "button_view_contents_text": "Voir le contenu du lot",
-        "bundle_contents_title": "Contenu du lot",
-        "bundle_contents_empty_html": "Le lot est vide pour l’instant",
         "qty": "Qté"
       }
     }
@@ -168,7 +145,6 @@
   "textWishlistRemove": "Retirer de la liste de souhaits",
   "textWishlistBtnLabel": "Liste de souhaits",
   "shared": "Partagé",
-  // ...existing code...
   "footer": {
     "newsletter": {
       "title": "Inscrivez-vous à notre newsletter",
