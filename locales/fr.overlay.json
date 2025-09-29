@@ -28,39 +28,38 @@
       "description": "",
       "primary_button_label": "",
       "secondary_button_label": ""
-      },
-      "banner": {
-        "heading": "",
-        "text": ""
-      },
-      "multicolumn": {
-        "title_1": "",
-        "text_1": "",
-        "title_2": "",
-        "text_2": "",
-        "title_3": "",
-        "text_3": ""
-      },
-      "section_1": "",
-      "section_2": ""
-      },
     },
-    "sections": {
-      "list_collections": {
-        "name": "",
-        "settings": {
-          "show_breadcrumbs": {
-            "label": ""
-          },
-          "text_align": {
-            "label": ""
-          },
-          "bg_color": {
-            "label": ""
-          }
+    "banner": {
+      "heading": "",
+      "text": ""
+    },
+    "multicolumn": {
+      "title_1": "",
+      "text_1": "",
+      "title_2": "",
+      "text_2": "",
+      "title_3": "",
+      "text_3": ""
+    },
+    "section_1": "",
+    "section_2": ""
+  },
+  "sections": {
+    "list_collections": {
+      "name": "",
+      "settings": {
+        "show_breadcrumbs": {
+          "label": ""
+        },
+        "text_align": {
+          "label": ""
+        },
+        "bg_color": {
+          "label": ""
         }
       }
-    },
+    }
+  },
   "product": {
     "price_unit": "Prix par unité",
     "stock_count": {
@@ -114,6 +113,5 @@
     "offcanvas_menu": {
       "title_customer": "Bonjour, {{ name }}"
     }
-    }
-}
+  }
 }
