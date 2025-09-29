@@ -24,6 +24,18 @@
     "expires_on": "Expire le {{ date }}",
     "balance": "Solde"
   },
+    "order_status": {
+      "title": "Statut de la commande",
+      "thank_you": "Merci pour votre commande !",
+      "order_confirmed": "Commande confirmée",
+      "order_details": "Détails de la commande",
+      "order_number": "Numéro de commande",
+      "date": "Date",
+      "total": "Total",
+      "email": "E-mail",
+      "shipping_address": "Adresse de livraison",
+      "continue_shopping": "Continuer vos achats"
+    },
   "custom_sections": {
     "image_banner": {
       "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
@@ -117,6 +129,8 @@
       "title": "Titre des filtres de collection",
       "to": "Filtres de collection jusqu'à",
       "view_more": "Voir plus de filtres"
+        ,"clear_all": "Effacer tous les filtres"
+        ,"view_results": "Voir les résultats"
     },
     "load_more": "Charger plus",
     "load_previous": "Charger les précédents"
@@ -133,6 +147,7 @@
     "product": "Produit",
     "product_added_to_cart": "Produit ajouté au panier",
     "remove": "Supprimer",
+    "price_unit": "Prix par unité",
     "wishlist": {
       "add_to_wishlist": "Ajouter à la liste de souhaits",
       "remove_from_wishlist": "Retirer de la liste de souhaits",
@@ -191,6 +206,21 @@
       "submit_button": "S'abonner",
       "confirmation_text": "Merci pour votre abonnement !"
     },
+      "loading": "Chargement…",
+      "policy": {
+        "default_title": "Politique",
+        "default_content": "Contenu par défaut de la politique",
+        "last_updated": "Dernière mise à jour"
+      },
+      "map": {
+        "address": "Adresse",
+        "email": "E-mail",
+        "hours": "Heures d'ouverture",
+        "api_key_missing": "Clé API manquante"
+      },
+      "accessibility": {
+        "back_to_top": "Retour en haut"
+      },
     "breadcrumbs": {
       "home": "Accueil",
       "label": "Vous êtes ici :"
@@ -398,7 +428,19 @@
       "create_account": "Créer un compte"
     },
     "recover_password": {
+          ,"title": "Adresses"
+          ,"tab_addresses": "Adresses"
+          ,"tab_add_new": "Ajouter une nouvelle adresse"
+          ,"default": "Adresse par défaut"
+          ,"add_new": "Ajouter une nouvelle adresse"
       "title": "Récupérer votre mot de passe",
+        "activate_account": {
+          "password": "Mot de passe",
+          "password_confirm": "Confirmer le mot de passe",
+          "submit": "Valider",
+          "cancel": "Annuler",
+          "subtext": "Veuillez entrer votre mot de passe"
+        },
       "success": "Email de récupération envoyé",
       "subtext": "Entrez votre email pour réinitialiser votre mot de passe",
       "submit": "Envoyer"
@@ -419,6 +461,7 @@
       "tax": "Taxe",
       "billing_address": "Adresse de facturation",
       "payment_status": "Statut du paiement",
+          ,"fulfilled_at_html": "Traitée le {{ date }}"
       "shipping_address": "Adresse de livraison",
       "fulfillment_status": "Statut de la livraison",
       "track_shipment": "Suivre la livraison",
