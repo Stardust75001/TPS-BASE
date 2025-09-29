@@ -26,7 +26,6 @@
     "accessibility": {
       "social_media_links": "Liens réseaux sociaux"
     },
-    "pagination_page_of": "Page {{ count }} sur {{ total }}",
     "offcanvas_menu": {
       "title_customer": "Bonjour, {{ name }}"
     }
