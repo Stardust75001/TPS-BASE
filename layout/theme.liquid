@@ -419,23 +419,14 @@
       <div class="top-social-bar">
         <div class="social-icons-left">
           {% render 'social-icons-no-flags' %}
-        </div>
-        <div class="language-selector-right">
-          <a href="/fr"
-            ><img src="{{ 'flag-fr.png' | asset_url }}" class="flag-icon" alt="FR" width="24" height="16"
-          ></a>
-          <a href="{{ routes.root_url }}"
-            ><img src="{{ 'flag-en.png' | asset_url }}" class="flag-icon" alt="EN" width="24" height="16"
-          ></a>
-          <a href="/de"
-            ><img src="{{ 'flag-de.png' | asset_url }}" class="flag-icon" alt="DE" width="24" height="16"
-          ></a>
-        </div>
-      </div>
-      {% section 'discount-bar' %}
-      <div class="announcement-text shipping-notice">
-        {% assign lang = request.locale.iso_code %}
-        <a href="{% if lang == 'fr' %}/fr/pages/eee{% elsif lang == 'de' %}/de/pages/eee{% else %}/pages/eee{% endif %}">
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('img:not([loading])').forEach(function (img) {
+              // ne pas lazy-load le header, le hero, ni les médias avec [data-critical]
+              if (img.closest('.header') || img.closest('.hero') || img.hasAttribute('data-critical')) return;
+              img.setAttribute('loading', 'lazy');
+            });
+          });
           {{- 'announcement.shipping_notice' | t -}}
         </a>
       </div>
