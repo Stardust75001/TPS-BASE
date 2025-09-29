@@ -25,19 +25,11 @@
             class="offcanvas offcanvas-end offcanvas-mobile-full h-100" 
             tabindex="-1" 
             aria-labelledby="offcanvas-cart-label"
+            role="{{ role | default: 'dialog' }}"
+            aria-modal="true"
             data-shipping-protection-enabled="{{ settings.cart_shipping_protect_show }}"
             data-shipping-protection-auto-initialize="{{ settings.cart_shipping_protect_auto_initialize }}"
             data-shipping-protection-variant-id="{{ settings.cart_shipping_protect_product.variants.first.id }}">
-            <div 
-                id="offcanvas-cart" 
-                class="offcanvas offcanvas-end offcanvas-mobile-full h-100" 
-                tabindex="-1" 
-                aria-labelledby="offcanvas-cart-label"
-                role="{{ role | default: 'dialog' }}"
-                aria-modal="true"
-                data-shipping-protection-enabled="{{ settings.cart_shipping_protect_show }}"
-                data-shipping-protection-auto-initialize="{{ settings.cart_shipping_protect_auto_initialize }}"
-                data-shipping-protection-variant-id="{{ settings.cart_shipping_protect_product.variants.first.id }}">
             <div class="offcanvas-header {{ settings.offcanvas_header_bg }}">
                 <h2
                     id="offcanvas-cart-label"
