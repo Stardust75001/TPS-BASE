@@ -23,8 +23,8 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {% comment %} Fusion balises hreflang dynamiques et fallback TEMP OK {% endcomment %}
-    {% render 'lang-path-normalize', path: request.path %}
-    {%- assign href_path = lang_base_path -%}
+    {% capture lang_path_normalized %}{% render 'lang-path-normalize', path: request.path %}{% endcapture %}
+    {%- assign href_path = lang_base_path | default: '' -%}
     {%- if href_path != '' and href_path != '/' -%}
       {% assign href_path = '/' | append: href_path %}
     {%- else -%}
