@@ -1,0 +1,60 @@
+{
+  "general": {
+    "cookies": { "consent": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern." },
+    "menu": "Menü",
+    "all_rights_reserved": "Alle Rechte vorbehalten",
+    "secure_payments": "Sichere Zahlungen",
+    "btn_add_to_cart": "In den Warenkorb",
+    "text_note_saved": "Notiz gespeichert",
+    "text_btn_save": "Speichern",
+    "loading": "Lädt…",
+    "policy": "Richtlinie",
+    "map": "Karte",
+    "general": {
+      "pagination_page_of": "Seite {{ count }} von {{ total }}"
+    },
+    "offcanvas_menu": {
+      "title_customer": "Hallo, {{ name }}"
+    }
+  },
+  "product": {
+    "color_swatches": "Farbmuster",
+    "out_of_stock": "Nicht auf Lager",
+    "product": "Produkt",
+    "product_added_to_cart": "Produkt zum Warenkorb hinzugefügt",
+    "remove": "Entfernen",
+    "wishlist": "Wunschliste",
+    "bundle": "Bundle"
+  },
+  "customer": { "order": { "return": "Zurück" } },
+  "announcement": "Ankündigung",
+  "gift_card": "Geschenkkarte",
+  "custom_sections": {
+    "image_banner_title": "Banner-Titel",
+    "image_banner_description": "Banner-Beschreibung",
+    "image_banner_btn_primary": "Primärer Button",
+    "image_banner_btn_secondary": "Sekundärer Button"
+  },
+  "sections": "Sektionen",
+  "checkout": "Kasse",
+  "shopify": {
+    "checkout": {
+      "payment": {
+        "payment_method_incompatible_with_payment_terms": "Diese Zahlungsmethode ist mit den gewählten Bedingungen nicht kompatibel."
+      },
+      "review": {
+        "blocks": {
+          "company_location": "Firmensitz"
+        }
+      }
+    }
+  },
+  "section": "Sektion",
+  "textWishlistAdd": "Zur Wunschliste hinzufügen",
+  "textWishlistRemove": "Von der Wunschliste entfernen",
+  "textWishlistBtnLabel": "Wunschliste",
+  "shared": "Geteilt",
+  "bundle": "Bundle",
+  "custom": "Benutzerdefiniert",
+  "footer": "Footer"
+}

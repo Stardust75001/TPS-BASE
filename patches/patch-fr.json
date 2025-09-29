@@ -1,0 +1,60 @@
+{
+  "general": {
+    "cookies": { "consent": "Nous utilisons des cookies pour améliorer votre expérience." },
+    "menu": "Menu",
+    "all_rights_reserved": "Tous droits réservés",
+    "secure_payments": "Paiements sécurisés",
+    "btn_add_to_cart": "Ajouter au panier",
+    "text_note_saved": "Note enregistrée",
+    "text_btn_save": "Enregistrer",
+    "loading": "Chargement…",
+    "policy": "Politique",
+    "map": "Carte",
+    "general": {
+      "pagination_page_of": "Page {{ count }} sur {{ total }}"
+    },
+    "offcanvas_menu": {
+      "title_customer": "Bonjour, {{ name }}"
+    }
+  },
+  "product": {
+    "color_swatches": "Nuanciers",
+    "out_of_stock": "Rupture de stock",
+    "product": "Produit",
+    "product_added_to_cart": "Produit ajouté au panier",
+    "remove": "Retirer",
+    "wishlist": "Liste d’envies",
+    "bundle": "Lot"
+  },
+  "customer": { "order": { "return": "Retour" } },
+  "announcement": "Annonce",
+  "gift_card": "Carte cadeau",
+  "custom_sections": {
+    "image_banner_title": "Titre de la bannière",
+    "image_banner_description": "Description de la bannière",
+    "image_banner_btn_primary": "Bouton principal",
+    "image_banner_btn_secondary": "Bouton secondaire"
+  },
+  "sections": "Sections",
+  "checkout": "Paiement",
+  "shopify": {
+    "checkout": {
+      "payment": {
+        "payment_method_incompatible_with_payment_terms": "Ce moyen de paiement est incompatible avec les conditions sélectionnées."
+      },
+      "review": {
+        "blocks": {
+          "company_location": "Siège de l’entreprise"
+        }
+      }
+    }
+  },
+  "section": "Section",
+  "textWishlistAdd": "Ajouter à la liste d’envies",
+  "textWishlistRemove": "Retirer de la liste d’envies",
+  "textWishlistBtnLabel": "Liste d’envies",
+  "shared": "Partagé",
+  "bundle": "Lot",
+  "custom": "Personnalisé",
+  "footer": "Pied de page"
+}
