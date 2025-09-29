@@ -36,68 +36,8 @@
         "properties": {
           "email_properties": "Email du destinataire",
           "name_properties": "Nom du destinataire",
-         "sections": {
-          "message_properties": "Message cadeau",
-          "date_properties": "Date de livraison"
-        "sections": {
-          "colors": {
-            "white": { "label": "Blanc" },
-            "light": { "label": "Clair" },
-            "body": { "label": "Corps", "option_subscription_save": "Économisez {{ value }}%" },
-            "qty_breaks": {
-              "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
-              "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
-              "label_text_html_bundle": "Lot de {{ qty }}"
-            },
-            "stock_count": {
-              "one": "{{ count }} article en stock",
-              "other": "{{ count }} articles en stock"
-            },
-            "price_unit": "Prix unitaire"
-          },
-          "alignment": {
-            "left": "Gauche",
-            "verified_review": "Avis vérifié",
-            "view_all_results": "Voir tous les résultats",
-            "button": "Recherche",
-            "purchase": "Achat",
-            "verified": "Vérifié",
-            "center": "Centré"
-          },
-          "featured_collections": {
-            "form": {
-              "btn_label": "Envoyer comme cadeau",
-              "email_label": "Email du destinataire",
-              "name_label": "Nom du destinataire",
-              "message_label": "Message",
-              "date_label": "Date de livraison",
-              "date_placeholder": "AAAA-MM-JJ",
-              "properties": {
-                "email_properties": "Email du destinataire",
-                "name_properties": "Nom du destinataire",
-                "message_properties": "Message cadeau",
-                "date_properties": "Date de livraison"
-              }
-            },
-            "settings": {
-              "btn_text": {
-                "label": "Texte du bouton",
-                "default": "Voir toutes les collections",
-                "info": "Laisser vide pour désactiver"
-              }
-            }
-          },
-          "list_collections": {
-            "name": "Collections",
-            "settings": {
-              "show_breadcrumbs": { "label": "Afficher le fil d’Ariane" },
-              "text_align": { "label": "Alignement du texte" },
-              "bg_color": { "label": "Couleur de fond" }
-            }
-          },
-        },
-          "footer": ""
-        },
+         "message_properties": "Message cadeau",
+         "date_properties": "Date de livraison"
       "stock_count": {
         "one": "{{ count }} article en stock",
         "other": "{{ count }} articles en stock"
