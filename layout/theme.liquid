@@ -71,9 +71,13 @@
       <link
         rel="icon"
         type="image/png"
-        sizes="32x32"
-        href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}"
+        {%- comment -%} utiliser le code complet 'hl' pour conserver /en-us, /de-de, etc. {%- endcomment -%}
+        <link
+        rel="alternate"
+        hreflang="{{ hreflang }}"
+        href="{{ base }}/{{ hl }}{{ href_path }}"
       >
+      href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}" >
       <link
         rel="apple-touch-icon"
         sizes="180x180"
