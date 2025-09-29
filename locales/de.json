@@ -11,13 +11,59 @@
     "instructions": "Verwenden Sie diesen Code an der Kasse, um Ihre Geschenkkarte zu nutzen.",
     "print": "Drucken",
     "start_shopping": "Jetzt einkaufen",
+    "ref_variant_label": "Referenzvariante",
     "disabled": "Deaktiviert",
     "expired_on": "Abgelaufen am {{ date }}",
-    "expires_on": "Läuft ab am {{ date }}"
+    "expires_on": "Läuft ab am {{ date }}",
+    "balance": "Guthaben"
   },
 
   "custom_sections": {
-    "banner": { "heading": "Banner-Titel", "text": "Beschreibungstext hier" },
+    "image_banner": {
+      "title": "Entdecken Sie eine Oase der Eleganz und Innovation für Ihre Haustiere.",
+      "text": "Ausgewählte Produkte, Gourmet-Leckereien und Premium-Pflege erwarten Sie.",
+      "option_subscription_save": "Sparen Sie {{ value }}%",
+      "primary_button": "KOMMEN SIE REIN!",
+      "qty_breaks": {
+        "label_text_html": "Kaufen Sie {{ qty }} für {{ pricecash }} — sparen Sie {{ save }}",
+        "label_text_html_bundle_header": "Bundle-Preis {{ pricecash }} — sparen Sie {{ save }}",
+        "label_text_html_bundle": "Bundle von {{ qty }}"
+      },
+      "stock_count": {
+        "one": "{{ count }} Artikel auf Lager",
+        "other": "{{ count }} Artikel auf Lager"
+      },
+      "price_unit": "Stückpreis",
+      "secondary_button": "ÜBER UNS"
+    },
+    "image_but": {
+      "title": "Entdecken Sie eine Oase der Eleganz und Innovation für Ihre Haustiere.",
+      "ref_variant_label": "Referenzvariante",
+      "description": "Ausgewählte Produkte, Gourmet-Leckereien und Premium-Pflege erwarten Sie.",
+      "primary_button_label": "KOMMEN SIE REIN!",
+      "secondary_button_label": "ÜBER UNS",
+      "verified_review": "Verifizierte Bewertung",
+      "purchase": "Kauf",
+      "verified": "Verifiziert"
+    },
+    "banner": {
+      "heading": "Banner-Titel",
+      "form": {
+        "btn_label": "Als Geschenk senden",
+        "email_label": "Empfänger-E-Mail",
+        "name_label": "Empfängername",
+        "message_label": "Nachricht",
+        "date_label": "Lieferdatum",
+        "date_placeholder": "JJJJ-MM-TT",
+        "properties": {
+          "email_properties": "Empfänger-E-Mail",
+          "name_properties": "Empfängername",
+          "message_properties": "Geschenknachricht",
+          "date_properties": "Lieferdatum"
+        }
+      },
+      "text": "Beschreibungstext hier"
+    },
     "multicolumn": {
       "title_1": "Titel 1",
       "text_1": "Text 1",
