@@ -4,241 +4,47 @@
 
 {% render 'shogun-content-handler' %}
 <!doctype html>
-    <script>
-      // Lazy-load images (with exclusions for GTM and Sentry)
-      document.addEventListener('DOMContentLoaded', function() {
-        var lazyImages = [].slice.call(document.querySelectorAll('img.lazyload'));
-        lazyImages.forEach(function(img) {
-          if (img.hasAttribute('data-gatsby-exclude')) return;
-          if (img.src && img.src.indexOf('gtm') !== -1) return;
-          if (img.src && img.src.indexOf('sentry') !== -1) return;
-          if (img.dataset.src) img.src = img.dataset.src;
-        });
-      });
-    </script>
+<html
+  lang="{{ request.locale.iso_code }}"
+  dir="{{ request.locale.direction }}"
+  class="{% if settings.animations_on_scroll %}scroll-on-animations{% endif %}"
+  {% if settings.browser_tab_enable %}
+    data-inactive-tab-text="{{ settings.browser_tab_text }}"
+  {% endif %}
+>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_primary }}">
+    <meta name="language" content="{{ request.locale.iso_code }}">
+    {% if template.name == '404' %}<meta name="robots" content="noindex, nofollow">{% endif %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
     {% assign root = routes.root_url %}
     <link rel="alternate" hreflang="fr" href="{{ root }}/fr{{ request.path }}">
     <link rel="alternate" hreflang="de" href="{{ root }}/de{{ request.path }}">
     <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ request.path }}">
 
-    <!-- ========================================= -->
-    <!-- SYSTÈME ANTI-ERREURS SCOPÉ THÈME ASSET -->
-    <!-- ========================================= -->
-    <script>
-      (function () {
-        function isThemeAssetUrl(url) {
-          try {
-            return /\/cdn\/shopify\/.*/.test(url) && /\/assets\//.test(url);
-          } catch(e){ return false; }
-        }
-        function isNoisyThemeAssetMessage(argsLike) {
-          try {
-            var msg = Array.prototype.join.call(argsLike, ' ') || '';
-            if (!/https?:\/\/\//.test(msg)) return false;
-            var url = (msg.match(/https?:\/\/\S+/) || [])[0] || '';
-            if (!isThemeAssetUrl(url)) return false;
-            var noisy = /(MIME type|X-Content-Type-Options|Failed to load|404|Refused to execute)/i;
-            return noisy.test(msg);
-          } catch(_) { return false; }
-        }
-        var oE = console.error, oW = console.warn;
-        console.error = function(){
-          if(isNoisyThemeAssetMessage(arguments)) return;
-          return oE.apply(console, arguments);
-        };
-        console.warn = function(){
-          if(isNoisyThemeAssetMessage(arguments)) return;
-          return oW.apply(console, arguments);
-        };
-        var origOnError = window.onerror;
-        window.onerror = function(msg, src){
-          try {
-            if (src && isThemeAssetUrl(String(src)) && /MIME type|X-Content-Type-Options|404/i.test(String(msg||''))) {
-              return origOnError ? origOnError.apply(this, arguments) : false;
-            }
-          } catch(_){}
-          return origOnError ? origOnError.apply(this, arguments) : false;
-        };
-      })();
-    </script>
-            getOrCreateInstance: function () {
-              return { dispose: function () {} };
-            },
-          },
-          Carousel: {
-            getOrCreateInstance: function () {
-              return { to: function () {}, show: function () {}, hide: function () {} };
-            },
-          },
-        };
-        window.Splide =
-          window.Splide ||
-          function () {
-            this.mount = function () {};
-            this.go = function () {};
-            this.on = function () {};
-            this.sync = function () {};
-            this.index = 0;
-          };
-        window.GLightbox =
-          window.GLightbox ||
-          function () {
-            return { on: function () {}, destroy: function () {} };
-          };
-
-        console.log('[LIGHTNING] Immediate fallbacks ready');
-
-        // ===== Script Tag Blocker for Theme Assets (prevents nosniff) =====
-        try {
-          var ALLOW_LIST = /asset-fallbacks\.js|hybrid-script-loader-v3\.js|base\.js/;
-          function isThemeAsset(url) {
-            try {
-              return /\/cdn\/shop\/t\//.test(url) && /\/assets\//.test(url);
-            } catch (e) {
-              return false;
-            }
-          }
-          function shouldBlock(url) {
-            return isThemeAsset(url) && !ALLOW_LIST.test(url);
-          }
-          function neutralizeScript(el) {
-            var src = el.getAttribute('src');
-            if (!src || !shouldBlock(src)) return null;
-            var repl = document.createElement('script');
-            repl.type = 'application/ignored';
-            repl.setAttribute('data-hybrid-src', src);
-            // Preserve attributes that won’t trigger execution
-            if (el.id) repl.id = el.id;
-            if (el.dataset) {
-              Object.keys(el.dataset).forEach(function (k) {
-                repl.dataset[k] = el.dataset[k];
-              });
-            }
-            console.warn('[BLOCKED] Neutralized script tag →', src);
-            return repl;
-          }
-
-          // Initial sweep for any inline script[src] already in DOM
-          Array.prototype.slice
-            .call(document.querySelectorAll('script[src]'))
-            .forEach(function (s) {
-              var repl = neutralizeScript(s);
-              if (repl) s.replaceWith(repl);
-            });
-
-          // Intercept dynamic additions via appendChild/insertBefore
-          var appendOriginal = Element.prototype.appendChild;
-          Element.prototype.appendChild = function (node) {
-            if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) {
-              var repl = neutralizeScript(node) || node;
-              return appendOriginal.call(this, repl);
-            }
-            return appendOriginal.call(this, node);
-          };
-
-          var insertBeforeOriginal = Element.prototype.insertBefore;
-          Element.prototype.insertBefore = function (node, before) {
-            if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) {
-              var repl = neutralizeScript(node) || node;
-              return insertBeforeOriginal.call(this, repl, before);
-            }
-            return insertBeforeOriginal.call(this, node, before);
-          };
-
-          // MutationObserver as a safety net
-          var mo = new MutationObserver(function (mutations) {
-            mutations.forEach(function (m) {
-              Array.prototype.slice
-                .call(m.addedNodes || [])
-                .forEach(function (n) {
-                  if (n && n.tagName === 'SCRIPT' && n.src && shouldBlock(n.src)) {
-                    var repl = neutralizeScript(n);
-                    if (repl) n.replaceWith(repl);
-                  }
-                });
-            });
-          });
-          mo.observe(document.documentElement, { childList: true, subtree: true });
-          // Intercept document.write / writeln to sanitize injected scripts
-          var writeOrig = Document.prototype.write;
-          var writelnOrig = Document.prototype.writeln;
-          function sanitizeHtml(html) {
-            try {
-              var re = new RegExp('<\\s*' + 'scr' + 'ipt' + '([^>]*?)\\bsrc=(["\\\'])\\s*([^\\'\\" >]+)\\2([^>]*)>', 'gi');
-              return String(html).replace(re, function (match, pre, quote, url, post) {
-                if (shouldBlock(url)) {
-                  console.warn('[BLOCKED] document.write script →', url);
-                  return (
-                    <script>
-                      // CFH audit (guard clause version)
-                      if (window.location.pathname.indexOf('/cfh-audit') !== -1) {
-                        window.addEventListener('DOMContentLoaded', function() {
-                          // ...audit logic...
-                        });
-                      }
-                    </script>
-          }
-          Document.prototype.write = function () {
-            var args = Array.prototype.map.call(arguments, sanitizeHtml);
-            return writeOrig.apply(this, args);
-          };
-          Document.prototype.writeln = function () {
-            var args = Array.prototype.map.call(arguments, sanitizeHtml);
-            return writelnOrig.apply(this, args);
-          };
-
-          // Intercept insertAdjacentHTML
-          var insertAdjOrig = Element.prototype.insertAdjacentHTML;
-          Element.prototype.insertAdjacentHTML = function (position, text) {
-            return insertAdjOrig.call(this, position, sanitizeHtml(text));
-          };
-
-          // Intercept setAttribute on SCRIPT elements for src
-          var setAttrOrig = Element.prototype.setAttribute;
-          Element.prototype.setAttribute = function (name, value) {
-            if (
-              this &&
-              this.tagName === 'SCRIPT' &&
-              String(name).toLowerCase() === 'src' &&
-              shouldBlock(String(value))
-            ) {
-              var repl = neutralizeScript(this);
-              if (repl && this.parentNode) this.parentNode.replaceChild(repl, this);
-              return;
-            }
-            return setAttrOrig.call(this, name, value);
-          };
-
-          // Intercept direct property assignment: script.src = "..."
-          var scriptDesc = Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype, 'src');
-          if (scriptDesc && scriptDesc.set) {
-            var origSrcSetter = scriptDesc.set;
-            Object.defineProperty(HTMLScriptElement.prototype, 'src', {
-              configurable: true,
-              enumerable: scriptDesc.enumerable,
-              get: scriptDesc.get,
-              set: function (val) {
-                if (shouldBlock(String(val))) {
-                  var repl = neutralizeScript(this);
-                  if (repl && this.parentNode) this.parentNode.replaceChild(repl, this);
-                  return;
-                }
-                return origSrcSetter.call(this, val);
-              },
-            });
-          }
-
-          console.log('[GUARD] Script tag blocker active (DOM, write, setters)');
-        } catch (e) {
-          console.warn('[GUARD] Script tag blocker setup failed', e);
-        }
-      })();
-    </script>
-
     {% unless settings.favicon == blank %}
-      <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon | image_url: width: 16, height: 16, crop: 'center' }}">
-      <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}">
-      <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}">
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="{{ settings.favicon | image_url: width: 16, height: 16, crop: 'center' }}"
+      >
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}"
+      >
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="{{ settings.favicon | image_url: width: 180, height: 180, crop: 'center' }}"
+      >
     {% endunless %}
 
     <title>
@@ -252,15 +58,55 @@
     {% render 'seo-meta-tags' %}
     {% render 'structured-data' %}
 
-    <!-- Hybrid Loader: configure early to prevent nosniff loads -->
+    <!-- Lazy-load images (exclusions) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('img:not([loading])').forEach(function (img) {
+          if (img.closest('.header') || img.closest('.hero') || img.hasAttribute('data-critical')) return;
+          img.setAttribute('loading', 'lazy');
+        });
+      });
+    </script>
+
+    <!-- Scoped console noise filter (theme assets only) -->
+    <script>
+      (function () {
+        'use strict';
+        function isThemeAssetUrl(url) {
+          try {
+            return /\/cdn\/shop\/t\//.test(url) && /\/assets\//.test(url);
+          } catch (e) {
+            return false;
+          }
+        }
+        function isNoisyThemeAssetMessage(argsLike) {
+          try {
+            var msg = Array.prototype.join.call(argsLike, ' ') || '';
+            var m = msg.match(/https?:\/\/\S+/);
+            var url = m ? m[0] : '';
+            if (!url || !isThemeAssetUrl(url)) return false;
+            return /(MIME type|X-Content-Type-Options|Failed to load|404|Refused to execute)/i.test(msg);
+          } catch (_) {
+            return false;
+          }
+        }
+        var oE = console.error,
+          oW = console.warn;
+        console.error = function () {
+          if (isNoisyThemeAssetMessage(arguments)) return;
+          return oE.apply(console, arguments);
+        };
+        console.warn = function () {
+          if (isNoisyThemeAssetMessage(arguments)) return;
+          return oW.apply(console, arguments);
+        };
+      })();
+    </script>
+
+    <!-- Hybrid loader config -->
     <script>
       window.HYBRID_LOADER = Object.assign(
-        {
-          preventScriptTags: true,
-          autoScan: true,
-          debug: false,
-          marks: true,
-        },
+        { preventScriptTags: true, autoScan: true, debug: false, marks: true },
         window.HYBRID_LOADER || {}
       );
     </script>
@@ -277,7 +123,7 @@
         cart: "{{ 'cart.js' | asset_url }}",
         custom: "{{ 'custom.js' | asset_url }}",
         {% if settings.wishlist_enable %}wishlist: "{{ 'wishlist.js' | asset_url }}",{% endif %}
-        stories: "{{ 'stories-tooltips.js' | asset_url }}",
+        stories: "{{ 'stories-tooltips.js' | asset_url }}"
       };
       {% if settings.wishlist_enable %}window.wishlistEnabled = true;{% endif %}
     </script>
@@ -287,20 +133,10 @@
     <meta name="cfh-start">
     {{ content_for_header }}
     <meta name="cfh-end">
+
     {% style %}{{ settings.code_css }}{% endstyle %}
 
-    <link href="{{ 'vendor-bootstrap.min.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'vendor-splide.min.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'vendor-animate.min.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'variables.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'base.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'general.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'sections.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'collection.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'product.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'cart.css' | asset_url }}" rel="stylesheet">
-    <link href="{{ 'custom-style.css' | asset_url }}" rel="stylesheet">
-
+    <!-- CSS links suivent ici -->
     {% if request.page_type == 'collection' %}
       <link href="{{ 'vendor-nouislider.min.css' | asset_url }}" rel="stylesheet">
       {% comment %} Neutralisé pour le loader hybride {% endcomment %}
@@ -379,13 +215,16 @@
         src="{{ 'sentry-bundle.tracing.min.js' | shopify_asset_url }}"
         crossorigin="anonymous"
         defer
-      <script>
+        <script
+      >
         // Scoped error mute block for theme assets only
         (function () {
           function isThemeAssetUrl(url) {
             try {
               return /\/cdn\/shopify\/.*/.test(url) && /\/assets\//.test(url);
-            } catch(e){ return false; }
+            } catch (e) {
+              return false;
+            }
           }
           function isNoisyThemeAssetMessage(argsLike) {
             try {
@@ -395,40 +234,39 @@
               if (!isThemeAssetUrl(url)) return false;
               var noisy = /(MIME type|X-Content-Type-Options|Failed to load|404|Refused to execute)/i;
               return noisy.test(msg);
-            } catch(_) { return false; }
+            } catch (_) {
+              return false;
+            }
           }
-          var oE = console.error, oW = console.warn;
-          console.error = function(){
-            if(isNoisyThemeAssetMessage(arguments)) return;
+          var oE = console.error,
+            oW = console.warn;
+          console.error = function () {
+            if (isNoisyThemeAssetMessage(arguments)) return;
             return oE.apply(console, arguments);
           };
-          console.warn = function(){
-            if(isNoisyThemeAssetMessage(arguments)) return;
+          console.warn = function () {
+            if (isNoisyThemeAssetMessage(arguments)) return;
             return oW.apply(console, arguments);
           };
           var origOnError = window.onerror;
-          window.onerror = function(msg, src){
+          window.onerror = function (msg, src) {
             try {
-              if (src && isThemeAssetUrl(String(src)) && /MIME type|X-Content-Type-Options|404/i.test(String(msg||''))) {
+              if (
+                src &&
+                isThemeAssetUrl(String(src)) &&
+                /MIME type|X-Content-Type-Options|404/i.test(String(msg || ''))
+              ) {
                 return origOnError ? origOnError.apply(this, arguments) : false;
               }
-            } catch(_){}
+            } catch (_) {}
             return origOnError ? origOnError.apply(this, arguments) : false;
           };
         })();
       </script>
-                dsn: 'https://1d57993493b57d951ecf3e24b3238ae4@o4509533875601488.ingest.sentry.io/4509533875601488',
-                integrations: [new Sentry.BrowserTracing()],
-                tracesSampleRate: 1.0,
-              });
-              Sentry.captureException(new Error('Test Sentry'));
-            } catch (error) {
-              console.log('Sentry initialization failed:', error);
-            }
-          } else {
-            console.log('Sentry not loaded - monitoring disabled');
-          }
-        });
+      dsn: 'https://1d57993493b57d951ecf3e24b3238ae4@o4509533875601488.ingest.sentry.io/4509533875601488', integrations:
+      [new Sentry.BrowserTracing()], tracesSampleRate: 1.0, }); Sentry.captureException(new Error('Test Sentry')); }
+      catch (error) { console.log('Sentry initialization failed:', error); } } else { console.log('Sentry not loaded -
+      monitoring disabled'); } });
       </script>
       <script>
         // Suppress Theme Editor-only noise without affecting production
