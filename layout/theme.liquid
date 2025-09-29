@@ -30,16 +30,33 @@
     {%- else -%}
       {% assign href_path = '' %}
     {%- endif -%}
+    {% assign default_lang = shop.primary_locale | split: '-' | first %}
     {% if request.design_mode %}
       <link rel="alternate" hreflang="fr" href="{{ routes.root_url }}/fr{{ href_path }}">
       <link rel="alternate" hreflang="de" href="{{ routes.root_url }}/de{{ href_path }}">
       <link rel="alternate" hreflang="x-default" href="{{ routes.root_url }}{{ href_path }}">
-      <link rel="alternate" hreflang="en" href="{{ routes.root_url }}{{ href_path }}">
+      {% if default_lang == 'en' %}
+        <link rel="alternate" hreflang="en" href="{{ routes.root_url }}{{ href_path }}">
+      {% elsif default_lang != 'en' %}
+        <link
+          rel="alternate"
+          hreflang="{{ default_lang }}"
+          href="{{ routes.root_url }}/{{ default_lang }}{{ href_path }}"
+        >
+      {% endif %}
     {% else %}
       <link rel="alternate" hreflang="fr" href="{{ shop.primary_domain.url }}/fr{{ href_path }}">
       <link rel="alternate" hreflang="de" href="{{ shop.primary_domain.url }}/de{{ href_path }}">
       <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ href_path }}">
-      <link rel="alternate" hreflang="en" href="{{ shop.primary_domain.url }}{{ href_path }}">
+      {% if default_lang == 'en' %}
+        <link rel="alternate" hreflang="en" href="{{ shop.primary_domain.url }}{{ href_path }}">
+      {% elsif default_lang != 'en' %}
+        <link
+          rel="alternate"
+          hreflang="{{ default_lang }}"
+          href="{{ shop.primary_domain.url }}/{{ default_lang }}{{ href_path }}"
+        >
+      {% endif %}
     {% endif %}
 
     {% unless settings.favicon == blank %}
@@ -63,7 +80,7 @@
     {% endunless %}
 
     <title>
-      {{ page_title }}
+      {{ page_title | escape }}
       {% if current_tags %} – tagged "{{ current_tags | join: ', ' }}"{% endif %}
       {% if current_page != 1 %} – Page {{ current_page }}{% endif %}
       {% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}
@@ -486,13 +503,23 @@
           }
           var oE = console.error,
             oW = console.warn;
+          function isThirdPartyDomain(msg) {
+            var m = msg || '';
+            // Ajoute ici d'autres domaines tiers si besoin
+            return /https?:\/\/(?!cdn\.shopify\.com|fonts\.shopifycdn\.com|shopify\.com)/.test(m);
+          }
           console.error = function () {
             var msg = Array.prototype.join.call(arguments, ' ');
             if (
               isThemeAssetMessage(msg) &&
               /404|MIME type|X-Content-Type-Options|Failed to load|Refused to execute/i.test(msg)
-            )
+            ) {
+              // Ne jamais masquer les erreurs réseau de domaines tiers
+              if (isThirdPartyDomain(msg)) {
+                return oE.apply(console, arguments);
+              }
               return;
+            }
             return oE.apply(console, arguments);
           };
           console.warn = function () {
@@ -500,8 +527,12 @@
             if (
               isThemeAssetMessage(msg) &&
               /404|MIME type|X-Content-Type-Options|Failed to load|Refused to execute/i.test(msg)
-            )
+            ) {
+              if (isThirdPartyDomain(msg)) {
+                return oW.apply(console, arguments);
+              }
               return;
+            }
             return oW.apply(console, arguments);
           };
         })();
