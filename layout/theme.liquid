@@ -22,102 +22,45 @@
     <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ request.path }}">
 
     <!-- ========================================= -->
-    <!-- SYSTÈME ANTI-ERREURS ULTRA-PRÉCOCE -->
+    <!-- SYSTÈME ANTI-ERREURS SCOPÉ THÈME ASSET -->
     <!-- ========================================= -->
     <script>
       (function () {
-        'use strict';
-        // Mots-clés d'erreurs à supprimer
-        var k = [
-          'MIME type',
-          'X-Content-Type-Options',
-          '404',
-          'Failed to load',
-          'Refused to execute',
-          "Can't find variable: bootstrap",
-        ];
-
-        // Sauvegarder les fonctions originales
-        var oE = console.error,
-          oW = console.warn;
-
-        // Remplacer console.error
-        console.error = function () {
-          var m = Array.prototype.join.call(arguments, ' ');
-          if (
-            k.some(function (kw) {
-              return m.indexOf(kw) !== -1;
-            })
-          )
-            return;
-          oE.apply(console, arguments);
+        function isThemeAssetUrl(url) {
+          try {
+            return /\/cdn\/shopify\/.*/.test(url) && /\/assets\//.test(url);
+          } catch(e){ return false; }
+        }
+        function isNoisyThemeAssetMessage(argsLike) {
+          try {
+            var msg = Array.prototype.join.call(argsLike, ' ') || '';
+            if (!/https?:\/\/\//.test(msg)) return false;
+            var url = (msg.match(/https?:\/\/\S+/) || [])[0] || '';
+            if (!isThemeAssetUrl(url)) return false;
+            var noisy = /(MIME type|X-Content-Type-Options|Failed to load|404|Refused to execute)/i;
+            return noisy.test(msg);
+          } catch(_) { return false; }
+        }
+        var oE = console.error, oW = console.warn;
+        console.error = function(){
+          if(isNoisyThemeAssetMessage(arguments)) return;
+          return oE.apply(console, arguments);
         };
-
-        // Remplacer console.warn
-        console.warn = function () {
-          var m = Array.prototype.join.call(arguments, ' ');
-          if (
-            k.some(function (kw) {
-              return m.indexOf(kw) !== -1;
-            })
-          )
-            return;
-          oW.apply(console, arguments);
+        console.warn = function(){
+          if(isNoisyThemeAssetMessage(arguments)) return;
+          return oW.apply(console, arguments);
         };
-
-        // Intercepter window.onerror
-        window.onerror = function (msg) {
-          if (
-            typeof msg === 'string' &&
-            k.some(function (kw) {
-              return msg.indexOf(kw) !== -1;
-            })
-          )
-            return true;
-          return false;
-        };
-
-        // Intercepter addEventListener('error')
-        window.addEventListener(
-          'error',
-          function (e) {
-            var msg = e.message || e.error || '';
-            if (
-              typeof msg === 'string' &&
-              k.some(function (kw) {
-                return msg.indexOf(kw) !== -1;
-              })
-            ) {
-              e.stopImmediatePropagation();
-              e.preventDefault();
+        var origOnError = window.onerror;
+        window.onerror = function(msg, src){
+          try {
+            if (src && isThemeAssetUrl(String(src)) && /MIME type|X-Content-Type-Options|404/i.test(String(msg||''))) {
+              return origOnError ? origOnError.apply(this, arguments) : false;
             }
-          },
-          true
-        );
-
-        console.log('[SHIELD] Anti-error system activated EARLY');
-
-        // Fallbacks immédiats pour éviter les "Can't find variable"
-        window.bootstrap = window.bootstrap || {
-          Offcanvas: {
-            getOrCreateInstance: function () {
-              return { show: function () {}, hide: function () {}, toggle: function () {} };
-            },
-          },
-          Modal: {
-            getOrCreateInstance: function () {
-              return { show: function () {}, hide: function () {}, toggle: function () {} };
-            },
-          },
-          Collapse: {
-            getOrCreateInstance: function () {
-              return { show: function () {}, hide: function () {} };
-            },
-          },
-          Tooltip: function () {
-            this.dispose = function () {};
-          },
-          Popover: {
+          } catch(_){}
+          return origOnError ? origOnError.apply(this, arguments) : false;
+        };
+      })();
+    </script>
             getOrCreateInstance: function () {
               return { dispose: function () {} };
             },
