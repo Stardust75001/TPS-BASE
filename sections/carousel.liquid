@@ -1,93 +1,93 @@
 <style>
-/* === Image Banner Wrapper === */
-.image-banner-wrapper {
-  position: relative;
-  text-align: center;
-  color: white;
-}
-
-.image-banner-wrapper img {
-  width: 100%;
-  display: block;
-}
-
-.image-banner-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 12px;
-  max-width: 90%;
-  text-align: center;
-}
-
-.image-banner-overlay h2,
-.image-banner-overlay p {
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-  margin: 0 0 10px;
-}
-
-/* === Button Group === */
-.btn-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.btn-group .btn {
-  background-color: #394d50;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 10px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  flex: 1 1 42%;
-  max-width: 42%;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-/* === Responsive Adjustments === */
-@media screen and (max-width: 768px) {
-  .image-banner-overlay h2 {
-    font-size: 1.2rem;
+  /* === Image Banner Wrapper === */
+  .image-banner-wrapper {
+    position: relative;
+    text-align: center;
+    color: white;
   }
 
+  .image-banner-wrapper img {
+    width: 100%;
+    display: block;
+  }
+
+  .image-banner-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .image-banner-overlay h2,
   .image-banner-overlay p {
-    font-size: 0.9rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    margin: 0 0 10px;
   }
 
+  /* === Button Group === */
   .btn-group {
-    gap: 8px;
-    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
   }
 
   .btn-group .btn {
-    font-size: 0.75rem;
-    padding: 8px;
-    flex: 1 1 48%;
-    max-width: 48%;
-    min-width: 120px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .image-banner-overlay h2 {
-    font-size: 1.1rem;
-  }
-
-  .image-banner-overlay p {
-    font-size: 0.85rem;
+    background-color: #394d50;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    flex: 1 1 42%;
+    max-width: 42%;
+    text-align: center;
+    box-sizing: border-box;
   }
 
-  .btn-group .btn {
-    font-size: 0.7rem;
-    padding: 6px;
+  /* === Responsive Adjustments === */
+  @media screen and (max-width: 768px) {
+    .image-banner-overlay h2 {
+      font-size: 1.2rem;
+    }
+
+    .image-banner-overlay p {
+      font-size: 0.9rem;
+    }
+
+    .btn-group {
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn-group .btn {
+      font-size: 0.75rem;
+      padding: 8px;
+      flex: 1 1 48%;
+      max-width: 48%;
+      min-width: 120px;
+    }
   }
-}
+
+  @media screen and (max-width: 480px) {
+    .image-banner-overlay h2 {
+      font-size: 1.1rem;
+    }
+
+    .image-banner-overlay p {
+      font-size: 0.85rem;
+    }
+
+    .btn-group .btn {
+      font-size: 0.7rem;
+      padding: 6px;
+    }
+  }
 </style>
 
 {% comment %}
@@ -98,66 +98,93 @@
 {%- assign first_block = section.blocks.first -%}
 {%- if first_block -%}
   {%- assign fb_img_desktop = first_block.settings.img_desktop -%}
-  {%- assign fb_img_mobile  = first_block.settings.img_mobile  -%}
+  {%- assign fb_img_mobile = first_block.settings.img_mobile -%}
   {%- assign fb_img = fb_img_desktop | default: fb_img_mobile -%}
   {%- if fb_img != blank -%}
-    <link rel="preload" as="image"
-          href="{{ fb_img | image_url: width: 1600 }}"
-          imagesrcset="
-            {{ fb_img | image_url: width: 800 }} 800w,
-            {{ fb_img | image_url: width: 1200 }} 1200w,
-            {{ fb_img | image_url: width: 1600 }} 1600w"
-          imagesizes="100vw">
+    <link
+      rel="preload"
+      as="image"
+      href="{{ fb_img | image_url: width: 1600 }}"
+      imagesrcset="
+        {{ fb_img | image_url: width: 800 }} 800w,
+        {{ fb_img | image_url: width: 1200 }} 1200w,
+        {{ fb_img | image_url: width: 1600 }} 1600w
+      "
+      imagesizes="100vw"
+    >
   {%- endif -%}
 {%- endif -%}
 
-<section class="carousel splide" aria-label="Homepage carousel" data-splide='{"type":"loop","autoplay":true,"interval":5000,"pauseOnHover":true,"arrows":true,"pagination":true}'>
+<section
+  class="carousel splide"
+  aria-label="Homepage carousel"
+  data-splide='{"type":"loop","autoplay":true,"interval":5000,"pauseOnHover":true,"arrows":true,"pagination":true}'
+>
   <div class="splide__track">
     <ul class="splide__list">
       {%- for block in section.blocks -%}
         {%- assign img_d = block.settings.img_desktop -%}
-        {%- assign img_m = block.settings.img_mobile  -%}
-        {%- assign img   = img_d | default: img_m -%}
+        {%- assign img_m = block.settings.img_mobile -%}
+        {%- assign img = img_d | default: img_m -%}
         <li class="splide__slide" {{ block.shopify_attributes }}>
           <div class="carousel-slide relative">
             <picture>
               {%- if img_m != blank -%}
-                <source media="(max-width: 767px)"
-                        srcset="{{ img_m | image_url: width: 800 }} 800w, {{ img_m | image_url: width: 1200 }} 1200w"
-                        sizes="100vw">
+                <source
+                  media="(max-width: 767px)"
+                  srcset="{{ img_m | image_url: width: 800 }} 800w, {{ img_m | image_url: width: 1200 }} 1200w"
+                  sizes="100vw"
+                >
               {%- endif -%}
               {%- if img_d != blank -%}
-                <source media="(min-width: 768px)"
-                        srcset="{{ img_d | image_url: width: 1200 }} 1200w, {{ img_d | image_url: width: 1600 }} 1600w"
-                        sizes="100vw">
+                <source
+                  media="(min-width: 768px)"
+                  srcset="{{ img_d | image_url: width: 1200 }} 1200w, {{ img_d | image_url: width: 1600 }} 1600w"
+                  sizes="100vw"
+                >
               {%- endif -%}
               <img
                 src="{{ (img | default: '' ) | image_url: width: 1200 }}"
                 srcset="
                   {{ img | image_url: width: 800 }} 800w,
                   {{ img | image_url: width: 1200 }} 1200w,
-                  {{ img | image_url: width: 1600 }} 1600w"
+                  {{ img | image_url: width: 1600 }} 1600w
+                "
                 sizes="100vw"
                 alt="{{ block.settings.alt_text | escape }}"
-                width="1600" height="900"
+                width="1600"
+                height="900"
                 {%- if forloop.first -%}
                   fetchpriority="high" decoding="sync" importance="high"
                 {%- else -%}
                   loading="lazy" decoding="async"
                 {%- endif -%}
-                class="carousel-img">
+                class="carousel-img"
+              >
             </picture>
 
-            {%- if block.settings.heading or block.settings.text or block.settings.btn_label_1 or block.settings.btn_label_2 -%}
+            {%- if block.settings.heading
+              or block.settings.text
+              or block.settings.btn_label_1
+              or block.settings.btn_label_2
+            -%}
               <div class="carousel-overlay">
-                {%- if block.settings.heading -%}<h2>{{ block.settings.heading }}</h2>{%- endif -%}
-                {%- if block.settings.text -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+                {%- if block.settings.heading -%}
+                  <h2>{{ block.settings.heading }}</h2>
+                {%- endif -%}
+                {%- if block.settings.text -%}
+                  <p>{{ block.settings.text }}</p>
+                {%- endif -%}
                 <div class="carousel-cta">
                   {%- if block.settings.btn_label_1 and block.settings.btn_link_1 -%}
-                    <a href="{{ block.settings.btn_link_1 }}" class="btn btn-primary">{{ block.settings.btn_label_1 }}</a>
+                    <a href="{{ block.settings.btn_link_1 }}" class="btn btn-primary">
+                      {{- block.settings.btn_label_1 -}}
+                    </a>
                   {%- endif -%}
                   {%- if block.settings.btn_label_2 and block.settings.btn_link_2 -%}
-                    <a href="{{ block.settings.btn_link_2 }}" class="btn btn-secondary">{{ block.settings.btn_label_2 }}</a>
+                    <a href="{{ block.settings.btn_link_2 }}" class="btn btn-secondary">
+                      {{- block.settings.btn_label_2 -}}
+                    </a>
                   {%- endif -%}
                 </div>
               </div>
@@ -171,21 +198,37 @@
 
 <style>
   /* Styles minimaux (tu as déjà custom-style.css / base.css) */
-  .carousel { position: relative; }
-  .carousel-img { width: 100%; height: auto; display: block; }
-  .carousel-overlay {
-    position: absolute; inset: 0;
-    display: grid; place-items: center;
-    text-align: center; padding: 1rem;
+  .carousel {
+    position: relative;
   }
-  .carousel-cta { margin-top: 1rem; display: inline-flex; gap: .75rem; flex-wrap: wrap; }
+  .carousel-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .carousel-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+  .carousel-cta {
+    margin-top: 1rem;
+    display: inline-flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     if (window.Splide) {
       document.querySelectorAll('.carousel.splide').forEach(function (el) {
-        try { new Splide(el, JSON.parse(el.getAttribute('data-splide') || '{}')).mount(); } catch(e) {}
+        try {
+          new Splide(el, JSON.parse(el.getAttribute('data-splide') || '{}')).mount();
+        } catch (e) {}
       });
     }
   });
@@ -201,14 +244,14 @@
       "name": "Slide",
       "settings": [
         { "type": "image_picker", "id": "img_desktop", "label": "Desktop image" },
-        { "type": "image_picker", "id": "img_mobile",  "label": "Mobile image" },
+        { "type": "image_picker", "id": "img_mobile", "label": "Mobile image" },
         { "type": "text", "id": "alt_text", "label": "Alt text", "default": "Carousel slide" },
         { "type": "text", "id": "heading", "label": "Heading" },
         { "type": "textarea", "id": "text", "label": "Text" },
         { "type": "text", "id": "btn_label_1", "label": "Button 1 label" },
-        { "type": "url",  "id": "btn_link_1",  "label": "Button 1 link" },
+        { "type": "url", "id": "btn_link_1", "label": "Button 1 link" },
         { "type": "text", "id": "btn_label_2", "label": "Button 2 label" },
-        { "type": "url",  "id": "btn_link_2",  "label": "Button 2 link" }
+        { "type": "url", "id": "btn_link_2", "label": "Button 2 link" }
       ]
     }
   ],

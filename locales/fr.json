@@ -1,3 +1,18 @@
+  "custom_sections": {
+    "image_banner": {
+      "alt": "Bannière d'accueil pour animaux heureux",
+      "heading": "Bienvenue chez The Pet Society",
+      "text": "Des trouvailles sélectionnées pour le bonheur de vos compagnons.",
+      "button": "Découvrir la boutique"
+    },
+    "carousel": {
+      "slide_alt": "Diapositive du carrousel",
+      "slide_heading": "Nouveautés",
+      "slide_text": "Les dernières sélections viennent d'arriver.",
+      "btn1": "Explorer",
+      "btn2": "En savoir plus"
+    }
+  }
 {
   "no_reviews": "Aucun avis",
   "announcement": {
