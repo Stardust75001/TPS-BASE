@@ -16,22 +16,52 @@
     "expired_on": "Expired on {{ date }}",
     "expires_on": "Expires on {{ date }}",
     "balance": "Balance"
+        "balance": "Balance"
   },
   "custom_sections": {
     "image_banner": {
       "title": "Discover a haven of elegance and innovation for your pets.",
       "text": "Curated selections, gourmet treats, and premium care await.",
+          "option_subscription_save": "Save {{ value }}%"
       "primary_button": "COME ON IN!",
+        "qty_breaks": {
+          "label_text_html": "Buy {{ qty }} for {{ pricecash }} — save {{ save }}",
+          "label_text_html_bundle_header": "Bundle price {{ pricecash }} — save {{ save }}",
+          "label_text_html_bundle": "Bundle of {{ qty }}"
+        },
+        "stock_count": {
+          "one": "{{ count }} item in stock",
+          "other": "{{ count }} items in stock"
+        },
+        "price_unit": "Unit price"
       "secondary_button": "ABOUT US"
     },
     "image_but": {
       "title": "Discover a haven of elegance and innovation for your pets.",
+        "ref_variant_label": "Reference variant"
       "description": "Curated selections, gourmet treats, and premium care await.",
       "primary_button_label": "COME ON IN!",
       "secondary_button_label": "ABOUT US"
+        "verified_review": "Verified review",
+        "purchase": "Purchase",
+        "verified": "Verified"
     },
     "banner": {
       "heading": "Banner Title",
+        "form": {
+          "btn_label": "Send as a gift",
+          "email_label": "Recipient email",
+          "name_label": "Recipient name",
+          "message_label": "Message",
+          "date_label": "Delivery date",
+          "date_placeholder": "YYYY-MM-DD",
+          "properties": {
+            "email_properties": "Recipient email",
+            "name_properties": "Recipient name",
+            "message_properties": "Gift message",
+            "date_properties": "Delivery date"
+          }
+        }
       "text": "Description text here"
     },
     "multicolumn": {
@@ -85,6 +115,8 @@
     "alignment": {
       "left": "Left",
         "verified_review": "Verified review",
+          "view_all_results": "View all results",
+          "button": "Search"
         "purchase": "Purchase",
         "verified": "Verified"
       "center": "Center"
@@ -115,6 +147,7 @@
     "header": "Header",
     "footer": ""
   },
+          "social_media_links": "Social media links"
   "collection": {
     "btn_filter_products": "Filter products",
     "sort_by": "Sort by",
@@ -123,15 +156,18 @@
     "custom_bundle": {
       "add_to_bundle": "Add to bundle",
       "added_to_bundle": "Added to bundle",
+          "pagination_page_of": "Page {{ count }} of {{ total }}"
       "bundle_contents_empty_html": "The bundle is currently empty.",
       "bundle_contents_title": "Bundle contents",
       "bundle_price": "Bundle price",
       "button_atc_text": "Add to cart",
       "button_view_contents_text": "View bundle contents",
+          "title_customer": "Hello, {{ name }}"
       "progress_completed_text": "Offer completed",
       "progress_label": "Offer progress",
       "progress_uncompleted_text": "Not completed",
       "you_save": "You save"
+          "question_of_html": "Question {{ count }} of {{ total }}"
     },
     "filters": {
       "from": "Collection filters from",
@@ -139,6 +175,7 @@
       "to": "Collection filters to",
       "view_more": "Collection filters view_more",
       "clear_all": "Clear all",
+        "article": "Article"
       "view_results": "View results"
     },
     "load_more": "Collection load_more",
@@ -169,6 +206,7 @@
         "added_to_bundle": "Added to bundle",
         "progress_label": "Offer progress",
         "progress_uncompleted_text": "Not completed",
+        "qty": "Qty"
         "progress_completed_text": "Completed",
         "bundle_price": "Bundle price",
         "you_save": "You save",
@@ -196,7 +234,10 @@
       "verylow_html": "Only {{ count }} left!",
       "low_html": "{{ count }} items left",
       "normal_html": "{{ count }} available"
+          "clear_filter": "Clear filter",
+          "max_range_notice": "Max range is {{ max }}"
     },
+        "count_products": "{{ count }} products"
     "product_options": "Product options",
           "pagination_page_of": "Page {{ count }} of {{ total }}"
     "purchase_options": {
@@ -222,6 +263,13 @@
       "confirmation_text": "Thank you for subscribing!"
     },
     "breadcrumbs": {
+        "account": {
+          "title": "Your account",
+          "logout": "Log out",
+          "order_history": "Order history",
+          "account_details": "Account details",
+          "view_addresses": "View addresses"
+        }
       "home": "Home",
       "label": "You are here:"
     },
@@ -230,7 +278,7 @@
     },
     "404_page": {
       "title": "404 - Page not found",
-      "subtext": "The page you are looking for does not exist.",
+          "notice_html": "By signing up to receive emails, you agree to our terms and conditions and our <a href=\"/pages/privacy-policy\">privacy policy</a>."
       "button": "Return to homepage"
     },
     "search_page": {
