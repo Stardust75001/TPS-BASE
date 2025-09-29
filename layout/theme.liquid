@@ -29,16 +29,17 @@
     {% if base_path == '/de' or base_path | slice: 0,4 == '/de/' %}
       {% assign base_path = base_path | remove_first: '/de' %}
     {% endif %}
+    {% assign base_path = base_path | default: '' %}
     {% if request.design_mode %}
-      <link rel="alternate" hreflang="fr" href="{{ routes.root_url }}/fr{{ base_path }}">
-      <link rel="alternate" hreflang="de" href="{{ routes.root_url }}/de{{ base_path }}">
-      <link rel="alternate" hreflang="x-default" href="{{ routes.root_url }}{{ base_path }}">
-      <link rel="alternate" hreflang="en" href="{{ routes.root_url }}{{ base_path }}">
+  <link rel="alternate" hreflang="fr" href="{{ routes.root_url }}/fr{{ base_path | prepend: '/' }}">
+  <link rel="alternate" hreflang="de" href="{{ routes.root_url }}/de{{ base_path | prepend: '/' }}">
+  <link rel="alternate" hreflang="x-default" href="{{ routes.root_url }}{{ base_path | prepend: '/' }}">
+  <link rel="alternate" hreflang="en" href="{{ routes.root_url }}{{ base_path | prepend: '/' }}">
     {% else %}
-      <link rel="alternate" hreflang="fr" href="{{ shop.primary_domain.url }}/fr{{ base_path }}">
-      <link rel="alternate" hreflang="de" href="{{ shop.primary_domain.url }}/de{{ base_path }}">
-      <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ base_path }}">
-      <link rel="alternate" hreflang="en" href="{{ shop.primary_domain.url }}{{ base_path }}">
+  <link rel="alternate" hreflang="fr" href="{{ shop.primary_domain.url }}/fr{{ base_path | prepend: '/' }}">
+  <link rel="alternate" hreflang="de" href="{{ shop.primary_domain.url }}/de{{ base_path | prepend: '/' }}">
+  <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ base_path | prepend: '/' }}">
+  <link rel="alternate" hreflang="en" href="{{ shop.primary_domain.url }}{{ base_path | prepend: '/' }}">
     {% endif %}
 
     {% unless settings.favicon == blank %}
