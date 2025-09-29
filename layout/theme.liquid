@@ -510,11 +510,11 @@
 
     <a class="visually-hidden-focusable" href="#main">{{ 'general.accessibility.skip_content' | t }}</a>
 
-  {% render 'right-clic' %}
-  {% render 'scroll-top', aria_label: 'Remonter en haut de la page' %}
-  {% render 'text-selection' %}
-  {% render 'image-drag' %}
-  {% render 'whatsapp-button', aria_label: 'Contacter WhatsApp' %}
+    {% render 'right-clic' %}
+    {% render 'scroll-top', aria_label: 'Remonter en haut de la page' %}
+    {% render 'text-selection' %}
+    {% render 'image-drag' %}
+    {% render 'whatsapp-button', aria_label: 'Contacter WhatsApp' %}
 
     <div class="header-sticky-group">
       {% section 'announcement-bar' %}
@@ -559,22 +559,25 @@
     </main>
 
     {% sections 'footer-group' %}
-  {% render 'offcanvas-cart', role: 'dialog' %}
-  {% render 'offcanvas-search', role: 'dialog' %}
-  {% render 'offcanvas-wishlist', role: 'dialog' %}
+    {% render 'offcanvas-cart', role: 'dialog' %}
+    {% render 'offcanvas-search', role: 'dialog' %}
+    {% render 'offcanvas-wishlist', role: 'dialog' %}
     {% render 'back-to-top' %}
     <script>
       // Focus trap minimal pour modals/offcanvas
       document.addEventListener('DOMContentLoaded', function () {
         function trapFocus(modal) {
           var focusable = modal.querySelectorAll('a, button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
-          var first = focusable[0], last = focusable[focusable.length - 1];
-          modal.addEventListener('keydown', function(e) {
+          var first = focusable[0],
+            last = focusable[focusable.length - 1];
+          modal.addEventListener('keydown', function (e) {
             if (e.key === 'Tab') {
               if (e.shiftKey && document.activeElement === first) {
-                e.preventDefault(); last.focus();
+                e.preventDefault();
+                last.focus();
               } else if (!e.shiftKey && document.activeElement === last) {
-                e.preventDefault(); first.focus();
+                e.preventDefault();
+                first.focus();
               }
             }
           });
@@ -584,7 +587,9 @@
           var opener = document.activeElement;
           modal.dataset.opener = opener ? opener : null;
           setTimeout(function () {
-            var focusable = modal.querySelectorAll('a, button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
+            var focusable = modal.querySelectorAll(
+              'a, button, textarea, input, select, [tabindex]:not([tabindex="-1"])'
+            );
             if (focusable.length) focusable[0].focus();
           }, 100);
         }
