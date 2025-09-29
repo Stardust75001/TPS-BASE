@@ -11,6 +11,7 @@
     "instructions": "Use this code at checkout to redeem your gift card.",
     "print": "Print",
     "start_shopping": "Start Shopping",
+        "ref_variant_label": "Reference variant"
     "disabled": "Disabled",
     "expired_on": "Expired on {{ date }}",
     "expires_on": "Expires on {{ date }}",
@@ -68,13 +69,41 @@
       },
       "body": {
         "label": "Body"
+          "option_subscription_save": "Save {{ value }}%"
       }
+        "qty_breaks": {
+          "label_text_html": "Buy {{ qty }} for {{ pricecash }} — save {{ save }}",
+          "label_text_html_bundle_header": "Bundle price {{ pricecash }} — save {{ save }}",
+          "label_text_html_bundle": "Bundle of {{ qty }}"
+        },
+        "stock_count": {
+          "one": "{{ count }} item in stock",
+          "other": "{{ count }} items in stock"
+        },
+        "price_unit": "Unit price"
     },
     "alignment": {
       "left": "Left",
+        "verified_review": "Verified review",
+        "purchase": "Purchase",
+        "verified": "Verified"
       "center": "Center"
     },
     "featured_collections": {
+        "form": {
+          "btn_label": "Send as a gift",
+          "email_label": "Recipient email",
+          "name_label": "Recipient name",
+          "message_label": "Message",
+          "date_label": "Delivery date",
+          "date_placeholder": "YYYY-MM-DD",
+          "properties": {
+            "email_properties": "Recipient email",
+            "name_properties": "Recipient name",
+            "message_properties": "Gift message",
+            "date_properties": "Delivery date"
+          }
+        }
       "settings": {
         "btn_text": {
           "label": "Button text",
@@ -128,6 +157,8 @@
     "product_added_to_cart": "Product added to cart",
     "remove": "Remove",
     "wishlist": {
+          "view_all_results": "View all results",
+          "button": "Search"
       "add_to_wishlist": "Add to wishlist",
       "remove_from_wishlist": "Remove from wishlist",
       "btn_label": "Add to wishlist"
@@ -158,6 +189,7 @@
     "buy_it_now": "Buy it now",
     "include_taxes": "Includes taxes",
     "inventory_bar": {
+          "social_media_links": "Social media links"
       "label": "Inventory level",
       "sold_out": "Sold out",
       "untracked": "Limited availability",
@@ -166,15 +198,18 @@
       "normal_html": "{{ count }} available"
     },
     "product_options": "Product options",
+          "pagination_page_of": "Page {{ count }} of {{ total }}"
     "purchase_options": {
       "option_deliver_every": "Deliver every",
       "option_one_time": "One-time purchase",
       "option_subscription": "Subscription"
     },
+          "title_customer": "Hello, {{ name }}"
     "quantity": "Quantity",
     "save": "Save",
     "select_variant": "Select variant"
   },
+          "question_of_html": "Question {{ count }} of {{ total }}"
   "general": {
     "menu": "Menu",
     "all_rights_reserved": "All rights reserved",
@@ -182,6 +217,7 @@
     "newsletter": {
       "name_placeholder": "Enter your name",
       "input_label": "Enter your email",
+        "article": "Article"
       "submit_button": "Subscribe",
       "confirmation_text": "Thank you for subscribing!"
     },
@@ -212,6 +248,7 @@
       },
       "no_results": "No results found for '{{ terms }}'.",
       "results_with_count_and_term": "{{ count }} results for '{{ terms }}'"
+        "qty": "Qty"
     },
     "offcanvas_search": {
       "title": "Search",
@@ -239,7 +276,10 @@
       "cart": "Cart",
       "cart_product_list": "Cart products",
       "menu": "Menu",
+          "clear_filter": "Clear filter",
+          "max_range_notice": "Max range is {{ max }}"
       "model_3d_decrease": "Decrease model size",
+        "count_products": "{{ count }} products"
       "model_3d_fullscreen": "Fullscreen model",
       "model_3d_increase": "Increase model size",
       "back_to_top": "Back to top",
@@ -265,6 +305,13 @@
       "btn_label": "Add to wishlist"
     },
     "offcanvas_menu": {
+        "account": {
+          "title": "Your account",
+          "logout": "Log out",
+          "order_history": "Order history",
+          "account_details": "Account details",
+          "view_addresses": "View addresses"
+        }
       "subtitle_guest_html": "Welcome guest",
       "subtitle_customer_html": "Welcome back",
       "title_guest": "Your account"
@@ -273,7 +320,7 @@
       "email": "Email",
       "message": "Message",
       "name": "Name",
-      "phone": "Phone",
+          "notice_html": "By signing up to receive emails, you agree to our terms and conditions and our <a href=\"/pages/privacy-policy\">privacy policy</a>."
       "send": "Send",
       "success": "Message sent successfully"
     },
