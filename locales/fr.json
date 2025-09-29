@@ -6,7 +6,8 @@
     "shipping_notice": "Livraison dans toute l'Europe (EEE)",
     "title": "Annonce",
     "text": "Ceci est un message d'annonce."
-  },
+  }
+    ,
   "gift_card": {
     "title": "Voici votre carte cadeau !",
     "instructions": "Utilisez ce code lors du paiement pour utiliser votre carte cadeau.",
@@ -16,15 +17,7 @@
     "expired_on": "Expirée le {{ date }}",
     "expires_on": "Expire le {{ date }}",
     {
-      "email": "E-mail",
-      "shipping_address": "Adresse de livraison",
-      "continue_shopping": "Continuer vos achats"
-    },
-  "custom_sections": {
-    "image_banner": {
-      "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
-      
-    },
+      {
     "banner": {
       "heading": "Titre de la bannière",
       "text": "Texte de description ici"
