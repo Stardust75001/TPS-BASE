@@ -22,8 +22,9 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
-    {% render 'lang-path-normalize', path: request.path %}
-    {%- assign href_path = lang_base_path -%}
+    {%- assign href_path -%}
+    =
+    {%- render 'lang-path-normalize', path: request.path -%}
     {%- if href_path != '' -%}{% assign href_path = href_path | prepend: '/' %}{%- endif -%}
 
     {% if request.design_mode %}
