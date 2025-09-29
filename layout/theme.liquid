@@ -22,9 +22,13 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
-    {%- capture href_path -%}{% render 'lang-path-normalize', path: request.path %}{%- endcapture -%}
-    {%- assign href_path = href_path | strip -%}
-    {%- if href_path != '' -%}{% assign href_path = href_path | prepend: '/' %}{%- endif -%}
+    {% render 'lang-path-normalize', path: request.path %}
+    {%- assign href_path = lang_base_path -%}
+    {%- if href_path != '' and href_path != '/' -%}
+      {% assign href_path = '/' | append: href_path %}
+    {%- else -%}
+      {% assign href_path = '' %}
+    {%- endif -%}
 
     {% if request.design_mode %}
       {% comment %} theme-check-disable RemoteAsset {% endcomment %}
