@@ -417,7 +417,12 @@
       "delete": "Supprimer",
       "delete_confirm": "Êtes-vous sûr de vouloir supprimer cette adresse ?",
       "select_country": "Sélectionner un pays",
-      "no_addresses": "Aucune adresse trouvée"
+      "no_addresses": "Aucune adresse trouvée",
+      "title": "Adresses",
+      "tab_addresses": "Adresses",
+      "tab_add_new": "Ajouter une nouvelle adresse",
+      "default": "Adresse par défaut",
+      "add_new": "Ajouter une nouvelle adresse"
     },
     "login": {
       "title": "Connexion client",
@@ -498,27 +503,28 @@
       "password_confirm": "Confirmer le nouveau mot de passe",
       "submit": "Réinitialiser le mot de passe"
     },
-    "account": {
-      "return": "Retour au compte"
-    }
-  },
-  "section": "Section",
-  "textWishlistAdd": "Ajouter à la liste de souhaits",
-  "textWishlistRemove": "Retirer de la liste de souhaits",
-  "textWishlistBtnLabel": "Liste de souhaits",
-  "shared": "Partagé",
-  "bundle": {
-    "label": "Lot"
-  },
-  "custom": {
-    "title": "Personnalisé",
-    "description": "Personnalisez votre sélection"
-  },
-  "footer": {
-    "newsletter": {
-      "title": "Inscrivez-vous à notre newsletter",
-      "first_name_placeholder": "Entrez votre prénom",
-      "email_placeholder": "Entrez votre adresse e-mail",
+    "order": {
+      "title": "Détails de la commande",
+      "date_html": "Date de la commande : {{ date }}",
+      "cancelled_html": "Commande annulée le {{ date }}",
+      "cancelled_reason": "Raison de l'annulation",
+      "product": "Produit",
+      "sku": "SKU",
+      "price": "Prix",
+      "quantity": "Quantité",
+      "total": "Total",
+      "subtotal": "Sous-total",
+      "discount": "Remise",
+      "shipping": "Livraison",
+      "tax": "Taxe",
+      "billing_address": "Adresse de facturation",
+      "payment_status": "Statut du paiement",
+      "shipping_address": "Adresse de livraison",
+      "fulfillment_status": "Statut de la livraison",
+      "track_shipment": "Suivre la livraison",
+      "return": "Retourner la commande",
+      "fulfilled_at_html": "Traitée le {{ date }}"
+    },
       "submit_button": "S'inscrire",
       "notice_html": "En vous inscrivant pour recevoir nos e-mails, vous acceptez nos conditions générales et notre <a href=\"/pages/confidentialite\">politique de confidentialité</a>."
     }
