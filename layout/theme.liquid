@@ -251,18 +251,19 @@
     {% endif %}
     <!-- Lazy-load images (exclusions) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          document.querySelectorAll('img:not([loading])').forEach(function (img) {
-            if (
-              img.closest('.header') ||
-              img.closest('.hero') ||
-              img.hasAttribute('data-critical') ||
-              img.getAttribute('fetchpriority') === 'high' ||
-              img.fetchPriority === 'high'
-            ) return;
-            img.setAttribute('loading', 'lazy');
-          });
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('img:not([loading])').forEach(function (img) {
+          if (
+            img.closest('.header') ||
+            img.closest('.hero') ||
+            img.hasAttribute('data-critical') ||
+            img.getAttribute('fetchpriority') === 'high' ||
+            img.fetchPriority === 'high'
+          )
+            return;
+          img.setAttribute('loading', 'lazy');
         });
+      });
     </script>
 
     <!-- Hybrid loader config -->
