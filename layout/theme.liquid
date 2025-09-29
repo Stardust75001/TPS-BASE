@@ -43,7 +43,7 @@
     {%- endif -%}
     {%- comment -%} x-default: page dans la langue par défaut {%- endcomment -%}
     {%- if default_lang == 'en' -%}
-      <link rel="alternate" hreflang="x-default" href="{{ (base | asset_url) }}{{ href_path }}">
+      <link rel="alternate" hreflang="x-default" href="{{ base }}{{ href_path }}">
     {%- else -%}
       <link rel="alternate" hreflang="x-default" href="{{ base }}/{{ default_lang }}{{ href_path }}">
     {%- endif -%}
@@ -71,13 +71,9 @@
       <link
         rel="icon"
         type="image/png"
-        {%- comment -%} utiliser le code complet 'hl' pour conserver /en-us, /de-de, etc. {%- endcomment -%}
-        <link
-        rel="alternate"
-        hreflang="{{ hreflang }}"
-        href="{{ base }}/{{ hl }}{{ href_path }}"
+        sizes="32x32"
+        href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}"
       >
-      href="{{ settings.favicon | image_url: width: 32, height: 32, crop: 'center' }}" >
       <link
         rel="apple-touch-icon"
         sizes="180x180"
