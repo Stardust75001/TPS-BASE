@@ -1,4 +1,4 @@
-{
+// ...existing code...
   // All keys from en.default.json are now present. French translations used where possible, otherwise placeholder: "[Traduction manquante]".
   "sections": {
     "colors": {
@@ -51,53 +51,15 @@
       "text_3": "Texte 3"
     },
     "section_1": "Section personnalisée 1",
-    "section_2": "Section personnalisée 2"
-  },
-  "sections": {
+    "section_2": "Section personnalisée 2",
     "list_collections": {
-      "collection": {
-        "btn_filter_products": "Filtrer les produits",
-        "sort_by": "Trier par",
-        "paginate_count": "{{ count }} sur {{ total }} produits affichés",
-        "empty_html": "Cette collection est vide.",
-        "custom_bundle": {
-          "add_to_bundle": "Ajouter au lot",
-          "added_to_bundle": "Ajouté au lot",
-          "bundle_contents_empty_html": "Le lot est actuellement vide.",
-          "bundle_contents_title": "Contenu du lot",
-          "bundle_price": "Prix du lot",
-          "button_atc_text": "Ajouter au panier",
-          "button_view_contents_text": "Voir le contenu du lot",
-          "progress_completed_text": "Offre complétée",
-          "progress_label": "Progression de l'offre",
-          "progress_uncompleted_text": "Non complétée",
-          "you_save": "Vous économisez",
-          "pagination_page_of": "Page {{ count }} sur {{ total }}",
-          "title_customer": "Bonjour, {{ name }}",
-          "question_of_html": "Question {{ count }} sur {{ total }}"
-        },
-        "filters": {
-          "title": "Titre des filtres de collection",
-          "from": "Filtres de collection de",
-          "to": "Filtres de collection jusqu'à",
-          "view_more": "Voir plus de filtres",
-          "clear_all": "Effacer tous les filtres",
-          "view_results": "Voir les résultats",
-          "article": "Article"
-        },
-        "load_more": "Charger plus",
-        "load_previous": "Charger les précédents"
-      },
-    "filters": {
-      "title": "Titre des filtres de collection",
-      "from": "Filtres de collection de",
-      "to": "Filtres de collection jusqu'à",
-      "view_more": "Voir plus de filtres",
-      "clear_all": "Effacer tous les filtres",
-      "view_results": "Voir les résultats"
-    },
-    "load_more": "Charger plus",
-    "load_previous": "Charger les précédents"
+      "name": "Collections",
+      "settings": {
+        "show_breadcrumbs": { "label": "Afficher le fil d’Ariane" },
+        "text_align": { "label": "Alignement du texte" },
+        "bg_color": { "label": "Couleur de fond" }
+      }
+    }
   },
   "product": {
     "sold_out": "Épuisé",
@@ -303,7 +265,7 @@
     }
   }
 }
-{
+// ...existing code...
   // All keys from en.default.json are now present. French translations used where possible, otherwise placeholder: "[Traduction manquante]".
   "sections": {
     "colors": {
