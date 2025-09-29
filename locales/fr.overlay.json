@@ -1,0 +1,59 @@
+{
+  "recipient": {
+    "form": {
+      "btn_label": "Envoyer comme cadeau",
+      "email_label": "Email du destinataire",
+      "name_label": "Nom du destinataire",
+      "message_label": "Message",
+      "date_label": "Date de livraison",
+      "date_placeholder": "AAAA-MM-JJ",
+      "properties": {
+        "email_properties": "Email du destinataire",
+        "name_properties": "Nom du destinataire",
+        "message_properties": "Message cadeau",
+        "date_properties": "Date de livraison"
+      }
+    }
+  },
+  "collection": {
+    "count_products": "{{ count }} produits"
+  },
+  "general": {
+    "offcanvas_search": {
+      "view_all_results": "Voir tous les résultats",
+      "button": "Recherche"
+    },
+    "accessibility": {
+      "social_media_links": "Liens réseaux sociaux"
+    },
+    "pagination_page_of": "Page {{ count }} sur {{ total }}",
+    "offcanvas_menu": {
+      "title_customer": "Bonjour, {{ name }}"
+    }
+  },
+  "product": {
+    "price_unit": "Prix par unité",
+    "stock_count": {
+      "one": "{{ count }} article en stock",
+      "other": "{{ count }} articles en stock"
+    },
+    "qty_breaks": {
+      "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
+      "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
+      "label_text_html_bundle": "Lot de {{ qty }}"
+    },
+    "purchase_options": {
+      "option_subscription_save": "Économisez {{ value }}%"
+    },
+    "wishlist": {
+      "add_to_wishlist": "Ajouter à la liste de souhaits",
+      "remove_from_wishlist": "Retirer de la liste de souhaits",
+      "btn_label": "Ajouter à la liste de souhaits"
+    },
+    "bundle": {
+      "custom_bundle": {
+        "qty": "Qté"
+      }
+    }
+  }
+}
