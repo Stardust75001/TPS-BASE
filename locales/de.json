@@ -14,7 +14,20 @@
     "title": "Ankündigung",
     "text": "Dies ist eine Ankündigungsnachricht."
   },
-  "gift_card": {
+    "gift_card": {
+    },
+    "order_status": {
+      "title": "Bestellstatus",
+      "thank_you": "Vielen Dank für Ihre Bestellung!",
+      "order_confirmed": "Bestellung bestätigt",
+      "order_details": "Bestelldetails",
+      "order_number": "Bestellnummer",
+      "date": "Datum",
+      "total": "Gesamtsumme",
+      "email": "E-Mail",
+      "shipping_address": "Lieferadresse",
+      "continue_shopping": "Weiter einkaufen"
+    },
     "title": "Hier ist Ihre Geschenkkarte!",
     "instructions": "Verwenden Sie diesen Code an der Kasse, um Ihre Geschenkkarte einzulösen.",
     "print": "Drucken",
@@ -113,6 +126,8 @@
       "you_save": "Sie sparen"
     },
     "filters": {
+      "clear_all": "Alle Filter löschen",
+      "view_results": "Ergebnisse anzeigen",
       "from": "Kollektion Filter von",
       "title": "Kollektion Filter Titel",
       "to": "Kollektion Filter bis",
@@ -134,7 +149,9 @@
     "product": "Produkt",
     "product_added_to_cart": "Produkt zum Warenkorb hinzugefügt",
     "remove": "Entfernen",
-    "wishlist": {
+  "wishlist": {
+  },
+  "price_unit": "Preis pro Einheit",
       "add_to_wishlist": "Zur Wunschliste hinzufügen",
       "remove_from_wishlist": "Von der Wunschliste entfernen",
       "btn_label": "Zur Wunschliste hinzufügen"
@@ -187,6 +204,22 @@
     "all_rights_reserved": "Alle Rechte vorbehalten",
     "secure_payments": "Sichere Zahlungen",
     "newsletter": {
+    },
+    "loading": "Lädt…",
+    "policy": {
+      "default_title": "Richtlinie",
+      "default_content": "Standardinhalt der Richtlinie",
+      "last_updated": "Zuletzt aktualisiert"
+    },
+    "map": {
+      "address": "Adresse",
+      "email": "E-Mail",
+      "hours": "Öffnungszeiten",
+      "api_key_missing": "API-Schlüssel fehlt"
+    },
+    "accessibility": {
+      "back_to_top": "Zurück nach oben"
+    },
       "name_placeholder": "Geben Sie Ihren Namen ein",
       "input_label": "Geben Sie Ihre E-Mail ein",
       "submit_button": "Abonnieren",
@@ -439,6 +472,24 @@
       "return": "Bestellung zurückgeben"
     },
     "register": {
+    },
+    "activate_account": {
+      "password": "Passwort",
+      "password_confirm": "Passwort bestätigen",
+      "submit": "Absenden",
+      "cancel": "Abbrechen",
+      "subtext": "Bitte geben Sie Ihr Passwort ein"
+    },
+    "addresses": {
+      "title": "Adressen",
+      "tab_addresses": "Adressen",
+      "tab_add_new": "Neue Adresse hinzufügen",
+      "default": "Standardadresse",
+      "add_new": "Neue Adresse hinzufügen"
+    },
+    "order": {
+      "fulfilled_at_html": "Erfüllt am {{ date }}"
+    },
       "title": "Registrieren",
       "first_name": "Vorname",
       "last_name": "Nachname",
