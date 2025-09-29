@@ -1,0 +1,4 @@
+README.md      merge=ours
+.env.example   merge=ours
+.gitignore     merge=ours
+autocommit.sh  merge=ours
