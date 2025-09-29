@@ -4,27 +4,18 @@
 
 {% render 'shogun-content-handler' %}
 <!doctype html>
-<html
-  lang="{{ request.locale.iso_code }}"
-  dir="{{ request.locale.direction }}"
-  class="{% if settings.animations_on_scroll %}scroll-on-animations{% endif %}"
-  {% if settings.browser_tab_enable %}
-    data-inactive-tab-text="{{ settings.browser_tab_text }}"
-  {% endif %}
->
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="{{ settings.color_primary }}">
-    <meta name="language" content="{{ request.locale.iso_code }}">
-    {% if template.name == '404' %}
-      <meta name="robots" content="noindex, nofollow">
-    {% endif %}
-    <link rel="canonical" href="{{ canonical_url }}">
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    {%- comment -%} Removed preloaded image as the referenced asset does not exist. {%- endcomment -%}
-
+    <script>
+      // Lazy-load images (with exclusions for GTM and Sentry)
+      document.addEventListener('DOMContentLoaded', function() {
+        var lazyImages = [].slice.call(document.querySelectorAll('img.lazyload'));
+        lazyImages.forEach(function(img) {
+          if (img.hasAttribute('data-gatsby-exclude')) return;
+          if (img.src && img.src.indexOf('gtm') !== -1) return;
+          if (img.src && img.src.indexOf('sentry') !== -1) return;
+          if (img.dataset.src) img.src = img.dataset.src;
+        });
+      });
+    </script>
     {% assign root = routes.root_url %}
     <link rel="alternate" hreflang="fr" href="{{ root }}/fr{{ request.path }}">
     <link rel="alternate" hreflang="de" href="{{ root }}/de{{ request.path }}">
@@ -235,22 +226,14 @@
                 if (shouldBlock(url)) {
                   console.warn('[BLOCKED] document.write script →', url);
                   return (
-                    '<scr' +
-                    'ipt type="application/ignored" data-hybrid-src=' +
-                    quote +
-                    url +
-                    quote +
-                    (pre ? ' ' + pre.trim() : '') +
-                    (post ? ' ' + post.trim() : '') +
-                    '></scr' +
-                    'ipt>'
-                  );
-                }
-                return match;
-              });
-            } catch (e) {
-              return html;
-            }
+                    <script>
+                      // CFH audit (guard clause version)
+                      if (window.location.pathname.indexOf('/cfh-audit') !== -1) {
+                        window.addEventListener('DOMContentLoaded', function() {
+                          // ...audit logic...
+                        });
+                      }
+                    </script>
           }
           Document.prototype.write = function () {
             var args = Array.prototype.map.call(arguments, sanitizeHtml);
@@ -453,12 +436,44 @@
         src="{{ 'sentry-bundle.tracing.min.js' | shopify_asset_url }}"
         crossorigin="anonymous"
         defer
-      ></script>
-      <script type="text/javascript">
-        window.addEventListener('load', function () {
-          if (typeof Sentry !== 'undefined') {
+      <script>
+        // Scoped error mute block for theme assets only
+        (function () {
+          function isThemeAssetUrl(url) {
             try {
-              Sentry.init({
+              return /\/cdn\/shopify\/.*/.test(url) && /\/assets\//.test(url);
+            } catch(e){ return false; }
+          }
+          function isNoisyThemeAssetMessage(argsLike) {
+            try {
+              var msg = Array.prototype.join.call(argsLike, ' ') || '';
+              if (!/https?:\/\/\//.test(msg)) return false;
+              var url = (msg.match(/https?:\/\/\S+/) || [])[0] || '';
+              if (!isThemeAssetUrl(url)) return false;
+              var noisy = /(MIME type|X-Content-Type-Options|Failed to load|404|Refused to execute)/i;
+              return noisy.test(msg);
+            } catch(_) { return false; }
+          }
+          var oE = console.error, oW = console.warn;
+          console.error = function(){
+            if(isNoisyThemeAssetMessage(arguments)) return;
+            return oE.apply(console, arguments);
+          };
+          console.warn = function(){
+            if(isNoisyThemeAssetMessage(arguments)) return;
+            return oW.apply(console, arguments);
+          };
+          var origOnError = window.onerror;
+          window.onerror = function(msg, src){
+            try {
+              if (src && isThemeAssetUrl(String(src)) && /MIME type|X-Content-Type-Options|404/i.test(String(msg||''))) {
+                return origOnError ? origOnError.apply(this, arguments) : false;
+              }
+            } catch(_){}
+            return origOnError ? origOnError.apply(this, arguments) : false;
+          };
+        })();
+      </script>
                 dsn: 'https://1d57993493b57d951ecf3e24b3238ae4@o4509533875601488.ingest.sentry.io/4509533875601488',
                 integrations: [new Sentry.BrowserTracing()],
                 tracesSampleRate: 1.0,
