@@ -1,6 +1,5 @@
 {
-  "testimonials": {
-    "purchase": "Achat",
+  "customer": {
     "verified": "Vérifié"
   },
   "recipient": {
@@ -21,6 +20,7 @@
   },
   "collection": {
     "count_products": "{{ count }} produits"
+  },
   "general": {
     "offcanvas_search": {
       "view_all_results": "Voir tous les résultats",
