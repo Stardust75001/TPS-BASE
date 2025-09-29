@@ -57,7 +57,7 @@
       {%- if hl_short == default_lang -%}
         <link rel="alternate" hreflang="{{ hreflang }}" href="{{ base }}{{ href_path }}">
       {%- else -%}
-        <link rel="alternate" hreflang="{{ hreflang }}" href="{{ base }}/{{ hl }}{{ href_path }}">
+        <link rel="alternate" hreflang="{{ hreflang }}" href="{{ base }}/{{ hl_short }}{{ href_path }}">
       {%- endif -%}
     {%- endfor -%}
 
