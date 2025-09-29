@@ -22,7 +22,6 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
-
     {% comment %} Fusion balises hreflang dynamiques et fallback TEMP OK {% endcomment %}
     {% render 'lang-path-normalize', path: request.path %}
     {%- assign href_path = lang_base_path -%}
@@ -74,7 +73,6 @@
     {% render 'seo-meta-tags' %}
     {% render 'structured-data' %}
 
-
     <!-- SYSTÈME ANTI-ERREURS ULTRA-PRÉCOCE (fusion TEMP OK) -->
     <script>
       (function () {
@@ -91,41 +89,108 @@
           oW = console.warn;
         console.error = function () {
           var m = Array.prototype.join.call(arguments, ' ');
-          if (k.some(function (kw) { return m.indexOf(kw) !== -1; })) return;
+          if (
+            k.some(function (kw) {
+              return m.indexOf(kw) !== -1;
+            })
+          )
+            return;
           oE.apply(console, arguments);
         };
         console.warn = function () {
           var m = Array.prototype.join.call(arguments, ' ');
-          if (k.some(function (kw) { return m.indexOf(kw) !== -1; })) return;
+          if (
+            k.some(function (kw) {
+              return m.indexOf(kw) !== -1;
+            })
+          )
+            return;
           oW.apply(console, arguments);
         };
         window.onerror = function (msg) {
-          if (typeof msg === 'string' && k.some(function (kw) { return msg.indexOf(kw) !== -1; })) return true;
+          if (
+            typeof msg === 'string' &&
+            k.some(function (kw) {
+              return msg.indexOf(kw) !== -1;
+            })
+          )
+            return true;
           return false;
         };
-        window.addEventListener('error', function (e) {
-          var msg = e.message || e.error || '';
-          if (typeof msg === 'string' && k.some(function (kw) { return msg.indexOf(kw) !== -1; })) {
-            e.stopImmediatePropagation();
-            e.preventDefault();
-          }
-        }, true);
+        window.addEventListener(
+          'error',
+          function (e) {
+            var msg = e.message || e.error || '';
+            if (
+              typeof msg === 'string' &&
+              k.some(function (kw) {
+                return msg.indexOf(kw) !== -1;
+              })
+            ) {
+              e.stopImmediatePropagation();
+              e.preventDefault();
+            }
+          },
+          true
+        );
         // Fallbacks JS immédiats
         window.bootstrap = window.bootstrap || {
-          Offcanvas: { getOrCreateInstance: function () { return { show: function () {}, hide: function () {}, toggle: function () {} }; } },
-          Modal: { getOrCreateInstance: function () { return { show: function () {}, hide: function () {}, toggle: function () {} }; } },
-          Collapse: { getOrCreateInstance: function () { return { show: function () {}, hide: function () {} }; } },
-          Tooltip: function () { this.dispose = function () {}; },
-          Popover: { getOrCreateInstance: function () { return { dispose: function () {} }; } },
-          Carousel: { getOrCreateInstance: function () { return { to: function () {}, show: function () {}, hide: function () {} }; } },
+          Offcanvas: {
+            getOrCreateInstance: function () {
+              return { show: function () {}, hide: function () {}, toggle: function () {} };
+            },
+          },
+          Modal: {
+            getOrCreateInstance: function () {
+              return { show: function () {}, hide: function () {}, toggle: function () {} };
+            },
+          },
+          Collapse: {
+            getOrCreateInstance: function () {
+              return { show: function () {}, hide: function () {} };
+            },
+          },
+          Tooltip: function () {
+            this.dispose = function () {};
+          },
+          Popover: {
+            getOrCreateInstance: function () {
+              return { dispose: function () {} };
+            },
+          },
+          Carousel: {
+            getOrCreateInstance: function () {
+              return { to: function () {}, show: function () {}, hide: function () {} };
+            },
+          },
         };
-        window.Splide = window.Splide || function () { this.mount = function () {}; this.go = function () {}; this.on = function () {}; this.sync = function () {}; this.index = 0; };
-        window.GLightbox = window.GLightbox || function () { return { on: function () {}, destroy: function () {} }; };
+        window.Splide =
+          window.Splide ||
+          function () {
+            this.mount = function () {};
+            this.go = function () {};
+            this.on = function () {};
+            this.sync = function () {};
+            this.index = 0;
+          };
+        window.GLightbox =
+          window.GLightbox ||
+          function () {
+            return { on: function () {}, destroy: function () {} };
+          };
         // Script tag blocker pour assets
         try {
           var ALLOW_LIST = /asset-fallbacks\.js|hybrid-script-loader-v3\.js|base\.js/;
-          function isThemeAsset(url) { try { return /\/cdn\/shop\/t\//.test(url) && /\/assets\//.test(url); } catch (e) { return false; } }
-          function shouldBlock(url) { return isThemeAsset(url) && !ALLOW_LIST.test(url); }
+          function isThemeAsset(url) {
+            try {
+              return /\/cdn\/shop\/t\//.test(url) && /\/assets\//.test(url);
+            } catch (e) {
+              return false;
+            }
+          }
+          function shouldBlock(url) {
+            return isThemeAsset(url) && !ALLOW_LIST.test(url);
+          }
           function neutralizeScript(el) {
             var src = el.getAttribute('src');
             if (!src || !shouldBlock(src)) return null;
@@ -133,14 +198,33 @@
             repl.type = 'application/ignored';
             repl.setAttribute('data-hybrid-src', src);
             if (el.id) repl.id = el.id;
-            if (el.dataset) { Object.keys(el.dataset).forEach(function (k) { repl.dataset[k] = el.dataset[k]; }); }
+            if (el.dataset) {
+              Object.keys(el.dataset).forEach(function (k) {
+                repl.dataset[k] = el.dataset[k];
+              });
+            }
             return repl;
           }
-          Array.prototype.slice.call(document.querySelectorAll('script[src]')).forEach(function (s) { var repl = neutralizeScript(s); if (repl) s.replaceWith(repl); });
+          Array.prototype.slice.call(document.querySelectorAll('script[src]')).forEach(function (s) {
+            var repl = neutralizeScript(s);
+            if (repl) s.replaceWith(repl);
+          });
           var appendOriginal = Element.prototype.appendChild;
-          Element.prototype.appendChild = function (node) { if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) { var repl = neutralizeScript(node) || node; return appendOriginal.call(this, repl); } return appendOriginal.call(this, node); };
+          Element.prototype.appendChild = function (node) {
+            if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) {
+              var repl = neutralizeScript(node) || node;
+              return appendOriginal.call(this, repl);
+            }
+            return appendOriginal.call(this, node);
+          };
           var insertBeforeOriginal = Element.prototype.insertBefore;
-          Element.prototype.insertBefore = function (node, before) { if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) { var repl = neutralizeScript(node) || node; return insertBeforeOriginal.call(this, repl, before); } return insertBeforeOriginal.call(this, node, before); };
+          Element.prototype.insertBefore = function (node, before) {
+            if (node && node.tagName === 'SCRIPT' && node.src && shouldBlock(node.src)) {
+              var repl = neutralizeScript(node) || node;
+              return insertBeforeOriginal.call(this, repl, before);
+            }
+            return insertBeforeOriginal.call(this, node, before);
+          };
         } catch (e) {}
       })();
     </script>
@@ -241,19 +325,73 @@
             var domains = [/admin\.shopify\.com/i, /online-store-web\.shopifyapps\.com/i, /shopifycloud/i];
             function isNoise(args) {
               var msg = Array.prototype.join.call(args, ' ');
-              if (patterns.some(function (p) { return p.test(msg); })) return true;
-              if (domains.some(function (d) { return d.test(msg); })) return true;
+              if (
+                patterns.some(function (p) {
+                  return p.test(msg);
+                })
+              )
+                return true;
+              if (
+                domains.some(function (d) {
+                  return d.test(msg);
+                })
+              )
+                return true;
               return false;
             }
             var ow = console.warn,
               oe = console.error,
               ol = console.log;
-            console.warn = function () { if (isNoise(arguments)) return; return ow.apply(console, arguments); };
-            console.error = function () { if (isNoise(arguments)) return; return oe.apply(console, arguments); };
-            console.log = function () { if (isNoise(arguments)) return; return ol.apply(console, arguments); };
-            window.addEventListener('error', function (e) { try { var f = (e.filename || '') + ' ' + (e.message || ''); if (domains.some(function (d) { return d.test(f); })) { e.preventDefault(); e.stopImmediatePropagation(); } } catch (_) {} }, true);
-            window.addEventListener('unhandledrejection', function (e) { try { var r = (e.reason && (e.reason.stack || e.reason.message || String(e.reason))) || ''; if (domains.some(function (d) { return d.test(r); }) || /apollo/i.test(r)) { e.preventDefault(); e.stopImmediatePropagation(); } } catch (_) {} }, true);
-          } catch (e) { /* noop */ }
+            console.warn = function () {
+              if (isNoise(arguments)) return;
+              return ow.apply(console, arguments);
+            };
+            console.error = function () {
+              if (isNoise(arguments)) return;
+              return oe.apply(console, arguments);
+            };
+            console.log = function () {
+              if (isNoise(arguments)) return;
+              return ol.apply(console, arguments);
+            };
+            window.addEventListener(
+              'error',
+              function (e) {
+                try {
+                  var f = (e.filename || '') + ' ' + (e.message || '');
+                  if (
+                    domains.some(function (d) {
+                      return d.test(f);
+                    })
+                  ) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                  }
+                } catch (_) {}
+              },
+              true
+            );
+            window.addEventListener(
+              'unhandledrejection',
+              function (e) {
+                try {
+                  var r = (e.reason && (e.reason.stack || e.reason.message || String(e.reason))) || '';
+                  if (
+                    domains.some(function (d) {
+                      return d.test(r);
+                    }) ||
+                    /apollo/i.test(r)
+                  ) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                  }
+                } catch (_) {}
+              },
+              true
+            );
+          } catch (e) {
+            /* noop */
+          }
         })();
       </script>
     {% endif %}
