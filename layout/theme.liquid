@@ -516,6 +516,9 @@
     {% render 'image-drag' %}
     {% render 'whatsapp-button', aria_label: 'Contacter WhatsApp' %}
 
+    <div id="aria-live-region" aria-live="polite" aria-atomic="true" class="visually-hidden" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+      <!-- Notifications dynamiques accessibles -->
+    </div>
     <div class="header-sticky-group">
       {% section 'announcement-bar' %}
 
