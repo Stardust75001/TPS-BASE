@@ -42,7 +42,6 @@
     },
     "general": {
       "pagination_page_of": "Page {{ count }} sur {{ total }}"
-        "customer": {
     },
     "offcanvas_menu": {
       "title_customer": "Bonjour, {{ name }}"
@@ -83,8 +82,7 @@
         "qty": "Qté"
       }
     }
-  }
-  // ...existing code...
+  },
   "customer": {
     "addresses": {
       "country": "Pays",
@@ -180,8 +178,7 @@
       "submit_button": "S'abonner",
       "notice_html": "En vous inscrivant pour recevoir des emails, vous acceptez nos conditions générales et notre <a href=\"/pages/confidentialite\">politique de confidentialité</a>."
     }
-  }
-
+  },
   "sections": {
     "list_collections": {
       "collection": {
@@ -555,5 +552,5 @@
       "return": "Retourner la commande",
       "fulfilled_at_html": "Traitée le {{ date }}"
     }
-  }
+  },
 }
