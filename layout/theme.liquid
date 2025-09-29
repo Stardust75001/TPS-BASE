@@ -49,10 +49,15 @@
     {%- endif -%}
     {%- for hl in unique_langs -%}
       {%- assign hl_short = hl | split: '-' | first -%}
+      {%- assign parts = hl | split: '-' -%}
+      {%- assign hreflang = parts[0] -%}
+      {%- if parts.size > 1 -%}
+        {%- assign hreflang = hreflang | append: '-' | append: parts[1] | upcase -%}
+      {%- endif -%}
       {%- if hl_short == default_lang -%}
-        <link rel="alternate" hreflang="{{ hl }}" href="{{ base }}{{ href_path }}">
+        <link rel="alternate" hreflang="{{ hreflang }}" href="{{ base }}{{ href_path }}">
       {%- else -%}
-        <link rel="alternate" hreflang="{{ hl }}" href="{{ base }}/{{ hl }}{{ href_path }}">
+        <link rel="alternate" hreflang="{{ hreflang }}" href="{{ base }}/{{ hl }}{{ href_path }}">
       {%- endif -%}
     {%- endfor -%}
 
