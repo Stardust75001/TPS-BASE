@@ -443,5 +443,5 @@
       "return": "Retourner la commande",
       "fulfilled_at_html": "Traitée le {{ date }}"
     }
-  },
+  }
 }
