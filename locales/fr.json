@@ -15,15 +15,7 @@
     "disabled": "Désactivée",
     "expired_on": "Expirée le {{ date }}",
     "expires_on": "Expire le {{ date }}",
-    "balance": "Solde"
-  },
-    "order_status": {
-      "title": "Statut de la commande",
-      "thank_you": "Merci pour votre commande !",
-      "order_confirmed": "Commande confirmée",
-      "order_details": "Détails de la commande",
-      "order_number": "Numéro de commande",
-      "total": "Total",
+    {
       "email": "E-mail",
       "shipping_address": "Adresse de livraison",
       "continue_shopping": "Continuer vos achats"
@@ -63,15 +55,7 @@
         }
       }
     },
-    "colors": {
-      "white": {
-        "label": "Blanc"
-      },
-      "light": {
-        "label": "Clair"
-      },
-      "body": {
-        "label": "Texte"
+    {
       }
     },
     "alignment": {
