@@ -85,7 +85,10 @@
     "colors": {
       "white": { "label": "Blanc" },
       "light": { "label": "Clair" },
-      "body": { "label": "Corps", "option_subscription_save": "Économisez {{ value }}%" },
+      "body": {
+        "label": "Corps",
+        "option_subscription_save": "Économisez {{ value }}%"
+      },
       "qty_breaks": {
         "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
         "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
@@ -166,7 +169,7 @@
     "load_more": "Charger plus",
     "load_previous": "Charger les précédents"
   },
-  
+
   "no_reviews": "Aucun avis",
   "announcement": {
     "shipping_notice": "Livraison dans toute l'Europe (EEE)",
