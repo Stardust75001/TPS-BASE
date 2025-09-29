@@ -257,7 +257,8 @@
               img.closest('.header') ||
               img.closest('.hero') ||
               img.hasAttribute('data-critical') ||
-              img.getAttribute('fetchpriority') === 'high'
+              img.getAttribute('fetchpriority') === 'high' ||
+              img.fetchPriority === 'high'
             ) return;
             img.setAttribute('loading', 'lazy');
           });
