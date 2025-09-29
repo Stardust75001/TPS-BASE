@@ -27,15 +27,19 @@
     {%- if href_path != '' -%}{% assign href_path = href_path | prepend: '/' %}{%- endif -%}
 
     {% if request.design_mode %}
+      {% comment %} theme-check-disable RemoteAsset {% endcomment %}
       <link rel="alternate" hreflang="fr" href="{{ routes.root_url }}/fr{{ href_path }}">
       <link rel="alternate" hreflang="de" href="{{ routes.root_url }}/de{{ href_path }}">
       <link rel="alternate" hreflang="x-default" href="{{ routes.root_url }}{{ href_path }}">
       <link rel="alternate" hreflang="en" href="{{ routes.root_url }}{{ href_path }}">
+      {% comment %} theme-check-enable RemoteAsset {% endcomment %}
     {% else %}
+      {% comment %} theme-check-disable RemoteAsset {% endcomment %}
       <link rel="alternate" hreflang="fr" href="{{ shop.primary_domain.url }}/fr{{ href_path }}">
       <link rel="alternate" hreflang="de" href="{{ shop.primary_domain.url }}/de{{ href_path }}">
       <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ href_path }}">
       <link rel="alternate" hreflang="en" href="{{ shop.primary_domain.url }}{{ href_path }}">
+      {% comment %} theme-check-enable RemoteAsset {% endcomment %}
     {% endif %}
 
     {% unless settings.favicon == blank %}
