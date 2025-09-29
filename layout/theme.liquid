@@ -510,11 +510,11 @@
 
     <a class="visually-hidden-focusable" href="#main">{{ 'general.accessibility.skip_content' | t }}</a>
 
-    {% render 'right-clic' %}
-    {% render 'scroll-top' %}
-    {% render 'text-selection' %}
-    {% render 'image-drag' %}
-    {% render 'whatsapp-button' %}
+  {% render 'right-clic' %}
+  {% render 'scroll-top', aria_label: 'Remonter en haut de la page' %}
+  {% render 'text-selection' %}
+  {% render 'image-drag' %}
+  {% render 'whatsapp-button', aria_label: 'Contacter WhatsApp' %}
 
     <div class="header-sticky-group">
       {% section 'announcement-bar' %}
@@ -559,10 +559,43 @@
     </main>
 
     {% sections 'footer-group' %}
-    {% render 'offcanvas-cart' %}
-    {% render 'offcanvas-search' %}
-    {% render 'offcanvas-wishlist' %}
+  {% render 'offcanvas-cart', role: 'dialog' %}
+  {% render 'offcanvas-search', role: 'dialog' %}
+  {% render 'offcanvas-wishlist', role: 'dialog' %}
     {% render 'back-to-top' %}
+    <script>
+      // Focus trap minimal pour modals/offcanvas
+      document.addEventListener('DOMContentLoaded', function () {
+        function trapFocus(modal) {
+          var focusable = modal.querySelectorAll('a, button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
+          var first = focusable[0], last = focusable[focusable.length - 1];
+          modal.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+              if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault(); last.focus();
+              } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault(); first.focus();
+              }
+            }
+          });
+        }
+        function handleModalOpen(modal) {
+          trapFocus(modal);
+          var opener = document.activeElement;
+          modal.dataset.opener = opener ? opener : null;
+          setTimeout(function () {
+            var focusable = modal.querySelectorAll('a, button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
+            if (focusable.length) focusable[0].focus();
+          }, 100);
+        }
+        function handleModalClose(modal) {
+          var opener = modal.dataset.opener;
+          if (opener && typeof opener.focus === 'function') opener.focus();
+        }
+        // Expose for custom modals/offcanvas
+        window.AccessibilityModal = { open: handleModalOpen, close: handleModalClose };
+      });
+    </script>
 
     <!-- Scripts déplacés ici pour améliorer le LCP -->
     <script type="text/javascript" src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
