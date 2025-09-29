@@ -23,7 +23,7 @@
       "btn_label": "Zur Wunschliste"
     },
     "bundle": {
-      "custom_bundle": {
+        "custom_bundle": {
           "banner": {
             "form": {
               "properties": {
@@ -44,6 +44,7 @@
             "primary_button_label": "",
             "secondary_button_label": ""
           }
+        },
     "include_taxes": "Inkl. Steuern",
     "inventory_bar": {
       "label": "Lagerbestand",
@@ -73,7 +74,7 @@
     "product": "Produkt",
     "product_added_to_cart": "Produkt zum Warenkorb hinzugefügt",
     "remove": "Entfernen"
-  },
+    },
   "general": {
     "menu": "Menü",
     "all_rights_reserved": "Alle Rechte vorbehalten",
@@ -490,13 +491,14 @@
     }
   },
   "custom_sections": {
-    "banner": {
-      "form": {
-        "properties": {
-          "email_properties": "TODO"
-        }
-      }
-    }
+      "banner": {
+        "form": {
+          "properties": {
+            "email_properties": "TODO"
+          }
+        },
+        "heading": ""
+      },
       "image_banner": {
         "title": "",
         "text": "",
@@ -508,9 +510,6 @@
         "description": "",
         "primary_button_label": "",
         "secondary_button_label": ""
-      },
-      "banner": {
-        "heading": ""
       }
   }
 }
