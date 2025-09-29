@@ -46,7 +46,7 @@ fi
 
 # Detect changes post-sync
 if git diff --quiet && git diff --cached --quiet; then
-  echo "No changes to commit."  
+  echo "No changes to commit."
   exit 0
 fi
 
