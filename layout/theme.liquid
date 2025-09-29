@@ -23,9 +23,9 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {% assign root = routes.root_url %}
-  <link rel="alternate" hreflang="fr" href="{{ 'index.fr' | asset_url }}{{ request.path }}">
-  <link rel="alternate" hreflang="de" href="{{ 'index.de' | asset_url }}{{ request.path }}">
-  <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ request.path }}">
+    <link rel="alternate" hreflang="fr" href="{{ 'index.fr' | asset_url }}{{ request.path }}">
+    <link rel="alternate" hreflang="de" href="{{ 'index.de' | asset_url }}{{ request.path }}">
+    <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ request.path }}">
 
     {% unless settings.favicon == blank %}
       <link
