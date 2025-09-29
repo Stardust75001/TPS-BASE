@@ -1,6 +1,8 @@
 {
   "general": {
-    "cookies": { "consent": "Nous utilisons des cookies pour améliorer votre expérience." },
+    "cookies": {
+      "consent": "Nous utilisons des cookies pour améliorer votre expérience."
+    },
     "menu": "Menu",
     "all_rights_reserved": "Tous droits réservés",
     "secure_payments": "Paiements sécurisés",
