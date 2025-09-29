@@ -1,5 +1,4 @@
-// ...existing code...
-  // All keys from en.default.json are now present. French translations used where possible, otherwise placeholder: "[Traduction manquante]".
+{
   "sections": {
     "colors": {
       "white": { "label": "Blanc" },
@@ -10,69 +9,6 @@
         "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
         "label_text_html_bundle": "Lot de {{ qty }}"
       },
-      "stock_count": {
-        "one": "{{ count }} article en stock",
-        "other": "{{ count }} articles en stock"
-      },
-      "price_unit": "Prix unitaire"
-    },
-    "alignment": {
-      "left": "Gauche",
-      "verified_review": "Avis vérifié",
-      "view_all_results": "Voir tous les résultats",
-      "button": "Recherche",
-      "purchase": "Achat",
-      "verified": "Vérifié",
-      "center": "Centré"
-    },
-    "featured_collections": {
-      "form": {
-        "btn_label": "Envoyer comme cadeau",
-        "email_label": "Email du destinataire",
-        "name_label": "Nom du destinataire",
-        "message_label": "Message",
-        "date_label": "Date de livraison",
-        "date_placeholder": "AAAA-MM-JJ",
-        "properties": {
-          "email_properties": "Email du destinataire",
-          "name_properties": "Nom du destinataire",
-          "message_properties": "Message cadeau",
-          "date_properties": "Date de livraison"
-        }
-      },
-      "text": "Texte de description ici"
-    },
-    "multicolumn": {
-      "title_1": "Titre 1",
-      "text_1": "Texte 1",
-      "title_2": "Titre 2",
-      "text_2": "Texte 2",
-      "title_3": "Titre 3",
-      "text_3": "Texte 3"
-    },
-    "section_1": "Section personnalisée 1",
-    "section_2": "Section personnalisée 2",
-    "list_collections": {
-      "name": "Collections",
-      "settings": {
-        "show_breadcrumbs": { "label": "Afficher le fil d’Ariane" },
-        "text_align": { "label": "Alignement du texte" },
-        "bg_color": { "label": "Couleur de fond" }
-      }
-    }
-  },
-  "product": {
-    "sold_out": "Épuisé",
-    "price_sale": "Prix promotionnel",
-    "price_regular": "Prix normal",
-    "price_from": "À partir de ",
-    "color_options": "Options de couleur",
-    "color_swatches": "Nuanciers",
-    "in_stock": "En stock",
-    "out_of_stock": "Rupture de stock",
-    "product": "Produit",
-    "product_added_to_cart": "Produit ajouté au panier",
-    "remove": "Supprimer",
     "price_unit": "Prix par unité",
     "wishlist": {
       "add_to_wishlist": "Ajouter à la liste de souhaits",
@@ -93,71 +29,6 @@
         "bundle_contents_title": "Contenu du lot",
         "bundle_contents_empty_html": "Le lot est vide pour l’instant",
         "qty": "Qté"
-      }
-    },
-    "add": "Ajouter",
-    "add_to_cart": "Ajouter au panier",
-    "bought_together": {
-      "add_selected_to_cart": "Ajouter la sélection au panier",
-      "select_this": "Sélectionner ceci",
-      "this_item": "Cet article",
-      "total_price": "Prix total"
-    },
-    "buy_it_now": "Acheter maintenant",
-    "include_taxes": "Taxes incluses",
-    "inventory_bar": {
-      "label": "Niveau de stock",
-      "sold_out": "Épuisé",
-      "untracked": "Disponibilité limitée",
-      "verylow_html": "Plus que {{ count }} en stock !",
-      "low_html": "{{ count }} articles restants",
-      "normal_html": "{{ count }} disponibles",
-      "social_media_links": "Liens réseaux sociaux",
-      "clear_filter": "Effacer le filtre",
-      "max_range_notice": "Plage maximale : {{ max }}"
-    },
-    "count_products": "{{ count }} produits",
-    "pagination_page_of": "Page {{ count }} sur {{ total }}"
-  },
-  "cart": {
-    "title": "Votre panier",
-    "quantity": "Quantité",
-    "subtotal": "Sous-total",
-    "checkout": "Commander",
-    "view_file": "Voir le fichier",
-    "taxes_shipping_at_checkout_html": "Taxes et livraison calculées à la commande.",
-    "alert_item_added": "Article ajouté au panier.",
-    "alert_items_added": "Articles ajoutés au panier.",
-    "alert_cart_updated": "Panier mis à jour avec succès.",
-    "empty_html": "Votre panier est vide.",
-    "continue_shopping": "Continuer vos achats",
-    "shipping_rates": {
-      "modal_title": "Tarifs de livraison",
-      "no_results_found": "Aucun tarif de livraison trouvé pour votre adresse.",
-      "modal_button_label": "Calculer les frais de livraison",
-      "button_label": "Calculer les frais de livraison"
-    },
-    "note_label": "Note de commande",
-    "note_placeholder": "Entrez une note pour votre commande",
-    "note_button": "Enregistrer la note",
-    "note_saved": "Note enregistrée avec succès",
-    "empty_products_title": "Votre panier est vide",
-    "remove": "Supprimer",
-    "subtotal_discounted": "Sous-total remisé",
-    "subtotal_regular": "Sous-total",
-    "summary": "Résumé",
-    "view_cart": "Voir le panier"
-  },
-  "blogs": {
-    "filter_by": "Filtrer par sujet",
-    "all_topics": "Tous les sujets",
-    "posted_in": "Publié dans"
-  },
-  "shopify": {
-    "checkout": {
-      "payment": {
-        "payment_method_incompatible_with_payment_terms": "Moyen de paiement incompatible avec les conditions de paiement."
-      },
       "review": {
         "blocks": { "company_location": "Localisation de l'entreprise" }
       }
@@ -248,9 +119,6 @@
   "textWishlistRemove": "Retirer de la liste de souhaits",
   "textWishlistBtnLabel": "Liste de souhaits",
   "shared": "Partagé",
-  "bundle": {
-    "label": "Lot"
-  },
   "custom": {
     "title": "Personnalisé",
     "description": "Personnalisez votre sélection"
