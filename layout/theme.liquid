@@ -251,12 +251,17 @@
     {% endif %}
     <!-- Lazy-load images (exclusions) -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('img:not([loading])').forEach(function (img) {
-          if (img.closest('.header') || img.closest('.hero') || img.hasAttribute('data-critical')) return;
-          img.setAttribute('loading', 'lazy');
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('img:not([loading])').forEach(function (img) {
+            if (
+              img.closest('.header') ||
+              img.closest('.hero') ||
+              img.hasAttribute('data-critical') ||
+              img.getAttribute('fetchpriority') === 'high'
+            ) return;
+            img.setAttribute('loading', 'lazy');
+          });
         });
-      });
     </script>
 
     <!-- Hybrid loader config -->
@@ -425,6 +430,7 @@
   <body class="{{ request.page_type | prepend: 'page-type-' }}">
     <!-- Google Tag Manager -->
     <script>
+      // GTM ID unified: GTM-5WN7CP9V (prod)
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -434,13 +440,13 @@
         j.async = true;
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-PMRBM6JM');
+      })(window, document, 'script', 'dataLayer', 'GTM-5WN7CP9V');
     </script>
     <!-- End Google Tag Manager -->
     <!-- Google Tag Manager (noscript) -->
     <noscript>
       <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-PMRBM6JM"
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5WN7CP9V"
         height="0"
         width="0"
         style="display:none;visibility:hidden"
