@@ -25,9 +25,6 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- comment -%} Removed preloaded image as the referenced asset does not exist. {%- endcomment -%}
 
-    <link rel="alternate" hreflang="fr" href="{{ canonical_url | replace: '/de', '/fr' }}">
-    <link rel="alternate" hreflang="de" href="{{ canonical_url | replace: '/fr', '/de' }}">
-    <link rel="alternate" hreflang="x-default" href="{{ canonical_url | replace: '/fr', '' | replace: '/de', '' }}">
     {% assign root = routes.root_url %}
     <link rel="alternate" hreflang="fr" href="{{ root }}/fr{{ request.path }}">
     <link rel="alternate" hreflang="de" href="{{ root }}/de{{ request.path }}">
