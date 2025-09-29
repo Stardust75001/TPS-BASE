@@ -75,7 +75,7 @@
       }
     },
     "header": "Header",
-  "footer": "Footer"
+    "footer": "Footer"
   },
 
   "collection": {
@@ -134,9 +134,9 @@
     "wishlist": {
       "add_to_wishlist": "Add to wishlist",
       "remove_from_wishlist": "Remove from wishlist",
-  "btn_label": "Add to wishlist",
-  "view_all_results": "View all results",
-  "button": "Button"
+      "btn_label": "Add to wishlist",
+      "view_all_results": "View all results",
+      "button": "Button"
     },
     "bundle": {
       "custom_bundle": {
@@ -187,8 +187,8 @@
   },
 
   "general": {
-  "menu": "Menu",
-  "social_media_links": "Social media links",
+    "menu": "Menu",
+    "social_media_links": "Social media links",
     "all_rights_reserved": "All rights reserved",
     "secure_payments": "Secure payments",
 

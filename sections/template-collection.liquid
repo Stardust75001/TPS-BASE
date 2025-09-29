@@ -66,55 +66,50 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                 <div class="collection-header-img-blur" style="backdrop-filter: blur({{ section.settings.img_blur }}px);">
                 </div>
             {% endif %}
-            <div class="container">
-                    <h1 class="collection-title mb-0 {{ section.settings.title_size }} animate__animated animate__faster opacity-0"
-                        {% if settings.effect_apply_title_enable %}
-                          data-animate-class="{{ settings.animation_title_name }}"
-                          style="animation-delay: 200ms;"
-                        {% endif %}>
-{% if collection.metafields.global.ref_variant_id %}
-  <div class="collection-ref-variant-id mb-2" style="font-weight: 500; font-size: 1rem;">
-    {{ 'custom.ref_variant_label' | t }} : {{ collection.metafields.global.ref_variant_id.value }}
-  </div>
-{% endif %}
-
-<h1 class="collection-title mb-0 {{ section.settings.title_size }} animate__animated animate__faster opacity-0"
-    {% if settings.effect_apply_title_enable %}
-      data-animate-class="{{ settings.animation_title_name }}"
-      style="animation-delay: 200ms;"
-    {% endif %}>                     {% if settings.custom_svg_h2 != blank %}
-                          <div class="h2_svg animate__animated animate__faster opacity-0"
-                                {% if settings.effect_apply_svg_enable %}
-                                  data-animate-class="{{ settings.animation_svg_name }}"
-                                  style="animation-delay: 400ms;"
-                                {% endif %}>
-                            <span style="fill:{{ settings.color_svg_h2 }}; width:{{ settings.width_svg_h2 }}rem;"> {{ settings.custom_svg_h2 }}</span>
-                          </div>
-                        {% else %}
-                          {% if settings.svg_h2 != 'none' %}
-                            <div class="h2_svg mb-4 animate__animated animate__faster opacity-0"
-                                  {% if settings.effect_apply_svg_enable %}
-                                    data-animate-class="{{ settings.animation_svg_name }}"
-                                    style="animation-delay: 400ms;"
-                                  {% endif %}>
-                              <span style="fill:{{ settings.color_svg_h2 }}; width:{{ settings.width_svg_h2 }}rem;"> {% render 'svg-subtitle', svg_h2: settings.svg_h2 %}</span>
-                            </div>
-                          {% endif %}
-                        {% endif %}
-                    </h1>
-                {% if section.settings.show_collection_description and collection.description != blank %}
-                    <div
-                        class="animate__animated animate__faster opacity-0"
-                        {% if settings.effect_apply_description_enable %}
-                          data-animate-class="{{ settings.animation_description_name }}"
-                          style="animation-delay: 600ms;"
-                        {% endif %}>
-                        <div class="description rte mt-3 mb-0 {{ section.settings.description_size }}">
-                            {{ collection.description }}
+                        <div class="container">
+                                {% if collection.metafields.global.ref_variant_id %}
+                                    <div class="collection-ref-variant-id mb-2" style="font-weight: 500; font-size: 1rem;">
+                                        {{ 'custom.ref_variant_label' | t }} : {{ collection.metafields.global.ref_variant_id.value }}
+                                    </div>
+                                {% endif %}
+                                <h1 class="collection-title mb-0 {{ section.settings.title_size }} animate__animated animate__faster opacity-0"
+                                        {% if settings.effect_apply_title_enable %}
+                                            data-animate-class="{{ settings.animation_title_name }}"
+                                            style="animation-delay: 200ms;"
+                                        {% endif %}>
+                                        {% if settings.custom_svg_h2 != blank %}
+                                            <div class="h2_svg animate__animated animate__faster opacity-0"
+                                                        {% if settings.effect_apply_svg_enable %}
+                                                            data-animate-class="{{ settings.animation_svg_name }}"
+                                                            style="animation-delay: 400ms;"
+                                                        {% endif %}>
+                                                <span style="fill:{{ settings.color_svg_h2 }}; width:{{ settings.width_svg_h2 }}rem;"> {{ settings.custom_svg_h2 }}</span>
+                                            </div>
+                                        {% else %}
+                                            {% if settings.svg_h2 != 'none' %}
+                                                <div class="h2_svg mb-4 animate__animated animate__faster opacity-0"
+                                                            {% if settings.effect_apply_svg_enable %}
+                                                                data-animate-class="{{ settings.animation_svg_name }}"
+                                                                style="animation-delay: 400ms;"
+                                                            {% endif %}>
+                                                    <span style="fill:{{ settings.color_svg_h2 }}; width:{{ settings.width_svg_h2 }}rem;"> {% render 'svg-subtitle', svg_h2: settings.svg_h2 %}</span>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                </h1>
+                                {% if section.settings.show_collection_description and collection.description != blank %}
+                                        <div
+                                                class="animate__animated animate__faster opacity-0"
+                                                {% if settings.effect_apply_description_enable %}
+                                                    data-animate-class="{{ settings.animation_description_name }}"
+                                                    style="animation-delay: 600ms;"
+                                                {% endif %}>
+                                                <div class="description rte mt-3 mb-0 {{ section.settings.description_size }}">
+                                                        {{ collection.description }}
+                                                </div>
+                                        </div>
+                                {% endif %}
                         </div>
-                    </div>
-                {% endif %}
-            </div>
         </header>
     {% else %}
         <header class="collection-header pt-11 mb-8 mb-lg-9">
