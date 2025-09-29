@@ -18,7 +18,68 @@
     "balance": "Guthaben"
   },
 
-  // All keys from en.default.json are now present. German translations used where possible, otherwise placeholder: "[Übersetzung fehlt]".
+  "testimonials": {
+    "verified_review": "Verifizierte Bewertung",
+    "purchase": "Kauf",
+    "verified": "Verifiziert"
+  },
+  "recipient": {
+    "form": {
+      "btn_label": "Als Geschenk senden",
+      "email_label": "E-Mail des Empfängers",
+      "name_label": "Name des Empfängers",
+      "message_label": "Nachricht",
+      "date_label": "Lieferdatum",
+      "date_placeholder": "JJJJ-MM-TT",
+      "properties": {
+        "email_properties": "E-Mail des Empfängers",
+        "name_properties": "Name des Empfängers",
+        "message_properties": "Geschenknachricht",
+        "date_properties": "Lieferdatum"
+      }
+    }
+  },
+  "collection": {
+    "count_products": "{{ count }} Produkte",
+    "filters": {
+      "clear_all": "Alle Filter löschen",
+      "view_results": "Ergebnisse anzeigen"
+    }
+  },
+  "custom": {
+    "ref_variant_label": "Referenzvariante"
+  },
+  "general": {
+    "offcanvas_search": {
+      "view_all_results": "Alle Ergebnisse anzeigen",
+      "button": "Suche"
+    },
+    "accessibility": {
+      "social_media_links": "Social-Media-Links"
+    },
+    "general": {
+      "pagination_page_of": "Seite {{ count }} von {{ total }}"
+    },
+    "offcanvas_menu": {
+      "title_customer": "Willkommen, {{ name }}"
+    }
+  },
+  "product": {
+    "price_unit": "Preis pro Einheit",
+    "stock_count": {
+      "one": "{{ count }} Artikel auf Lager",
+      "other": "{{ count }} Artikel auf Lager"
+    },
+    "qty_breaks": {
+      "label_text_html": "Kaufe {{ qty }} für {{ pricecash }} — spare {{ save }}",
+      "label_text_html_bundle_header": "Bundle-Preis {{ pricecash }} — spare {{ save }}",
+      "label_text_html_bundle": "Bundle mit {{ qty }}"
+    },
+    "purchase_options": {
+      "option_subscription_save": "Spare {{ value }}%"
+    },
+    "wishlist": {
+      "add_to_wishlist": "Zur Wunschliste hinzufügen",
       "remove_from_wishlist": "Von der Wunschliste entfernen",
       "btn_label": "Zur Wunschliste"
     },
@@ -34,36 +95,10 @@
         "button_atc_text": "In den Warenkorb",
         "button_view_contents_text": "Bundle-Inhalt ansehen",
         "bundle_contents_title": "Bundle-Inhalt",
-        "bundle_contents_empty_html": "Das Bundle ist derzeit leer"
+        "bundle_contents_empty_html": "Das Bundle ist derzeit leer",
+        "qty": "Stk."
       }
-    },
-    "add": "Hinzufügen",
-    "add_to_cart": "In den Warenkorb",
-    "bought_together": {
-      "add_selected_to_cart": "Ausgewählte in den Warenkorb",
-      "select_this": "Dieses auswählen",
-      "this_item": "Dieser Artikel",
-      "total_price": "Gesamtpreis"
-    },
-    "buy_it_now": "Jetzt kaufen",
-    "include_taxes": "Inkl. Steuern",
-    "inventory_bar": {
-      "label": "Lagerbestand",
-      "sold_out": "Ausverkauft",
-      "untracked": "Verfügbarkeit begrenzt",
-      "verylow_html": "Nur noch {{ count }} auf Lager!",
-      "low_html": "Noch {{ count }} Artikel verfügbar",
-      "normal_html": "{{ count }} verfügbar"
-    },
-    "product_options": "Produktoptionen",
-    "purchase_options": {
-      "option_deliver_every": "Liefern alle",
-      "option_one_time": "Einmalkauf",
-      "option_subscription": "Abonnement"
-    },
-    "quantity": "Menge",
-    "save": "Speichern",
-    "select_variant": "Variante wählen"
+    }
   },
 
   "general": {
