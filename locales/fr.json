@@ -1,9 +1,5 @@
 {
   "customer": {
-    "verified": "Vérifié"
-  },
-  "recipient": {
-    "form": {
       "btn_label": "Envoyer comme cadeau",
       "email_label": "Email du destinataire",
       "name_label": "Nom du destinataire",
@@ -17,7 +13,7 @@
         "date_properties": "Date de livraison"
       }
     }
-  },
+  }
   "collection": {
     "count_products": "{{ count }} produits"
   },
