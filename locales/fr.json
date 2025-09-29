@@ -28,7 +28,9 @@
     }
   },
   "custom": {
-    "ref_variant_label": "Variante de référence"
+    "ref_variant_label": "Variante de référence",
+    "title": "Personnalisé",
+    "description": "Personnalisez votre sélection"
   },
   "general": {
     "offcanvas_search": {
@@ -81,41 +83,7 @@
       }
     }
   }
-  "sections": {
-    "colors": {
-      "white": { "label": "Blanc" },
-      "light": { "label": "Clair" },
-      "body": { "label": "Corps", "option_subscription_save": "Économisez {{ value }}%" },
-      "qty_breaks": {
-        "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
-        "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
-        "label_text_html_bundle": "Lot de {{ qty }}"
-      },
-    "price_unit": "Prix par unité",
-    "wishlist": {
-      "add_to_wishlist": "Ajouter à la liste de souhaits",
-      "remove_from_wishlist": "Retirer de la liste de souhaits",
-      "btn_label": "Ajouter à la liste de souhaits"
-    },
-    "bundle": {
-      "custom_bundle": {
-        "add_to_bundle": "Ajouter au lot",
-        "added_to_bundle": "Ajouté au lot",
-        "progress_label": "Avancement de l'offre",
-        "progress_uncompleted_text": "Non terminé",
-        "progress_completed_text": "Terminé",
-        "bundle_price": "Prix du lot",
-        "you_save": "Vous économisez",
-        "button_atc_text": "Ajouter au panier",
-        "button_view_contents_text": "Voir le contenu du lot",
-        "bundle_contents_title": "Contenu du lot",
-        "bundle_contents_empty_html": "Le lot est vide pour l’instant",
-        "qty": "Qté",
-      "review": {
-        "blocks": { "company_location": "Localisation de l'entreprise" }
-      }
-    }
-  },
+  // ...existing code...
   "customer": {
     "addresses": {
       "country": "Pays",
@@ -214,8 +182,6 @@
       "notice_html": "En vous inscrivant pour recevoir des emails, vous acceptez nos conditions générales et notre <a href=\"/pages/confidentialite\">politique de confidentialité</a>."
     }
   }
-  }
-  ,
   "sections": {
     "colors": {
       "white": { "label": "Blanc" },
