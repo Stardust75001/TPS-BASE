@@ -1,73 +1,70 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Simple automated backup script for Shopify theme repo
-# 1. Pull latest remote (Git + Shopify) changes
-# 2. Theme pull (if Shopify CLI context available)
-# 3. Commit and push any differences with timestamp
+# Required env:
+#   SHOPIFY_FLAG_STORE (e.g., f6d72e-0f.myshopify.com)
+#   THEME_ID (e.g., 187147125084)
+#   SHOPIFY_CLI_THEME_TOKEN (private app/theme token)
+# Optional:
+#   GH_PAT (fallback if GITHUB_TOKEN isn’t available)
 
-BRANCH="main"
-TIMESTAMP=$(date +"%Y-%m-%dT%H:%M:%S%z")
-
-# Ensure we are at repo root
-cd "$(dirname "$0")"
-
-# Stash uncommitted local WIP (if any) to avoid merge conflicts in CI context
-if ! git diff --quiet || ! git diff --cached --quiet; then
-  echo "Uncommitted changes detected. Stashing before backup commit..."
-  git stash push -u -m "pre-backup-$TIMESTAMP" || true
-  STASHED=1
-else
-  STASHED=0
+if [[ -z "${SHOPIFY_FLAG_STORE:-}" || -z "${THEME_ID:-}" || -z "${SHOPIFY_CLI_THEME_TOKEN:-}" ]]; then
+  echo "Missing required env vars. Ensure SHOPIFY_FLAG_STORE, THEME_ID, SHOPIFY_CLI_THEME_TOKEN are set."
+  exit 1
 fi
 
-echo "Pulling latest from origin/$BRANCH..."
-git fetch origin "$BRANCH" --quiet
-git checkout "$BRANCH" >/dev/null 2>&1 || git checkout -b "$BRANCH"
-git pull --rebase origin "$BRANCH" --quiet || true
+# Date stamp
+STAMP="$(date -u +"%Y-%m-%d_%H-%M-%S_UTC")"
+DEST_DIR="backups/${THEME_ID}/${STAMP}"
 
-# Shopify theme pull (optional) - only run if CLI + shop configured
-if command -v shopify >/dev/null 2>&1; then
-  echo "Attempting shopify theme pull (non-fatal if fails)..."
-  if [ -z "$SHOPIFY_FLAG_STORE" ]; then
-    echo "ERROR: SHOPIFY_FLAG_STORE environment variable is not set."
-    echo "Set SHOPIFY_FLAG_STORE to your-store.myshopify.com before running this script."
-    exit 1
-  fi
-  echo "Attempting shopify theme pull for store: $SHOPIFY_FLAG_STORE (non-fatal if fails)..."
-  shopify theme pull --store="$SHOPIFY_FLAG_STORE" || true
-fi
+echo "→ Creating destination: ${DEST_DIR}"
+mkdir -p "${DEST_DIR}"
 
-# Restore stashed local changes if we stashed
-if [ "$STASHED" -eq 1 ]; then
-  echo "Restoring stashed changes..."
-  git stash pop || true
-fi
+# Make sure Shopify CLI sees the token non-interactively
+export SHOPIFY_CLI_TTY="0"
 
-# Detect changes post-sync
-if git diff --quiet && git diff --cached --quiet; then
-  echo "No changes to commit."
+echo "→ Downloading theme ${THEME_ID} from ${SHOPIFY_FLAG_STORE}…"
+shopify theme download \
+  --store "${SHOPIFY_FLAG_STORE}" \
+  --theme-id "${THEME_ID}" \
+  --path "${DEST_DIR}" \
+  --ignored-file default # don’t rely on local ignore; grab everything
+
+# Optional: write a small manifest for traceability
+cat > "${DEST_DIR}/.backup-manifest.json" <<EOF
+{
+  "store": "${SHOPIFY_FLAG_STORE}",
+  "theme_id": "${THEME_ID}",
+  "timestamp": "${STAMP}"
+}
+EOF
+
+# Normalize line endings just in case
+git add -A
+CHANGES="$(git status --porcelain || true)"
+
+if [[ -z "${CHANGES}" ]]; then
+  echo "→ No changes to commit."
   exit 0
 fi
 
-echo "Staging and committing backup snapshot..."
-# Add all (could refine with a .backupignore if needed later)
-git add .
+echo "→ Committing backup…"
+git add -A
+git commit -m "backup(theme:${THEME_ID}) ${STAMP}"
 
-SHORT_HASH=$(git rev-parse --short HEAD || echo "nohash")
-COMMIT_MSG="chore(backup): automatic snapshot ${TIMESTAMP} (base ${SHORT_HASH})"
-
-git commit -m "$COMMIT_MSG" || {
-  echo "Nothing to commit after staging."; exit 0; }
-
-if [ -z "$GH_PAT" ]; then
-  echo "ERROR: GH_PAT environment variable is not set."
-  echo "Set GH_PAT to a GitHub Personal Access Token with repo write access."
-  exit 1
+# Prefer GitHub Actions GITHUB_TOKEN; fallback to GH_PAT if provided
+REMOTE_URL="$(git config --get remote.origin.url)"
+if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+  echo "→ Pushing with GITHUB_TOKEN"
+  AUTH_URL="${REMOTE_URL/https:\/\//https:\/\/x-access-token:${GITHUB_TOKEN}@}"
+  git push "${AUTH_URL}" HEAD:$(git rev-parse --abbrev-ref HEAD)
+elif [[ -n "${GH_PAT:-}" ]]; then
+  echo "→ Pushing with GH_PAT"
+  AUTH_URL="${REMOTE_URL/https:\/\//https:\/\/${GH_PAT}@}"
+  git push "${AUTH_URL}" HEAD:$(git rev-parse --abbrev-ref HEAD)
+else
+  echo "⚠️ No GITHUB_TOKEN or GH_PAT available; skipping push."
+  exit 0
 fi
-echo "Setting git remote to use Personal Access Token for authentication..."
-git remote set-url origin "https://x-access-token:$GH_PAT@github.com/Stardust75001/TPS-BASE.git"
-echo "Pushing to origin/$BRANCH..."
-git push origin "$BRANCH"
 
-echo "Backup complete."
+echo "✅ Backup complete."
