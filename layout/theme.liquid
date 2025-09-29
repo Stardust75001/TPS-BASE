@@ -23,9 +23,9 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {% assign root = routes.root_url %}
-    <link rel="alternate" hreflang="fr" href="{{ root }}/fr{{ request.path }}">
-    <link rel="alternate" hreflang="de" href="{{ root }}/de{{ request.path }}">
-    <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ request.path }}">
+  <link rel="alternate" hreflang="fr" href="{{ 'index.fr' | asset_url }}{{ request.path }}">
+  <link rel="alternate" hreflang="de" href="{{ 'index.de' | asset_url }}{{ request.path }}">
+  <link rel="alternate" hreflang="x-default" href="{{ shop.primary_domain.url }}{{ request.path }}">
 
     {% unless settings.favicon == blank %}
       <link
@@ -422,9 +422,15 @@
           {% render 'social-icons-no-flags' %}
         </div>
         <div class="language-selector-right">
-          <a href="/fr"><img src="{{ 'flag-fr.png' | asset_url }}" class="flag-icon" alt="FR" width="24" height="16"></a>
-          <a href="{{ routes.root_url }}"><img src="{{ 'flag-en.png' | asset_url }}" class="flag-icon" alt="EN" width="24" height="16"></a>
-          <a href="/de"><img src="{{ 'flag-de.png' | asset_url }}" class="flag-icon" alt="DE" width="24" height="16"></a>
+          <a href="/fr"
+            ><img src="{{ 'flag-fr.png' | asset_url }}" class="flag-icon" alt="FR" width="24" height="16"
+          ></a>
+          <a href="{{ routes.root_url }}"
+            ><img src="{{ 'flag-en.png' | asset_url }}" class="flag-icon" alt="EN" width="24" height="16"
+          ></a>
+          <a href="/de"
+            ><img src="{{ 'flag-de.png' | asset_url }}" class="flag-icon" alt="DE" width="24" height="16"
+          ></a>
         </div>
       </div>
 
