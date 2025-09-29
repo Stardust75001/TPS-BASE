@@ -12,17 +12,38 @@
         "name_properties": "Nom du destinataire",
         "message_properties": "Message cadeau",
         "date_properties": "Date de livraison"
+        "option_deliver_every": "",
+        "option_one_time": "",
+        "option_subscription": ""
       }
     }
   },
   "collection": {
     "count_products": "{{ count }} produits"
+        "view_all_results": "",
+        "button": ""
   },
   "general": {
     "offcanvas_search": {
       "view_all_results": "Voir tous les résultats",
+          "add_to_bundle": "",
+          "added_to_bundle": "",
+          "progress_label": "",
+          "progress_uncompleted_text": "",
+          "progress_completed_text": "",
+          "bundle_price": "",
+          "you_save": "",
+          "button_atc_text": "",
+          "button_view_contents_text": "",
+          "bundle_contents_title": "",
+          "bundle_contents_empty_html": ""
       "button": "Recherche"
     },
+      "product_options": "",
+      "quantity": "",
+      "save": "",
+      "select_variant": "",
+      "question_of_html": ""
     "accessibility": {
       "social_media_links": "Liens réseaux sociaux"
     },
