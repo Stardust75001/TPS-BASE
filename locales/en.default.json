@@ -11,6 +11,7 @@
     "instructions": "Use this code at checkout to redeem your gift card.",
     "print": "Print",
     "start_shopping": "Start shopping",
+    "ref_variant_label": "Reference variant",
     "disabled": "Disabled",
     "expired_on": "Expired on {{ date }}",
     "expires_on": "Expires on {{ date }}",
@@ -74,7 +75,7 @@
       }
     },
     "header": "Header",
-    "footer": ""
+  "footer": "Footer"
   },
 
   "collection": {
@@ -133,7 +134,9 @@
     "wishlist": {
       "add_to_wishlist": "Add to wishlist",
       "remove_from_wishlist": "Remove from wishlist",
-      "btn_label": "Add to wishlist"
+  "btn_label": "Add to wishlist",
+  "view_all_results": "View all results",
+  "button": "Button"
     },
     "bundle": {
       "custom_bundle": {
@@ -170,6 +173,8 @@
       "normal_html": "{{ count }} available"
     },
     "product_options": "Product options",
+    "question_of_html": "Question HTML",
+    "title_customer": "Customer title",
     "purchase_options": {
       "option_deliver_every": "Deliver every",
       "option_one_time": "One-time purchase",
@@ -182,7 +187,8 @@
   },
 
   "general": {
-    "menu": "Menu",
+  "menu": "Menu",
+  "social_media_links": "Social media links",
     "all_rights_reserved": "All rights reserved",
     "secure_payments": "Secure payments",
 

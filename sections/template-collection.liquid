@@ -32,8 +32,8 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
     endfor
 %}
 
-<div 
-    id="collection-{{ collection.id }}" 
+<div
+    id="collection-{{ collection.id }}"
     class="collection pb-11 {{ section.settings.text_align }}">
     {% if section.settings.show_collection_img and collection.image != blank %}
   <header class="collection-header collection-header-img py-12 py-xl-14 mb-8 mb-lg-9 enter-view">
@@ -84,7 +84,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
       style="animation-delay: 200ms;"
     {% endif %}>                     {% if settings.custom_svg_h2 != blank %}
                           <div class="h2_svg animate__animated animate__faster opacity-0"
-                                {% if settings.effect_apply_svg_enable %} 
+                                {% if settings.effect_apply_svg_enable %}
                                   data-animate-class="{{ settings.animation_svg_name }}"
                                   style="animation-delay: 400ms;"
                                 {% endif %}>
@@ -93,7 +93,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                         {% else %}
                           {% if settings.svg_h2 != 'none' %}
                             <div class="h2_svg mb-4 animate__animated animate__faster opacity-0"
-                                  {% if settings.effect_apply_svg_enable %} 
+                                  {% if settings.effect_apply_svg_enable %}
                                     data-animate-class="{{ settings.animation_svg_name }}"
                                     style="animation-delay: 400ms;"
                                   {% endif %}>
@@ -103,9 +103,9 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                         {% endif %}
                     </h1>
                 {% if section.settings.show_collection_description and collection.description != blank %}
-                    <div 
+                    <div
                         class="animate__animated animate__faster opacity-0"
-                        {% if settings.effect_apply_description_enable %} 
+                        {% if settings.effect_apply_description_enable %}
                           data-animate-class="{{ settings.animation_description_name }}"
                           style="animation-delay: 600ms;"
                         {% endif %}>
@@ -155,8 +155,8 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
             <div class="{{ section.settings.container }}">
                 <ul class="nav mt-n2 mb-6 {{ section.settings.collections_menu_align }}">
                     {% for link in linklists[section.settings.collections_menu].links %}
-                        {% liquid 
-                            if link.type == 'collection_link' 
+                        {% liquid
+                            if link.type == 'collection_link'
                                 assign image = link.object.image
                             elsif link.type == 'product_link'
                                 assign image = link.object.featured_image
@@ -175,8 +175,8 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                             endcase
                         %}
                         <li class="nav-item">
-                            <a 
-                                href="{{ link.url }}" 
+                            <a
+                                href="{{ link.url }}"
                                 class="nav-link link-dark {% if link.active %}active{% endif %}"
                                 aria-current="{% if link.active %}page{% endif %}">
                                 <img
@@ -195,7 +195,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
             </div>
         </nav>
     {% endif %}
-  
+
     {% if section.settings.show_filters or section.settings.show_sort_by %}
         <div id="collection-controls" class="mb-6">
             <div class="{{ section.settings.container }}">
@@ -204,8 +204,8 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                         <div class="d-flex">
                             <button
                                 class="btn-filters btn d-flex align-items-center {{ section.settings.filters_btn_color }}"
-                                data-bs-toggle="offcanvas" 
-                                data-bs-target="#offcanvas-filters" 
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvas-filters"
                                 aria-controls="offcanvas-filters"
                                 aria-label="{{ 'collection.btn_filter_products' | t }}"
                                 type="button">
@@ -243,11 +243,11 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                                 {% endfor %}
                             </select>
                         </div>
-                        <span 
-                            id="collection-sort-by-notice" 
-                            class="visually-hidden" 
-                            aria-live="polite" 
-                            aria-atomic="true" 
+                        <span
+                            id="collection-sort-by-notice"
+                            class="visually-hidden"
+                            aria-live="polite"
+                            aria-atomic="true"
                             data-text-sort-by="{{ 'general.accessibility.sorted_by' | t }}">
                             {{ 'general.accessibility.sorted_by' | t }}: {{ collection.sort_by }}
                         </span>
@@ -265,10 +265,10 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                 </p>
             {% else %}
                 {% if section.settings.enable_infinite_pagination %}
-                    <button 
+                    <button
                         id="btn-load-previous"
-                        class="btn btn-outline-secondary btn-sm my-4" 
-                        data-previous-url="{{ paginate.previous.url }}" 
+                        class="btn btn-outline-secondary btn-sm my-4"
+                        data-previous-url="{{ paginate.previous.url }}"
                         onclick="onClickCollectionLoadPrevious(this, event)"
                         {% unless paginate.previous %}hidden{% endunless %}>
                         {{ 'collection.load_previous' | t }}
@@ -279,8 +279,8 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                         {% render 'product-item', product: product, current_page: paginate.current_page %}
                     {% endfor %}
                 </ul>
-                <div 
-                    id="paging-collection" 
+                <div
+                    id="paging-collection"
                     class="text-center mx-auto pt-8 pb-4">
                     <small class="d-block text-muted mb-3 fst-italic">
                         {% assign paginate_count = paginate.current_offset | plus: collection.products.size %}
@@ -288,20 +288,20 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                     </small>
                     <div class="progress mb-0">
                         {% assign collection_progress = paginate.items | minus: paginate.items | minus: paginate_count | times: 100.0 | divided_by: paginate.items | round | remove: '-' %}
-                        <div 
-                            class="progress-bar bg-primary" 
-                            role="progressbar" 
-                            style="width: {{ collection_progress }}%;" 
-                            aria-valuenow="{{ paginate_count }}" 
-                            aria-valuemin="0" 
+                        <div
+                            class="progress-bar bg-primary"
+                            role="progressbar"
+                            style="width: {{ collection_progress }}%;"
+                            aria-valuenow="{{ paginate_count }}"
+                            aria-valuemin="0"
                             aria-valuemax="{{ paginate.items }}">
                         </div>
                     </div>
                     {% if section.settings.enable_infinite_pagination %}
                         {% if paginate.next %}
-                            <button 
-                                class="button-loading-more btn btn-outline-primary d-inline-flex align-items-center mt-5 mb-0" 
-                                data-next-url="{{ paginate.next.url }}" 
+                            <button
+                                class="button-loading-more btn btn-outline-primary d-inline-flex align-items-center mt-5 mb-0"
+                                data-next-url="{{ paginate.next.url }}"
                                 onclick="onClickCollectionLoadMore(this, event)"
                                 aria-label="{{ 'general.accessibility.load_more_products' | t }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -329,7 +329,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
 
             {% endif %}
         {% endpaginate %}
-    </div> 
+    </div>
 </div>
 
 {% render 'offcanvas-filters' %}
@@ -486,7 +486,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
                 { "group": "Description Standard", "value": "fs-3", "label": "Très Grand" },
                 { "group": "Description Standard", "value": "fs-4", "label": "Grand" },
                 { "group": "Description Standard", "value": "fs-5", "label": "Moyen" },
-                { "group": "Description Standard", "value": "fs-6", "label": "Petit" } 
+                { "group": "Description Standard", "value": "fs-6", "label": "Petit" }
             ]
         },
         {
