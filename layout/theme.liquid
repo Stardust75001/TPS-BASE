@@ -32,15 +32,21 @@
     {%- endif -%}
     {%- assign default_lang = shop.primary_locale | split: '-' | first -%}
     {%- assign enabled_locales = shop.enabled_locales | map: 'iso_code' -%}
-    {%- assign supported_langs = enabled_locales | push: default_lang -%}
-    {%- assign unique_langs = supported_langs | uniq -%}
+    {%- assign unique_langs = enabled_locales -%}
+    {%- unless enabled_locales contains default_lang -%}
+      {%- assign unique_langs = enabled_locales | join: ',' | append: ',' | append: default_lang | split: ',' | uniq -%}
+    {%- endunless -%}
     {%- if request.design_mode -%}
       {%- assign base = routes.root_url -%}
     {%- else -%}
       {%- assign base = shop.primary_domain.url -%}
     {%- endif -%}
     {%- comment -%} x-default: page dans la langue par défaut {%- endcomment -%}
-    <link rel="alternate" hreflang="x-default" href="{{ base }}{{ default_lang == 'en' ? href_path : '/' | append: href_path }}">
+    {%- if default_lang == 'en' -%}
+      <link rel="alternate" hreflang="x-default" href="{{ base }}{{ href_path }}">
+    {%- else -%}
+      <link rel="alternate" hreflang="x-default" href="{{ base }}/{{ default_lang }}{{ href_path }}">
+    {%- endif -%}
     {%- for hl in unique_langs -%}
       {%- if hl == default_lang -%}
         <link rel="alternate" hreflang="{{ hl }}" href="{{ base }}{{ href_path }}">
