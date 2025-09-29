@@ -1,12 +1,11 @@
-
 {
   "no_reviews": "Aucun avis",
   "announcement": {
     "shipping_notice": "Livraison dans toute l'Europe (EEE)",
     "title": "Annonce",
     "text": "Ceci est un message d'annonce."
-  }
-    ,
+  },
+
   "gift_card": {
     "title": "Voici votre carte cadeau !",
     "instructions": "Utilisez ce code lors du paiement pour utiliser votre carte cadeau.",
@@ -14,9 +13,10 @@
     "start_shopping": "Commencer vos achats",
     "disabled": "Désactivée",
     "expired_on": "Expirée le {{ date }}",
-    "expires_on": "Expire le {{ date }}",
-    {
-      {
+    "expires_on": "Expire le {{ date }}"
+  },
+
+  "custom_sections": {
     "banner": {
       "heading": "Titre de la bannière",
       "text": "Texte de description ici"
@@ -32,28 +32,17 @@
     "section_1": "Section personnalisée 1",
     "section_2": "Section personnalisée 2"
   },
+
   "sections": {
     "list_collections": {
       "name": "Collections",
       "settings": {
-        "show_breadcrumbs": {
-          "label": "Afficher le fil d’Ariane"
-        },
-        "text_align": {
-          "label": "Alignement du texte"
-        },
-        "bg_color": {
-          "label": "Couleur de fond"
-        }
+        "show_breadcrumbs": { "label": "Afficher le fil d’Ariane" },
+        "text_align": { "label": "Alignement du texte" },
+        "bg_color": { "label": "Couleur de fond" }
       }
     },
-    {
-      }
-    },
-    "alignment": {
-      "left": "Gauche",
-      "center": "Centré"
-    },
+    "alignment": { "left": "Gauche", "center": "Centré" },
     "featured_collections": {
       "settings": {
         "btn_text": {
@@ -66,6 +55,7 @@
     "header": "En-tête",
     "footer": ""
   },
+
   "collection": {
     "btn_filter_products": "Filtrer les produits",
     "sort_by": "Trier par",
@@ -85,16 +75,17 @@
       "you_save": "Vous économisez"
     },
     "filters": {
-      "from": "Filtres de collection de",
       "title": "Titre des filtres de collection",
+      "from": "Filtres de collection de",
       "to": "Filtres de collection jusqu'à",
-      "view_more": "Voir plus de filtres"
-        ,"clear_all": "Effacer tous les filtres"
-        ,"view_results": "Voir les résultats"
+      "view_more": "Voir plus de filtres",
+      "clear_all": "Effacer tous les filtres",
+      "view_results": "Voir les résultats"
     },
     "load_more": "Charger plus",
     "load_previous": "Charger les précédents"
   },
+
   "product": {
     "sold_out": "Épuisé",
     "price_sale": "Prix promotionnel",
@@ -156,6 +147,7 @@
     "save": "Enregistrer",
     "select_variant": "Sélectionner une variante"
   },
+
   "general": {
     "menu": "Menu",
     "all_rights_reserved": "Tous droits réservés",
@@ -166,23 +158,47 @@
       "submit_button": "S'abonner",
       "confirmation_text": "Merci pour votre abonnement !"
     },
-      "loading": "Chargement…",
-      "policy": {
-        "default_title": "Politique",
-        "default_content": "Contenu par défaut de la politique",
-        "last_updated": "Dernière mise à jour"
-      },
-      {
-        "hours": "Heures d'ouverture",
-        "api_key_missing": "Clé API manquante"
-      },
-      "accessibility": {
-        "back_to_top": "Retour en haut"
-      },
-    "breadcrumbs": {
-      "home": "Accueil",
-      "label": "Vous êtes ici :"
+    "loading": "Chargement…",
+    "policy": {
+      "default_title": "Politique",
+      "default_content": "Contenu par défaut de la politique",
+      "last_updated": "Dernière mise à jour"
     },
+    "map": {
+      "hours": "Heures d'ouverture",
+      "api_key_missing": "Clé API manquante"
+    },
+    "accessibility": {
+      "back_to_top": "Retour en haut",
+      "close": "Fermer",
+      "load_more_products": "Charger plus de produits",
+      "sorted_by": "Trié par",
+      "previous_page": "Page précédente",
+      "next_page": "Page suivante",
+      "increase_qty": "Augmenter la quantité",
+      "decrease_qty": "Diminuer la quantité",
+      "account": "Compte",
+      "cart": "Panier",
+      "cart_product_list": "Produits du panier",
+      "menu": "Menu",
+      "model_3d_decrease": "Diminuer la taille du modèle",
+      "model_3d_fullscreen": "Modèle plein écran",
+      "model_3d_increase": "Augmenter la taille du modèle",
+      "model_3d_list_label": "Modèles 3D",
+      "next": "Suivant",
+      "payment_methods": "Moyens de paiement",
+      "previous": "Précédent",
+      "product_media_gallery": "Galerie produit",
+      "product_options": "Options du produit",
+      "search": "Recherche",
+      "skip_content": "Aller au contenu",
+      "skip_product_content": "Aller au contenu du produit",
+      "slide_of": "Diapositive {{ current }} sur {{ total }}",
+      "toggle_sound": "Activer/désactiver le son",
+      "utility_icons": "Icônes utilitaires",
+      "wishlist": "Liste de souhaits"
+    },
+    "breadcrumbs": { "home": "Accueil", "label": "Vous êtes ici :" },
     "cookies": {
       "consent": "Nous utilisons des cookies pour améliorer votre expérience."
     },
@@ -220,36 +236,6 @@
       "title_pages": "Pages",
       "title_popular_products": "Produits populaires",
       "title_products": "Produits"
-    },
-    "accessibility": {
-      "close": "Fermer",
-      "load_more_products": "Charger plus de produits",
-      "sorted_by": "Trié par",
-      "previous_page": "Page précédente",
-      "next_page": "Page suivante",
-      "increase_qty": "Augmenter la quantité",
-      "decrease_qty": "Diminuer la quantité",
-      "account": "Compte",
-      "cart": "Panier",
-      "cart_product_list": "Produits du panier",
-      "menu": "Menu",
-      "model_3d_decrease": "Diminuer la taille du modèle",
-      "model_3d_fullscreen": "Modèle plein écran",
-      "model_3d_increase": "Augmenter la taille du modèle",
-      "model_3d_list_label": "Modèles 3D",
-      "next": "Suivant",
-      "payment_methods": "Moyens de paiement",
-      "previous": "Précédent",
-      "product_media_gallery": "Galerie produit",
-      "product_options": "Options du produit",
-      "search": "Recherche",
-      "skip_content": "Aller au contenu",
-      "skip_product_content": "Aller au contenu du produit",
-      "slide_of": "Diapositive {{ current }} sur {{ total }}",
-      "toggle_sound": "Activer/désactiver le son",
-      "utility_icons": "Icônes utilitaires",
-      "wishlist": "Liste de souhaits",
-      "back_to_top": "Retour en haut"
     },
     "wishlist": {
       "offcanvas_title": "Votre liste de souhaits",
@@ -308,6 +294,7 @@
     "text_note_saved": "Note enregistrée",
     "text_btn_save": "Enregistrer"
   },
+
   "cart": {
     "title": "Votre panier",
     "quantity": "Quantité",
@@ -337,51 +324,25 @@
     "summary": "Résumé",
     "view_cart": "Voir le panier"
   },
+
   "blogs": {
     "filter_by": "Filtrer par sujet",
     "all_topics": "Tous les sujets",
     "posted_in": "Publié dans"
   },
+
   "shopify": {
     "checkout": {
       "payment": {
         "payment_method_incompatible_with_payment_terms": "Moyen de paiement incompatible avec les conditions de paiement."
       },
       "review": {
-        "blocks": {
-          "company_location": "Localisation de l'entreprise"
-        }
+        "blocks": { "company_location": "Localisation de l'entreprise" }
       }
     }
   },
+
   "customer": {
-    "addresses": {
-      "country": "Pays",
-      "province": "Région",
-      "zip": "Code postal",
-      "address2": "Complément d'adresse",
-      "city": "Ville",
-      "phone": "Téléphone",
-      "set_default": "Définir comme adresse par défaut",
-      "add": "Ajouter une adresse",
-      "edit_address": "Modifier l'adresse",
-      "first_name": "Prénom",
-      "last_name": "Nom",
-      "company": "Société",
-      "address1": "Adresse",
-      "update": "Mettre à jour",
-      "cancel": "Annuler",
-      "edit": "Modifier",
-      "delete": "Supprimer",
-      "delete_confirm": "Êtes-vous sûr de vouloir supprimer cette adresse ?",
-      "select_country": "Sélectionner un pays",
-      "no_addresses": "Aucune adresse trouvée",
-      "title": "Adresses",
-      "tab_addresses": "Adresses",
-      "tab_add_new": "Ajouter une nouvelle adresse",
-      "default": "Adresse par défaut",
-      "add_new": "Ajouter une nouvelle adresse"
-    },
     "login": {
       "title": "Connexion client",
       "email": "Email",
@@ -392,57 +353,17 @@
       "create_account": "Créer un compte"
     },
     "recover_password": {
-          "title": "Adresses",
-          "tab_addresses": "Adresses",
-          "tab_add_new": "Ajouter une nouvelle adresse",
-          "default": "Adresse par défaut",
-          "add_new": "Ajouter une nouvelle adresse"
-          ,"title": "Adresses"
-        "activate_account": {
-          "password": "Mot de passe",
-          "password_confirm": "Confirmer le mot de passe",
-          "submit": "Valider",
-          "cancel": "Annuler",
-          "subtext": "Veuillez entrer votre mot de passe"
-        },
-          ,"tab_addresses": "Adresses"
-          ,"tab_add_new": "Ajouter une nouvelle adresse"
-          ,"default": "Adresse par défaut"
-          ,"add_new": "Ajouter une nouvelle adresse"
       "title": "Récupérer votre mot de passe",
-        "activate_account": {
-          "password": "Mot de passe",
-          "password_confirm": "Confirmer le mot de passe",
-          "submit": "Valider",
-          "cancel": "Annuler",
-          "subtext": "Veuillez entrer votre mot de passe"
-        },
-      "success": "Email de récupération envoyé",
       "subtext": "Entrez votre email pour réinitialiser votre mot de passe",
-      "submit": "Envoyer"
+      "submit": "Envoyer",
+      "success": "Email de récupération envoyé"
     },
-    "order": {
-      "title": "Détails de la commande",
-      "date_html": "Date de la commande : {{ date }}",
-      "cancelled_html": "Commande annulée le {{ date }}",
-          "fulfilled_at_html": "Traitée le {{ date }}"
-      "cancelled_reason": "Raison de l'annulation",
-      "product": "Produit",
-      "sku": "SKU",
-      "price": "Prix",
-      "quantity": "Quantité",
-      "total": "Total",
-      "subtotal": "Sous-total",
-      "discount": "Remise",
-      "shipping": "Livraison",
-      "tax": "Taxe",
-      "billing_address": "Adresse de facturation",
-      "payment_status": "Statut du paiement",
-          ,"fulfilled_at_html": "Traitée le {{ date }}"
-      "shipping_address": "Adresse de livraison",
-      "fulfillment_status": "Statut de la livraison",
-      "track_shipment": "Suivre la livraison",
-      "return": "Retourner la commande"
+    "activate_account": {
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe",
+      "submit": "Valider",
+      "cancel": "Annuler",
+      "subtext": "Veuillez entrer votre mot de passe"
     },
     "register": {
       "title": "Créer un compte",
@@ -460,6 +381,33 @@
       "password": "Nouveau mot de passe",
       "password_confirm": "Confirmer le nouveau mot de passe",
       "submit": "Réinitialiser le mot de passe"
+    },
+    "addresses": {
+      "title": "Adresses",
+      "edit_address": "Modifier l'adresse",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "company": "Société",
+      "address1": "Adresse",
+      "address2": "Complément d'adresse",
+      "city": "Ville",
+      "country": "Pays",
+      "province": "Région",
+      "zip": "Code postal",
+      "phone": "Téléphone",
+      "set_default": "Définir comme adresse par défaut",
+      "add": "Ajouter une adresse",
+      "update": "Mettre à jour",
+      "cancel": "Annuler",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "delete_confirm": "Êtes-vous sûr de vouloir supprimer cette adresse ?",
+      "select_country": "Sélectionner un pays",
+      "no_addresses": "Aucune adresse trouvée",
+      "tab_addresses": "Adresses",
+      "tab_add_new": "Ajouter une nouvelle adresse",
+      "default": "Adresse par défaut",
+      "add_new": "Ajouter une nouvelle adresse"
     },
     "order": {
       "title": "Détails de la commande",
@@ -482,9 +430,6 @@
       "track_shipment": "Suivre la livraison",
       "return": "Retourner la commande",
       "fulfilled_at_html": "Traitée le {{ date }}"
-    },
-      "submit_button": "S'inscrire",
-      "notice_html": "En vous inscrivant pour recevoir nos e-mails, vous acceptez nos conditions générales et notre <a href=\"/pages/confidentialite\">politique de confidentialité</a>."
     }
   }
 }
