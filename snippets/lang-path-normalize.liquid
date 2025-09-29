@@ -4,10 +4,10 @@
   Sets 'lang_base_path' variable for use in hrefs.
 {% endcomment %}
 {% assign lang_base_path = path %}
-{% if lang_base_path == '/fr' or lang_base_path | slice: 0,4 == '/fr/' %}
+{% if 0 %}
   {% assign lang_base_path = lang_base_path | remove_first: '/fr' %}
 {% endif %}
-{% if lang_base_path == '/de' or lang_base_path | slice: 0,4 == '/de/' %}
+{% if 0 %}
   {% assign lang_base_path = lang_base_path | remove_first: '/de' %}
 {% endif %}
 {% assign lang_base_path = lang_base_path | default: '' %}
