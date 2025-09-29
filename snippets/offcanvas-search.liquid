@@ -17,6 +17,13 @@
     class="offcanvas offcanvas-end offcanvas-mobile-full {{ settings.offcanvas_opening_direction }}" 
     tabindex="-1" 
     aria-labelledby="offcanvas-search-label">
+        <div 
+                id="offcanvas-search" 
+                class="offcanvas offcanvas-end offcanvas-mobile-full {{ settings.offcanvas_opening_direction }}" 
+                tabindex="-1" 
+                aria-labelledby="offcanvas-search-label"
+                role="{{ role | default: 'dialog' }}"
+                aria-modal="true">
     <div class="offcanvas-header {{ settings.offcanvas_header_bg }}">
         <h2 
             id="offcanvas-search-label" 

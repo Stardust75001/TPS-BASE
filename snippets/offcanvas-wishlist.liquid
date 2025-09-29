@@ -18,6 +18,13 @@
   class="offcanvas offcanvas-end offcanvas-mobile-full {{ settings.offcanvas_opening_direction }}"
   tabindex="-1"
   aria-labelledby="offcanvas-wishlist-label">
+  <div
+    id="offcanvas-wishlist"
+    class="offcanvas offcanvas-end offcanvas-mobile-full {{ settings.offcanvas_opening_direction }}"
+    tabindex="-1"
+    aria-labelledby="offcanvas-wishlist-label"
+    role="{{ role | default: 'dialog' }}"
+    aria-modal="true">
 
   <div class="offcanvas-header {{ settings.offcanvas_header_bg }}">
     <h2 id="offcanvas-wishlist-label" class="offcanvas-title {{ settings.offcanvas_header_title_size }}">
