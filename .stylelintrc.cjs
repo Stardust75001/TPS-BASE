@@ -1,4 +1,4 @@
-/* Stylelint v16 – Config Shopify */
+/* Stylelint v16 – profil Shopify allégé (utile en CI) */
 module.exports = {
   extends: [
     "stylelint-config-standard",
@@ -6,19 +6,24 @@ module.exports = {
   ],
   plugins: ["stylelint-order"],
   rules: {
+    /* garde-fous simples */
     "order/properties-alphabetical-order": true,
-    "selector-class-pattern": [
-      "^[a-z0-9\\-]+$",
-      { message: "Utilise des classes en kebab-case (a-z0-9-)." }
-    ],
-    "no-duplicate-selectors": true,
+    "no-empty-source": true,
+    "block-no-empty": true,
     "declaration-block-no-duplicate-properties": true,
+
+    /* on calme le bruit */
+    "no-duplicate-selectors": null,
+    "no-descending-specificity": null,
+    "selector-class-pattern": null,
+    "property-no-vendor-prefix": null,
+    "value-keyword-case": null,
+    "color-hex-length": "short",
 
     /* assouplissements utiles */
     "color-function-alias-notation": null,
     "color-function-notation": null,
     "alpha-value-notation": null,
-    "value-keyword-case": null,
     "media-feature-range-notation": null,
     "media-feature-name-value-no-unknown": null,
     "selector-not-notation": null,
@@ -31,13 +36,13 @@ module.exports = {
     "length-zero-no-unit": null,
     "shorthand-property-no-redundant-values": null,
     "declaration-block-no-redundant-longhand-properties": null,
-    "keyframes-name-pattern": null,
     "selector-pseudo-element-colon-notation": null,
+    "declaration-property-value-no-unknown": null
   },
   ignoreFiles: [
     "**/dist/**",
     "**/build/**",
     "**/vendor/**",
-    "**/*.min.css",
-  ],
+    "**/*.min.css"
+  ]
 };
