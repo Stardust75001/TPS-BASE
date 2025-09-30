@@ -33,57 +33,56 @@
       "heading": "",
       "text": ""
     },
-    "multicolumn": {
-      "title_1": "",
-      "text_1": "",
-      "title_2": "",
-      "text_2": "",
-      "title_3": "",
-      "text_3": ""
-    },
-    "section_1": "",
-    "section_2": ""
-  },
-  "sections": {
-    "list_collections": {
-      "name": "",
-      "settings": {
-        "show_breadcrumbs": {
-          "label": ""
+      ,
+        "testimonials": {
+          "verified_review": "Avis vérifié",
+          "purchase": "Achat",
+          "verified": "Vérifié"
         },
-        "text_align": {
-          "label": ""
+        "customer": {
+          "account": {
+            "title": "Compte",
+            "account_details": "Détails du compte",
+            "view_addresses": "Voir les adresses"
+          },
+          "activate_account": {
+            "title": "Activer le compte",
+            "subtext": "Définissez votre mot de passe pour activer votre compte.",
+            "password": "Mot de passe",
+            "password_confirm": "Confirmer le mot de passe",
+            "submit": "Activer",
+            "cancel": "Annuler"
+          },
+          "orders": {
+            "none": "Aucune commande trouvée.",
+            "order_number": "Numéro de commande",
+            "date": "Date",
+            "payment_status": "Statut du paiement",
+            "fulfillment_status": "Statut de la livraison",
+            "total": "Total"
+          }
         },
-        "bg_color": {
-          "label": ""
+        "product_extra": {
+          "article_title": "Titre de l'article",
+          "blog_excerpt": "Extrait du blog"
+        },
+        "custom_sections_extra": {
+          "image_banner_title": "Titre de la bannière",
+          "image_banner_description": "Description de la bannière",
+          "image_banner_btn_primary": "Bouton principal",
+          "image_banner_btn_secondary": "Bouton secondaire"
+        },
+        "custom_extra": {
+          "ref_variant_label": "Référence variante"
+        },
+        "general_extra": {
+          "quiz": {
+            "question_of_html": "Question {{ count }} sur {{ total }}"
+          },
+          "general": {
+            "pagination_page_of": "Page {{ count }} sur {{ total }}"
+          }
         }
-      }
-    }
-  },
-  "product": {
-    "price_unit": "Prix par unité",
-    "stock_count": {
-      "one": "{{ count }} article en stock",
-      "other": "{{ count }} articles en stock"
-    },
-    "qty_breaks": {
-      "label_text_html": "Achetez {{ qty }} pour {{ pricecash }} — économisez {{ save }}",
-      "label_text_html_bundle_header": "Prix du lot {{ pricecash }} — économisez {{ save }}",
-      "label_text_html_bundle": "Lot de {{ qty }}"
-    },
-    "product_options": "",
-    "quantity": "",
-    "save": "",
-    "select_variant": "",
-    "question_of_html": "",
-    "title_customer": "",
-    "purchase_options": {
-      "option_subscription_save": "Économisez {{ value }}%",
-      "option_deliver_every": "",
-      "option_one_time": "",
-      "option_subscription": ""
-    },
-    "wishlist": {
       "add_to_wishlist": "Ajouter à la liste de souhaits",
       "remove_from_wishlist": "Retirer de la liste de souhaits",
       "btn_label": "Ajouter à la liste de souhaits",
@@ -115,3 +114,53 @@
     }
   }
 }
+,
+  "testimonials": {
+    "verified_review": "Avis vérifié",
+    "purchase": "Achat",
+    "verified": "Vérifié"
+  },
+  "customer": {
+    "account": {
+      "title": "Compte",
+      "account_details": "Détails du compte",
+      "view_addresses": "Voir les adresses"
+    },
+    "activate_account": {
+      "title": "Activer le compte",
+      "subtext": "Définissez votre mot de passe pour activer votre compte.",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe",
+      "submit": "Activer",
+      "cancel": "Annuler"
+    },
+    "orders": {
+      "none": "Aucune commande trouvée.",
+      "order_number": "Numéro de commande",
+      "date": "Date",
+      "payment_status": "Statut du paiement",
+      "fulfillment_status": "Statut de la livraison",
+      "total": "Total"
+    }
+  },
+  "product": {
+    "article_title": "Titre de l'article",
+    "blog_excerpt": "Extrait du blog"
+  },
+  "custom_sections": {
+    "image_banner_title": "Titre de la bannière",
+    "image_banner_description": "Description de la bannière",
+    "image_banner_btn_primary": "Bouton principal",
+    "image_banner_btn_secondary": "Bouton secondaire"
+  },
+  "custom": {
+    "ref_variant_label": "Référence variante"
+  },
+  "general": {
+    "quiz": {
+      "question_of_html": "Question {{ count }} sur {{ total }}"
+    },
+    "general": {
+      "pagination_page_of": "Page {{ count }} sur {{ total }}"
+    }
+  }
