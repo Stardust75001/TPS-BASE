@@ -17,14 +17,13 @@
     "lhci:preview": "lhci autorun --config=lighthouserc.preview.json --collect.url=$PREVIEW_URL --collect.startServerCommand='echo skip'",
     "validate:hybrid": "node scripts/validate-hybrid.cjs",
     "check:predeploy": "npm run validate:hybrid && npm run theme-check",
-    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --config .stylelintrc.cjs"
+    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@hint/configuration-web-recommended": "^8.2.24",
-    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.55.0",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.45.0",
@@ -33,7 +32,6 @@
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
-    "hint": "^7.1.13",
     "stylelint": "^16.24.0",
     "stylelint-config-standard": "^39.0.0",
     "stylelint-config-standard-scss": "^13.1.0",
@@ -329,7 +327,6 @@
     "pump": "^3.0.3",
     "punycode": "^2.3.1",
     "pupa": "^2.1.1",
-    "puppeteer-core": "^13.7.0",
     "q": "^1.5.1",
     "querystringify": "^2.2.0",
     "queue": "^6.0.2",
