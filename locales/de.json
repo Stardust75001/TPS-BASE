@@ -6,7 +6,8 @@
         "show_breadcrumbs": { "label": "Breadcrumbs anzeigen" },
         "text_align": { "label": "Textausrichtung" },
         "bg_color": { "label": "Hintergrundfarbe" }
-    },
+    }
+  },
     "colors": {
       "white": { "label": "Weiß" },
       "light": { "label": "Hell" },
@@ -146,7 +147,8 @@
             "primary_button_label": "",
             "secondary_button_label": ""
           }
-        },
+        }
+      },
     "include_taxes": "Inkl. Steuern",
     "inventory_bar": {
       "label": "Lagerbestand",
@@ -609,6 +611,6 @@
       "description": "",
       "primary_button_label": "",
       "secondary_button_label": ""
-    }
+  },
   }
 }
