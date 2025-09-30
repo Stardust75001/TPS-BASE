@@ -342,7 +342,7 @@
       "subtitle_customer_html": "Welcome back",
       "title_guest": "Your account",
       "title_customer": "Hello, {{ name }}"
-      }
+      },
     "contact": {
       "email": "Email",
       "message": "Message",
@@ -596,7 +596,63 @@
         "message_properties": "Gift message",
         "date_properties": "Delivery date"
       }
-    }
+      },
     }
   }
-}
+  ,
+  "sections": {
+    "image_banner": { "name": "Image Banner", "preset_name": "Hero Banner" },
+    "carousel": { "name": "Carousel", "blocks": { "slide": { "name": "Slide" } } },
+    "shared": {
+      "desktop_image": "Desktop image",
+      "mobile_image": "Mobile image",
+      "alt_key": "Alt text key",
+      "heading_key": "Heading key",
+      "text_key": "Text key",
+      "btn_label_key": "Button label key",
+      "btn1_label_key": "Button 1 label key",
+      "btn2_label_key": "Button 2 label key",
+      "button_link": "Button link",
+      "btn1_link": "Button 1 link",
+      "btn2_link": "Button 2 link"
+    }
+  },
+  "custom_sections": {
+    "image_banner": {
+      "alt": "Hero banner",
+      "heading": "Welcome to The Pet Society",
+      "text": "Curated goodies for happy pets.",
+      "button": "Shop now"
+    },
+    "carousel": {
+      "slide_alt": "Carousel slide",
+      "slide_heading": "New arrivals",
+      "slide_text": "Fresh picks just landed.",
+      "btn1": "Discover",
+      "btn2": "Learn more"
+    }
+  },
+  "testimonials": {
+    "verified_review": "Verified review",
+    "purchase": "Purchase",
+    "verified": "Verified"
+  },
+  "customer": {
+    "account": { "title": "My account" },
+    "activate_account": {
+      "title": "Activate account",
+      "subtext": "Create your password to activate your account."
+    },
+    "orders": {
+      "title": "Your orders",
+      "none": "You have no orders yet."
+    }
+  },
+  "general": {
+    "general": {
+      "secure_payments": "Secure payments"
+    }
+  },
+  "product": {
+    "ref_variant_label": "Ref variant ID"
+  }
