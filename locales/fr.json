@@ -216,7 +216,15 @@
       "default": "Adresse par défaut",
       "add_new": "Ajouter une nouvelle adresse"
     },
-    "login": {},
+    "login": {
+      "title": "Connexion client",
+      "email": "Email",
+      "password": "Mot de passe",
+      "forgot_password": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "new": "Nouveau client ?",
+      "create_account": "Créer un compte"
+    },
     "recover_password": {
       "title": "Récupérer votre mot de passe",
       "success": "Email de récupération du mot de passe envoyé",
@@ -244,14 +252,7 @@
       "track_shipment": "Suivre l'expédition",
       "return": "Retourner la commande",
       "fulfilled_at_html": "Expédié le {{ date }}"
-    },
-    "title": "Connexion client",
-    "email": "Email",
-    "password": "Mot de passe",
-    "forgot_password": "Mot de passe oublié ?",
-    "submit": "Se connecter",
-    "new": "Nouveau client ?",
-    "create_account": "Créer un compte"
+    }
   },
   "general": {
     "menu": "Menu",
@@ -293,20 +294,12 @@
       "results_with_count_and_term": "{{ count }} résultats pour '{{ terms }}'"
     },
     "pagination_page_of": "Page {{ count }} sur {{ total }}",
-    "section": "Section",
     "wishlist": {
       "offcanvas_title": "Votre liste de souhaits",
       "empty_html": "Votre liste de souhaits est vide.",
       "remove_from_wishlist": "Retirer de la liste de souhaits",
       "add_to_wishlist": "Ajouter à la liste de souhaits",
       "btn_label": "Ajouter à la liste de souhaits"
-    },
-    "bundle": {
-      "label": "Lot"
-    },
-    "custom": {
-      "title": "Personnalisé",
-      "description": "Personnalisez votre sélection"
     },
     "footer": {
       "newsletter": {
