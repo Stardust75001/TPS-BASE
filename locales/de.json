@@ -76,8 +76,6 @@
               "default": "Alle Kollektionen anzeigen",
               "info": "Leer lassen, um zu deaktivieren"
             }
-          }
-        }
       },
       "header": "Kopfzeile",
       "footer": "Fußzeile"
