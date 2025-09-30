@@ -17,14 +17,12 @@ This file can be re-written at any time.
 {% endif %}
 
 {% capture content_for_header %}
-  {{ content_for_header }}
   {% render 'shogun-products', content: content %}
 {% endcapture %}
 
 {% if content.metafields.shogun.json_template_snippets %}
   {% capture content_for_header %}
     {{ content_for_header }}
-    {{ content.metafields.shogun.json_template_snippets.value['head'][template_suffix] }}
   {% endcapture %}
 
   {% capture content_for_body %}
@@ -49,7 +47,6 @@ This file can be re-written at any time.
         <template id="shogun-variant-head">
           {{ content_for_header }}
         </template>
-        <script type="text/javascript">
           {% if customer %}
             window.SHG_CUSTOMER = { "id": "{{ customer.id }}" }
           {% else %}
