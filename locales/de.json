@@ -7,7 +7,6 @@
         "text_align": { "label": "Textausrichtung" },
         "bg_color": { "label": "Hintergrundfarbe" }
     }
-}
   },
     "colors": {
       "white": { "label": "Weiß" },
