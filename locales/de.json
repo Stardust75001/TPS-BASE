@@ -26,7 +26,29 @@
         },
       "image_banner": {
         "name": "Bildbanner",
-      "preset_name": "Hero-Banner"
+        "preset_name": "Hero-Banner"
+      },
+      "carousel": {
+        "name": "Karussell",
+        "blocks": {
+          "slide": {
+            "name": "Folie"
+          }
+        }
+      },
+      "shared": {
+        "desktop_image": "Desktop-Bild",
+        "mobile_image": "Mobiles Bild",
+        "alt_key": "Alt-Text-Schlüssel",
+        "heading_key": "Titel-Schlüssel",
+        "text_key": "Text-Schlüssel",
+        "btn_label_key": "Button-Label-Schlüssel",
+        "btn1_label_key": "Button 1 Label-Schlüssel",
+        "btn2_label_key": "Button 2 Label-Schlüssel",
+        "button_link": "Button-Link",
+        "btn1_link": "Button 1 Link",
+        "btn2_link": "Button 2 Link"
+      }
     },
     "carousel": {
       "name": "Karussell",
@@ -44,8 +66,6 @@
       "button_link": "Button-Link",
       "btn1_link": "Button 1 Link",
       "btn2_link": "Button 2 Link"
-  }
-  }
   }
   },
   "no_reviews": "Keine Bewertungen",
@@ -76,22 +96,22 @@
           "banner": {
             "form": {
               "properties": {
-                "email_properties": "TODO"
+                "email_properties": "E-Mail Eigenschaften"
               }
             },
-            "heading": ""
+            "heading": "Banner Überschrift"
           },
           "image_banner": {
-            "title": "",
-            "text": "",
-            "primary_button": "",
-            "secondary_button": ""
+            "title": "Banner Titel",
+            "text": "Banner Beschreibung",
+            "primary_button": "Hauptbutton",
+            "secondary_button": "Sekundärbutton"
           },
           "image_but": {
-            "title": "",
-            "description": "",
-            "primary_button_label": "",
-            "secondary_button_label": ""
+            "title": "Bild Button Titel",
+            "description": "Bild Button Beschreibung",
+            "primary_button_label": "Hauptbutton",
+            "secondary_button_label": "Sekundärbutton"
           }
         }
       },
