@@ -34,7 +34,8 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci || npm i --no-audit --no-fund
-      - run: |
+      - name: Build (if script exists)
+        run: |
           if npm run | grep -qE '^  build'; then
             npm run build
           else
@@ -51,11 +52,20 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci || npm i --no-audit --no-fund
-      - run: |
+      - name: Run ESLint (fallback if no script)
+        run: |
           if npm run | grep -qE '^  lint:js'; then
             npm run lint:js
           elif npx eslint --version >/dev/null 2>&1; then
-            npx eslint --max-warnings=0 --ext .js,.ts,.tsx assets scripts src
+            TARGETS=""
+            for d in assets scripts src; do
+              [ -d "$d" ] && TARGETS="$TARGETS $d"
+            done
+            if [ -n "$TARGETS" ]; then
+              npx eslint --max-warnings=0 --no-error-on-unmatched-pattern --ext .js,.ts,.tsx $TARGETS
+            else
+              echo "No JS/TS folders found; skipping."
+            fi
           else
             echo "ESLint not configured; skipping."
           fi
