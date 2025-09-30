@@ -34,7 +34,7 @@ jobs:
   basic-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install deps
         run: |
           npm install
@@ -48,17 +48,21 @@ jobs:
       SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
       GOOGLE_PSI_API_KEY: ${{ secrets.GOOGLE_PSI_API_KEY }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run smoke tests
         run: |
           echo "Running smoke tests..."
-          # ajoute ici tes tests (cart, PSI, etc.)
+          # 👉 ajoute ici tes commandes de test
+          # Exemple: curl -s -o /dev/null -w "%{http_code}" https://$SHOPIFY_STORE
 
   theme-check:
     needs: basic-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Install Shopify CLI
+        run: |
+          npm install -g @shopify/cli@latest @shopify/theme
       - name: Run theme check
         run: |
           shopify theme check || true
