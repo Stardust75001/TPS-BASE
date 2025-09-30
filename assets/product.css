@@ -379,7 +379,11 @@ select#options-select-purchase-delivery {
 
 #bought-product-together
   .product-item:not(:last-child)
+<<<<<<< HEAD
   .product-item-img-wrapper::after {
+=======
+  .product-item-img-wrapper:after {
+>>>>>>> 936138f (stylelint: calm logs (reportInvalidScopeDisables) + disable keyframes pattern; fix empty block)
   bottom: -1.8rem;
   content: "+";
   font-size: 1.25rem;
@@ -414,7 +418,11 @@ select#options-select-purchase-delivery {
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
+<<<<<<< HEAD
   padding: 5px;
+=======
+  padding: 5px 5px;
+>>>>>>> 936138f (stylelint: calm logs (reportInvalidScopeDisables) + disable keyframes pattern; fix empty block)
 }
 
 @media (min-width: 1200px) {
@@ -575,7 +583,11 @@ ul.timer-countdown li {
 }
 
 .animated-stories-x .cercle {
+<<<<<<< HEAD
   animation: product-stories-anime-trait-bordure 6s ease-out 2 alternate;
+=======
+  animation: product_stories_anime_trait_bordure 6s ease-out 2 alternate;
+>>>>>>> 936138f (stylelint: calm logs (reportInvalidScopeDisables) + disable keyframes pattern; fix empty block)
   fill: none;
   position: absolute;
   stroke-dasharray: 1;
