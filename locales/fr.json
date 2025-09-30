@@ -192,16 +192,6 @@
       "none_alt": "Vous n’avez pas encore de commande."
     },
     "addresses": {
-    },
-    "login": {
-      "title": "Connexion client",
-      "email": "Email",
-      "password": "Mot de passe",
-      "forgot_password": "Mot de passe oublié ?",
-      "submit": "Se connecter",
-      "new": "Nouveau client ?",
-      "create_account": "Créer un compte"
-    },
       "title": "Adresses",
       "edit_address": "Modifier l'adresse",
       "first_name": "Prénom",
@@ -227,6 +217,16 @@
       "tab_add_new": "Ajouter une nouvelle adresse",
       "default": "Adresse par défaut",
       "add_new": "Ajouter une nouvelle adresse"
+    },
+    "login": {
+      "title": "Connexion client",
+      "email": "Email",
+      "password": "Mot de passe",
+      "forgot_password": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "new": "Nouveau client ?",
+      "create_account": "Créer un compte"
+    },
   },
   "general": {
     "general": {
