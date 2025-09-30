@@ -32,57 +32,7 @@
     "banner": {
       "heading": "",
       "text": ""
-    },
-      ,
-        "testimonials": {
-          "verified_review": "Avis vérifié",
-          "purchase": "Achat",
-          "verified": "Vérifié"
-        },
-        "customer": {
-          "account": {
-            "title": "Compte",
-            "account_details": "Détails du compte",
-            "view_addresses": "Voir les adresses"
-          },
-          "activate_account": {
-            "title": "Activer le compte",
-            "subtext": "Définissez votre mot de passe pour activer votre compte.",
-            "password": "Mot de passe",
-            "password_confirm": "Confirmer le mot de passe",
-            "submit": "Activer",
-            "cancel": "Annuler"
-          },
-          "orders": {
-            "none": "Aucune commande trouvée.",
-            "order_number": "Numéro de commande",
-            "date": "Date",
-            "payment_status": "Statut du paiement",
-            "fulfillment_status": "Statut de la livraison",
-            "total": "Total"
-          }
-        },
-        "product_extra": {
-          "article_title": "Titre de l'article",
-          "blog_excerpt": "Extrait du blog"
-        },
-        "custom_sections_extra": {
-          "image_banner_title": "Titre de la bannière",
-          "image_banner_description": "Description de la bannière",
-          "image_banner_btn_primary": "Bouton principal",
-          "image_banner_btn_secondary": "Bouton secondaire"
-        },
-        "custom_extra": {
-          "ref_variant_label": "Référence variante"
-        },
-        "general_extra": {
-          "quiz": {
-            "question_of_html": "Question {{ count }} sur {{ total }}"
-          },
-          "general": {
-            "pagination_page_of": "Page {{ count }} sur {{ total }}"
-          }
-        }
+      },
       "add_to_wishlist": "Ajouter à la liste de souhaits",
       "remove_from_wishlist": "Retirer de la liste de souhaits",
       "btn_label": "Ajouter à la liste de souhaits",
@@ -106,6 +56,55 @@
       }
     }
   },
+    "testimonials": {
+      "verified_review": "Avis vérifié",
+      "purchase": "Achat",
+      "verified": "Vérifié"
+    },
+    "customer": {
+      "account": {
+        "title": "Compte",
+        "account_details": "Détails du compte",
+        "view_addresses": "Voir les adresses"
+      },
+      "activate_account": {
+        "title": "Activer le compte",
+        "subtext": "Définissez votre mot de passe pour activer votre compte.",
+        "password": "Mot de passe",
+        "password_confirm": "Confirmer le mot de passe",
+        "submit": "Activer",
+        "cancel": "Annuler"
+      },
+      "orders": {
+        "none": "Aucune commande trouvée.",
+        "order_number": "Numéro de commande",
+        "date": "Date",
+        "payment_status": "Statut du paiement",
+        "fulfillment_status": "Statut de la livraison",
+        "total": "Total"
+      }
+    },
+    "product_extra": {
+      "article_title": "Titre de l'article",
+      "blog_excerpt": "Extrait du blog"
+    },
+    "custom_sections_extra": {
+      "image_banner_title": "Titre de la bannière",
+      "image_banner_description": "Description de la bannière",
+      "image_banner_btn_primary": "Bouton principal",
+      "image_banner_btn_secondary": "Bouton secondaire"
+    },
+    "custom_extra": {
+      "ref_variant_label": "Référence variante"
+    },
+    "general_extra": {
+      "quiz": {
+        "question_of_html": "Question {{ count }} sur {{ total }}"
+      },
+      "general": {
+        "pagination_page_of": "Page {{ count }} sur {{ total }}"
+      }
+    },
   "general": {
     "social_media_links": "Liens réseaux sociaux",
     "pagination_page_of": "Page {{ count }} sur {{ total }}",
@@ -113,7 +112,7 @@
       "title_customer": "Bonjour, {{ name }}"
     }
   }
-}
+  }
 ,
   "testimonials": {
     "verified_review": "Avis vérifié",
