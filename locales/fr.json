@@ -12,7 +12,7 @@
     "start_shopping": "Commencer vos achats",
     "ref_variant_label": "Référence variante",
     "disabled": "Désactivée",
-        "shipping_notice": "Livraison dans toute l'Europe (EEE)",
+    "shipping_notice": "Livraison dans toute l'Europe (EEE)",
     "expires_on": "Expire le {{ date }}",
     "balance": "Solde"
   },
@@ -78,34 +78,6 @@
           "verified": "Vérifié"
         },
         "customer": {
-          "recover_password": {
-            "title": "Récupérer votre mot de passe",
-            "success": "Email de récupération du mot de passe envoyé",
-            "subtext": "Entrez votre email pour réinitialiser votre mot de passe",
-            "submit": "Envoyer"
-          },
-          "order": {
-            "title": "Détails de la commande",
-            "date_html": "Date de la commande : {{ date }}",
-            "cancelled_html": "Commande annulée le {{ date }}",
-            "cancelled_reason": "Raison de l'annulation",
-            "product": "Produit",
-            "sku": "SKU",
-            "price": "Prix",
-            "quantity": "Quantité",
-            "total": "Total",
-            "subtotal": "Sous-total",
-            "discount": "Remise",
-            "shipping": "Livraison",
-            "tax": "Taxe",
-            "billing_address": "Adresse de facturation",
-            "payment_status": "Statut du paiement",
-            "shipping_address": "Adresse de livraison",
-            "fulfillment_status": "Statut de la livraison",
-            "track_shipment": "Suivre l'expédition",
-            "return": "Retourner la commande",
-            "fulfilled_at_html": "Expédié le {{ date }}"
-          },
           "account": {
             "title": "Compte",
             "account_details": "Détails du compte",
