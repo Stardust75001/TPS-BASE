@@ -6,8 +6,8 @@
         "show_breadcrumbs": { "label": "Breadcrumbs anzeigen" },
         "text_align": { "label": "Textausrichtung" },
         "bg_color": { "label": "Hintergrundfarbe" }
-  }
-  },
+      }
+    },
     "colors": {
       "white": { "label": "Weiß" },
       "light": { "label": "Hell" },
@@ -24,35 +24,34 @@
           "purchase": "Kauf",
           "verified": "Verifiziert"
         },
-      "image_banner": {
-        "name": "Bildbanner",
-        "preset_name": "Hero-Banner"
-      },
-      "carousel": {
-        "name": "Karussell",
-        "blocks": {
-          "slide": {
-            "name": "Folie"
+        "image_banner": {
+          "name": "Bildbanner",
+          "preset_name": "Hero-Banner"
+        },
+        "carousel": {
+          "name": "Karussell",
+          "blocks": {
+            "slide": {
+              "name": "Folie"
+            }
           }
+        },
+        "shared": {
+          "desktop_image": "Desktop-Bild",
+          "mobile_image": "Mobiles Bild",
+          "alt_key": "Alt-Text-Schlüssel",
+          "heading_key": "Titel-Schlüssel",
+          "text_key": "Text-Schlüssel",
+          "btn_label_key": "Button-Label-Schlüssel",
+          "btn1_label_key": "Button 1 Label-Schlüssel",
+          "btn2_label_key": "Button 2 Label-Schlüssel",
+          "button_link": "Button-Link",
+          "btn1_link": "Button 1 Link",
+          "btn2_link": "Button 2 Link"
         }
-      },
-      "shared": {
-        "desktop_image": "Desktop-Bild",
-        "mobile_image": "Mobiles Bild",
-        "alt_key": "Alt-Text-Schlüssel",
-        "heading_key": "Titel-Schlüssel",
-        "text_key": "Text-Schlüssel",
-        "btn_label_key": "Button-Label-Schlüssel",
-        "btn1_label_key": "Button 1 Label-Schlüssel",
-        "btn2_label_key": "Button 2 Label-Schlüssel",
-        "button_link": "Button-Link",
-        "btn1_link": "Button 1 Link",
-        "btn2_link": "Button 2 Link"
-      }
       }
     }
-  }
-  ,
+  },
   "no_reviews": "Keine Bewertungen",
   "announcement": {
     "shipping_notice": "Lieferung in ganz Europa (EWR)",
@@ -77,29 +76,29 @@
       "btn_label": "Zur Wunschliste"
     },
     "bundle": {
-        "custom_bundle": {
-          "banner": {
-            "form": {
-              "properties": {
-                "email_properties": "E-Mail Eigenschaften"
-              }
-            },
-            "heading": "Banner Überschrift"
+      "custom_bundle": {
+        "banner": {
+          "form": {
+            "properties": {
+              "email_properties": "E-Mail Eigenschaften"
+            }
           },
-          "image_banner": {
-            "title": "Banner Titel",
-            "text": "Banner Beschreibung",
-            "primary_button": "Hauptbutton",
-            "secondary_button": "Sekundärbutton"
-          },
-          "image_but": {
-            "title": "Bild Button Titel",
-            "description": "Bild Button Beschreibung",
-            "primary_button_label": "Hauptbutton",
-            "secondary_button_label": "Sekundärbutton"
-          }
+          "heading": "Banner Überschrift"
+        },
+        "image_banner": {
+          "title": "Banner Titel",
+          "text": "Banner Beschreibung",
+          "primary_button": "Hauptbutton",
+          "secondary_button": "Sekundärbutton"
+        },
+        "image_but": {
+          "title": "Bild Button Titel",
+          "description": "Bild Button Beschreibung",
+          "primary_button_label": "Hauptbutton",
+          "secondary_button_label": "Sekundärbutton"
         }
-      },
+      }
+    },
     "include_taxes": "Inkl. Steuern",
     "inventory_bar": {
       "label": "Lagerbestand",
@@ -129,8 +128,7 @@
     "product": "Produkt",
     "product_added_to_cart": "Produkt zum Warenkorb hinzugefügt",
     "remove": "Entfernen"
-    }
-  ,
+  },
   "general": {
     "menu": "Menü",
     "all_rights_reserved": "Alle Rechte vorbehalten",
@@ -254,151 +252,150 @@
       "s": "Sek",
       "seconds": "Sekunden"
     },
-  "general": {
-    "menu": "Menü",
-    "all_rights_reserved": "Alle Rechte vorbehalten",
-    "secure_payments": "Sichere Zahlungen",
-    "newsletter": {
-      "name_placeholder": "Ihren Namen eingeben",
-      "input_label": "Ihre E-Mail eingeben",
-      "submit_button": "Abonnieren",
-      "confirmation_text": "Danke für Ihr Abonnement!"
-    },
-    "loading": "Wird geladen…",
-    "policy": {
-      "default_title": "Richtlinie",
-      "default_content": "Standardinhalt der Richtlinie",
-      "last_updated": "Zuletzt aktualisiert"
-    },
-    "map": {
-      "hours": "Öffnungszeiten",
-      "api_key_missing": "API-Schlüssel fehlt"
-    },
-    "accessibility": {
-      "back_to_top": "Nach oben",
-      "close": "Schließen",
-      "load_more_products": "Mehr Produkte laden",
-      "sorted_by": "Sortiert nach",
-      "previous_page": "Vorherige Seite",
-      "next_page": "Nächste Seite",
-      "increase_qty": "Menge erhöhen",
-      "decrease_qty": "Menge verringern",
-      "account": "Konto",
-      "cart": "Warenkorb",
-      "cart_product_list": "Warenkorbartikel",
-      "menu": "Menü",
-      "model_3d_decrease": "3D-Modell verkleinern",
-      "model_3d_fullscreen": "3D-Modell Vollbild",
-      "model_3d_increase": "3D-Modell vergrößern",
-      "model_3d_list_label": "3D-Modelle",
-      "next": "Weiter",
-      "payment_methods": "Zahlungsarten",
-      "previous": "Zurück",
-      "product_media_gallery": "Produktgalerie",
-      "product_options": "Produktoptionen",
-      "search": "Suche",
-      "skip_content": "Zum Inhalt springen",
-      "skip_product_content": "Zum Produktinhalt springen",
-      "slide_of": "Folie {{ current }} von {{ total }}",
-      "toggle_sound": "Ton ein/aus",
-      "utility_icons": "Dienst-Icons",
-      "wishlist": "Wunschliste"
-    },
-    "breadcrumbs": {
-      "home": "Startseite",
-      "label": "Sie sind hier:"
-    },
-    "cookies": {
-      "consent": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern."
-    },
-    "404_page": {
-      "title": "404 – Seite nicht gefunden",
-      "subtext": "Die gesuchte Seite existiert nicht.",
-      "button": "Zur Startseite"
-    },
-    "search_page": {
-      "title": "Im Shop suchen",
-      "title_search_performed": "Suchergebnisse",
-      "form": {
-        "input_label": "Nach Produkten suchen…",
-        "select_label": "Suchtyp",
-        "btn_text": "Suchen"
+    "general": {
+      "general": {
+        "menu": "Menü",
+        "all_rights_reserved": "Alle Rechte vorbehalten",
+        "secure_payments": "Sichere Zahlungen",
+        "newsletter": {
+          "name_placeholder": "Ihren Namen eingeben",
+          "input_label": "Ihre E-Mail eingeben",
+          "submit_button": "Abonnieren",
+          "confirmation_text": "Danke für Ihr Abonnement!"
+        },
+        "loading": "Wird geladen…",
+        "policy": {
+          "default_title": "Richtlinie",
+          "default_content": "Standardinhalt der Richtlinie",
+          "last_updated": "Zuletzt aktualisiert"
+        },
+        "map": {
+          "hours": "Öffnungszeiten",
+          "api_key_missing": "API-Schlüssel fehlt"
+        },
+        "accessibility": {
+          "back_to_top": "Nach oben",
+          "close": "Schließen",
+          "load_more_products": "Mehr Produkte laden",
+          "sorted_by": "Sortiert nach",
+          "previous_page": "Vorherige Seite",
+          "next_page": "Nächste Seite",
+          "increase_qty": "Menge erhöhen",
+          "decrease_qty": "Menge verringern",
+          "account": "Konto",
+          "cart": "Warenkorb",
+          "cart_product_list": "Warenkorbartikel",
+          "menu": "Menü",
+          "model_3d_decrease": "3D-Modell verkleinern",
+          "model_3d_fullscreen": "3D-Modell Vollbild",
+          "model_3d_increase": "3D-Modell vergrößern",
+          "model_3d_list_label": "3D-Modelle",
+          "next": "Weiter",
+          "payment_methods": "Zahlungsarten",
+          "previous": "Zurück",
+          "product_media_gallery": "Produktgalerie",
+          "product_options": "Produktoptionen",
+          "search": "Suche",
+          "skip_content": "Zum Inhalt springen",
+          "skip_product_content": "Zum Produktinhalt springen",
+          "slide_of": "Folie {{ current }} von {{ total }}",
+          "toggle_sound": "Ton ein/aus",
+          "utility_icons": "Dienst-Icons",
+          "wishlist": "Wunschliste"
+        },
+        "breadcrumbs": {
+          "home": "Startseite",
+          "label": "Sie sind hier:"
+        },
+        "cookies": {
+          "consent": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern."
+        },
+        "404_page": {
+          "title": "404 – Seite nicht gefunden",
+          "subtext": "Die gesuchte Seite existiert nicht.",
+          "button": "Zur Startseite"
+        },
+        "search_page": {
+          "title": "Im Shop suchen",
+          "title_search_performed": "Suchergebnisse",
+          "form": {
+            "input_label": "Nach Produkten suchen…",
+            "select_label": "Suchtyp",
+            "btn_text": "Suchen"
+          },
+          "types": {
+            "products": "Produkte",
+            "articles": "Artikel",
+            "pages": "Seiten"
+          },
+          "no_results": "Keine Ergebnisse für „{{ terms }}“ gefunden.",
+          "results_with_count_and_term": "{{ count }} Ergebnisse für „{{ terms }}“"
+        },
+        "offcanvas_search": {
+          "title": "Suche",
+          "input_label": "Im Shop suchen",
+          "search_by_voice": "Sprachsuche",
+          "result_found": "1 Ergebnis gefunden",
+          "results_found": "{{ count }} Ergebnisse gefunden",
+          "no_results": "Keine Ergebnisse",
+          "search_for": "Suchen nach",
+          "title_articles": "Artikel",
+          "title_collections": "Kollektionen",
+          "title_pages": "Seiten",
+          "title_popular_products": "Beliebte Produkte",
+          "title_products": "Produkte"
+        },
+        "wishlist": {
+          "offcanvas_title": "Ihre Wunschliste",
+          "empty_html": "Ihre Wunschliste ist leer.",
+          "remove_from_wishlist": "Von der Wunschliste entfernen",
+          "add_to_wishlist": "Zur Wunschliste hinzufügen",
+          "btn_label": "Zur Wunschliste"
+        },
+        "offcanvas_menu": {
+          "subtitle_guest_html": "Willkommen, Gast",
+          "subtitle_customer_html": "Willkommen zurück",
+          "title_guest": "Ihr Konto"
+        },
+        "contact": {
+          "email": "E-Mail",
+          "message": "Nachricht",
+          "name": "Name",
+          "phone": "Telefon",
+          "send": "Senden",
+          "success": "Nachricht erfolgreich gesendet"
+        },
+        "countdown_timer": {
+          "d": "T",
+          "days": "Tage",
+          "expires": "Endet in",
+          "h": "Std",
+          "hours": "Stunden",
+          "m": "Min",
+          "minutes": "Minuten",
+          "s": "Sek",
+          "seconds": "Sekunden"
+        },
+        "copied": "Kopiert",
+        "copy": "Kopieren",
+        "follow_us": "Folgen Sie uns",
+        "optional": "Optional",
+        "share": "Teilen",
+        "btn_add_to_cart": "In den Warenkorb",
+        "text_note_saved": "Notiz gespeichert",
+        "text_btn_save": "Speichern"
       },
-      "types": {
-        "products": "Produkte",
-        "articles": "Artikel",
-        "pages": "Seiten"
-      },
-      "no_results": "Keine Ergebnisse für „{{ terms }}“ gefunden.",
-      "results_with_count_and_term": "{{ count }} Ergebnisse für „{{ terms }}“"
+      "password_page": {
+        "password_form": {
+          "btn_label": "Eingeben",
+          "password_label": "Passwort"
+        }
+      }
     },
-    "offcanvas_search": {
-      "title": "Suche",
-      "input_label": "Im Shop suchen",
-      "search_by_voice": "Sprachsuche",
-      "result_found": "1 Ergebnis gefunden",
-      "results_found": "{{ count }} Ergebnisse gefunden",
-      "no_results": "Keine Ergebnisse",
-      "search_for": "Suchen nach",
-      "title_articles": "Artikel",
-      "title_collections": "Kollektionen",
-      "title_pages": "Seiten",
-      "title_popular_products": "Beliebte Produkte",
-      "title_products": "Produkte"
-    },
-    "wishlist": {
-      "offcanvas_title": "Ihre Wunschliste",
-      "empty_html": "Ihre Wunschliste ist leer.",
-      "remove_from_wishlist": "Von der Wunschliste entfernen",
-      "add_to_wishlist": "Zur Wunschliste hinzufügen",
-      "btn_label": "Zur Wunschliste"
-    },
-    "offcanvas_menu": {
-      "subtitle_guest_html": "Willkommen, Gast",
-      "subtitle_customer_html": "Willkommen zurück",
-      "title_guest": "Ihr Konto"
-    },
-    "contact": {
-      "email": "E-Mail",
-      "message": "Nachricht",
-      "name": "Name",
-      "phone": "Telefon",
-      "send": "Senden",
-      "success": "Nachricht erfolgreich gesendet"
-    },
-    "countdown_timer": {
-      "d": "T",
-      "days": "Tage",
-      "expires": "Endet in",
-      "h": "Std",
-      "hours": "Stunden",
-      "m": "Min",
-      "minutes": "Minuten",
-      "s": "Sek",
-      "seconds": "Sekunden"
-    },
-    "copied": "Kopiert",
-    "copy": "Kopieren",
-    "follow_us": "Folgen Sie uns",
-    "optional": "Optional",
-    "share": "Teilen",
     "btn_add_to_cart": "In den Warenkorb",
     "text_note_saved": "Notiz gespeichert",
     "text_btn_save": "Speichern"
   },
-  "password_page": {
-    "password_form": {
-      "btn_label": "Eingeben",
-      "password_label": "Passwort"
-    }
-  }
-  }
-    },
-    "btn_add_to_cart": "In den Warenkorb",
-    "text_note_saved": "Notiz gespeichert",
-    "text_btn_save": "Speichern"
-  }
-  ,
   "cart": {
     "title": "Ihr Warenkorb",
     "quantity": "Menge",
@@ -426,14 +423,12 @@
     "subtotal_discounted": "Reduzierte Zwischensumme",
     "summary": "Übersicht",
     "view_cart": "Warenkorb anzeigen"
-  }
-  ,
+  },
   "blogs": {
     "filter_by": "Nach Thema filtern",
     "all_topics": "Alle Themen",
     "posted_in": "Veröffentlicht in"
-  }
-  ,
+  },
   "shopify": {
     "checkout": {
       "payment": {
@@ -445,8 +440,7 @@
         }
       }
     }
-  }
-  ,
+  },
   "customer": {
     "login": {
       "title": "Kundenlogin",
@@ -542,7 +536,7 @@
       "track_shipment": "Sendung verfolgen",
       "return": "Rückgabe",
       "fulfilled_at_html": "Versandt am {{ date }}"
-  }
+    }
   },
   "custom_sections": {
     "banner": {
