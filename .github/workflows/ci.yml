@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   theme-check:
-    name: theme-check
+    name: Theme Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,13 +19,11 @@ jobs:
         with:
           ruby-version: 3.3
           bundler-cache: true
-      - name: Install theme-check
-        run: gem install theme-check --no-doc
-      - name: Run theme-check
-        run: theme-check --fail-level=error
+      - run: gem install theme-check --no-doc
+      - run: theme-check --fail-level=error
 
   basic-build:
-    name: basic-build
+    name: Basic Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +41,7 @@ jobs:
           fi
 
   eslint:
-    name: eslint
+    name: ESLint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -52,7 +50,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci || npm i --no-audit --no-fund
-      - name: Run ESLint (fallback if no script)
+      - name: Run ESLint (optional fallback)
         run: |
           if npm run | grep -qE '^  lint:js'; then
             npm run lint:js
@@ -63,7 +61,7 @@ jobs:
           fi
 
   stylelint:
-    name: stylelint
+    name: Stylelint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -72,5 +70,4 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci || npm i --no-audit --no-fund
-      - name: Stylelint
-        run: npm run lint:css
+      - run: npm run lint:css
