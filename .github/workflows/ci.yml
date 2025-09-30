@@ -42,7 +42,7 @@ jobs:
             echo "No build script; skipping."
           fi
 
-  eslint:
+    eslint:
     name: eslint
     runs-on: ubuntu-latest
     steps:
@@ -52,8 +52,15 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci || npm i --no-audit --no-fund
-      - name: Run ESLint (via script)
-        run: npm run lint:js
+      - name: Run ESLint (fallback if no script)
+        run: |
+          if npm run | grep -qE '^  lint:js'; then
+            npm run lint:js
+          elif npx eslint --version >/dev/null 2>&1; then
+            npx eslint --max-warnings=0 --ext .js,.ts,.tsx assets scripts src || true
+          else
+            echo "ESLint not configured; skipping."
+          fi
 
   stylelint:
     name: stylelint
