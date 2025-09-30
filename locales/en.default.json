@@ -354,7 +354,6 @@
     "social_media_links": "Social media links",
     "all_rights_reserved": "All rights reserved",
     "secure_payments": "Secure payments",
-    "pagination_page_of": "Page {{ count }} of {{ total }}",
     "newsletter": {
       "name_placeholder": "Enter your name",
       "input_label": "Enter your email",
