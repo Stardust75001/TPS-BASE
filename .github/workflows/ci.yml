@@ -42,7 +42,7 @@ jobs:
             echo "No build script; skipping."
           fi
 
-    eslint:
+  eslint:
     name: eslint
     runs-on: ubuntu-latest
     steps:
