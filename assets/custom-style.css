@@ -1,5 +1,4 @@
 /* === CSS Compatibility Fixes === */
-/* stylelint-disable property-no-unknown, property-no-vendor-prefix, declaration-block-no-duplicate-properties */
 /*
  * COMPREHENSIVE BROWSER COMPATIBILITY OVERRIDES
  * These rules override vendor CSS files (Bootstrap, GLightbox) with proper fallbacks
@@ -8,35 +7,24 @@
 
 /* Fix for Bootstrap text-size-adjust compatibility - Override vendor prefixes */
 body {
-  -webkit-text-size-adjust: 100% !important;
   -moz-text-size-adjust: 100% !important;
   -ms-text-size-adjust: 100% !important;
-  /* stylelint-disable-next-line property-no-unknown */
+  -webkit-text-size-adjust: 100% !important;
   text-size-adjust: 100% !important; /* Standard property for broader browser support */
 }
 
 /* Additional text-size-adjust fixes for all elements that might need it */
-* {
+html,
+body {
   -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  /* stylelint-disable-next-line property-no-unknown */
   text-size-adjust: 100%;
 }
 
 /* Comprehensive text-align compatibility fixes */
-* {
-  text-align: -webkit-match-parent;
-  text-align: match-parent;
-  text-align: inherit;
-}
+/* Removed universal text-align reset for safety. If needed, apply to specific wrappers only. */
 
 /* Overflow scrolling compatibility fixes */
-* {
-  -webkit-overflow-scrolling: touch;
-  /* stylelint-disable-next-line property-no-unknown */
-  overflow-scrolling: touch;
-}
+/* Only apply -webkit-overflow-scrolling to scrollable containers */
 
 /* Fix for Bootstrap appearance compatibility */
 button,
@@ -65,71 +53,61 @@ input[type="number"] {
 /* GLightbox compatibility overrides */
 .glightbox-container,
 .glightbox-container * {
-  -webkit-text-size-adjust: 100% !important;
   -moz-text-size-adjust: 100% !important;
-  /* stylelint-disable-next-line property-no-unknown */
-  text-size-adjust: 100% !important;
-  -webkit-overflow-scrolling: touch !important;
-  /* stylelint-disable-next-line property-no-unknown */
-  overflow-scrolling: touch !important;
-}
 
-/* stylelint-enable property-no-unknown, property-no-vendor-prefix, declaration-block-no-duplicate-properties */
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
 
 /* === COLOR SWATCH ALIGNMENT FIXES === */
 /* Fix for properly aligned color patches/dots in variant selector */
 .swatch {
-  display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  width: 40px !important;
-  height: 40px !important;
   border: 2px solid #e0e0e0 !important;
   border-radius: 50% !important;
-  overflow: hidden !important;
   cursor: pointer !important;
+  display: inline-flex !important;
+  height: 40px !important;
+  justify-content: center !important;
+  overflow: hidden !important;
   position: relative !important;
-  transition: all 0.2s ease !important;
   text-decoration: none !important;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease !important;
+  width: 40px !important;
 }
 
-.swatch:hover {
-  border-color: #999 !important;
-  transform: scale(1.05) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-}
+/* Deduplicated .swatch:hover below */
 
 .swatch input[type="radio"]:checked + label,
 .swatch.selected {
   border-color: #333 !important;
-  transform: scale(1.1) !important;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25) !important;
+  transform: scale(1.1) !important;
 }
 
-.swatch-chip {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 50% !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  transition: all 0.2s ease !important;
-  background-color: #f5f5f5 !important; /* Default fallback color */
-}
+background-color: #f5f5f5 !important; /* Default fallback color */
+background-position: center !important;
+background-repeat: no-repeat !important;
+background-size: cover !important;
+border: 1px solid rgba(255, 255, 255, 0.3) !important;
+border-radius: 50% !important;
+display: block !important;
+height: 100% !important;
+overflow: hidden !important;
+position: relative !important;
+transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease !important;
+width: 100% !important;
+/* End fix for swatch-chip block */
 
 /* Loading state for swatches */
 .swatch-chip.loading {
+  animation: swatch-loading 1s linear infinite !important;
   background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
     linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
     linear-gradient(-45deg, transparent 75%, #f0f0f0 75%) !important;
-  background-size: 8px 8px !important;
   background-position: 0 0, 0 4px, 4px -4px, -4px 0px !important;
-  animation: swatch-loading 1s linear infinite !important;
+  background-size: 8px 8px !important;
 }
 
 @keyframes swatch-loading {
@@ -147,24 +125,24 @@ input[type="number"] {
 }
 
 .swatch-label {
-  position: absolute !important;
   left: -9999px !important; /* Screen reader accessible but visually hidden */
+  position: absolute !important;
 }
 
 /* Color swatches container alignment */
 .color-swatches {
+  align-items: center !important;
   display: flex !important;
   flex-wrap: wrap !important;
-  align-items: center !important;
   gap: 8px !important;
+  list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  list-style: none !important;
 }
 
 .color-swatches li {
-  display: inline-flex !important;
   align-items: center !important;
+  display: inline-flex !important;
   justify-content: center !important;
   margin: 0 !important;
   padding: 2px !important;
@@ -242,8 +220,21 @@ input[type="radio"]:focus-visible + .swatch {
   padding: 4px;
   border: 1px solid #ccc;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+}
+/* Deduplicated .swatch:hover: keep only one definition below */
+.swatch:hover {
+  border-color: #666 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: scale(1.1) !important;
+}
+/* Respecte les préférences d’animation de l’utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .social-img-icon:hover,

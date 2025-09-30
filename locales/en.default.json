@@ -28,89 +28,82 @@
     "image_banner": {
       "title": "Discover a haven of elegance and innovation for your pets.",
       "text": "Curated selections, gourmet treats, and premium care await.",
-      "primary_button": "COME ON IN!",
-      "secondary_button": "ABOUT US"
+      "primary_button": "COME ON IN!"
     },
-    "image_but": {
-      "title": "Discover a haven of elegance and innovation for your pets.",
-      "description": "Curated selections, gourmet treats, and premium care await.",
-      "primary_button_label": "COME ON IN!",
-      "secondary_button_label": "ABOUT US"
-    },
-    "banner": {
-      "heading": "Banner Title",
-      "text": "Description text here"
-    },
-    "multicolumn": {
-      "title_1": "Title 1",
-      "text_1": "Text 1",
-      "title_2": "Title 2",
-      "text_2": "Text 2",
-      "title_3": "Title 3",
-      "text_3": "Text 3"
-    },
-    "section_1": "Custom Section 1",
-    "section_2": "Custom Section 2"
+    "image_banner_title": "Image banner title",
+    "image_banner_description": "Short description for the image banner",
+    "image_banner_btn_primary": "Primary action",
+    "image_banner_btn_secondary": "Secondary action"
   },
-  "sections": {
-    "list_collections": {
-      "name": "Collections",
-      "settings": {
-        "show_breadcrumbs": {
-          "label": "Show breadcrumbs"
-        },
-        "text_align": {
-          "label": "Text alignment"
-        },
-        "bg_color": {
-          "label": "Background color"
-        }
-      }
-    },
-    "colors": {
-      "white": {
-        "label": "White"
-      },
-      "light": {
-        "label": "Light"
-      },
-      "body": {
-        "label": "Body"
-      }
-    },
-    "alignment": {
-      "left": "Left",
-      "center": "Center"
-    },
-    "featured_collections": {
-      "settings": {
-        "btn_text": {
-          "label": "Button text",
-          "default": "View all collections",
-          "info": "Leave blank to disable"
-        }
-      }
-    },
-    "header": "Header",
-    "footer": ""
+  "custom_bundle": {
+    "add_to_bundle": "Add to bundle"
   },
-  "collection": {
-    "btn_filter_products": "Filter products",
-    "sort_by": "Sort by",
-    "paginate_count": "{{ count }} of {{ total }} products displayed",
-    "empty_html": "This collection is empty.",
-    "custom_bundle": {
-      "add_to_bundle": "Add to bundle",
-      "added_to_bundle": "Added to bundle",
-      "bundle_contents_empty_html": "The bundle is currently empty.",
-      "bundle_contents_title": "Bundle contents",
-      "bundle_price": "Bundle price",
-      "button_atc_text": "Add to cart",
-      "button_view_contents_text": "View bundle contents",
-      "progress_completed_text": "Offer completed",
-      "progress_label": "Offer progress",
-      "progress_uncompleted_text": "Not completed",
-      "you_save": "You save"
+  "general": {
+    "quiz": {
+      "question_of_html": "Question {{ count }} of {{ total }}"
+    },
+    "offcanvas_menu": {
+      "title_customer": "Hello, {{ name }}"
+    },
+    "general": {
+      "pagination_page_of": "Page {{ count }} of {{ total }}"
+    }
+  },
+  "testimonials": {
+    "verified_review": "Verified review",
+    "purchase": "Purchase",
+    "verified": "Verified"
+  },
+  "recipient": {
+    "form": {
+      "btn_label": "Send as a gift",
+      "email_label": "Recipient email",
+      "name_label": "Recipient name",
+      "message_label": "Message (optional)",
+      "date_label": "Delivery date (optional)",
+      "date_placeholder": "YYYY-MM-DD",
+      "properties": {
+        "email_properties": "Recipient email",
+        "name_properties": "Recipient name",
+        "message_properties": "Gift message",
+        "date_properties": "Delivery date"
+      }
+    }
+  },
+  "custom": {
+    "ref_variant_label": "Reference variant",
+    "title": "Custom",
+    "description": "Customize your selection"
+  },
+  "customer": {
+    "account": {
+      "title": "My account",
+      "logout": "Log out",
+      "order_history": "Order history",
+      "account_details": "Account details",
+      "view_addresses": "View addresses",
+      "return": "Return to account"
+    },
+    "orders": {
+      "none": "You have no orders yet.",
+      "order_number": "Order number",
+      "date": "Date",
+      "payment_status": "Payment status",
+      "fulfillment_status": "Fulfillment status",
+      "total": "Total"
+    },
+    "activate_account": {
+      "title": "Activate account",
+      "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "submit": "Activate",
+      "cancel": "Cancel"
+    },
+    "order": {
+      "fulfilled_at_html": "Fulfilled on {{ date }}"
+    },
+    ...existing code...
     },
     "filters": {
       "from": "Collection filters from",
