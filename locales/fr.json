@@ -257,20 +257,57 @@
     },
   },
   "general": {
-    "general": {
-      "secure_payments": "Paiements sécurisés"
+    "menu": "Menu",
+    "social_media_links": "Liens réseaux sociaux",
+    "all_rights_reserved": "Tous droits réservés",
+    "secure_payments": "Paiements sécurisés",
+    "newsletter": {
+      "name_placeholder": "Entrez votre nom",
+      "input_label": "Entrez votre email",
+      "submit_button": "S'abonner",
+      "confirmation_text": "Merci pour votre inscription !"
+    },
+    "breadcrumbs": {
+      "home": "Accueil",
+      "label": "Vous êtes ici :"
+    },
+    "cookies": {
+      "consent": "Nous utilisons des cookies pour améliorer votre expérience."
+    },
+    "404_page": {
+      "title": "404 – Page non trouvée",
+      "subtext": "La page que vous recherchez n'existe pas.",
+      "button": "Retour à l'accueil"
+    },
+    "search_page": {
+      "title": "Rechercher dans la boutique",
+      "title_search_performed": "Résultats de recherche",
+      "form": {
+        "input_label": "Rechercher des produits...",
+        "select_label": "Type de recherche",
+        "btn_text": "Rechercher"
+      },
+      "types": {
+        "products": "Produits",
+        "articles": "Articles",
+        "pages": "Pages"
+      },
+      "no_results": "Aucun résultat pour '{{ terms }}'.",
+      "results_with_count_and_term": "{{ count }} résultats pour '{{ terms }}'"
     },
     "pagination_page_of": "Page {{ count }} sur {{ total }}"
   },
-  "product": {
-    "ref_variant_label": "Référence variante liée"
-  },
   "section": "Section",
-  "textWishlistAdd": "Ajouter à la liste de souhaits",
-  "textWishlistRemove": "Retirer de la liste de souhaits",
-  "textWishlistBtnLabel": "Liste de souhaits",
-  "shared": "Partagé",
-  "bundle": { "label": "Lot" },
+  "wishlist": {
+    "offcanvas_title": "Votre liste de souhaits",
+    "empty_html": "Votre liste de souhaits est vide.",
+    "remove_from_wishlist": "Retirer de la liste de souhaits",
+    "add_to_wishlist": "Ajouter à la liste de souhaits",
+    "btn_label": "Ajouter à la liste de souhaits"
+  },
+  "bundle": {
+    "label": "Lot"
+  },
   "custom": {
     "title": "Personnalisé",
     "description": "Personnalisez votre sélection"
