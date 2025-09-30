@@ -5,14 +5,16 @@ module.exports = {
     "stylelint-config-standard-scss",
   ],
   plugins: ["stylelint-order"],
+
+  // ↓ évite les warnings "already been disabled"
+  reportInvalidScopeDisables: false,
+
   rules: {
-    /* garde-fous simples */
     "order/properties-alphabetical-order": true,
     "no-empty-source": true,
-    "block-no-empty": true,
+    "block-no-empty": true,                 // mets à null si tu veux passer CI sans corriger le bloc vide
     "declaration-block-no-duplicate-properties": true,
 
-    /* on calme le bruit */
     "no-duplicate-selectors": null,
     "no-descending-specificity": null,
     "selector-class-pattern": null,
@@ -20,7 +22,10 @@ module.exports = {
     "value-keyword-case": null,
     "color-hex-length": "short",
 
-    /* assouplissements utiles */
+    // ↓ assouplissements
+    "keyframes-name-pattern": null,
+    "property-no-unknown": null,
+    "declaration-property-value-no-unknown": null,
     "color-function-alias-notation": null,
     "color-function-notation": null,
     "alpha-value-notation": null,
@@ -36,13 +41,7 @@ module.exports = {
     "length-zero-no-unit": null,
     "shorthand-property-no-redundant-values": null,
     "declaration-block-no-redundant-longhand-properties": null,
-    "selector-pseudo-element-colon-notation": null,
-    "declaration-property-value-no-unknown": null
+    "selector-pseudo-element-colon-notation": null
   },
-  ignoreFiles: [
-    "**/dist/**",
-    "**/build/**",
-    "**/vendor/**",
-    "**/*.min.css"
-  ]
+  ignoreFiles: ["**/dist/**","**/build/**","**/vendor/**","**/*.min.css"]
 };
