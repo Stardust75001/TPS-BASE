@@ -1,18 +1,3 @@
-  "custom_sections": {
-    "image_banner": {
-      "alt": "Bannière d'accueil pour animaux heureux",
-      "heading": "Bienvenue chez The Pet Society",
-      "text": "Des trouvailles sélectionnées pour le bonheur de vos compagnons.",
-      "button": "Découvrir la boutique"
-    },
-    "carousel": {
-      "slide_alt": "Diapositive du carrousel",
-      "slide_heading": "Nouveautés",
-      "slide_text": "Les dernières sélections viennent d'arriver.",
-      "btn1": "Explorer",
-      "btn2": "En savoir plus"
-    }
-  }
 {
   "no_reviews": "Aucun avis",
   "announcement": {
@@ -89,7 +74,22 @@
       }
     },
     "header": "En-tête",
-    "footer": ""
+    "footer": "",
+    "image_banner": { "name": "Bannière image", "preset_name": "Bannière Héro" },
+    "carousel": { "name": "Carrousel", "blocks": { "slide": { "name": "Diapositive" } } },
+    "shared": {
+      "desktop_image": "Image desktop",
+      "mobile_image": "Image mobile",
+      "alt_key": "Clé de texte alternatif",
+      "heading_key": "Clé de titre",
+      "text_key": "Clé de texte",
+      "btn_label_key": "Clé libellé bouton",
+      "btn1_label_key": "Clé libellé bouton 1",
+      "btn2_label_key": "Clé libellé bouton 2",
+      "button_link": "Lien du bouton",
+      "btn1_link": "Lien du bouton 1",
+      "btn2_link": "Lien du bouton 2"
+    }
   },
 
   "collection": {
@@ -193,7 +193,8 @@
     },
     "quantity": "Quantité",
     "save": "Enregistrer",
-    "select_variant": "Sélectionner une variante"
+    "select_variant": "Sélectionner une variante",
+    "ref_variant_label": "Référence variante liée"
   },
 
   "general": {
@@ -331,7 +332,8 @@
       "follow_us": "Suivez-nous",
       "menu": "Menu",
       "optional": "Optionnel",
-      "share": "Partager"
+      "share": "Partager",
+      "secure_payments": "Paiements sécurisés"
     },
 
     "password_page": {
@@ -516,7 +518,16 @@
       "submit": "Réinitialiser le mot de passe"
     },
     "account": {
-      "return": "Retour au compte"
+      "return": "Retour au compte",
+      "title": "Mon compte"
+    },
+    "activate_account": {
+      "title": "Activer le compte",
+      "subtext": "Créez votre mot de passe pour activer votre compte."
+    },
+    "orders": {
+      "title": "Vos commandes",
+      "none": "Vous n’avez pas encore de commande."
     }
   },
 
