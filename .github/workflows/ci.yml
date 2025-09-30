@@ -22,7 +22,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-          bundler-cache: false
       - name: Install theme-check
         run: gem install theme-check
       - name: Run theme-check (fail on errors)
@@ -33,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Lint GitHub Actions workflows
+      - name: Lint GitHub workflows
         uses: rhysd/actionlint@v1
 
   basic-build:
