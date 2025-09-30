@@ -114,8 +114,8 @@
         },
         "general": {
           "pagination_page_of": "Page {{ count }} of {{ total }}"
-        }
-      }
+          },
+          "contact": {
         "btn_text": {
           "label": "Button text",
           "default": "View all collections",
@@ -342,8 +342,7 @@
       "subtitle_customer_html": "Welcome back",
       "title_guest": "Your account",
       "title_customer": "Hello, {{ name }}"
-    },
-
+      }
     "contact": {
       "email": "Email",
       "message": "Message",

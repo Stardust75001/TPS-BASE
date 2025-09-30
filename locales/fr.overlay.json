@@ -141,4 +141,4 @@
       "pagination_page_of": "Page {{ count }} sur {{ total }}"
     }
   }
-  }
+}
