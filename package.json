@@ -17,7 +17,7 @@
     "lhci:preview": "lhci autorun --config=lighthouserc.preview.json --collect.url=$PREVIEW_URL --collect.startServerCommand='echo skip'",
     "validate:hybrid": "node scripts/validate-hybrid.cjs",
     "check:predeploy": "npm run validate:hybrid && npm run theme-check",
-    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input"
+    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --config .stylelintrc.cjs"
   },
   "keywords": [],
   "author": "",
