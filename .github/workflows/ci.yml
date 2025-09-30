@@ -17,10 +17,26 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
+<<<<<<< HEAD
           ruby-version: 3.3
           bundler-cache: true
       - run: gem install theme-check --no-doc
       - run: theme-check --fail-level=error
+=======
+          ruby-version: '3.2'
+      - name: Install theme-check
+        run: gem install theme-check
+      - name: Run theme-check (fail on errors)
+        run: theme-check --fail-level error
+
+  actionlint:
+    name: actionlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint GitHub workflows
+        uses: rhysd/actionlint@v1
+>>>>>>> 5cf52ad (ci: add real checks (theme-check, actionlint, basic-build))
 
   basic-build:
     name: Basic Build
