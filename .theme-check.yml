@@ -1,0 +1,49 @@
+# .theme-check.yml
+# Base Shopify, mais on baisse le bruit et on ignore les vendors/minifiés.
+extends: shopify
+
+exclude_patterns:
+  - node_modules/**
+  - dist/**
+  - build/**
+  - .github/**
+  - assets/**/*.min.{css,js}
+  - assets/**/vendor-**/*
+  - assets/vendor-*.{css,js}
+  - snippets/**/shogun-*.liquid   # si tu veux garder le tracking mais éviter le bruit
+
+# Niveaux de sévérité : seul "error" casse la CI (car tu lances avec --fail-level=error)
+# On cible surtout les vraies régressions UX/SEO/accessibilité.
+checks:
+  SpaceInsideBraces:
+    enabled: false   # trop verbeux pour un gros thème
+  TemplateLength:
+    enabled: true
+    severity: suggestion
+    max_length: 1200
+  UnusedAssign:
+    severity: suggestion
+  UnusedSnippet:
+    severity: suggestion
+  ContentForHeaderModification:
+    enabled: false   # le thème Shogun touche content_for_header : on n’en fait pas un blockeur CI
+  ImgWidthAndHeight:
+    severity: suggestion   # utile, mais ne doit pas bloquer la CI immédiatement
+  ImgLazyLoading:
+    severity: suggestion
+  RemoteAsset:
+    severity: suggestion
+  DeprecatedFilter:
+    severity: suggestion
+
+  # i18n : on garde bloquant, car tu as plein de clés manquantes en prod.
+  TranslationKeyExists:
+    enabled: true
+    severity: error
+
+  MatchingTranslations:
+    severity: suggestion
+
+  # Quelques règles de style qu’on calme
+  SchemaJsonFormat:
+    severity: suggestion
