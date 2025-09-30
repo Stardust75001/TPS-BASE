@@ -7,13 +7,13 @@
         "text_align": { "label": "Textausrichtung" },
         "bg_color": { "label": "Hintergrundfarbe" }
     }
-  {
-    {
+    },
+    "colors": {
       "white": { "label": "Weiß" },
       "light": { "label": "Hell" },
       "body": { "label": "Körper" }
     },
-    {
+    "alignment": {
       "left": "Links",
       "center": "Zentriert"
     },
@@ -23,64 +23,7 @@
           "verified_review": "Verifizierte Bewertung",
           "purchase": "Kauf",
           "verified": "Verifiziert"
-        },
-        "customer": {
-          "account": {
-            "title": "Konto",
-            "account_details": "Kontodetails",
-            "view_addresses": "Adressen anzeigen",
-            "my_account": "Mein Konto",
-            "return": "Zurück zum Konto"
-          },
-          "activate_account": {
-            "title": "Konto aktivieren",
-            "subtext": "Passwort festlegen, um Ihr Konto zu aktivieren.",
-            "password": "Passwort",
-            "password_confirm": "Passwort bestätigen",
-            "submit": "Aktivieren",
-            "cancel": "Abbrechen",
-            "subtext_alt": "Passwort erstellen, um Ihr Konto zu aktivieren."
-          },
-          "orders": {
-            "none": "Keine Bestellungen gefunden.",
-            "order_number": "Bestellnummer",
-            "date": "Datum",
-            "payment_status": "Zahlungsstatus",
-            "fulfillment_status": "Fulfillment-Status",
-            "total": "Gesamt",
-            "title": "Ihre Bestellungen",
-            "none_alt": "Sie haben noch keine Bestellungen."
-          }
-        },
-        "product": {
-          "article_title": "Artikeltitel",
-          "blog_excerpt": "Blogauszug"
-        },
-        "custom_sections": {
-          "image_banner_title": "Banner-Titel",
-          "image_banner_description": "Banner-Beschreibung",
-          "image_banner_btn_primary": "Primärer Button",
-          "image_banner_btn_secondary": "Sekundärer Button"
-        },
-        "custom": {
-          "ref_variant_label": "Referenzvarianten-Label"
-        },
-        "general": {
-          "quiz": {
-            "question_of_html": "Frage {{ count }} von {{ total }}"
-          },
-          "pagination_page_of": "Seite {{ count }} von {{ total }}",
-          "contact": {
-            "btn_text": {
-              "label": "Button-Text",
-              "default": "Alle Kollektionen anzeigen",
-              "info": "Leer lassen, um zu deaktivieren"
-            }
-      },
-      "header": "Kopfzeile",
-      "footer": "Fußzeile"
-    },
-    "image_banner": {
+  }
       "name": "Bildbanner",
       "preset_name": "Hero-Banner"
     },
