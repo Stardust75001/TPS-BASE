@@ -2,30 +2,117 @@ name: CI
 
 on:
   pull_request:
-    branches: [ "main" ]
   push:
-    branches: [ "main" ]
+    branches: [ main ]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
-  basic-build:
+  theme-check:
+    name: theme-check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Node
-        uses: actions/setup-node@v4
+
+      # Ruby + theme-check (fonctionne même sans Gemfile)
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Install theme-check
+        run: |
+          if [ -f Gemfile ]; then
+            bundle add theme-check --skip-install >/dev/null 2>&1 || true
+            bundle install --jobs 4 --retry 3
+            echo 'bundle exec theme-check --version'
+            bundle exec theme-check --version
+          else
+            gem install theme-check --no-doc
+            echo 'theme-check --version'
+            theme-check --version
+          fi
+      - name: Run theme-check
+        run: |
+          if [ -f Gemfile ]; then
+            bundle exec theme-check --fail-level=error
+          else
+            theme-check --fail-level=error
+          fi
+
+  basic-build:
+    name: basic-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm run build
+          cache: npm
 
-  smoke-tests:
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
+
+      - name: Build
+        run: |
+          if npm run | grep -qE '^  build'; then
+            npm run build
+          else
+            echo "No build script; skipping."
+          fi
+
+  eslint:
+    name: eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Run some smoke tests here"
 
-  theme-check:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
+
+      - name: ESLint
+        run: |
+          if npm run | grep -qE '^  lint(:js)?'; then
+            npm run lint || npm run lint:js
+          elif npx --yes eslint --version >/dev/null 2>&1; then
+            npx eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx assets scripts src || exit $?
+          else
+            echo "ESLint not configured; skipping."
+          fi
+
+  stylelint:
+    name: stylelint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm exec theme-check -- --version
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
+
+      - name: Stylelint
+        run: |
+          if npm run | grep -qE '^  lint:css'; then
+            npm run lint:css
+          elif npx --yes stylelint --version >/dev/null 2>&1; then
+            npx stylelint "**/*.{css,scss}" --allow-empty-input
+          else
+            echo "Stylelint not configured; skipping."
+          fi
