@@ -536,8 +536,8 @@
       "track_shipment": "Sendung verfolgen",
       "return": "Rückgabe",
       "fulfilled_at_html": "Versandt am {{ date }}"
-  },
-  
+  }
+  ,
   "custom_sections": {
     "banner": {
       "form": {
