@@ -7,7 +7,7 @@
         "text_align": { "label": "Textausrichtung" },
         "bg_color": { "label": "Hintergrundfarbe" }
   }
-  }
+  },
     "colors": {
       "white": { "label": "Weiß" },
       "light": { "label": "Hell" },
@@ -52,6 +52,7 @@
       }
     }
   }
+  ,
   "no_reviews": "Keine Bewertungen",
   "announcement": {
     "shipping_notice": "Lieferung in ganz Europa (EWR)",
@@ -386,19 +387,12 @@
     "text_btn_save": "Speichern"
   },
   "password_page": {
-    "password_page": {
-      "password_form": {
-        "btn_label": "Eingeben",
-        "password_label": "Passwort"
-      }
-    },
-    "quiz": {
-      "btn_previous": "Zurück",
-      "btn_reload_quiz": "Quiz neu starten"
-    },
-    "tracking": {
-      "btn_text": "Sendung verfolgen",
-      "placeholder": "Sendungsnummer eingeben"
+    "password_form": {
+      "btn_label": "Eingeben",
+      "password_label": "Passwort"
+    }
+  }
+  }
     },
     "btn_add_to_cart": "In den Warenkorb",
     "text_note_saved": "Notiz gespeichert",
