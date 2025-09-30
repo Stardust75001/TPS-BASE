@@ -250,139 +250,139 @@
       "s": "Sek",
       "seconds": "Sekunden"
     },
-      "general": {
-        "menu": "Menü",
-        "all_rights_reserved": "Alle Rechte vorbehalten",
-        "secure_payments": "Sichere Zahlungen",
-        "newsletter": {
-          "name_placeholder": "Ihren Namen eingeben",
-          "input_label": "Ihre E-Mail eingeben",
-          "submit_button": "Abonnieren",
-          "confirmation_text": "Danke für Ihr Abonnement!"
-        },
-        "loading": "Wird geladen…",
-        "policy": {
-          "default_title": "Richtlinie",
-          "default_content": "Standardinhalt der Richtlinie",
-          "last_updated": "Zuletzt aktualisiert"
-        },
-        "map": {
-          "hours": "Öffnungszeiten",
-          "api_key_missing": "API-Schlüssel fehlt"
-        },
-        "accessibility": {
-          "back_to_top": "Nach oben",
-          "close": "Schließen",
-          "load_more_products": "Mehr Produkte laden",
-          "sorted_by": "Sortiert nach",
-          "previous_page": "Vorherige Seite",
-          "next_page": "Nächste Seite",
-          "increase_qty": "Menge erhöhen",
-          "decrease_qty": "Menge verringern",
-          "account": "Konto",
-          "cart": "Warenkorb",
-          "cart_product_list": "Warenkorbartikel",
-          "menu": "Menü",
-          "model_3d_decrease": "3D-Modell verkleinern",
-          "model_3d_fullscreen": "3D-Modell Vollbild",
-          "model_3d_increase": "3D-Modell vergrößern",
-          "model_3d_list_label": "3D-Modelle",
-          "next": "Weiter",
-          "payment_methods": "Zahlungsarten",
-          "previous": "Zurück",
-          "product_media_gallery": "Produktgalerie",
-          "product_options": "Produktoptionen",
-          "search": "Suche",
-          "skip_content": "Zum Inhalt springen",
-          "skip_product_content": "Zum Produktinhalt springen",
-          "slide_of": "Folie {{ current }} von {{ total }}",
-          "toggle_sound": "Ton ein/aus",
-          "utility_icons": "Dienst-Icons",
-          "wishlist": "Wunschliste"
-        },
-        "breadcrumbs": {
-          "home": "Startseite",
-          "label": "Sie sind hier:"
-        },
-        "cookies": {
-          "consent": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern."
-        },
-        "404_page": {
-          "title": "404 – Seite nicht gefunden",
-          "subtext": "Die gesuchte Seite existiert nicht.",
-          "button": "Zur Startseite"
-        },
-        "search_page": {
-          "title": "Im Shop suchen",
-          "title_search_performed": "Suchergebnisse",
-          "form": {
-            "input_label": "Nach Produkten suchen…",
-            "select_label": "Suchtyp",
-            "btn_text": "Suchen"
-          },
-          "types": {
-            "products": "Produkte",
-            "articles": "Artikel",
-            "pages": "Seiten"
-          },
-          "no_results": "Keine Ergebnisse für „{{ terms }}“ gefunden.",
-          "results_with_count_and_term": "{{ count }} Ergebnisse für „{{ terms }}“"
-        },
-        "offcanvas_search": {
-          "title": "Suche",
-          "input_label": "Im Shop suchen",
-          "search_by_voice": "Sprachsuche",
-          "result_found": "1 Ergebnis gefunden",
-          "results_found": "{{ count }} Ergebnisse gefunden",
-          "no_results": "Keine Ergebnisse",
-          "search_for": "Suchen nach",
-          "title_articles": "Artikel",
-          "title_collections": "Kollektionen",
-          "title_pages": "Seiten",
-          "title_popular_products": "Beliebte Produkte",
-          "title_products": "Produkte"
-        },
-        "wishlist": {
-          "offcanvas_title": "Ihre Wunschliste",
-          "empty_html": "Ihre Wunschliste ist leer.",
-          "remove_from_wishlist": "Von der Wunschliste entfernen",
-          "add_to_wishlist": "Zur Wunschliste hinzufügen",
-          "btn_label": "Zur Wunschliste"
-        },
-        "offcanvas_menu": {
-          "subtitle_guest_html": "Willkommen, Gast",
-          "subtitle_customer_html": "Willkommen zurück",
-          "title_guest": "Ihr Konto"
-        },
-        "contact": {
-          "email": "E-Mail",
-          "message": "Nachricht",
-          "name": "Name",
-          "phone": "Telefon",
-          "send": "Senden",
-          "success": "Nachricht erfolgreich gesendet"
-        },
-        "countdown_timer": {
-          "d": "T",
-          "days": "Tage",
-          "expires": "Endet in",
-          "h": "Std",
-          "hours": "Stunden",
-          "m": "Min",
-          "minutes": "Minuten",
-          "s": "Sek",
-          "seconds": "Sekunden"
-        },
-        "copied": "Kopiert",
-        "copy": "Kopieren",
-        "follow_us": "Folgen Sie uns",
-        "optional": "Optional",
-        "share": "Teilen",
-        "btn_add_to_cart": "In den Warenkorb",
-        "text_note_saved": "Notiz gespeichert",
-        "text_btn_save": "Speichern"
-      }
-    ,
+  "general": {
+    "menu": "Menü",
+    "all_rights_reserved": "Alle Rechte vorbehalten",
+    "secure_payments": "Sichere Zahlungen",
+    "newsletter": {
+      "name_placeholder": "Ihren Namen eingeben",
+      "input_label": "Ihre E-Mail eingeben",
+      "submit_button": "Abonnieren",
+      "confirmation_text": "Danke für Ihr Abonnement!"
+    },
+    "loading": "Wird geladen…",
+    "policy": {
+      "default_title": "Richtlinie",
+      "default_content": "Standardinhalt der Richtlinie",
+      "last_updated": "Zuletzt aktualisiert"
+    },
+    "map": {
+      "hours": "Öffnungszeiten",
+      "api_key_missing": "API-Schlüssel fehlt"
+    },
+    "accessibility": {
+      "back_to_top": "Nach oben",
+      "close": "Schließen",
+      "load_more_products": "Mehr Produkte laden",
+      "sorted_by": "Sortiert nach",
+      "previous_page": "Vorherige Seite",
+      "next_page": "Nächste Seite",
+      "increase_qty": "Menge erhöhen",
+      "decrease_qty": "Menge verringern",
+      "account": "Konto",
+      "cart": "Warenkorb",
+      "cart_product_list": "Warenkorbartikel",
+      "menu": "Menü",
+      "model_3d_decrease": "3D-Modell verkleinern",
+      "model_3d_fullscreen": "3D-Modell Vollbild",
+      "model_3d_increase": "3D-Modell vergrößern",
+      "model_3d_list_label": "3D-Modelle",
+      "next": "Weiter",
+      "payment_methods": "Zahlungsarten",
+      "previous": "Zurück",
+      "product_media_gallery": "Produktgalerie",
+      "product_options": "Produktoptionen",
+      "search": "Suche",
+      "skip_content": "Zum Inhalt springen",
+      "skip_product_content": "Zum Produktinhalt springen",
+      "slide_of": "Folie {{ current }} von {{ total }}",
+      "toggle_sound": "Ton ein/aus",
+      "utility_icons": "Dienst-Icons",
+      "wishlist": "Wunschliste"
+    },
+    "breadcrumbs": {
+      "home": "Startseite",
+      "label": "Sie sind hier:"
+    },
+    "cookies": {
+      "consent": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern."
+    },
+    "404_page": {
+      "title": "404 – Seite nicht gefunden",
+      "subtext": "Die gesuchte Seite existiert nicht.",
+      "button": "Zur Startseite"
+    },
+    "search_page": {
+      "title": "Im Shop suchen",
+      "title_search_performed": "Suchergebnisse",
+      "form": {
+        "input_label": "Nach Produkten suchen…",
+        "select_label": "Suchtyp",
+        "btn_text": "Suchen"
+      },
+      "types": {
+        "products": "Produkte",
+        "articles": "Artikel",
+        "pages": "Seiten"
+      },
+      "no_results": "Keine Ergebnisse für „{{ terms }}“ gefunden.",
+      "results_with_count_and_term": "{{ count }} Ergebnisse für „{{ terms }}“"
+    },
+    "offcanvas_search": {
+      "title": "Suche",
+      "input_label": "Im Shop suchen",
+      "search_by_voice": "Sprachsuche",
+      "result_found": "1 Ergebnis gefunden",
+      "results_found": "{{ count }} Ergebnisse gefunden",
+      "no_results": "Keine Ergebnisse",
+      "search_for": "Suchen nach",
+      "title_articles": "Artikel",
+      "title_collections": "Kollektionen",
+      "title_pages": "Seiten",
+      "title_popular_products": "Beliebte Produkte",
+      "title_products": "Produkte"
+    },
+    "wishlist": {
+      "offcanvas_title": "Ihre Wunschliste",
+      "empty_html": "Ihre Wunschliste ist leer.",
+      "remove_from_wishlist": "Von der Wunschliste entfernen",
+      "add_to_wishlist": "Zur Wunschliste hinzufügen",
+      "btn_label": "Zur Wunschliste"
+    },
+    "offcanvas_menu": {
+      "subtitle_guest_html": "Willkommen, Gast",
+      "subtitle_customer_html": "Willkommen zurück",
+      "title_guest": "Ihr Konto"
+    },
+    "contact": {
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "name": "Name",
+      "phone": "Telefon",
+      "send": "Senden",
+      "success": "Nachricht erfolgreich gesendet"
+    },
+    "countdown_timer": {
+      "d": "T",
+      "days": "Tage",
+      "expires": "Endet in",
+      "h": "Std",
+      "hours": "Stunden",
+      "m": "Min",
+      "minutes": "Minuten",
+      "s": "Sek",
+      "seconds": "Sekunden"
+    },
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "follow_us": "Folgen Sie uns",
+    "optional": "Optional",
+    "share": "Teilen",
+    "btn_add_to_cart": "In den Warenkorb",
+    "text_note_saved": "Notiz gespeichert",
+    "text_btn_save": "Speichern"
+  },
+  "password_page": {
     "password_page": {
       "password_form": {
         "btn_label": "Eingeben",
@@ -400,7 +400,8 @@
     "btn_add_to_cart": "In den Warenkorb",
     "text_note_saved": "Notiz gespeichert",
     "text_btn_save": "Speichern"
-  },
+  }
+  ,
   "cart": {
     "title": "Ihr Warenkorb",
     "quantity": "Menge",
