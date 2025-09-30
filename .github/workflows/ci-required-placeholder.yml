@@ -1,17 +1,10 @@
-name: Required Checks (compat)
+name: Required Checks (placeholder)
 
 on:
   pull_request:
-  push:
     branches: [ main ]
 
 jobs:
-  backup:
-    name: backup
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo OK
-
   basic_build:
     name: basic-build
     runs-on: ubuntu-latest
