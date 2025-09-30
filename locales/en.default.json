@@ -83,7 +83,8 @@
           "account": {
             "title": "Account",
             "account_details": "Account details",
-            "view_addresses": "View addresses"
+            "view_addresses": "View addresses",
+            "my_account": "My account"
           },
           "activate_account": {
             "title": "Activate account",
@@ -91,7 +92,8 @@
             "password": "Password",
             "password_confirm": "Confirm password",
             "submit": "Activate",
-            "cancel": "Cancel"
+            "cancel": "Cancel",
+            "subtext_alt": "Create your password to activate your account."
           },
           "orders": {
             "none": "No orders found.",
@@ -99,7 +101,9 @@
             "date": "Date",
             "payment_status": "Payment status",
             "fulfillment_status": "Fulfillment status",
-            "total": "Total"
+            "total": "Total",
+            "title": "Your orders",
+            "none_alt": "You have no orders yet."
           }
         },
         "product": {
@@ -119,9 +123,7 @@
           "quiz": {
             "question_of_html": "Question {{ count }} of {{ total }}"
           },
-          "general": {
-            "pagination_page_of": "Page {{ count }} of {{ total }}"
-          },
+          "pagination_page_of": "Page {{ count }} of {{ total }}",
           "contact": {
             "btn_text": {
               "label": "Button text",
@@ -354,9 +356,7 @@
     "social_media_links": "Social media links",
     "all_rights_reserved": "All rights reserved",
     "secure_payments": "Secure payments",
-    "general": {
-      "secure_payments": "Secure payments"
-    },
+    "pagination_page_of": "Page {{ count }} of {{ total }}",
     "newsletter": {
       "name_placeholder": "Enter your name",
       "input_label": "Enter your email",
