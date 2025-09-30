@@ -67,6 +67,55 @@
     },
     "featured_collections": {
       "settings": {
+      "testimonials": {
+        "verified_review": "Verified review",
+        "purchase": "Purchase",
+        "verified": "Verified"
+      },
+      "customer": {
+        "account": {
+          "title": "Account",
+          "account_details": "Account details",
+          "view_addresses": "View addresses"
+        },
+        "activate_account": {
+          "title": "Activate account",
+          "subtext": "Set your password to activate your account.",
+          "password": "Password",
+          "password_confirm": "Confirm password",
+          "submit": "Activate",
+          "cancel": "Cancel"
+        },
+        "orders": {
+          "none": "No orders found.",
+          "order_number": "Order number",
+          "date": "Date",
+          "payment_status": "Payment status",
+          "fulfillment_status": "Fulfillment status",
+          "total": "Total"
+        }
+      },
+      "product": {
+        "article_title": "Article title",
+        "blog_excerpt": "Blog excerpt"
+      },
+      "custom_sections": {
+        "image_banner_title": "Banner title",
+        "image_banner_description": "Banner description",
+        "image_banner_btn_primary": "Primary button",
+        "image_banner_btn_secondary": "Secondary button"
+      },
+      "custom": {
+        "ref_variant_label": "Reference variant label"
+      },
+      "general": {
+        "quiz": {
+          "question_of_html": "Question {{ count }} of {{ total }}"
+        },
+        "general": {
+          "pagination_page_of": "Page {{ count }} of {{ total }}"
+        }
+      }
         "btn_text": {
           "label": "Button text",
           "default": "View all collections",
