@@ -438,6 +438,7 @@
       "password_form": {
         "btn_label": "Eingeben",
         "password_label": "Passwort"
+      }
     },
     "quiz": {
       "btn_previous": "Zurück",
@@ -492,7 +493,9 @@
       "review": {
         "blocks": {
           "company_location": "Unternehmensstandort"
-          }
+        }
+      }
+    }
   },
   "customer": {
     "login": {
@@ -610,6 +613,7 @@
       "description": "",
       "primary_button_label": "",
       "secondary_button_label": ""
-  },
+    }
   }
+}
 }
