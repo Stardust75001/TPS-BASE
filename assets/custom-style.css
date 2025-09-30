@@ -1,4 +1,7 @@
+/* stylelint-disable media-feature-range-notation */
+
 /* === CSS Compatibility Fixes === */
+
 /*
  * COMPREHENSIVE BROWSER COMPATIBILITY OVERRIDES
  * These rules override vendor CSS files (Bootstrap, GLightbox) with proper fallbacks
@@ -21,9 +24,11 @@ body {
 }
 
 /* Comprehensive text-align compatibility fixes */
+
 /* Removed universal text-align reset for safety. If needed, apply to specific wrappers only. */
 
 /* Overflow scrolling compatibility fixes */
+
 /* Only apply -webkit-overflow-scrolling to scrollable containers */
 
 /* Fix for Bootstrap appearance compatibility */
@@ -54,7 +59,6 @@ input[type="number"] {
 .glightbox-container,
 .glightbox-container * {
   -moz-text-size-adjust: 100% !important;
-
   -webkit-text-size-adjust: 100% !important;
   text-size-adjust: 100% !important;
 }
@@ -115,7 +119,7 @@ width: 100% !important;
     background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
   }
   100% {
-    background-position: 8px 0, 8px 4px, 12px -4px, 4px 0px;
+    background-position: 8px 0, 8px 4px, 12px -4px, 4px 0;
   }
 }
 
