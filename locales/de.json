@@ -25,33 +25,38 @@
           "verified": "Verifiziert"
         },
         "image_banner": {
-          "name": "Bildbanner",
-          "preset_name": "Hero-Banner",
-          "default": "Bildbanner"
+          "name": { "de": "Bildbanner", "default": "Banner" },
+          "preset_name": { "de": "Hero-Banner", "default": "Hero Banner" }
         },
         "carousel": {
-          "name": "Karussell",
-          "default": "Karussell",
+          "name": { "de": "Karussell", "default": "Carousel" },
           "blocks": {
             "slide": {
-              "name": "Folie",
-              "default": "Folie"
+              "name": { "de": "Folie", "default": "Slide" }
             }
           }
         },
         "shared": {
-          "desktop_image": "Desktop-Bild",
-          "mobile_image": "Mobiles Bild",
-          "alt_key": "Alt-Text-Schlüssel",
-          "heading_key": "Titel-Schlüssel",
-          "text_key": "Text-Schlüssel",
-          "btn_label_key": "Button-Label-Schlüssel",
-          "btn1_label_key": "Button 1 Label-Schlüssel",
-          "btn2_label_key": "Button 2 Label-Schlüssel",
-          "button_link": "Button-Link",
-          "btn1_link": "Button 1 Link",
-          "btn2_link": "Button 2 Link",
-          "default": "Gemeinsame Einstellungen"
+          "desktop_image": { "de": "Desktop-Bild", "default": "Desktop image" },
+          "mobile_image": { "de": "Mobiles Bild", "default": "Mobile image" },
+          "alt_key": { "de": "Alt-Text-Schlüssel", "default": "Alt text key" },
+          "heading_key": { "de": "Titel-Schlüssel", "default": "Heading key" },
+          "text_key": { "de": "Text-Schlüssel", "default": "Text key" },
+          "btn_label_key": {
+            "de": "Button-Label-Schlüssel",
+            "default": "Button label key"
+          },
+          "btn1_label_key": {
+            "de": "Button 1 Label-Schlüssel",
+            "default": "Button 1 label key"
+          },
+          "btn2_label_key": {
+            "de": "Button 2 Label-Schlüssel",
+            "default": "Button 2 label key"
+          },
+          "button_link": { "de": "Button-Link", "default": "Button link" },
+          "btn1_link": { "de": "Button 1 Link", "default": "Button 1 link" },
+          "btn2_link": { "de": "Button 2 Link", "default": "Button 2 link" }
         }
       }
     }
