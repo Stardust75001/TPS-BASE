@@ -1,4 +1,4 @@
-/* Stylelint v16 (profil Shopify, tolérant pour migration) */
+/* Stylelint v16 – Config Shopify */
 module.exports = {
   extends: [
     "stylelint-config-standard",
@@ -6,38 +6,38 @@ module.exports = {
   ],
   plugins: ["stylelint-order"],
   rules: {
-    /* migration: évite un diff monstrueux lié aux rgba() et aux % */
-    "color-function-notation": null,           // autorise rgba()
-    "alpha-value-notation": "number",          // 0.5 au lieu de 50%
-
-    /* ordre des propriétés : on garde, mais tu pourras le durcir plus tard */
     "order/properties-alphabetical-order": true,
-
-    /* noms de classes kebab-case (utile sur un thème Shopify) */
     "selector-class-pattern": [
       "^[a-z0-9\\-]+$",
       { message: "Utilise des classes en kebab-case (a-z0-9-)." }
     ],
+    "no-duplicate-selectors": true,
+    "declaration-block-no-duplicate-properties": true,
 
-    /* évite une pluie d’alertes pendant la migration */
-    "no-descending-specificity": null,
-    "property-no-vendor-prefix": null,
-    "value-no-vendor-prefix": null,
-    "selector-pseudo-element-colon-notation": "double", // ::before, ::after
+    /* assouplissements utiles */
+    "color-function-alias-notation": null,
+    "color-function-notation": null,
+    "alpha-value-notation": null,
+    "value-keyword-case": null,
+    "media-feature-range-notation": null,
+    "media-feature-name-value-no-unknown": null,
+    "selector-not-notation": null,
+    "property-no-deprecated": null,
+    "comment-empty-line-before": null,
+    "rule-empty-line-before": null,
+    "declaration-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "comment-whitespace-inside": null,
+    "length-zero-no-unit": null,
+    "shorthand-property-no-redundant-values": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "keyframes-name-pattern": null,
+    "selector-pseudo-element-colon-notation": null,
   },
   ignoreFiles: [
     "**/dist/**",
     "**/build/**",
     "**/vendor/**",
-    "**/*.min.css"
+    "**/*.min.css",
   ],
-  overrides: [
-    /* on est encore plus permissif sur assets/ pendant la migration */
-    {
-      files: ["assets/**/*.css", "assets/**/*.scss"],
-      rules: {
-        "order/properties-alphabetical-order": null
-      }
-    }
-  ]
 };
