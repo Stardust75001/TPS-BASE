@@ -1,4 +1,109 @@
 {
+  "sections": {
+    "list_collections": {
+      "name": "Kollektionen",
+      "settings": {
+        "show_breadcrumbs": { "label": "Breadcrumbs anzeigen" },
+        "text_align": { "label": "Textausrichtung" },
+        "bg_color": { "label": "Hintergrundfarbe" }
+      }
+    },
+    "colors": {
+      "white": { "label": "Weiß" },
+      "light": { "label": "Hell" },
+      "body": { "label": "Körper" }
+    },
+    "alignment": {
+      "left": "Links",
+      "center": "Zentriert"
+    },
+    "featured_collections": {
+      "settings": {
+        "testimonials": {
+          "verified_review": "Verifizierte Bewertung",
+          "purchase": "Kauf",
+          "verified": "Verifiziert"
+        },
+        "customer": {
+          "account": {
+            "title": "Konto",
+            "account_details": "Kontodetails",
+            "view_addresses": "Adressen anzeigen",
+            "my_account": "Mein Konto",
+            "return": "Zurück zum Konto"
+          },
+          "activate_account": {
+            "title": "Konto aktivieren",
+            "subtext": "Passwort festlegen, um Ihr Konto zu aktivieren.",
+            "password": "Passwort",
+            "password_confirm": "Passwort bestätigen",
+            "submit": "Aktivieren",
+            "cancel": "Abbrechen",
+            "subtext_alt": "Passwort erstellen, um Ihr Konto zu aktivieren."
+          },
+          "orders": {
+            "none": "Keine Bestellungen gefunden.",
+            "order_number": "Bestellnummer",
+            "date": "Datum",
+            "payment_status": "Zahlungsstatus",
+            "fulfillment_status": "Fulfillment-Status",
+            "total": "Gesamt",
+            "title": "Ihre Bestellungen",
+            "none_alt": "Sie haben noch keine Bestellungen."
+          }
+        },
+        "product": {
+          "article_title": "Artikeltitel",
+          "blog_excerpt": "Blogauszug"
+        },
+        "custom_sections": {
+          "image_banner_title": "Banner-Titel",
+          "image_banner_description": "Banner-Beschreibung",
+          "image_banner_btn_primary": "Primärer Button",
+          "image_banner_btn_secondary": "Sekundärer Button"
+        },
+        "custom": {
+          "ref_variant_label": "Referenzvarianten-Label"
+        },
+        "general": {
+          "quiz": {
+            "question_of_html": "Frage {{ count }} von {{ total }}"
+          },
+          "pagination_page_of": "Seite {{ count }} von {{ total }}",
+          "contact": {
+            "btn_text": {
+              "label": "Button-Text",
+              "default": "Alle Kollektionen anzeigen",
+              "info": "Leer lassen, um zu deaktivieren"
+            }
+          }
+        }
+      },
+      "header": "Kopfzeile",
+      "footer": "Fußzeile"
+    },
+    "image_banner": {
+      "name": "Bildbanner",
+      "preset_name": "Hero-Banner"
+    },
+    "carousel": {
+      "name": "Karussell",
+      "blocks": { "slide": { "name": "Folie" } }
+    },
+    "shared": {
+      "desktop_image": "Desktop-Bild",
+      "mobile_image": "Mobiles Bild",
+      "alt_key": "Alt-Text-Schlüssel",
+      "heading_key": "Titel-Schlüssel",
+      "text_key": "Text-Schlüssel",
+      "btn_label_key": "Button-Label-Schlüssel",
+      "btn1_label_key": "Button 1 Label-Schlüssel",
+      "btn2_label_key": "Button 2 Label-Schlüssel",
+      "button_link": "Button-Link",
+      "btn1_link": "Button 1 Link",
+      "btn2_link": "Button 2 Link"
+    }
+  },
   "no_reviews": "Keine Bewertungen",
   "announcement": {
     "shipping_notice": "Lieferung in ganz Europa (EWR)",
@@ -389,7 +494,7 @@
       "review": {
         "blocks": {
           "company_location": "Unternehmensstandort"
-        }
+          }
         }
     }
   },
