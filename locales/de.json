@@ -7,6 +7,8 @@
         "text_align": { "label": "Textausrichtung" },
         "bg_color": { "label": "Hintergrundfarbe" }
       }
+}
+}
     },
     "colors": {
       "white": { "label": "Weiß" },
@@ -100,7 +102,7 @@
       "button_link": "Button-Link",
       "btn1_link": "Button 1 Link",
       "btn2_link": "Button 2 Link"
-    }
+  },
   },
   "no_reviews": "Keine Bewertungen",
   "announcement": {
@@ -437,7 +439,7 @@
       "password_form": {
         "btn_label": "Eingeben",
         "password_label": "Passwort"
-      }
+  }
     },
     "quiz": {
       "btn_previous": "Zurück",
@@ -612,4 +614,4 @@
         "primary_button_label": "",
         "secondary_button_label": ""
       }
-}
+    }
