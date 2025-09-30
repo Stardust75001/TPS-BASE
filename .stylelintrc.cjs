@@ -5,14 +5,11 @@ module.exports = {
     "stylelint-config-standard-scss",
   ],
   plugins: ["stylelint-order"],
-
-  // ↓ évite les warnings "already been disabled"
   reportInvalidScopeDisables: false,
-
   rules: {
     "order/properties-alphabetical-order": true,
     "no-empty-source": true,
-    "block-no-empty": true,                 // mets à null si tu veux passer CI sans corriger le bloc vide
+    "block-no-empty": true,
     "declaration-block-no-duplicate-properties": true,
 
     "no-duplicate-selectors": null,
@@ -22,7 +19,6 @@ module.exports = {
     "value-keyword-case": null,
     "color-hex-length": "short",
 
-    // ↓ assouplissements
     "keyframes-name-pattern": null,
     "property-no-unknown": null,
     "declaration-property-value-no-unknown": null,
