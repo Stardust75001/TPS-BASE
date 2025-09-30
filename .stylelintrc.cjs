@@ -1,4 +1,4 @@
-/* Stylelint v16 – profil Shopify allégé (utile en CI) */
+/* Stylelint v16 – config Shopify allégée et corrigée */
 module.exports = {
   extends: [
     "stylelint-config-standard",
@@ -7,11 +7,18 @@ module.exports = {
   plugins: ["stylelint-order"],
   reportInvalidScopeDisables: false,
   rules: {
-    "order/properties-alphabetical-order": true,
+    /* Ordonancement & lisibilité */
+    "order/properties-alphabetical-order": null,   // évite tsunami d’ordonnancement
+    "custom-property-empty-line-before": null,     // évite sauts de ligne forcés
+    "selector-attribute-quotes": null,             // autorise [data-attr=true] sans ""
+    "value-no-vendor-prefix": null,                // autorise -webkit-… si besoin
+
+    /* De base */
     "no-empty-source": true,
     "block-no-empty": true,
     "declaration-block-no-duplicate-properties": true,
 
+    /* Désactivées pour compat Shopify */
     "no-duplicate-selectors": null,
     "no-descending-specificity": null,
     "selector-class-pattern": null,
@@ -19,6 +26,7 @@ module.exports = {
     "value-keyword-case": null,
     "color-hex-length": "short",
 
+    /* Allégées pour CI */
     "keyframes-name-pattern": null,
     "property-no-unknown": null,
     "declaration-property-value-no-unknown": null,
@@ -39,5 +47,10 @@ module.exports = {
     "declaration-block-no-redundant-longhand-properties": null,
     "selector-pseudo-element-colon-notation": null
   },
-  ignoreFiles: ["**/dist/**","**/build/**","**/vendor/**","**/*.min.css"]
+  ignoreFiles: [
+    "**/dist/**",
+    "**/build/**",
+    "**/vendor/**",
+    "**/*.min.css"
+  ]
 };
