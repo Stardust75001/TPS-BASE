@@ -429,12 +429,14 @@
     "subtotal_discounted": "Reduzierte Zwischensumme",
     "summary": "Übersicht",
     "view_cart": "Warenkorb anzeigen"
-  },
+  }
+  ,
   "blogs": {
     "filter_by": "Nach Thema filtern",
     "all_topics": "Alle Themen",
     "posted_in": "Veröffentlicht in"
-  },
+  }
+  ,
   "shopify": {
     "checkout": {
       "payment": {
@@ -446,7 +448,8 @@
         }
       }
     }
-  },
+  }
+  ,
   "customer": {
     "login": {
       "title": "Kundenlogin",
