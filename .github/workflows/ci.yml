@@ -1,15 +1,14 @@
-# A) Workflow CI (au cas où)
-mkdir -p .github/workflows
-test -f .github/workflows/ci.yml || cat > .github/workflows/ci.yml <<'YAML'
 name: CI
+
 on:
   pull_request:
+    branches: [ main ]
   push:
     branches: [ main ]
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
-permissions: { contents: read }
+
+permissions:
+  contents: read
+
 jobs:
   theme-check:
     name: theme-check
@@ -17,19 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
-        with: { ruby-version: '3.3', bundler-cache: true }
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
       - name: Install theme-check
         run: |
-          if [ -f Gemfile ]; then
-            bundle add theme-check --skip-install >/dev/null 2>&1 || true
-            bundle install --jobs 4 --retry 3
-          else
-            gem install theme-check --no-doc
-          fi
+          gem install theme-check --no-doc
       - name: Run theme-check
-        run: |
-          if [ -f Gemfile ]; then bundle exec theme-check --fail-level=error
-          else theme-check --fail-level=error; fi
+        run: theme-check --fail-level=error
 
   basic-build:
     name: basic-build
@@ -37,14 +31,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - name: Install deps
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
-      - name: Build
-        run: |
-          if npm run | grep -qE '^  build'; then npm run build
-          else echo "No build script; skipping."; fi
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci || npm i --no-audit --no-fund
+      - run: |
+          if npm run | grep -qE '^  build'; then npm run build; else echo "No build script; skipping."; fi
 
   eslint:
     name: eslint
@@ -52,17 +44,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - name: Install deps
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
-      - name: ESLint
-        run: |
-          if npm run | grep -qE '^  lint(:js)?'; then npm run lint || npm run lint:js
-          elif npx --yes eslint --version >/dev/null 2>&1; then
-            npx eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx assets scripts src || exit $?
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci || npm i --no-audit --no-fund
+      - run: |
+          if npm run | grep -qE '^  lint:js'; then npm run lint:js;
+          elif npx eslint --version >/dev/null 2>&1; then
+            npx eslint --max-warnings=0 --ext .js,.ts,.tsx assets scripts src;
           else
-            echo "ESLint not configured; skipping."
+            echo "ESLint not configured; skipping.";
           fi
 
   stylelint:
@@ -71,69 +62,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - name: Install deps
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
-      - name: Stylelint
-        run: |
-          if npm run | grep -qE '^  lint:css'; then npm run lint:css
-          elif npx --yes stylelint --version >/dev/null 2>&1; then
-            npx stylelint "**/*.{css,scss}" --allow-empty-input
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci || npm i --no-audit --no-fund
+      - run: |
+          if npm run | grep -qE '^  lint:css'; then npm run lint:css;
+          elif npx stylelint --version >/dev/null 2>&1; then
+            npx stylelint "**/*.{css,scss}" --allow-empty-input;
           else
-            echo "Stylelint not configured; skipping."
+            echo "Stylelint not configured; skipping.";
           fi
-YAML
-
-git add .github/workflows/ci.yml
-git commit -m "ci: ensure CI workflow present" || true
-git push || true
-
-# B) Récupère les contexts EXACTS émis par Actions sur la PR (ici #49)
-OWNER=Stardust75001
-REPO=TPS-BASE
-PR=49
-SHA=$(gh pr view $PR --json commits -q '.commits[-1].oid')
-# Si rien ne remonte, déclenche un run avec un commit vide:
-if [ -z "$SHA" ] || [ "$(gh api repos/$OWNER/$REPO/commits/$SHA/check-runs | jq '.check_runs | length')" = "0" ]; then
-  git commit --allow-empty -m "ci: retrigger checks for #$PR"
-  git push
-  # récupère le nouveau SHA
-  SHA=$(gh pr view $PR --json commits -q '.commits[-1].oid')
-fi
-
-echo "Check contexts trouvés :"
-gh api repos/$OWNER/$REPO/commits/$SHA/check-runs | jq -r '.check_runs[].name'
-
-# Construit le tableau required_status_checks attendu par l’API
-CONTEXTS_JSON=$(gh api repos/$OWNER/$REPO/commits/$SHA/check-runs \
-  | jq -c '[.check_runs[].name | {context: .}]')
-
-# C) Mets à jour le ruleset existant (ID 8530057) avec les bons contexts
-gh api -X PATCH "repos/$OWNER/$REPO/rulesets/8530057" \
-  -H "Content-Type: application/json" \
-  --input - <<JSON
-{
-  "name": "Required CI checks",
-  "target": "branch",
-  "enforcement": "active",
-  "bypass_actors": [],
-  "conditions": { "ref_name": { "include": ["main"], "exclude": [] } },
-  "rules": [
-    {
-      "type": "required_status_checks",
-      "parameters": {
-        "strict_required_status_checks_policy": false,
-        "do_not_enforce_on_create": false,
-        "required_status_checks": $CONTEXTS_JSON
-      }
-    }
-  ]
-}
-JSON
-
-# D) Vérifie que la ruleset contient bien tes checks
-gh api "/repos/$OWNER/$REPO/rulesets?includes_parents=true" \
-| jq -r '.[] | select(.conditions.ref_name.include[]?=="main")
-         | .rules[]? | select(.type=="required_status_checks")
-         | .parameters.required_status_checks[]?.context'
