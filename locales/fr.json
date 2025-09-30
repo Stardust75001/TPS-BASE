@@ -17,6 +17,7 @@
     "balance": "Solde"
   },
   "custom_sections": {
+    "image_banner": {
       "title": "Découvrez un havre d'élégance et d'innovation pour vos animaux.",
       "text": "Sélections soignées, friandises gastronomiques et soins premium vous attendent.",
       "primary_button": "ENTREZ !",
@@ -26,19 +27,20 @@
       "button": "Entrer"
     },
     "image_but": {
-    "title": "Titre de la bannière",
-    "description": "Sélections soignées, friandises gastronomiques et soins premium vous attendent.",
+      "title": "Titre de la bannière",
+      "description": "Sélections soignées, friandises gastronomiques et soins premium vous attendent.",
       "secondary_button_label": "À PROPOS"
     },
     "banner": {
-    "heading": "Titre de la bannière",
-    "text": "Texte de description ici"
+      "heading": "Titre de la bannière",
+      "text": "Texte de description ici"
+    },
     "multicolumn": {
-    "title_1": "Titre 1",
-    "text_1": "Texte 1",
-    "title_2": "Titre 2",
-    "text_2": "Texte 2",
-    "text_3": "Texte 3"
+      "title_1": "Titre 1",
+      "text_1": "Texte 1",
+      "title_2": "Titre 2",
+      "text_2": "Texte 2",
+      "text_3": "Texte 3"
     },
     "section_1": "Section personnalisée 1",
     "section_2": "Section personnalisée 2",
