@@ -590,23 +590,25 @@
       "fulfilled_at_html": "Versandt am {{ date }}"
   },
   "custom_sections": {
-      "banner": {
-        "form": {
-          "properties": {
-            "email_properties": "TODO"
-          }
-        },
-        "heading": ""
+    "banner": {
+      "form": {
+        "properties": {
+          "email_properties": "TODO"
+        }
       },
-      "image_banner": {
-        "title": "",
-        "text": "",
-        "primary_button": "",
-        "secondary_button": ""
-      },
-      "image_but": {
-        "title": "",
-        "description": "",
-        "primary_button_label": "",
-        "secondary_button_label": ""
+      "heading": ""
+    },
+    "image_banner": {
+      "title": "",
+      "text": "",
+      "primary_button": "",
+      "secondary_button": ""
+    },
+    "image_but": {
+      "title": "",
+      "description": "",
+      "primary_button_label": "",
+      "secondary_button_label": ""
     }
+  }
+}
