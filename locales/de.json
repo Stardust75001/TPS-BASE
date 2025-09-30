@@ -6,8 +6,8 @@
         "show_breadcrumbs": { "label": "Breadcrumbs anzeigen" },
         "text_align": { "label": "Textausrichtung" },
         "bg_color": { "label": "Hintergrundfarbe" }
-    }
-    },
+  }
+  }
     "colors": {
       "white": { "label": "Weiß" },
       "light": { "label": "Hell" },
@@ -51,7 +51,7 @@
       }
       }
     }
-  },
+  }
   "no_reviews": "Keine Bewertungen",
   "announcement": {
     "shipping_notice": "Lieferung in ganz Europa (EWR)",
@@ -128,7 +128,8 @@
     "product": "Produkt",
     "product_added_to_cart": "Produkt zum Warenkorb hinzugefügt",
     "remove": "Entfernen"
-    },
+    }
+  ,
   "general": {
     "menu": "Menü",
     "all_rights_reserved": "Alle Rechte vorbehalten",
