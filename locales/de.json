@@ -518,13 +518,13 @@
       "submit": "Bestätigen",
       "cancel": "Abbrechen",
       "subtext": "Bitte geben Sie Ihr Passwort ein"
-      },
-      "default": {
-        "password": "",
-        "password_confirm": "",
-        "submit": "",
-        "cancel": "",
-        "subtext": ""
+    },
+    "default": {
+      "password": "",
+      "password_confirm": "",
+      "submit": "",
+      "cancel": "",
+      "subtext": ""
     },
     "register": {
       "title": "Konto erstellen",
@@ -614,5 +614,5 @@
         "primary_button_label": "",
         "secondary_button_label": ""
       }
+    }
   }
-}
