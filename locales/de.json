@@ -49,26 +49,8 @@
         "btn1_link": "Button 1 Link",
         "btn2_link": "Button 2 Link"
       }
-    },
-    "carousel": {
-      "name": "Karussell",
-      "blocks": { "slide": { "name": "Folie" } }
-    },
-    "shared": {
-      "desktop_image": "Desktop-Bild",
-      "mobile_image": "Mobiles Bild",
-      "alt_key": "Alt-Text-Schlüssel",
-      "heading_key": "Titel-Schlüssel",
-      "text_key": "Text-Schlüssel",
-      "btn_label_key": "Button-Label-Schlüssel",
-      "btn1_label_key": "Button 1 Label-Schlüssel",
-      "btn2_label_key": "Button 2 Label-Schlüssel",
-      "button_link": "Button-Link",
-      "btn1_link": "Button 1 Link",
-      "btn2_link": "Button 2 Link"
-  }
-  },
-  "no_reviews": "Keine Bewertungen",
+      },
+      "no_reviews": "Keine Bewertungen",
   "announcement": {
     "shipping_notice": "Lieferung in ganz Europa (EWR)",
     "title": "Ankündigung",
@@ -399,7 +381,8 @@
         "btn_add_to_cart": "In den Warenkorb",
         "text_note_saved": "Notiz gespeichert",
         "text_btn_save": "Speichern"
-      },
+      }
+    ,
     "password_page": {
       "password_form": {
         "btn_label": "Eingeben",
