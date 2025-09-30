@@ -1,3 +1,5 @@
+mkdir -p .github/workflows
+cat > .github/workflows/ci.yml <<'YAML'
 name: CI
 
 on:
@@ -18,8 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # Ruby + theme-check (fonctionne même sans Gemfile)
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
@@ -29,11 +29,9 @@ jobs:
           if [ -f Gemfile ]; then
             bundle add theme-check --skip-install >/dev/null 2>&1 || true
             bundle install --jobs 4 --retry 3
-            echo 'bundle exec theme-check --version'
             bundle exec theme-check --version
           else
             gem install theme-check --no-doc
-            echo 'theme-check --version'
             theme-check --version
           fi
       - name: Run theme-check
@@ -49,16 +47,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - name: Install deps
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
-
       - name: Build
         run: |
           if npm run | grep -qE '^  build'; then
@@ -72,16 +67,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - name: Install deps
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
-
       - name: ESLint
         run: |
           if npm run | grep -qE '^  lint(:js)?'; then
@@ -97,16 +89,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - name: Install deps
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm i --no-audit --no-fund; fi
-
       - name: Stylelint
         run: |
           if npm run | grep -qE '^  lint:css'; then
@@ -116,3 +105,8 @@ jobs:
           else
             echo "Stylelint not configured; skipping."
           fi
+YAML
+
+git add .github/workflows/ci.yml
+git commit -m "ci: add real Shopify CI (theme-check, build, eslint, stylelint)" || true
+git push
