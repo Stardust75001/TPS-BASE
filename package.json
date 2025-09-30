@@ -17,7 +17,7 @@
     "theme-check": "bash scripts/theme_check.sh",
     "validate:hybrid": "node scripts/validate-hybrid.cjs",
     "check:predeploy": "npm run validate:hybrid && npm run theme-check",
-    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input"
+    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --config .stylelintrc.cjs"
   },
   "devDependencies": {
     "@hint/configuration-web-recommended": "^8.2.24",
