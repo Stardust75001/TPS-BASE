@@ -16,7 +16,8 @@
     "test:visual:update": "playwright test --config=playwright.config.ts --update-snapshots",
     "lhci:preview": "lhci autorun --config=lighthouserc.preview.json --collect.url=$PREVIEW_URL --collect.startServerCommand='echo skip'",
     "validate:hybrid": "node scripts/validate-hybrid.cjs",
-    "check:predeploy": "npm run validate:hybrid && npm run theme-check"
+    "check:predeploy": "npm run validate:hybrid && npm run theme-check",
+    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --max-warnings=0"
   },
   "keywords": [],
   "author": "",
