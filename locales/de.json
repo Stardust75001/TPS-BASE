@@ -26,13 +26,16 @@
         },
         "image_banner": {
           "name": "Bildbanner",
-          "preset_name": "Hero-Banner"
+          "preset_name": "Hero-Banner",
+          "default": "Bildbanner"
         },
         "carousel": {
           "name": "Karussell",
+          "default": "Karussell",
           "blocks": {
             "slide": {
-              "name": "Folie"
+              "name": "Folie",
+              "default": "Folie"
             }
           }
         },
@@ -47,7 +50,8 @@
           "btn2_label_key": "Button 2 Label-Schlüssel",
           "button_link": "Button-Link",
           "btn1_link": "Button 1 Link",
-          "btn2_link": "Button 2 Link"
+          "btn2_link": "Button 2 Link",
+          "default": "Gemeinsame Einstellungen"
         }
       }
     }
@@ -80,22 +84,26 @@
         "banner": {
           "form": {
             "properties": {
-              "email_properties": "E-Mail Eigenschaften"
+              "email_properties": "E-Mail Eigenschaften",
+              "default": "E-Mail Eigenschaften"
             }
           },
-          "heading": "Banner Überschrift"
+          "heading": "Banner Überschrift",
+          "default": "Banner"
         },
         "image_banner": {
           "title": "Banner Titel",
           "text": "Banner Beschreibung",
           "primary_button": "Hauptbutton",
-          "secondary_button": "Sekundärbutton"
+          "secondary_button": "Sekundärbutton",
+          "default": "Bildbanner"
         },
         "image_but": {
           "title": "Bild Button Titel",
           "description": "Bild Button Beschreibung",
           "primary_button_label": "Hauptbutton",
-          "secondary_button_label": "Sekundärbutton"
+          "secondary_button_label": "Sekundärbutton",
+          "default": "Bild Button"
         }
       }
     },
