@@ -84,7 +84,8 @@
             "title": "Account",
             "account_details": "Account details",
             "view_addresses": "View addresses",
-            "my_account": "My account"
+            "my_account": "My account",
+            "return": "Return to account"
           },
           "activate_account": {
             "title": "Activate account",
@@ -269,9 +270,6 @@
       "password": "New password",
       "password_confirm": "Confirm new password",
       "submit": "Reset password"
-    },
-    "account": {
-      "return": "Return to account"
     }
   },
   "product": {
