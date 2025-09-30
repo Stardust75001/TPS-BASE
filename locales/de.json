@@ -8,12 +8,12 @@
         "bg_color": { "label": "Hintergrundfarbe" }
     }
   },
-    "colors": {
+    {
       "white": { "label": "Weiß" },
       "light": { "label": "Hell" },
       "body": { "label": "Körper" }
     },
-    "alignment": {
+    {
       "left": "Links",
       "center": "Zentriert"
     },
