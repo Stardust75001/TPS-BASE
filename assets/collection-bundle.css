@@ -21,36 +21,36 @@
 
 ul.bd-pss-tiers {
   display: flex;
-  justify-content: flex-end;
-  position: relative;
-  margin: -0.25rem 0 0;
   font-size: 0.825rem;
-  padding: 0;
   font-weight: 500;
+  justify-content: flex-end;
+  margin: -0.25rem 0 0;
+  padding: 0;
+  position: relative;
 }
 
 ul.bd-pss-tiers li {
-  position: absolute;
-  transform: translateX(-50%);
-  text-align: center;
   line-height: 1.1;
   padding-bottom: 0.15rem;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
 }
 
 ul.bd-pss-tiers li::after {
-  content: "";
-  position: absolute;
-  bottom: -0.5rem;
-  left: 50%;
-  width: 1px;
-  height: 0.5rem;
   background-color: var(--bs-dark);
+  bottom: -0.5rem;
+  content: "";
+  height: 0.5rem;
+  left: 50%;
+  position: absolute;
+  width: 1px;
 }
 
 ul.bd-pss-tiers li:last-child {
+  left: auto !important;
   position: relative;
   transform: translateX(25%);
-  left: auto !important;
 }
 
 /* =====================
@@ -61,16 +61,16 @@ ul.bd-pss-tiers li:last-child {
 }
 
 #modal-bundle-contents .quantity-wrapper .form-control {
-  padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
 }
 
 #modal-bundle-contents .btn-remove {
-  display: flex;
+  border: none;
   color: var(--bs-body-color);
+  display: flex;
   opacity: 0.75;
   transition: all 0.2s ease-out;
-  border: none;
 }
 
 #modal-bundle-contents .btn-remove:hover,
@@ -95,12 +95,12 @@ ul.bd-pss-tiers li:last-child {
    Carte Bundle Sticky pour Mobile
    ===================== */
 #sticky-mobile-bundle-card {
+  box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   transform: translateY(100%);
   transition: all 0.2s ease-out;
-  box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
 #sticky-mobile-bundle-card.show {
-  z-index: 1019;
   transform: translateY(0);
+  z-index: 1019;
 }

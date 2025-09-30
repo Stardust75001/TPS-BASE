@@ -7,8 +7,8 @@
 }
 
 .checkout-sidebar {
-  padding: 2rem;
   min-height: 100vh;
+  padding: 2rem;
 }
 
 .checkout-step {
@@ -16,22 +16,22 @@
 }
 
 .checkout-step-header {
-  display: flex;
   align-items: center;
+  display: flex;
   margin-bottom: 1rem;
 }
 
 .checkout-step-number {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
+  align-items: center;
   background: var(--bs-primary);
+  border-radius: 50%;
   color: white;
   display: flex;
-  align-items: center;
+  font-weight: bold;
+  height: 2rem;
   justify-content: center;
   margin-right: 1rem;
-  font-weight: bold;
+  width: 2rem;
 }
 
 .checkout-step-number.completed {
@@ -59,16 +59,16 @@
 .order-status-card {
   border: 1px solid var(--bs-border-color);
   border-radius: 0.5rem;
-  padding: 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 1.5rem;
 }
 
 .order-status-header {
   background: var(--bs-success);
-  color: white;
-  padding: 1rem;
   border-radius: 0.5rem 0.5rem 0 0;
+  color: white;
   margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  padding: 1rem;
 }
 
 .order-tracking-steps {
@@ -79,18 +79,18 @@
 
 .tracking-step {
   flex: 1;
-  text-align: center;
   position: relative;
+  text-align: center;
 }
 
 .tracking-step::after {
+  background: var(--bs-gray-300);
   content: '';
+  height: 2px;
+  left: 50%;
   position: absolute;
   top: 1rem;
-  left: 50%;
   width: 100%;
-  height: 2px;
-  background: var(--bs-gray-300);
   z-index: 1;
 }
 
@@ -99,17 +99,17 @@
 }
 
 .tracking-step-icon {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
+  align-items: center;
   background: var(--bs-gray-300);
+  border-radius: 50%;
   color: var(--bs-gray-600);
   display: inline-flex;
-  align-items: center;
+  height: 2rem;
   justify-content: center;
-  position: relative;
-  z-index: 2;
   margin-bottom: 0.5rem;
+  position: relative;
+  width: 2rem;
+  z-index: 2;
 }
 
 .tracking-step.completed .tracking-step-icon {
@@ -136,8 +136,8 @@
 .policy-page h4,
 .policy-page h5,
 .policy-page h6 {
-  margin-top: 2rem;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .policy-page h1:first-child {
@@ -159,9 +159,9 @@
 }
 
 .policy-page .policy-section {
+  border-bottom: 1px solid var(--bs-border-color);
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--bs-border-color);
 }
 
 .policy-page .policy-section:last-child {
@@ -173,8 +173,8 @@
    ======================================================================== */
 
 .contact-form {
-  max-width: 600px;
   margin: 0 auto;
+  max-width: 600px;
 }
 
 .contact-form .form-group {
@@ -212,15 +212,15 @@
    ======================================================================== */
 
 .loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
-  display: flex;
   align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  bottom: 0;
+  display: flex;
   justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
   z-index: 9999;
 }
 
@@ -229,23 +229,23 @@
 }
 
 .btn-loading {
-  position: relative;
   pointer-events: none;
+  position: relative;
 }
 
 .btn-loading::after {
+  animation: spin 1s linear infinite;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top: 2px solid currentColor;
   content: '';
+  height: 1rem;
+  left: 50%;
+  margin-left: -0.5rem;
+  margin-top: -0.5rem;
   position: absolute;
   top: 50%;
-  left: 50%;
   width: 1rem;
-  height: 1rem;
-  margin-top: -0.5rem;
-  margin-left: -0.5rem;
-  border: 2px solid transparent;
-  border-top: 2px solid currentColor;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {

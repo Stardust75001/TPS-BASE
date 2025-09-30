@@ -12,17 +12,17 @@
 }
 
 #main::after {
-  z-index: 1019;
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
   background-color: rgba(0, 0, 0, 0.25);
-  visibility: hidden;
+  content: "";
+  height: 100%;
+  left: 0;
   opacity: 0;
+  position: absolute;
+  top: 0;
   transition: all 0.3s linear;
+  visibility: hidden;
+  width: 100%;
+  z-index: 1019;
 }
 
 #main.main-hidden {
@@ -85,13 +85,13 @@
 }
 
 #article-prev-next-prev img {
-  border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 #article-prev-next-next img {
-  border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 
 @media (max-width: 1599px) {
@@ -111,8 +111,8 @@
 
 @media (min-width: 992px) {
   #search-header .form-select {
-    width: auto;
     min-width: 160px;
+    width: auto;
   }
 }
 
@@ -120,22 +120,22 @@
    Quantité d'emballage (plus/moins)
    ===================== */
 .quantity-wrapper {
-  position: relative;
-  max-width: 120px;
   flex-shrink: 0;
+  max-width: 120px;
+  position: relative;
 }
 
 .quantity-wrapper .btn {
+  align-items: center;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding: 0;
   position: absolute;
   top: 0;
-  padding: 0;
   width: 36px;
-  height: 100%;
-  box-shadow: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .quantity-wrapper .btn:focus-visible {
@@ -151,43 +151,43 @@
 }
 
 .quantity-wrapper .form-control {
-  text-align: center;
   padding-left: 2rem;
   padding-right: 2rem;
+  text-align: center;
 }
 
 /* =====================
    Remplacements SplideJS
    ===================== */
 .splide__arrow {
+  background-color: rgba(var(--bs-dark-rgb), 0.75);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H6M12 5l-7 7 7 7'/%3E%3C/svg%3E");
-  background-size: 60%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(var(--bs-dark-rgb), 0.75);
-  width: 2rem;
+  background-size: 60%;
   height: 2rem;
-  transition: all 0.2s ease-out;
   opacity: 1;
+  transition: all 0.2s ease-out;
+  width: 2rem;
 }
 
 @media (min-width: 576px) {
   .splide__arrow {
-    width: 2.25rem;
     height: 2.25rem;
+    width: 2.25rem;
   }
 }
 
 .splide__arrow:not([disabled]):hover {
   background-color: var(--bs-primary);
-  opacity: 1;
   background-position: 40% 50%;
+  opacity: 1;
 }
 
 .splide.is-focus-in .splide__arrow:focus,
 .splide__arrow:focus-visible {
-  outline: none;
   box-shadow: 0 0 0 0.125rem rgba(var(--bs-primary-rgb), 0.5);
+  outline: none;
 }
 
 .splide__arrow--next {
@@ -231,10 +231,10 @@ body .splide__video__play:after {
 @media (max-width: 768px) {
   body .glightbox-clean .gprev,
   body .glightbox-clean .gnext {
+    border-radius: 0.125rem;
+    height: 38px;
     top: 45%;
     width: 32px;
-    height: 38px;
-    border-radius: 0.125rem;
   }
   body .glightbox-clean .gprev {
     left: 1rem;
@@ -257,27 +257,26 @@ ul.timer-countdown {
 }
 
 ul.timer-countdown li {
-  border-radius: .25rem;
-  padding: .075rem .35rem;
-  margin: 0 0.125rem;
-  font-size: .7rem;
-  font-weight: bold;
-  min-width: 20px;
-  min-height: 18px;
-  text-align: center;
-  display: flex;
   align-items: center;
-  justify-content: center;
   background-color: var(--bs-light-lighten-5);
-  color: var(--bs-dark);
   border: 1px solid var(--bs-dark);
   border-radius: var(--bs-border-radius);
+  color: var(--bs-dark);
+  display: flex;
+  font-size: .7rem;
+  font-weight: bold;
+  justify-content: center;
+  margin: 0 0.125rem;
+  min-height: 18px;
+  min-width: 20px;
+  padding: .075rem .35rem;
+  text-align: center;
 }
 
 .text-white ul.timer-countdown li {
   background: white;
-  color: var(--bs-dark);
   border-color: transparent;
+  color: var(--bs-dark);
 }
 
 /* =====================
@@ -288,15 +287,15 @@ ul.timer-countdown li {
 }
 
 .wishlist-icon .badge {
-  position: absolute;
-  top: 2px;
-  right: 0;
-  width: 18px;
-  height: 18px;
+  align-items: center;
   border-radius: 50% !important;
   display: flex;
-  align-items: center;
+  height: 18px;
   justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 2px;
+  width: 18px;
 }
 
 /* =====================
@@ -315,13 +314,13 @@ ul.timer-countdown li {
 }
 
 #offcanvas-wishlist .product-item .btn-remove {
-  position: absolute;
-  top: 0.5rem;
-  right: -0.25rem;
-  display: flex;
-  color: var(--bs-dark);
-  opacity: 0.75;
   border: none;
+  color: var(--bs-dark);
+  display: flex;
+  opacity: 0.75;
+  position: absolute;
+  right: -0.25rem;
+  top: 0.5rem;
 }
 
 #offcanvas-wishlist .product-item .btn-remove:hover,
@@ -330,11 +329,11 @@ ul.timer-countdown li {
 }
 
 #offcanvas-wishlist-empty {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  justify-content: center;
 }
 
 #offcanvas-wishlist-empty svg {
@@ -362,24 +361,24 @@ ul.timer-countdown li {
 }
 
 #offcanvas-menu-nav .nav-link {
-  color: var(--bs-body-color);
   border-bottom: 1px solid var(--bs-border-color);
-  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  color: var(--bs-body-color);
   font-weight: 500;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
   position: relative;
 }
 
 #offcanvas-menu-nav .nav-link[aria-expanded]::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E");
+  background-size: cover;
   content: "";
+  height: 18px;
   position: absolute;
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E");
-  background-size: cover;
   transition: all 0.2s ease-out;
+  width: 18px;
 }
 
 #offcanvas-menu-nav .nav-link[aria-expanded="true"]::after {
@@ -391,8 +390,8 @@ ul.timer-countdown li {
 }
 
 #offcanvas-menu-nav .nav {
-  padding: 0.5rem 0;
   background-color: var(--bs-light);
+  padding: 0.5rem 0;
 }
 
 #offcanvas-menu-nav .dropdown-item {
@@ -404,12 +403,12 @@ ul.timer-countdown li {
 }
 
 #offcanvas-menu-nav .megamenu-block a {
-  display: block;
-  text-align: center;
   color: currentColor;
-  text-decoration: none;
+  display: block;
   font-size: 0.875rem;
   padding: 1rem;
+  text-align: center;
+  text-decoration: none;
 }
 
 #offcanvas-menu-nav .megamenu-block + .megamenu-block a {
@@ -417,10 +416,10 @@ ul.timer-countdown li {
 }
 
 #offcanvas-menu-utilities-nav .nav-link {
-  color: var(--bs-body-color);
-  font-size: 0.875rem;
-  display: flex;
   align-items: center;
+  color: var(--bs-body-color);
+  display: flex;
+  font-size: 0.875rem;
 }
 
 #offcanvas-menu-utilities-nav .nav-link.active {
@@ -428,14 +427,14 @@ ul.timer-countdown li {
 }
 
 #offcanvas-menu-utilities-nav .wishlist-count-badge {
+  align-items: center;
   background-color: var(--bs-primary);
-  width: 18px;
-  height: 18px;
   border-radius: 50%;
   display: flex;
-  align-items: center;
+  height: 18px;
   justify-content: center;
   margin-left: 0.25rem;
+  width: 18px;
 }
 
 #offcanvas-menu .offcanvas-footer-lang-currency {
@@ -443,9 +442,9 @@ ul.timer-countdown li {
 }
 
 #offcanvas-menu .offcanvas-footer {
-  padding: 0.25rem 0.5rem 0.5rem;
   background-color: var(--bs-light);
   border-top: 1px solid var(--bs-border-color);
+  padding: 0.25rem 0.5rem 0.5rem;
 }
 
 #offcanvas-menu .social-icons .nav-link {
@@ -460,11 +459,11 @@ ul.timer-countdown li {
 }
 
 #offcanvas-search .form-control-wrapper svg.icon-search {
-  position: absolute;
   left: 0.75rem;
+  opacity: 0.75;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.75;
 }
 
 #offcanvas-search .form-control-wrapper .form-control {
@@ -473,13 +472,13 @@ ul.timer-countdown li {
 }
 
 #offcanvas-search .form-control-wrapper .btn-search-by-voice {
+  align-items: center;
+  display: flex;
+  opacity: 0.75;
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.75;
-  display: flex;
-  align-items: center;
   transition: all 0.2s ease-out;
 }
 
@@ -525,8 +524,8 @@ ul.timer-countdown li {
     https://apps.shopify.com/product-reviews
    ===================== */
 .loox-rating svg.loox-icon {
-  width: 0.9em;
   height: 0.9em;
+  width: 0.9em;
 }
 
 .loox-rating .loox-rating-label {
@@ -546,19 +545,19 @@ body .jdgm-prev-badge {
 }
 
 body .jdgm-rev-widg {
+  margin-left: auto;
+  margin-right: auto;
   max-width: 1320px;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .page-type-product .jdgm-widget {
-  width: 100%;
+  margin-left: auto;
   /*padding-right: var(--bs-gutter-x, .75rem);*/
   /*padding-left: var(--bs-gutter-x, .75rem);*/
   margin-right: auto;
-  margin-left: auto;
+  width: 100%;
 }
 
 @media (min-width: 576px) {
@@ -592,28 +591,26 @@ body .jdgm-rev-widg {
 }
 
 .jdgm-rev__pic-img {
-  border-radius: var(--bs-border-radius) !important;
-  padding: 0.25rem;
   background-color: var(--bs-body-bg);
   border: var(--bs-border-width) solid var(--bs-border-color);
-  border-radius: var(--bs-border-radius);
-  max-width: 100%;
+  border-radius: var(--bs-border-radius) !important;
   height: auto;
+  max-width: 100%;
+  padding: 0.25rem;
 }
 
 .jdgm-gallery__thumbnail {
-  border-radius: var(--bs-border-radius) !important;
-  padding: 0.25rem;
   background-color: var(--bs-body-bg);
   border: var(--bs-border-width) solid var(--bs-border-color);
-  border-radius: var(--bs-border-radius);
-  max-width: 100%;
+  border-radius: var(--bs-border-radius) !important;
   height: auto;
+  max-width: 100%;
+  padding: 0.25rem;
 }
 
 .jdgm-prev-badge__text {
-  opacity: 0.75;
   margin-left: 0.25rem !important;
+  opacity: 0.75;
 }
 
 /* =====================
@@ -639,23 +636,23 @@ body .noUi-horizontal {
 }
 
 body .noUi-horizontal .noUi-handle {
-  width: 22px;
+  background-color: var(--bs-body-bg);
+  border: 1.5px solid var(--bs-body-color);
+  border-radius: 50%;
+  box-shadow: none;
   height: 22px;
   right: -11px;
   top: -8px;
-  border-radius: 50%;
-  box-shadow: none;
-  background-color: var(--bs-body-bg);
-  border: 1.5px solid var(--bs-body-color);
+  width: 22px;
 }
 
 body .noUi-handle::before,
 body .noUi-handle::after {
   background-color: var(--bs-body-color);
   height: 8px;
-  width: 1.5px;
   left: 7px;
   top: 5px;
+  width: 1.5px;
 }
 
 body .noUi-handle::after {
@@ -663,9 +660,9 @@ body .noUi-handle::after {
 }
 
 body .noUi-target {
-  box-shadow: none;
   background-color: var(--bs-light);
   border: 1px solid var(--bs-border-color);
+  box-shadow: none;
   padding: 0 11px;
 }
 
@@ -687,8 +684,8 @@ body .shopify_subscriptions_app_block_label ul {
 }
 
 body .shopify_subscriptions_fieldset label {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 body .shopify_subscriptions_fieldset input[type="radio"] {
@@ -696,10 +693,10 @@ body .shopify_subscriptions_fieldset input[type="radio"] {
 }
 
 body .shopify_subscriptions_app_policy {
+  font-size: 0.925rem;
   margin: 0.25rem 0 2rem;
   opacity: 0.75;
   text-align: center;
-  font-size: 0.925rem;
 }
 
 /* =====================
@@ -715,21 +712,21 @@ body .shopify_subscriptions_app_policy {
    ===================== */
 /* Loading spinner */
 .eg-loading-spinner {
-  width: 24px;
-  height: 24px;
   border-radius: 50%;
+  height: 24px;
+  width: 24px;
 }
 
 .eg-loading-spinner {
-  display: block !important;
-  position: relative;
-  margin: 0 auto;
-  border-top: 3px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  border-right: 3px solid rgba(255, 255, 255, 0.2);
-  border-left: 3px solid #ffffff;
-  transform: translateZ(0);
   animation: animation-eg-chargement-spinner 1s infinite linear;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  border-left: 3px solid #fff;
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-top: 3px solid rgba(255, 255, 255, 0.2);
+  display: block !important;
+  margin: 0 auto;
+  position: relative;
+  transform: translateZ(0);
 }
 
 @keyframes animation-eg-chargement-spinner {
@@ -743,10 +740,10 @@ body .shopify_subscriptions_app_policy {
 
 /* Typing spinner */
 .eg-typing-spinner {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
   animation: animation-eg-typage-spinner 1s linear infinite alternate;
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
 }
 
 @keyframes animation-eg-typage-spinner {
@@ -769,11 +766,11 @@ body .shopify_subscriptions_app_policy {
 
 /* Wrapper */
 .eg-whatsapp-wrapper {
-  position: fixed;
   bottom: 2.2rem;
   left: 1rem;
-  z-index: 9;
+  position: fixed;
   transition: all 0.4s ease-out;
+  z-index: 9;
 }
 @media (max-width: 480px) {
   .eg-whatsapp-wrapper {
@@ -783,33 +780,32 @@ body .shopify_subscriptions_app_policy {
 
 /* Button styling */
 #eg-whatsapp-button {
-  border: transparent;
+  border: 1px solid white;
   border-radius: 50%;
-  width: 48px;
+  cursor: pointer;
   height: 48px;
   transition: all 0.2s ease-out;
-  border: 1px solid white;
-  cursor: pointer;
+  width: 48px;
 }
 
 #eg-whatsapp-button:hover,
 #eg-whatsapp-button:focus {
-  opacity: 0.9;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+  opacity: 0.9;
 }
 
 #eg-whatsapp-button::after {
-  content: "";
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: red;
-  opacity: 0;
-  transform: scale(0);
   animation: showEgWhatsAppDot 2s ease-out both;
+  background: red;
+  border-radius: 50%;
+  content: "";
+  height: 10px;
+  opacity: 0;
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  transform: scale(0);
+  width: 10px;
 }
 
 @keyframes showEgWhatsAppDot {
@@ -824,38 +820,38 @@ body .shopify_subscriptions_app_policy {
 }
 
 #eg-whatsapp-button-text {
+  background: white;
   border-radius: 50rem;
-  padding: 8px 16px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
+  color: black !important;
   font-size: 14px;
   font-weight: bold;
-  color: black !important;
+  left: 54px;
+  padding: 8px 16px;
   position: absolute;
   top: 50%;
-  left: 54px;
-  white-space: nowrap;
   transform: translateY(-50%);
-  background: white;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
+  white-space: nowrap;
 }
 
 /* Dialog styling */
 #eg-whatsapp-dialog {
-  visibility: hidden;
-  position: absolute;
-  bottom: 56px;
   background: white;
   border-radius: 1.25rem;
-  width: 360px;
-  height: 480px;
+  bottom: 56px;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
   display: flex;
   flex-direction: column;
-  max-width: calc(100vw - 28px);
+  height: 480px;
   max-height: 60vh;
-  overflow: hidden;
+  max-width: calc(100vw - 28px);
   opacity: 0;
+  overflow: hidden;
+  position: absolute;
   transform: translateY(20px);
   transition: all 0.3s ease-out;
+  visibility: hidden;
+  width: 360px;
 }
 
 .eg-whatsapp-button-left #eg-whatsapp-dialog {
@@ -867,37 +863,37 @@ body .shopify_subscriptions_app_policy {
 }
 
 .eg-whatsapp-dialog-visible #eg-whatsapp-dialog {
-  visibility: visible;
   opacity: 1;
   transform: translateY(0);
+  visibility: visible;
 }
 
 #eg-whatsapp-dialog-header {
-  padding: 1rem 1rem;
+  align-items: center;
   border-radius: 1rem 1rem 0 0;
   color: white;
-  line-height: normal;
   display: flex;
-  align-items: center;
+  line-height: normal;
+  padding: 1rem 1rem;
 }
 
 #eg-whatsapp-dialog-close {
+  align-items: center;
   background: transparent;
   border: none;
   box-shadow: none;
   color: white;
-  position: absolute;
-  top: 0;
-  right: 0;
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
   opacity: 0.6;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   transition: all 0.2s ease-out;
   width: 40px;
-  height: 40px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 }
 
 #eg-whatsapp-dialog-close:hover,
@@ -911,13 +907,13 @@ body .shopify_subscriptions_app_policy {
 }
 
 #eg-whatsapp-dialog-header-img-wrapper::after {
-  content: "";
-  position: absolute;
+  border-radius: 50%;
   bottom: 4px;
+  content: "";
+  height: 14px;
+  position: absolute;
   right: 2px;
   width: 14px;
-  height: 14px;
-  border-radius: 50%;
 }
 
 #eg-whatsapp-dialog-header-img {
@@ -925,9 +921,9 @@ body .shopify_subscriptions_app_policy {
 }
 
 #eg-whatsapp-dialog-label {
-  margin: 0;
   color: white;
   font-size: 18px;
+  margin: 0;
 }
 
 #eg-whatsapp-dialog-subtitle {
@@ -937,35 +933,35 @@ body .shopify_subscriptions_app_policy {
 }
 
 #eg-whatsapp-dialog-body {
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: contain;
-  overflow: auto;
   flex: 1;
+  overflow: auto;
   padding: 16px;
 }
 
 #eg-whatsapp-dialog-msg {
-  display: inline-block;
   background-color: white;
   border-radius: 0 1rem 1rem 1rem;
-  padding: 8px 12px;
-  margin: 0 64px 12px 4px;
-  line-height: normal;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
-  position: relative;
   color: #121212;
+  display: inline-block;
+  line-height: normal;
+  margin: 0 64px 12px 4px;
   min-width: 60px;
+  padding: 8px 12px;
+  position: relative;
 }
 
 #eg-whatsapp-dialog-msg::after {
-  content: "";
-  border-top: 0px solid transparent;
   border-bottom: 12px solid transparent;
   border-right: 8px solid white;
+  border-top: 0px solid transparent;
+  content: "";
+  left: -8px;
   position: absolute;
   top: 0;
-  left: -8px;
 }
 
 #eg-whatsapp-dialog-msg-typing {
@@ -977,21 +973,21 @@ body .shopify_subscriptions_app_policy {
 }
 
 #eg-whatsapp-dialog-footer {
+  background: linear-gradient(#fff, #f0f2f5);
   display: flex;
   padding: 12px 6px 12px 16px;
-  background: linear-gradient(#fff, #f0f2f5);
 }
 
 #eg-whatsapp-dialog-user-input {
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid #d1d7e0;
   background-color: white;
+  border: 1px solid #d1d7e0;
+  border-radius: 6px;
   box-shadow: none;
-  padding: 8px 12px;
-  outline: none;
   font-size: 15px;
+  outline: none;
+  padding: 8px 12px;
   transition: all 0.2s ease-out;
+  width: 100%;
 }
 
 #eg-whatsapp-dialog-user-input:focus {
@@ -999,15 +995,15 @@ body .shopify_subscriptions_app_policy {
 }
 
 #eg-whatsapp-dialog-btn {
-  margin-left: 6px;
-  background: transparent;
-  color: #121212;
-  border-color: transparent;
-  display: flex;
   align-items: center;
+  background: transparent;
+  border-color: transparent;
+  color: #121212;
+  cursor: pointer;
+  display: flex;
+  margin-left: 6px;
   opacity: 0.5;
   transition: all 0.2s ease-out;
-  cursor: pointer;
 }
 
 #eg-whatsapp-dialog-btn:hover,
@@ -1016,80 +1012,80 @@ body .shopify_subscriptions_app_policy {
 }
 
 #eg-whatsapp-dialog-btn .eg-loading-spinner {
-  border-top-color: rgba(0, 0, 0, 0.2);
   border-bottom-color: rgba(0, 0, 0, 0.2);
-  border-right-color: rgba(0, 0, 0, 0.2);
   border-left-color: rgba(0, 0, 0, 1);
+  border-right-color: rgba(0, 0, 0, 0.2);
+  border-top-color: rgba(0, 0, 0, 0.2);
 }
 
 /* =====================
    Cookie Shopiweb
    ===================== */
 .cookie-popup {
-  position: fixed;
-  left: 0px;
+  align-items: center;
   bottom: 0px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 4px 24px, rgb(0 0 0 / 5%) 0px 2px 6px;
+  display: flex;
+  justify-content: center;
+  left: 0px;
+  min-height: 3em;
+  position: fixed;
   width: auto;
   z-index: 1050;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3em;
-  box-shadow: rgb(0 0 0 / 15%) 0px 4px 24px, rgb(0 0 0 / 5%) 0px 2px 6px;
 }
 @media (min-width: 450px) {
   .cookie-popup {
-    left: 1rem;
     bottom: 6rem;
+    left: 1rem;
     width: 400px;
   }
 }
 .container-cook {
+  align-items: center;
+  border: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-  text-align: left;
-  border: none;
+  justify-content: center;
   padding: 1rem;
+  text-align: left;
 }
 .hidepops {
   display: none;
 }
 .illus-cookies {
-  position: relative;
   float: right;
+  position: relative;
 }
 .title-cookies {
-  margin: 0px 0px 10px !important;
-  font-size: 32px !important;
-  line-height: 1.25 !important;
-  font-weight: 700 !important;
-  text-align: left !important;
   clear: none !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin: 0px 0px 10px !important;
+  text-align: left !important;
 }
 .title-cookies small {
+  display: block !important;
   font-size: 70% !important;
   font-weight: 500 !important;
-  display: block !important;
 }
 .title-cookies span {
   display: block !important;
 }
 .copyright-cookies-shopiweb {
-  position: relative;
-  display: inline-flex;
   -webkit-box-pack: center;
+  display: inline-flex;
   justify-content: center;
-  width: 100%;
   overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 .buttons-cook {
-  display: inline-flex;
-  justify-content: center;
   align-items: center;
+  display: inline-flex;
   gap: 2rem;
+  justify-content: center;
 }
 
 /* Responsive */
@@ -1124,8 +1120,8 @@ body .shopify_subscriptions_app_policy {
    Barre de progression
    ===================== */
 .scroll-progress-bar-footer {
-  position: fixed;
   bottom: 0;
+  position: fixed;
   width: 100%;
   z-index: 2075;
 }
