@@ -493,8 +493,6 @@
         "blocks": {
           "company_location": "Unternehmensstandort"
           }
-        }
-    }
   },
   "customer": {
     "login": {
@@ -616,3 +614,4 @@
       }
     }
   }
+}
