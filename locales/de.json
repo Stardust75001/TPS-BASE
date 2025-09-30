@@ -23,8 +23,9 @@
           "verified_review": "Verifizierte Bewertung",
           "purchase": "Kauf",
           "verified": "Verifiziert"
-  }
-      "name": "Bildbanner",
+        },
+      "image_banner": {
+        "name": "Bildbanner",
       "preset_name": "Hero-Banner"
     },
     "carousel": {
