@@ -4,7 +4,6 @@ module.exports = {
   plugins: ["stylelint-order"],
   reportInvalidScopeDisables: false,
   rules: {
-    // Allégement et essentiels
     "order/properties-alphabetical-order": null,
     "custom-property-empty-line-before": null,
     "selector-attribute-quotes": null,
@@ -13,7 +12,6 @@ module.exports = {
     "block-no-empty": true,
     "declaration-block-no-duplicate-properties": true,
 
-    // Déactivations pour calmer le bruit
     "no-duplicate-selectors": null,
     "no-descending-specificity": null,
     "selector-class-pattern": null,
