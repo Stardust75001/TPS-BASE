@@ -8,7 +8,7 @@
     "test": "playwright test",
     "test:visual": "playwright test --config=playwright.config.ts",
     "test:visual:update": "playwright test --config=playwright.config.ts --update-snapshots",
-    "lint:css": "stylelint --config ./.stylelintrc.cjs \"**/*.{css,scss}\" --allow-empty-input --max-warnings=0",
+    "precommit": "lint-staged",
     "lint:js": "eslint --max-warnings=0 --ext .js,.ts,.tsx assets scripts src || true",
     "lint:hint": "hint http://127.0.0.1:9292 --telemetry=off",
     "lint:hint:preview": "hint 'https://f6d72e-0f.myshopify.com/?preview_theme_id=186613989724' --telemetry=off",
@@ -17,7 +17,11 @@
     "theme-check": "bash scripts/theme_check.sh",
     "validate:hybrid": "node scripts/validate-hybrid.cjs",
     "check:predeploy": "npm run validate:hybrid && npm run theme-check",
-    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --config .stylelintrc.cjs"
+    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --config .stylelintrc.cjs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "assets/**/*.{css,scss}": "stylelint --fix --config .stylelintrc.cjs"
   },
   "devDependencies": {
     "@hint/configuration-web-recommended": "^8.2.24",
@@ -29,14 +33,15 @@
     "csso": "^5.0.5",
     "eslint": "^9.14.0",
     "hint": "^7.1.13",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
     "stylelint": "^16.9.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-config-standard-scss": "^13.0.0",
-    "stylelint-order": "^6.0.4",
     "stylelint-no-unsupported-browser-features": "^8.0.4",
+    "stylelint-order": "^6.0.4",
     "terser": "^5.44.0"
   },
-  "dependencies": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
