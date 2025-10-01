@@ -27,6 +27,13 @@
           }
         }
       } catch (e) {}
+      try {
+        // final fallback: meta tag in head (in case inline script didn't execute)
+        if (!tk) {
+          var meta = document.querySelector('meta[name="turnstile-site-key"]');
+          if (meta && meta.content) tk = meta.content;
+        }
+      } catch (e) {}
       if (!tk) return;
       // Load the Turnstile script once
       if (!document.querySelector('script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]')) {
