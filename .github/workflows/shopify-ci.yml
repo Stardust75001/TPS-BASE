@@ -2,9 +2,9 @@ name: Shopify CI
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: "3.3"
           bundler-cache: true
         if: ${{ hashFiles('**/Gemfile') != '' }}
       - name: Install theme-check via Bundler
@@ -77,7 +77,21 @@ jobs:
           files=()
           for d in config locales; do for f in "$d"/*.json; do files+=("$f"); done; done
           [ ${#files[@]} -eq 0 ] && { echo "No JSON files"; exit 0; }
-          for f in "${files[@]}"; do jq -e . "$f" >/dev/null; done
+          for f in "${files[@]}"; do
+            echo "Validating $f"
+            # Strip C-style comments before validation (for Shopify auto-generated files)
+            # Remove multi-line comments /* ... */ and single-line /* ... */
+            temp_file=$(mktemp)
+            sed '/^\/\*/,/\*\/$/d; s|/\*.*\*/||g' "$f" > "$temp_file"
+            if jq -e . "$temp_file" >/dev/null 2>&1; then
+              echo "✅ $f is valid"
+            else
+              echo "❌ $f failed validation"
+              rm -f "$temp_file"
+              exit 1
+            fi
+            rm -f "$temp_file"
+          done
           echo "All JSON valid ✅"
 
   eslint:

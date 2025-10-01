@@ -1,22 +1,22 @@
 # .theme-check.yml
-# Base Shopify, mais on baisse le bruit et on ignore les vendors/minifiés.
-extends: shopify
-
+root: true
+extends: "theme-check:recommended"
+# Liste de motifs (ARRAY), pas un objet !
 exclude_patterns:
   - node_modules/**
   - dist/**
-  - build/**
+  - vendor/**
   - .github/**
-  - assets/**/*.min.{css,js}
-  - assets/**/vendor-**/*
-  - assets/vendor-*.{css,js}
-  - snippets/**/shogun-*.liquid   # si tu veux garder le tracking mais éviter le bruit
+  - .husky/**
+  - assets/**/*.map
+  - config/settings_data.json # auto-généré
+  - locales/*.schema.json
 
 # Niveaux de sévérité : seul "error" casse la CI (car tu lances avec --fail-level=error)
 # On cible surtout les vraies régressions UX/SEO/accessibilité.
 checks:
   SpaceInsideBraces:
-    enabled: false   # trop verbeux pour un gros thème
+    enabled: false # trop verbeux pour un gros thème
   TemplateLength:
     enabled: true
     severity: suggestion
@@ -26,9 +26,9 @@ checks:
   UnusedSnippet:
     severity: suggestion
   ContentForHeaderModification:
-    enabled: false   # le thème Shogun touche content_for_header : on n’en fait pas un blockeur CI
+    enabled: false # le thème Shogun touche content_for_header : on n’en fait pas un blockeur CI
   ImgWidthAndHeight:
-    severity: suggestion   # utile, mais ne doit pas bloquer la CI immédiatement
+    severity: suggestion # utile, mais ne doit pas bloquer la CI immédiatement
   ImgLazyLoading:
     severity: suggestion
   RemoteAsset:
