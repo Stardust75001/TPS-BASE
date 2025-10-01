@@ -21,4 +21,10 @@
 </script>
 <meta name="turnstile-site-key" content="0x4AAAAAAB4Y-T6Ci9ne9Ijp">
 {% comment %} Server-rendered diagnostic: settings snapshot for QA - removed in final commit {% endcomment %}
-<meta name="analytics-config-json" content='{{ { gtm_id: settings.gtm_id, ga4_id: settings.ga4_id, facebook_pixel_id: settings.facebook_pixel_id, turnstile_site_key: settings.turnstile_site_key } | json }}'>
+<meta
+  name="analytics-config-json"
+  content="{{ { gtm_id: settings.gtm_id, ga4_id: settings.ga4_id, facebook_pixel_id: settings.facebook_pixel_id, turnstile_site_key: settings.turnstile_site_key } | json }}"
+>
+
+{%- comment -%} Non-inline injector to populate window.analyticsEnvConfig from meta JSON (robust to inline-script blocking){%- endcomment -%}
+<script src="{{ 'analytics-config-injector.js' | asset_url }}" defer></script>
