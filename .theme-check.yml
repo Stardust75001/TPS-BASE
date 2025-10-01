@@ -9,7 +9,7 @@ exclude_patterns:
   - .github/**
   - .husky/**
   - assets/**/*.map
-  - config/settings_data.json  # auto-généré
+  - config/settings_data.json # auto-généré
   - locales/*.schema.json
 
 # Niveaux de sévérité : seul "error" casse la CI (car tu lances avec --fail-level=error)
