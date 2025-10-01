@@ -8,7 +8,7 @@
     "test": "playwright test",
     "test:visual": "playwright test --config=playwright.config.ts",
     "test:visual:update": "playwright test --config=playwright.config.ts --update-snapshots",
-    "lint:css": "stylelint --config ./.stylelintrc.cjs \"**/*.{css,scss}\" --allow-empty-input --max-warnings=0",
+    "precommit": "lint-staged",
     "lint:js": "eslint --max-warnings=0 --ext .js,.ts,.tsx assets scripts src || true",
     "lint:hint": "hint http://127.0.0.1:9292 --telemetry=off",
     "lint:hint:preview": "hint 'https://f6d72e-0f.myshopify.com/?preview_theme_id=186613989724' --telemetry=off",
@@ -18,6 +18,9 @@
     "validate:hybrid": "node scripts/validate-hybrid.cjs",
     "check:predeploy": "npm run validate:hybrid && npm run theme-check",
     "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --config .stylelintrc.cjs"
+  },
+  "lint-staged": {
+    "assets/**/*.{css,scss}": "stylelint --fix --config .stylelintrc.cjs"
   },
   "devDependencies": {
     "@hint/configuration-web-recommended": "^8.2.24",
