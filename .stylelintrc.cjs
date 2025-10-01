@@ -1,44 +1,27 @@
-/* Stylelint v16 – profil Shopify allégé (utile en CI) */
+/* Stylelint v16 (profil Shopify, migration-friendly strict config) */
 module.exports = {
   extends: ["stylelint-config-standard", "stylelint-config-standard-scss"],
   plugins: ["stylelint-order"],
   reportInvalidScopeDisables: false,
   rules: {
-    // Allégement et essentiels
-    "order/properties-alphabetical-order": null,
-    "custom-property-empty-line-before": null,
-    "selector-attribute-quotes": null,
-    "value-no-vendor-prefix": null,
-    "no-empty-source": true,
-    "block-no-empty": true,
-    "declaration-block-no-duplicate-properties": true,
+    // Migration: allow rgba(), % alpha, and relax some rules for easier transition
+    "color-function-notation": null, // allow rgba()
+    "alpha-value-notation": "number", // 0.5 instead of 50%
 
-    // Déactivations pour calmer le bruit
-    "no-duplicate-selectors": null,
+    // Strict property order (can be hardened later)
+    "order/properties-alphabetical-order": true,
+
+    // Enforce kebab-case for class names (Shopify best practice)
+    "selector-class-pattern": [
+      "^[a-z0-9\\-]+$",
+      { message: "Utilise des classes en kebab-case (a-z0-9-)." },
+    ],
+
+    // Migration: reduce noise from vendor/legacy code
     "no-descending-specificity": null,
-    "selector-class-pattern": null,
     "property-no-vendor-prefix": null,
-    "value-keyword-case": null,
-    "color-hex-length": "short",
-    "keyframes-name-pattern": null,
-    "property-no-unknown": null,
-    "declaration-property-value-no-unknown": null,
-    "color-function-alias-notation": null,
-    "color-function-notation": null,
-    "alpha-value-notation": null,
-    "media-feature-range-notation": null,
-    "media-feature-name-value-no-unknown": null,
-    "selector-not-notation": null,
-    "property-no-deprecated": null,
-    "comment-empty-line-before": null,
-    "rule-empty-line-before": null,
-    "declaration-empty-line-before": null,
-    "at-rule-empty-line-before": null,
-    "comment-whitespace-inside": null,
-    "length-zero-no-unit": null,
-    "shorthand-property-no-redundant-values": null,
-    "declaration-block-no-redundant-longhand-properties": null,
-    "selector-pseudo-element-colon-notation": null,
+    "value-no-vendor-prefix": null,
+    "selector-pseudo-element-colon-notation": "double", // ::before, ::after
   },
   ignoreFiles: [
     "**/dist/**",
@@ -47,5 +30,14 @@ module.exports = {
     "**/*.min.css",
     "assets/vendor-*.css", // ex: vendor-bootstrap.min.css, splide, nouislider, etc.
     "assets/*.min.css",
+  ],
+  overrides: [
+    // Be even more permissive in assets/ during migration
+    {
+      files: ["assets/**/*.css", "assets/**/*.scss"],
+      rules: {
+        "order/properties-alphabetical-order": null,
+      },
+    },
   ],
 };
