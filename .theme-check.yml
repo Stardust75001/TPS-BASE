@@ -3,14 +3,14 @@ root: true
 extends: "theme-check:recommended"
 # Liste de motifs (ARRAY), pas un objet !
 exclude_patterns:
-  node_modules/**: true
-  dist/**: true
-  vendor/**: true
-  .github/**: true
-  .husky/**: true
-  assets/**/*.map: true
-  config/settings_data.json: true # auto-généré
-  locales/*.schema.json: true
+  - node_modules/**
+  - dist/**
+  - vendor/**
+  - .github/**
+  - .husky/**
+  - assets/**/*.map
+  - config/settings_data.json # auto-généré
+  - locales/*.schema.json
 
 # Niveaux de sévérité : seul "error" casse la CI (car tu lances avec --fail-level=error)
 # On cible surtout les vraies régressions UX/SEO/accessibilité.
