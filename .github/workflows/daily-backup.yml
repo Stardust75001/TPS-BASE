@@ -71,7 +71,7 @@ jobs:
           if [ -n "$TO_DELETE" ]; then
             echo "Deleting old backups:"
             echo "$TO_DELETE"
-            rm -rf $TO_DELETE
+            rm -rf "$TO_DELETE"
           else
             echo "No old backups to delete."
           fi
