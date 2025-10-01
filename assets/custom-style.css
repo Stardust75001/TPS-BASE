@@ -159,10 +159,7 @@ input[type="radio"]:checked + .swatch {
 }
 
 /* Hover state */
-.swatch:hover {
-  border-color: #666 !important;
-  transform: scale(1.1) !important;
-}
+/* Removed duplicate .swatch:hover block to resolve no-duplicate-selectors error */
 
 /* Focus state for accessibility */
 input[type="radio"]:focus-visible + .swatch {
@@ -733,3 +730,4 @@ main {
   min-width: 100px;
   max-width: 160px;
 }
+/* test */
