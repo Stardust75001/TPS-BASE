@@ -2,7 +2,7 @@ name: Daily Shopify Theme Backup (live)
 
 on:
   schedule:
-    - cron: "15 3 * * *"   # tous les jours à 03:15 UTC
+    - cron: "15 3 * * *"   # Daily at 03:15 UTC
   workflow_dispatch: {}
 
 permissions:
