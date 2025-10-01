@@ -1,21 +1,16 @@
 # .theme-check.yml
-# Base Shopify, mais on baisse le bruit et on ignore les vendors/minifiés.
 root: true
-extends:
-  - "theme-check:recommended"
-ignore:
-  - node_modules/**
-  - dist/**
-
+extends: "theme-check:recommended"
+# Liste de motifs (ARRAY), pas un objet !
 exclude_patterns:
   - node_modules/**
   - dist/**
-  - build/**
+  - vendor/**
   - .github/**
-  - assets/**/*.min.{css,js}
-  - assets/**/vendor-**/*
-  - assets/vendor-*.{css,js}
-  - snippets/**/shogun-*.liquid # si tu veux garder le tracking mais éviter le bruit
+  - .husky/**
+  - assets/**/*.map
+  - config/settings_data.json  # auto-généré
+  - locales/*.schema.json
 
 # Niveaux de sévérité : seul "error" casse la CI (car tu lances avec --fail-level=error)
 # On cible surtout les vraies régressions UX/SEO/accessibilité.
