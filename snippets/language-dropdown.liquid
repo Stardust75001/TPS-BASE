@@ -75,9 +75,8 @@
           {% assign flag_asset = 'flag-' | append: current_code | append: '.png' %}
           {% comment %} Try to load flag, fallback to emoji if not found {% endcomment %}
           <picture>
-            <source srcset="{{ 'flag-' | append: current_code | append: '.webp' | asset_url }}" type="image/webp">
             <img
-              src="{{ flag_asset | asset_url }}"
+              src="{{ flag_asset | file_url }}"
               width="16"
               height="16"
               alt=""
@@ -100,9 +99,8 @@
               {% assign flag_asset = 'flag-' | append: code2 | append: '.png' %}
               {% comment %} Try to load flag, fallback to emoji if not found {% endcomment %}
               <picture>
-                <source srcset="{{ 'flag-' | append: code2 | append: '.webp' | asset_url }}" type="image/webp">
                 <img
-                  src="{{ flag_asset | asset_url }}"
+                  src="{{ flag_asset | file_url }}"
                   width="16"
                   height="16"
                   alt=""

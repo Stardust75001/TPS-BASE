@@ -1,5 +1,5 @@
 {
   "name": "Article",
-  "sections": { "main": { "type": "article", "settings": {} } },
+  "sections": { "main": { "type": "template-article", "settings": {} } },
   "order": ["main"]
 }
