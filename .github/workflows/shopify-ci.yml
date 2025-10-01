@@ -80,10 +80,17 @@ jobs:
           for f in "${files[@]}"; do
             echo "Validating $f"
             # Strip C-style comments before validation (for Shopify auto-generated files)
-            sed 's|/\*.*\*/||g; /^\/\*/,/\*\/$/d' "$f" | jq -e . >/dev/null || {
+            # Remove multi-line comments /* ... */ and single-line /* ... */ 
+            temp_file=$(mktemp)
+            sed '/^\/\*/,/\*\/$/d; s|/\*.*\*/||g' "$f" > "$temp_file"
+            if jq -e . "$temp_file" >/dev/null 2>&1; then
+              echo "✅ $f is valid"
+            else
               echo "❌ $f failed validation"
+              rm -f "$temp_file"
               exit 1
-            }
+            fi
+            rm -f "$temp_file"
           done
           echo "All JSON valid ✅"
 
