@@ -411,7 +411,7 @@ select#options-select-purchase-delivery {
   justify-content: center;
   line-height: 1.25;
   padding: 5px;
-  padding: 5px 5px;
+  padding: 5px;
 }
 
 @media (min-width: 1200px) {
