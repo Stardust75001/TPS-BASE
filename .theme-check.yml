@@ -1,6 +1,11 @@
 # .theme-check.yml
 # Base Shopify, mais on baisse le bruit et on ignore les vendors/minifiés.
-extends: shopify
+root: true
+extends: 
+  - "theme-check:recommended"
+ignore:
+  - node_modules/**
+  - dist/**
 
 exclude_patterns:
   - node_modules/**
