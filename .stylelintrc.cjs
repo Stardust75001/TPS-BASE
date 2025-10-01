@@ -45,7 +45,7 @@ module.exports = {
     "**/build/**",
     "**/vendor/**",
     "**/*.min.css",
-    "assets/vendor-*.css",
+    "assets/vendor-*.css", // vendor-bootstrap, splide, nouislider, etc.
     "assets/*.min.css",
   ],
 };
