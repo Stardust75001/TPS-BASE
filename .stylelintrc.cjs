@@ -1,19 +1,14 @@
-/* Stylelint v16 – profil Shopify allégé */
+/* Stylelint v16 – profil Shopify allégé (utile en CI) */
 module.exports = {
-  extends: [
-    "stylelint-config-standard",
-    "stylelint-config-standard-scss",
-  ],
+  extends: ["stylelint-config-standard", "stylelint-config-standard-scss"],
   plugins: ["stylelint-order"],
   reportInvalidScopeDisables: false,
   rules: {
-    // Allégement
+    // Allégement et essentiels
     "order/properties-alphabetical-order": null,
     "custom-property-empty-line-before": null,
     "selector-attribute-quotes": null,
     "value-no-vendor-prefix": null,
-
-    // Essentiels
     "no-empty-source": true,
     "block-no-empty": true,
     "declaration-block-no-duplicate-properties": true,
@@ -25,7 +20,6 @@ module.exports = {
     "property-no-vendor-prefix": null,
     "value-keyword-case": null,
     "color-hex-length": "short",
-
     "keyframes-name-pattern": null,
     "property-no-unknown": null,
     "declaration-property-value-no-unknown": null,
@@ -44,14 +38,14 @@ module.exports = {
     "length-zero-no-unit": null,
     "shorthand-property-no-redundant-values": null,
     "declaration-block-no-redundant-longhand-properties": null,
-    "selector-pseudo-element-colon-notation": null
+    "selector-pseudo-element-colon-notation": null,
   },
   ignoreFiles: [
     "**/dist/**",
     "**/build/**",
     "**/vendor/**",
     "**/*.min.css",
-    "assets/vendor-*.css",   // splide, nouislider, etc.
-    "assets/*.min.css"
-  ]
+    "assets/vendor-*.css", // ex: vendor-bootstrap.min.css, splide, nouislider, etc.
+    "assets/*.min.css",
+  ],
 };
