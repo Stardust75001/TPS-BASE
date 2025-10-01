@@ -570,8 +570,7 @@ ul.timer-countdown li {
 }
 
 .animated-stories-x .cercle {
-  animation: product-stories-anime-trait-bordure 6s ease-out 2 alternate;
-  animation: product_stories_anime_trait_bordure 6s ease-out 2 alternate;
+  animation: product-stories-anime-trait-bordure 6s ease-out 2 alternate; 
   fill: none;
   position: absolute;
   stroke-dasharray: 1;
