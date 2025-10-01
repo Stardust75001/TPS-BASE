@@ -77,7 +77,14 @@ jobs:
           files=()
           for d in config locales; do for f in "$d"/*.json; do files+=("$f"); done; done
           [ ${#files[@]} -eq 0 ] && { echo "No JSON files"; exit 0; }
-          for f in "${files[@]}"; do jq -e . "$f" >/dev/null; done
+          for f in "${files[@]}"; do 
+            echo "Validating $f"
+            # Strip C-style comments before validation (for Shopify auto-generated files)
+            sed 's|/\*.*\*/||g; /^\/\*/,/\*\/$/d' "$f" | jq -e . >/dev/null || {
+              echo "❌ $f failed validation"
+              exit 1
+            }
+          done
           echo "All JSON valid ✅"
 
   eslint:
