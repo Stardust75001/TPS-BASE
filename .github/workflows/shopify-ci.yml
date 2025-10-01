@@ -80,7 +80,7 @@ jobs:
           for f in "${files[@]}"; do
             echo "Validating $f"
             # Strip C-style comments before validation (for Shopify auto-generated files)
-            # Remove multi-line comments /* ... */ and single-line /* ... */ 
+            # Remove multi-line comments /* ... */ and single-line /* ... */
             temp_file=$(mktemp)
             sed '/^\/\*/,/\*\/$/d; s|/\*.*\*/||g' "$f" > "$temp_file"
             if jq -e . "$temp_file" >/dev/null 2>&1; then
