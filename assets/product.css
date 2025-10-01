@@ -377,10 +377,7 @@ select#options-select-purchase-delivery {
   transition: all 0.2s ease-out;
 }
 
-#bought-product-together
-  .product-item:not(:last-child)
-  .product-item-img-wrapper::after {
-  .product-item-img-wrapper::after {
+#bought-product-together .product-item:not(:last-child) .product-item-img-wrapper::after {
   bottom: -1.8rem;
   content: "+";
   font-size: 1.25rem;
@@ -390,8 +387,6 @@ select#options-select-purchase-delivery {
   transform: translateX(-50%);
 }
 
-#bought-product-together .product-item select {
-  max-width: fit-content;
 }
 
 @media (min-width: 1200px) {
