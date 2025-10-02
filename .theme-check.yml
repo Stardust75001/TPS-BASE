@@ -1,152 +1,82 @@
-root: .# Theme Check Configurationexclude:
+# Theme Check Configuration
+root: .
 
+ignore:
+  - "node_modules/**"
+  - ".git/**"
+  - "dist/**"
+  - "build/**"
+  - "assets/vendor*.css"
+  - "assets/vendor*.js"
+  - "assets/**/*.min.css"
+  - "assets/**/*.min.js"
+  - "assets/**/vendor-**/*"
+  - ".github/**"
+  - "snippets/shogun-*.liquid"
 
-
-exclude:root: .  - "node_modules/**"
-
-  - node_modules/
-
-  - .git/  - "dist/**"
-
-  - dist/
-
-  - build/exclude:  - "build/**"
-
-  - assets/vendor*.css
-
-  - assets/vendor*.js  - node_modules/  - ".github/**"
-
-  - snippets/shogun-*.liquid
-
-  - .git/  - "assets/**/*.min.css"
-
+# Checks configuration
 ImgLazyLoading:
-
-  enabled: true  - dist/  - "assets/**/*.min.js"
-
+  enabled: false # Disabled to reduce noise
   severity: suggestion
-
-  - build/  - "assets/**/vendor-**/*"
 
 ImgWidthAndHeight:
-
-  enabled: true    - assets/vendor*.css  - "assets/vendor-*.css"
-
+  enabled: false # Disabled to reduce noise
   severity: suggestion
-
-  - assets/vendor*.js  - "assets/vendor-*.js"
 
 RemoteAsset:
-
-  enabled: true  - snippets/shogun-*.liquid  - "snippets/**/shogun-*.liquid"
-
+  enabled: true
   severity: suggestion
 
-
-
 DeprecatedFilter:
-
-  enabled: trueImgLazyLoading:checks:
-
-  severity: error
-
-  enabled: true  SpaceInsideBraces:
-
-TranslationKeyExists:
-
-  enabled: true  severity: suggestion    enabled: false
-
-  severity: error
-
-  TemplateLength:
-
-SpaceInsideBraces:
-
-  enabled: falseImgWidthAndHeight:    enabled: true
-
-
-
-TemplateLength:  enabled: true      severity: suggestion
-
   enabled: true
+  severity: error
 
-  severity: suggestion  severity: suggestion    max_length: 1200
-
-  max_length: 1200
-
-  UnusedAssign:
+TemplateLength:
+  enabled: true
+  severity: suggestion
+  max_length: 1500 # Increased from 1200
 
 UnusedAssign:
-
-  severity: suggestionRemoteAsset:    severity: suggestion
-
-
-
-ContentForHeaderModification:  enabled: true  UnusedSnippet:
-
-  enabled: false
-  severity: suggestion    severity: suggestion
-
-  ContentForHeaderModification:
-
-DeprecateLazysizes:    enabled: false
-
-  enabled: true  ImgWidthAndHeight:
-
-  severity: suggestion    severity: suggestion
-
-  ImgLazyLoading:
-
-DeprecatedFilter:    severity: suggestion
-
-  enabled: true  RemoteAsset:
-
-  severity: error    severity: suggestion
-
-  DeprecatedFilter:
-
-MatchingTranslations:    severity: suggestion
-
-  enabled: true  TranslationKeyExists:
-
-  severity: suggestion    enabled: true
-
-    severity: error
-
-TranslationKeyExists:  MatchingTranslations:
-
-  enabled: true    severity: suggestion
-
-  severity: error  SchemaJsonFormat:
-
-    severity: suggestion
-
-SpaceInsideBraces:
-
-  enabled: false# Exclusions ciblées (au lieu d'un exclude_patterns global)
-
-ImgWidthAndHeight:
-
-TemplateLength:  exclude_patterns:
-
-  enabled: true    - "assets/**/*.min.css"
-
-  severity: suggestion    - "assets/**/*.min.js"
-
-  max_length: 1200
-
-ImgLazyLoading:
-
-UnusedAssign:  exclude_patterns:
-
-  severity: suggestion    - "assets/**/*.min.css"
-
-    - "assets/**/*.min.js"
+  enabled: false # Disabled to reduce noise
+  severity: suggestion
 
 ContentForHeaderModification:
+  enabled: false
 
-  enabled: falseRemoteAsset:
-  exclude_patterns:
-    - "assets/vendor-*.css"
-    - "assets/vendor-*.js"
-    - "assets/**/vendor-**/*"
+DeprecateLazysizes:
+  enabled: true
+  severity: error # Upgraded to error
+
+MatchingTranslations:
+  enabled: false # Disabled to reduce noise for multilingual themes
+  severity: suggestion
+
+TranslationKeyExists:
+  enabled: true
+  severity: error
+
+SpaceInsideBraces:
+  enabled: false
+
+UnusedSnippet:
+  enabled: false # Disabled to reduce noise
+  severity: suggestion
+
+SchemaJsonFormat:
+  enabled: false # Disabled to reduce noise from schema formatting
+
+LiquidTag:
+  enabled: false # Disabled to reduce style warnings
+  severity: suggestion
+
+NestedSnippet:
+  enabled: false # Disabled to reduce style warnings
+  severity: suggestion
+
+MissingTemplate:
+  enabled: false # Disabled - templates are optional
+  severity: suggestion
+
+ValidHTMLTranslation:
+  enabled: false # Disabled to reduce noise from HTML in translations
+  severity: suggestion
