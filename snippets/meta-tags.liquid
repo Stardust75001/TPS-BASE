@@ -4,6 +4,14 @@
 {% endif %}
 <meta name="robots" content="{{ robots_content }}">
 
+{%- comment -%} Webmaster Tools Verification {%- endcomment -%}
+{% if settings.google_site_verification != blank %}
+  <meta name="google-site-verification" content="{{ settings.google_site_verification }}">
+{% endif %}
+{% if settings.ahrefs_site_verification != blank %}
+  <meta name="ahrefs-site-verification" content="{{ settings.ahrefs_site_verification }}">
+{% endif %}
+
 {% liquid
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: shop.url

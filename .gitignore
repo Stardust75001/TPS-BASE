@@ -7,3 +7,12 @@ node_modules/
 .env*
 .env*
 .logs/
+node_modules/
+dist/
+build/
+.github/
+assets/**/*.min.css
+assets/**/*.min.js
+assets/**/vendor-**/
+assets/vendor-*.css
+assets/vendor-*.js
