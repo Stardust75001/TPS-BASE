@@ -142,19 +142,15 @@
       "copied": "Copied!",
       "pagination_page_of": "Page {{ count }} of {{ total }}",
       "optional": "optional",
-      "map": {
-        "address": "Address",
-        "phone": "Phone",
-        "email": "Email",
-        "hours": "Hours",
-        "api_key_missing": "Google Maps API key is missing"
-      },
-      "offcanvas_search": {
-        "title_products": "Products",
-        "title_collections": "Collections",
-        "title_pages": "Pages",
-        "title_articles": "Articles"
-      }
+      "map_address": "Address",
+      "map_phone": "Phone",
+      "map_email": "Email",
+      "map_hours": "Hours",
+      "map_api_key_missing": "Google Maps API key is missing",
+      "offcanvas_search_title_products": "Products",
+      "offcanvas_search_title_collections": "Collections",
+      "offcanvas_search_title_pages": "Pages",
+      "offcanvas_search_title_articles": "Articles"
     },
     "contact": {
       "success": "Thank you for your message. We'll get back to you soon.",

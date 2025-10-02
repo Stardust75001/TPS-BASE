@@ -31,28 +31,28 @@
                             
                             {% unless section.settings.address == blank %}
                                 <div class="mb-3">
-                                    <strong>{{ 'general.map.address' | t }}:</strong><br>
+                                    <strong>{{ 'general.map_address' | t }}:</strong><br>
                                     {{ section.settings.address }}
                                 </div>
                             {% endunless %}
                             
                             {% unless section.settings.phone == blank %}
                                 <div class="mb-3">
-                                    <strong>{{ 'general.map.phone' | t }}:</strong><br>
+                                    <strong>{{ 'general.map_phone' | t }}:</strong><br>
                                     <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
                                 </div>
                             {% endunless %}
                             
                             {% unless section.settings.email == blank %}
                                 <div class="mb-3">
-                                    <strong>{{ 'general.map.email' | t }}:</strong><br>
+                                    <strong>{{ 'general.map_email' | t }}:</strong><br>
                                     <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
                                 </div>
                             {% endunless %}
                             
                             {% unless section.settings.hours == blank %}
                                 <div class="mb-3">
-                                    <strong>{{ 'general.map.hours' | t }}:</strong><br>
+                                    <strong>{{ 'general.map_hours' | t }}:</strong><br>
                                     {{ section.settings.hours }}
                                 </div>
                             {% endunless %}
@@ -80,7 +80,7 @@
                                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                             <circle cx="12" cy="10" r="3"></circle>
                                         </svg>
-                                        <p class="text-muted">{{ 'general.map.api_key_missing' | t }}</p>
+                                        <p class="text-muted">{{ 'general.map_api_key_missing' | t }}</p>
                                     </div>
                                 </div>
                             {% endif %}

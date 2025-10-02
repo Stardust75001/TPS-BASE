@@ -24,7 +24,7 @@ ImgWidthAndHeight:
   severity: suggestion
 
 RemoteAsset:
-  enabled: true
+  enabled: false # Disabled - legitimate external assets (CDN, Google Fonts)
   severity: suggestion
 
 DeprecatedFilter:
