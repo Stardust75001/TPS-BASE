@@ -12,16 +12,6 @@ on:
         default: false
         required: true
 
-# URLs publiques (OK d'être en clair). Les secrets sont injectés via expressions.
-env:
-  SHOP_DOMAIN: ${{ secrets.SHOPIFY_STORE }}
-  SITE_ORIGIN: https://${{ secrets.SHOPIFY_STORE }}
-  URL_HOME: https://${{ secrets.SHOPIFY_STORE }}/
-  URL_COLLECTION: https://${{ secrets.SHOPIFY_STORE }}/collections/all
-  URL_PRODUCT_1: https://${{ secrets.SHOPIFY_STORE }}/collections/travel-corner/products/dog-clothing-set-outdoor-dog-vest-4-piece-set-6-piece-set-multi-function-water-cup-set-medical-bag-ins-style
-  ROBOTS_URL: https://${{ secrets.SHOPIFY_STORE }}/robots.txt
-  SITEMAP_URL: https://${{ secrets.SHOPIFY_STORE }}/sitemap.xml
-
 jobs:
   # === 1) required by branch protection ==========================
   basic-build:
@@ -32,10 +22,17 @@ jobs:
 
   # === 2) required: smoke tests (HTTP, add-to-cart, PSI) =========
   smoke-tests:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_only == 'true') }}
     needs: basic-build
     runs-on: ubuntu-latest
     env:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SITE_ORIGIN: https://${{ secrets.SHOPIFY_STORE }}
+      URL_HOME: https://${{ secrets.SHOPIFY_STORE }}/
+      URL_COLLECTION: https://${{ secrets.SHOPIFY_STORE }}/collections/all
+      URL_PRODUCT_1: https://${{ secrets.SHOPIFY_STORE }}/collections/travel-corner/products/dog-clothing-set-outdoor-dog-vest-4-piece-set-6-piece-set-multi-function-water-cup-set-medical-bag-ins-style
+      ROBOTS_URL: https://${{ secrets.SHOPIFY_STORE }}/robots.txt
+      SITEMAP_URL: https://${{ secrets.SHOPIFY_STORE }}/sitemap.xml
       VARIANT_ID_1: ${{ secrets.VARIANT_ID_1 }}
       VARIANT_ID_2: ${{ secrets.VARIANT_ID_2 }}
       VARIANT_ID_3: ${{ secrets.VARIANT_ID_3 }}
@@ -95,7 +92,7 @@ jobs:
 
   # === 3) required: theme-check ==================================
   theme-check:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_only == 'true') }}
     needs: smoke-tests
     runs-on: ubuntu-latest
     env:
@@ -106,17 +103,19 @@ jobs:
       - name: Install Shopify CLI
         run: npm i -g @shopify/cli @shopify/theme
       - name: Theme check
-        run: shopify theme check || true  # passe même si warnings (ajuste si tu veux fail)
+        run: shopify theme check || true  # passe même si warnings
 
   # === 4) Admin API sanity check (shpat_) ========================
   api-admin:
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_only == 'true') }}
     needs: theme-check
     runs-on: ubuntu-latest
     env:
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}     # shpat_...
     steps:
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
       - name: Shop info
         run: |
           curl -sS -H "X-Shopify-Access-Token: $SHOPIFY_ADMIN_TOKEN" \
@@ -126,7 +125,7 @@ jobs:
   theme-deploy:
     needs: api-admin
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' && secrets.ENABLE_THEME_DEPLOY == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.deploy_only == true) }}
+    if: ${{ github.ref == 'refs/heads/main' && secrets.ENABLE_THEME_DEPLOY == 'true' && !(github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_only == 'true') }}
     env:
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }} # shptka_...
@@ -141,7 +140,7 @@ jobs:
   # === 6) Déploiement MANUEL seul (workflow_dispatch) ============
   theme-deploy-manual:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy_only == true && secrets.ENABLE_THEME_DEPLOY == 'true' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_only == 'true' && secrets.ENABLE_THEME_DEPLOY == 'true' }}
     env:
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
