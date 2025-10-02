@@ -1,4 +1,4 @@
-{% liquid 
+{% liquid
     assign pt = section.settings.pt | prepend: 'pt-'
     assign pb = section.settings.pb | prepend: 'pb-'
     assign mt = section.settings.mt | prepend: 'mt-'
@@ -20,7 +20,7 @@
                     {% endunless %}
                 </div>
             {% endunless %}
-            
+
             <div class="row">
                 {% if section.settings.show_info %}
                     <div class="col-lg-4 mb-4 mb-lg-0">
@@ -28,28 +28,28 @@
                             {% unless section.settings.store_name == blank %}
                                 <h3 class="h4 mb-3">{{ section.settings.store_name }}</h3>
                             {% endunless %}
-                            
+
                             {% unless section.settings.address == blank %}
                                 <div class="mb-3">
                                     <strong>{{ 'general.map_address' | t }}:</strong><br>
                                     {{ section.settings.address }}
                                 </div>
                             {% endunless %}
-                            
+
                             {% unless section.settings.phone == blank %}
                                 <div class="mb-3">
                                     <strong>{{ 'general.map_phone' | t }}:</strong><br>
                                     <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
                                 </div>
                             {% endunless %}
-                            
+
                             {% unless section.settings.email == blank %}
                                 <div class="mb-3">
                                     <strong>{{ 'general.map_email' | t }}:</strong><br>
                                     <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
                                 </div>
                             {% endunless %}
-                            
+
                             {% unless section.settings.hours == blank %}
                                 <div class="mb-3">
                                     <strong>{{ 'general.map_hours' | t }}:</strong><br>
@@ -64,8 +64,8 @@
                 {% endif %}
                         <div class="map-container">
                             {% if section.settings.api_key != blank and section.settings.address != blank %}
-                                <div 
-                                    id="google-map-{{ section.id }}" 
+                                <div
+                                    id="google-map-{{ section.id }}"
                                     class="google-map"
                                     style="height: {{ section.settings.map_height }}px;"
                                     data-api-key="{{ section.settings.api_key }}"

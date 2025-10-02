@@ -39,7 +39,7 @@
       "model_3d_decrease": "Diminuire lo zoom",
       "model_3d_increase": "Aumenta lo zoom",
       "model_3d_fullscreen": "Controllo a schermo intero",
-      "toggle_sound": "Attiva\/disattiva il suono"
+      "toggle_sound": "Attiva/disattiva il suono"
     },
     "offcanvas_search": {
       "title": "Cerca nel nostro negozio",
@@ -78,13 +78,13 @@
     },
     "offcanvas_menu": {
       "title_guest": "Benvenuto ospite",
-      "subtitle_guest_html": "Per favore <a href=\"\/account\">login<\/a> O  <a href=\"\/account\/register\">Registrati<\/a>",
+      "subtitle_guest_html": "Per favore <a href=\"/account\">login</a> O  <a href=\"/account/register\">Registrati</a>",
       "title_customer": "Benvenuto {{ name }}",
-      "subtitle_customer_html": "<a href=\"\/account\">Il mio conto<\/a>"
+      "subtitle_customer_html": "<a href=\"/account\">Il mio conto</a>"
     },
     "wishlist": {
       "offcanvas_title": "La tua lista dei desideri",
-      "empty_html": "<p>La tua lista dei desideri è attualmente vuota<\/p>",
+      "empty_html": "<p>La tua lista dei desideri è attualmente vuota</p>",
       "add_to_wishlist": "Aggiungi alla lista dei desideri",
       "remove_from_wishlist": "Rimuovi dalla lista dei desideri",
       "btn_label": "Lista dei desideri"
@@ -121,7 +121,7 @@
       }
     },
     "quiz": {
-      "question_of_html": "Domanda <span>{{ count }}<\/span> Di {{ total }}",
+      "question_of_html": "Domanda <span>{{ count }}</span> Di {{ total }}",
       "btn_previous": "← Precedente",
       "btn_reload_quiz": "Fai di nuovo il quiz"
     },
@@ -142,7 +142,7 @@
     }
   },
   "collection": {
-    "empty_html": "Nessun prodotto trovato! <a href=\"\/collections\/all\">Mostra tutto \"<\/a>",
+    "empty_html": "Nessun prodotto trovato! <a href=\"/collections/all\">Mostra tutto \"</a>",
     "sort_by": "Ordina per",
     "load_more": "Carica di più",
     "load_previous": "Carica precedente",
@@ -177,7 +177,7 @@
       "bundle_price": "Prezzo a pacchetto",
       "you_save": "Risparmi",
       "bundle_contents_title": "Contenuto del pacchetto",
-      "bundle_contents_empty_html": "<p>Il tuo pacchetto è attualmente vuoto! <br> Inizia ad aggiungere articoli per ottenere sconti incredibili<\/p>"
+      "bundle_contents_empty_html": "<p>Il tuo pacchetto è attualmente vuoto! <br> Inizia ad aggiungere articoli per ottenere sconti incredibili</p>"
     }
   },
   "product": {
@@ -206,14 +206,14 @@
     "inventory_bar": {
       "label": "Indicatore della barra delle scorte",
       "verylow_html": {
-        "one": "Solo avvertimento <b>{{ count }} articolo<\/b> rimasto in magazzino!",
-        "other": "Solo avvertimento <b>{{ count }} elementi<\/b> rimasto in magazzino!"
+        "one": "Solo avvertimento <b>{{ count }} articolo</b> rimasto in magazzino!",
+        "other": "Solo avvertimento <b>{{ count }} elementi</b> rimasto in magazzino!"
       },
       "low_html": {
-        "one": "Soltanto, <b>{{ count }} articolo<\/b> è disponibile!",
-        "other": "Soltanto, <b>{{ count }} elementi<\/b> sono disponibili!"
+        "one": "Soltanto, <b>{{ count }} articolo</b> è disponibile!",
+        "other": "Soltanto, <b>{{ count }} elementi</b> sono disponibili!"
       },
-      "normal_html": "Attualmente, <b>{{ count }} elementi<\/b> sono disponibili!",
+      "normal_html": "Attualmente, <b>{{ count }} elementi</b> sono disponibili!",
       "sold_out": "Sfortunatamente, questo articolo è esaurito!",
       "untracked": "Attualmente, questo articolo è disponibile"
     },
@@ -224,7 +224,7 @@
       "total_price": "Prezzo totale"
     },
     "qty_breaks": {
-      "label_text_html": "Acquistare {{ qty }} - <b>{{ price }}<\/b> (salva: {{ save }})",
+      "label_text_html": "Acquistare {{ qty }} - <b>{{ price }}</b> (salva: {{ save }})",
       "label_text_html_bundle_header": "Salva {{ pricecash }} ({{ save }})",
       "label_text_html_bundle": "Acquistare x{{ qty }}"
     },
@@ -243,7 +243,7 @@
   },
   "cart": {
     "title": "Il tuo carrello",
-    "empty_html": "<p>Il carrello è vuoto<\/p>",
+    "empty_html": "<p>Il carrello è vuoto</p>",
     "empty_products_title": "Potresti gradire...",
     "summary": "Riepilogo",
     "continue_shopping": "Continua a fare acquisti",
@@ -263,7 +263,7 @@
     "alert_items_added": "[count] articoli aggiunti al carrello",
     "alert_cart_updated": "Il carrello è stato aggiornato con successo",
     "alert_error": "Si è verificato un errore durante l'elaborazione della richiesta. ",
-    "taxes_shipping_at_checkout_html": "Le tasse <a href=\"\/policies\/shipping-policy\" target=\"_blank\">Spedizione<\/a> calcolato alla cassa",
+    "taxes_shipping_at_checkout_html": "Le tasse <a href=\"/policies/shipping-policy\" target=\"_blank\">Spedizione</a> calcolato alla cassa",
     "shipping_rates": {
       "button_label": "Calcola le tariffe di spedizione",
       "modal_title": "Calcola le tariffe di spedizione",
@@ -304,8 +304,8 @@
       "account_details": "Dettagli account",
       "view_addresses": "Visualizza indirizzi",
       "return": "Torna ai dettagli dell'account",
-      "drawer_manage_account_html": "Vai a <a href=\"\/account\">Il mio conto<\/a>",
-      "drawer_register_login_html": "Per favore <a href=\"\/account\/register\">Registrati<\/a> O <a href=\"\/account\/login\">Login<\/a>"
+      "drawer_manage_account_html": "Vai a <a href=\"/account\">Il mio conto</a>",
+      "drawer_register_login_html": "Per favore <a href=\"/account/register\">Registrati</a> O <a href=\"/account/login\">Login</a>"
     },
     "login": {
       "title": "Login",

@@ -72,7 +72,6 @@
         "articles": "Artiklar"
       }
     },
-
     "wishlist": {
       "offcanvas_title": "Din önskelista",
       "empty_html": "<p>Din önskelista är för närvarande tom</p>",
@@ -315,7 +314,6 @@
       "password": "Lösenord",
       "submit": "Logga in",
       "forgot_password": "Glömt ditt lösenord?",
-
       "new": "Är du ny här?",
       "create_account": "Skapa gratis konto"
     },

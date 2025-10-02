@@ -159,7 +159,16 @@
       "phone": "Phone",
       "message": "Message",
       "send": "Send Message"
-    }
+    },
+    "map_address": "TODO",
+    "map_phone": "TODO",
+    "map_email": "TODO",
+    "map_hours": "TODO",
+    "map_api_key_missing": "TODO",
+    "offcanvas_search_title_products": "TODO",
+    "offcanvas_search_title_collections": "TODO",
+    "offcanvas_search_title_pages": "TODO",
+    "offcanvas_search_title_articles": "TODO"
   },
   "product": {
     "price_unit": "Unit price",

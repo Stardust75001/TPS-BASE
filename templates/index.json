@@ -2,8 +2,11 @@
   "sections": {
     "main": {
       "type": "main-hello",
-      "settings": {}
+      "settings": {
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

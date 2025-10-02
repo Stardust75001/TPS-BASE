@@ -39,7 +39,7 @@
       "model_3d_decrease": "Verklein zoom",
       "model_3d_increase": "Vergroot zoom",
       "model_3d_fullscreen": "Bediening Volledig scherm",
-      "toggle_sound": "Geluid aan\/uit"
+      "toggle_sound": "Geluid aan/uit"
     },
     "offcanvas_search": {
       "title": "Zoek in onze winkel",
@@ -78,7 +78,7 @@
     },
     "offcanvas_menu": {
       "title_guest": "Welkom gast",
-      "subtitle_guest_html": "Gelieve <a href=\"\/account\">inloggen<\/a> of <a href=\"\/account\/register\">registreren<\/a>",
+      "subtitle_guest_html": "Gelieve <a href=\"/account\">inloggen</a> of <a href=\"/account/register\">registreren</a>",
       "title_customer": "Welkom {{ name }}",
       "subtitle_customer_html": "Mijn account"
     },
@@ -121,7 +121,7 @@
       }
     },
     "quiz": {
-      "question_of_html": "Vraag <span>{{ count }}<\/span> van {{ total }}",
+      "question_of_html": "Vraag <span>{{ count }}</span> van {{ total }}",
       "btn_previous": "← Vorige",
       "btn_reload_quiz": "Quiz opnieuw maken"
     },
@@ -142,7 +142,7 @@
     }
   },
   "collection": {
-    "empty_html": "Geen producten gevonden! <a href=\"\/collections\/all\">Alles bekijken »<\/a>",
+    "empty_html": "Geen producten gevonden! <a href=\"/collections/all\">Alles bekijken »</a>",
     "sort_by": "Sorteren op",
     "load_more": "Meer laden",
     "load_previous": "Laad vorige",
@@ -206,14 +206,14 @@
     "inventory_bar": {
       "label": "Voorraadbalk-indicator",
       "verylow_html": {
-        "one": "Let op: nog maar <b>{{ count }} item<\/b> op voorraad!",
-        "other": "Let op: nog maar <b>{{ count }} artikelen<\/b> op voorraad!"
+        "one": "Let op: nog maar <b>{{ count }} item</b> op voorraad!",
+        "other": "Let op: nog maar <b>{{ count }} artikelen</b> op voorraad!"
       },
       "low_html": {
-        "one": "Alleen, <b>{{ count }}<\/b> item is op voorraad!",
-        "other": "Alleen, <b>{{ count }} items<\/b> zijn op voorraad!"
+        "one": "Alleen, <b>{{ count }}</b> item is op voorraad!",
+        "other": "Alleen, <b>{{ count }} items</b> zijn op voorraad!"
       },
-      "normal_html": "Op dit moment zijn er <b>{{ count }} items<\/b> op voorraad!",
+      "normal_html": "Op dit moment zijn er <b>{{ count }} items</b> op voorraad!",
       "sold_out": "Helaas is dit item uitverkocht!",
       "untracked": "Op dit moment is dit item op voorraad."
     },
@@ -224,7 +224,7 @@
       "total_price": "Totale prijs"
     },
     "qty_breaks": {
-      "label_text_html": "Koop {{ qty }} - <b>{{ price }}<\/b> (bespaar: {{ save }})",
+      "label_text_html": "Koop {{ qty }} - <b>{{ price }}</b> (bespaar: {{ save }})",
       "label_text_html_bundle_header": "Bespaar {{ pricecash }} ({{ save }})",
       "label_text_html_bundle": "Koop x{{ qty }}"
     },
@@ -263,7 +263,7 @@
     "alert_items_added": "[count] items toegevoegd aan uw winkelwagen.",
     "alert_cart_updated": "Winkelwagen is succesvol bijgewerkt.",
     "alert_error": "Er is een fout opgetreden bij het verwerken van uw verzoek. Probeer het later opnieuw. Als het probleem aanhoudt, neem dan contact met ons op.",
-    "taxes_shipping_at_checkout_html": "Belastingen &amp; <a href=\"\/policies\/shipping-policy\" target=\"_blank\">Verzending<\/a> berekend bij het afrekenen",
+    "taxes_shipping_at_checkout_html": "Belastingen &amp; <a href=\"/policies/shipping-policy\" target=\"_blank\">Verzending</a> berekend bij het afrekenen",
     "shipping_rates": {
       "button_label": "Bereken Verzendkosten",
       "modal_title": "Bereken Verzendkosten",
@@ -304,8 +304,8 @@
       "account_details": "Accountgegevens",
       "view_addresses": "Bekijk adressen",
       "return": "Terug naar accountgegevens",
-      "drawer_manage_account_html": "Ga naar <a href=\"\/account\">Mijn Account<\/a>",
-      "drawer_register_login_html": "Gelieve <a href=\"\/account\/register\">Registreren<\/a> of <a href=\"\/account\/login\">Inloggen<\/a>"
+      "drawer_manage_account_html": "Ga naar <a href=\"/account\">Mijn Account</a>",
+      "drawer_register_login_html": "Gelieve <a href=\"/account/register\">Registreren</a> of <a href=\"/account/login\">Inloggen</a>"
     },
     "login": {
       "title": "Inloggen",

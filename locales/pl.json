@@ -78,13 +78,13 @@
     },
     "offcanvas_menu": {
       "title_guest": "Witaj gościu",
-      "subtitle_guest_html": "Proszę <a href=\"\/account\">Zaloguj sie<\/a> Lub  <a href=\"\/account\/register\">rejestr<\/a>",
+      "subtitle_guest_html": "Proszę <a href=\"/account\">Zaloguj sie</a> Lub  <a href=\"/account/register\">rejestr</a>",
       "title_customer": "Powitanie {{ name }}",
-      "subtitle_customer_html": "<a href=\"\/account\">Moje konto<\/a>"
+      "subtitle_customer_html": "<a href=\"/account\">Moje konto</a>"
     },
     "wishlist": {
       "offcanvas_title": "Twoja lista życzeń",
-      "empty_html": "<p>Twoja lista życzeń jest obecnie pusta<\/p>",
+      "empty_html": "<p>Twoja lista życzeń jest obecnie pusta</p>",
       "add_to_wishlist": "Dodaj do listy życzeń",
       "remove_from_wishlist": "Usuń z listy życzeń",
       "btn_label": "Lista życzeń"
@@ -121,7 +121,7 @@
       }
     },
     "quiz": {
-      "question_of_html": "Pytanie <span>{{ count }}<\/span> z {{ total }}",
+      "question_of_html": "Pytanie <span>{{ count }}</span> z {{ total }}",
       "btn_previous": "← Poprzedni",
       "btn_reload_quiz": "Weź udział w quizie ponownie"
     },
@@ -142,7 +142,7 @@
     }
   },
   "collection": {
-    "empty_html": "Nie znaleziono żadnych produktów! <a href=\"\/collections\/all\">Pokaż wszystkie \"<\/a>",
+    "empty_html": "Nie znaleziono żadnych produktów! <a href=\"/collections/all\">Pokaż wszystkie \"</a>",
     "sort_by": "Sortuj według",
     "load_more": "Załaduj więcej",
     "load_previous": "Załaduj poprzednie",
@@ -177,7 +177,7 @@
       "bundle_price": "Cena pakietu",
       "you_save": "Oszczędzasz",
       "bundle_contents_title": "Zawartość pakietu",
-      "bundle_contents_empty_html": "<p>Twój pakiet jest obecnie pusty! <br> Zacznij dodawać przedmioty, aby uzyskać niesamowite rabaty<\/p>"
+      "bundle_contents_empty_html": "<p>Twój pakiet jest obecnie pusty! <br> Zacznij dodawać przedmioty, aby uzyskać niesamowite rabaty</p>"
     }
   },
   "product": {
@@ -206,14 +206,14 @@
     "inventory_bar": {
       "label": "Wskaźnik paska zapasów",
       "verylow_html": {
-        "one": "Tylko ostrzeżenie <b>{{ count }} przedmiot<\/b> pozostało na magazynie!",
-        "other": "Tylko ostrzeżenie <b>{{ count }} rzeczy<\/b> pozostało na magazynie!"
+        "one": "Tylko ostrzeżenie <b>{{ count }} przedmiot</b> pozostało na magazynie!",
+        "other": "Tylko ostrzeżenie <b>{{ count }} rzeczy</b> pozostało na magazynie!"
       },
       "low_html": {
-        "one": "Tylko, <b>{{ count }} przedmiot<\/b> jest w magazynie!",
-        "other": "Tylko, <b>{{ count }} rzeczy<\/b> są w magazynie!"
+        "one": "Tylko, <b>{{ count }} przedmiot</b> jest w magazynie!",
+        "other": "Tylko, <b>{{ count }} rzeczy</b> są w magazynie!"
       },
-      "normal_html": "Obecnie, <b>{{ count }} rzeczy<\/b> są w magazynie!",
+      "normal_html": "Obecnie, <b>{{ count }} rzeczy</b> są w magazynie!",
       "sold_out": "Niestety, ten artykuł jest wyprzedany!",
       "untracked": "Obecnie ten artykuł ma zapasy"
     },
@@ -224,7 +224,7 @@
       "total_price": "Całkowita cena"
     },
     "qty_breaks": {
-      "label_text_html": "Kupić {{ qty }} - <b>{{ price }}<\/b> (ratować: {{ save }})",
+      "label_text_html": "Kupić {{ qty }} - <b>{{ price }}</b> (ratować: {{ save }})",
       "label_text_html_bundle_header": "Ratować {{ pricecash }} ({{ save }})",
       "label_text_html_bundle": "Kup x{{ qty }}"
     },
@@ -243,7 +243,7 @@
   },
   "cart": {
     "title": "Twój wózek",
-    "empty_html": "<p>Twój koszyk jest obecnie pusty<\/p>",
+    "empty_html": "<p>Twój koszyk jest obecnie pusty</p>",
     "empty_products_title": "Możesz lubić...",
     "summary": "Streszczenie",
     "continue_shopping": "Kontynuować zakupy",
@@ -263,7 +263,7 @@
     "alert_items_added": "[liczba] artykułów dodanych do Twojego koszyka",
     "alert_cart_updated": "Koszyk został pomyślnie zaktualizowany",
     "alert_error": "Wystąpił błąd podczas przetwarzania Twojego żądania. ",
-    "taxes_shipping_at_checkout_html": "Podatki <a href=\"\/policies\/shipping-policy\" target=\"_blank\">Wysyłka<\/a> Obliczone w kasie",
+    "taxes_shipping_at_checkout_html": "Podatki <a href=\"/policies/shipping-policy\" target=\"_blank\">Wysyłka</a> Obliczone w kasie",
     "shipping_rates": {
       "button_label": "Oblicz stawki wysyłki",
       "modal_title": "Oblicz stawki wysyłki",
@@ -304,8 +304,8 @@
       "account_details": "Szczegóły Konta",
       "view_addresses": "Wyświetl adresy",
       "return": "Wróć do szczegółów konta",
-      "drawer_manage_account_html": "Iść do <a href=\"\/account\">Moje konto<\/a>",
-      "drawer_register_login_html": "Proszę <a href=\"\/account\/register\">Rejestr<\/a> Lub <a href=\"\/account\/login\">Zaloguj sie<\/a>"
+      "drawer_manage_account_html": "Iść do <a href=\"/account\">Moje konto</a>",
+      "drawer_register_login_html": "Proszę <a href=\"/account/register\">Rejestr</a> Lub <a href=\"/account/login\">Zaloguj sie</a>"
     },
     "login": {
       "title": "Zaloguj sie",
@@ -402,7 +402,7 @@
       "city": "Miasto",
       "country": "Kraj",
       "province": "Województwo",
-      "zip": "Kod pocztowy\/kod pocztowy",
+      "zip": "Kod pocztowy/kod pocztowy",
       "phone": "Telefon",
       "set_default": "Ustaw jako adres domyślny",
       "add": "Dodaj adres",
