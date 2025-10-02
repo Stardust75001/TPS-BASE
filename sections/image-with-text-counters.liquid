@@ -27,7 +27,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
         assign thickness_ratio = section.settings.progress_circle_border_thickness_ratio | prepend: '0.'
     endif
 
-    assign bordersTopBottom = section.settings.progress_circle_borders
+    assign borders_top_bottom = section.settings.progress_circle_borders
 
     assign btn_shadow_sp = settings.btn_shadow_sp
 
@@ -170,7 +170,7 @@ Les contrevenants seront poursuivis dans toute la mesure permise par la loi.
               
                 {% for block in section.blocks %}
                     {% assign block_count = block_count | plus: 2 %}
-                    <div class="row align-items-center {{ bordersTopBottom }} border-2 py-{{ section.settings.progress_circle_padding }} {% if forloop.last and bordersTopBottom != 'border-0' %}border-bottom{% endif %} {% unless section.settings.animation == '' %}animate__animated opacity-0 {{ section.settings.animation_speed }}{% endunless %}"
+                    <div class="row align-items-center {{ borders_top_bottom }} border-2 py-{{ section.settings.progress_circle_padding }} {% if forloop.last and borders_top_bottom != 'border-0' %}border-bottom{% endif %} {% unless section.settings.animation == '' %}animate__animated opacity-0 {{ section.settings.animation_speed }}{% endunless %}"
                         data-animate-class="{{ section.settings.animation }}"
                         style="animation-delay: {{ block_count }}00ms;" {{ block.shopify_attributes }}>
                         <div class="progress-circle-wrapper">
